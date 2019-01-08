@@ -1,0 +1,8 @@
+git init
+git add README.md
+git commit -m "first commit"
+ git remote add origin https://github.com/kzossTechtonic/gitexample.git
+git push -u origin master
+D@ngerous11
+git remote add origin https://github.com/kzossTechtonic/gitexample.git
+git push -u origin master

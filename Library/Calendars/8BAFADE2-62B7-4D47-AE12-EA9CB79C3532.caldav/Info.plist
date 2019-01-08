@@ -60,15 +60,15 @@
 	<array>
 		<dict>
 			<key>PreferredCalendarUserAddressesAddress</key>
-			<string>/aMTAwMjA5NzE3MzMxMDAyMHozMb4JBnOVk8iexY6gNxI343FL61PbLn3wGw8FHhJK/principal/</string>
-			<key>PreferredCalendarUserAddressesPreferred</key>
-			<integer>-1</integer>
-		</dict>
-		<dict>
-			<key>PreferredCalendarUserAddressesAddress</key>
 			<string>mailto:karennarachelle@gmail.com</string>
 			<key>PreferredCalendarUserAddressesPreferred</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>PreferredCalendarUserAddressesAddress</key>
+			<string>/aMTAwMjA5NzE3MzMxMDAyMHozMb4JBnOVk8iexY6gNxI343FL61PbLn3wGw8FHhJK/principal/</string>
+			<key>PreferredCalendarUserAddressesPreferred</key>
+			<integer>-1</integer>
 		</dict>
 		<dict>
 			<key>PreferredCalendarUserAddressesAddress</key>
@@ -110,7 +110,7 @@
 		</dict>
 	</dict>
 	<key>RefreshDate</key>
-	<date>2019-01-08T15:35:33Z</date>
+	<date>2019-01-08T15:54:33Z</date>
 	<key>RefreshInterval</key>
 	<integer>900</integer>
 	<key>RequestCompressionSupported</key>
