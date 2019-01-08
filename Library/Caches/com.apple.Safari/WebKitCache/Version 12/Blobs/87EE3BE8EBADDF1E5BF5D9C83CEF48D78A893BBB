@@ -1,0 +1,1552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="google-site-verification" content="hK1I16vFnjM2UF4-oSS6KrHWKcCfqsfS7ZJAPg4bD-U" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d33a2c">
+  <meta property="fb:pages" content="45576747489" />
+  <title>CSS3 Flexible Box Layout: Everything I Wish I Knew When I Started — Smashing Magazine</title>
+
+  <link rel="icon" type="image/png" href="/images/favicon/favicon.png">
+    
+
+  <script>
+    if (sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded ||
+       ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+    ) {
+      var docEl = document.documentElement;
+      docEl.classList.add('wf-loaded-stage1');
+      docEl.classList.add('wf-loaded-stage2');
+    }
+
+    if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        window.sw = reg
+        console.log('Meow from service worker %o', reg);
+      }).catch(function(err) {
+        console.error('Failed to load service worker')
+      });
+    }
+
+    if(!('querySelector') in document
+         && "addEventListener" in window
+         && "getComputedStyle" in window) {
+         window.document.documentElement.className += " no-js";
+      }
+      window.document.documentElement.className += " enhanced js";
+
+    window.TablesawConfig = {
+      i18n: {
+        swipePreviousColumn: '',
+        swipeNextColumn: ''
+      }
+    }
+  </script>
+
+  
+  <style>@font-face{font-family:ElenaInitial;src:url("https://d33wubrfki0l68.cloudfront.net/a978f759fa0230c1e590d1bdb5a1c03ceb538cec/fed6b/fonts/elenawebregular/elenawebregular.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/9c2752fab289f61c6ed3a1f78ab60fb2034103b7/bf691/fonts/elenawebregular/elenawebregular.woff") format("woff")}@font-face{font-family:Elena;src:url("https://d33wubrfki0l68.cloudfront.net/a978f759fa0230c1e590d1bdb5a1c03ceb538cec/fed6b/fonts/elenawebregular/elenawebregular.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/9c2752fab289f61c6ed3a1f78ab60fb2034103b7/bf691/fonts/elenawebregular/elenawebregular.woff") format("woff")}@font-face{font-family:Elena;src:url("https://d33wubrfki0l68.cloudfront.net/151446eb4ad2f20af89f3132f66d03cc92c856f4/74612/fonts/elenawebregularitalic/elenawebregularitalic.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/a6275674bf99f00da2e019547d61933d074f2ae7/51beb/fonts/elenawebregularitalic/elenawebregularitalic.woff") format("woff");font-style:italic}@font-face{font-family:Elena;src:url("https://d33wubrfki0l68.cloudfront.net/a7cc92a2d6ae8ea43370e14b53d2ce89a2b2b5ab/7cca9/fonts/elenawebbold/elenawebbold.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/c2ebb4866cc6ce6d5ffdb22b616cb3dde4274107/c6bc6/fonts/elenawebbold/elenawebbold.woff") format("woff");font-weight:700}@font-face{font-family:Elena;src:url("https://d33wubrfki0l68.cloudfront.net/bbc71fd1b91cc1a4ede7ea378a8bf30b9e32173e/93eeb/fonts/elenawebbolditalic/elenawebbolditalic.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/56129334a763b7d04f2f34cbbd3b4f68f72bb6d7/8045a/fonts/elenawebbolditalic/elenawebbolditalic.woff") format("woff");font-weight:700;font-style:italic}@font-face{font-family:MijaInitial;src:url("https://d33wubrfki0l68.cloudfront.net/ac1833dce386eb55d8e105248ef9126622e8e3e9/03f2d/fonts/mijaregular/mija_regular-webfont.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/0e0910ceb0e2f9adffd9db31665dafa4ec5c10ff/7214b/fonts/mijaregular/mija_regular-webfont.woff") format("woff")}@font-face{font-family:Mija;src:url("https://d33wubrfki0l68.cloudfront.net/ac1833dce386eb55d8e105248ef9126622e8e3e9/03f2d/fonts/mijaregular/mija_regular-webfont.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/0e0910ceb0e2f9adffd9db31665dafa4ec5c10ff/7214b/fonts/mijaregular/mija_regular-webfont.woff") format("woff")}@font-face{font-family:Mija;src:url("https://d33wubrfki0l68.cloudfront.net/94691bb5497213e09480b17ef68446d2b85667e9/d58ec/fonts/mijabold/mija_bold-webfont.woff2") format("woff2"),url("https://d33wubrfki0l68.cloudfront.net/1d162cc7792bc1f04919a5a344b4082087b9e012/855b4/fonts/mijabold/mija_bold-webfont.woff") format("woff");font-weight:700}</style>
+
+  
+  
+  
+
+  
+    
+    
+    <style>@charset "UTF-8";/*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{max-width:66em;display:-ms-grid;display:grid;-ms-grid-columns:minmax(1em,1fr) minmax(0,2.6em)[12] minmax(1em,1fr);grid-template-columns:minmax(1em,1fr) repeat(12,minmax(0,3.795rem)) minmax(1em,1fr);grid-row-gap:calc(1em + .5vw);margin:0 auto}}}@media all and (min-width:1024px){.drop-caps{display:none}}.article__summary,.internal__summary{color:#666;font-style:italic;position:relative;padding-bottom:1.5em;border-bottom:3px solid #e5e5e5;margin-bottom:.5em!important}.wf-loaded-stage1 .article__summary,.wf-loaded-stage1 .internal__summary{font-family:ElenaInitial}.wf-loaded-stage2 .article__summary,.wf-loaded-stage2 .internal__summary{font-family:Elena}.article__summary{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.meow__content--small{padding:1.5em 2em;background:#f7f7f7;position:relative}.meow__content--small .meow__content__desc h2{font-size:calc(1.25em + .5vw)}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}b,strong{font-weight:bolder;letter-spacing:.25px}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font:inherit;margin:0}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}textarea{overflow:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.logo{font-size:1em;float:left;line-height:0;width:3em;position:relative;z-index:1}@media all and (min-width:900px){.logo{margin-top:1em}}@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){.logo{width:3.5em}}@media all and (min-width:1350px){.logo{width:10.5em;margin-top:1.5em}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.75em;max-height:100px}.logo--full{min-width:300px}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:12.5px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#282634;background-color:#666}@media all and (max-width:1024px){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:relative;position:fixed;bottom:1em;right:1em;z-index:9}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url("https://d33wubrfki0l68.cloudfront.net/10f9f40f8856e393ab4525a46bd8e60af9580324/0ab7a/images/shadow.png");background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.back-to-top-wrapper:hover a{transform:rotate(0)}.back-to-top-wrapper:hover::before{opacity:0;transform:scaleX(0)}@media (min-height:600px){.back-to-top-wrapper{display:block}}.author{padding:0;margin:1em 0}.author>a{display:block;max-width:100%;float:left;padding:0;background:0 0;text-shadow:none;color:inherit}.author>a::after{clear:both;content:"";display:block}.author::after{clear:both;content:"";display:block}.author .show-more-link{font-size:.9em;display:inline;color:#666;background-image:linear-gradient(currentColor,currentColor);font-weight:400;font-family:Arial,serif}.wf-loaded-stage1 .author .show-more-link{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .author .show-more-link{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .author .show-more-link{font-family:Mija}.author__image,.settings__image{transform-origin:0 100%;overflow:hidden;border-radius:11px}.author__image img,.settings__image img{display:block;width:100%;border-radius:11px;min-height:50px;transition:height .2s ease-in-out}.author__image{background:#d33a2c;border:5px solid #d33a2c}.author__desc{padding:0;position:relative;top:-1em;float:left;width:65%;font-style:normal!important;padding-left:2em;color:#333;font-size:.8em;font-family:Georgia,serif}.wf-loaded-stage1 .author__desc{font-family:ElenaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .author__desc{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .author__desc{font-family:Elena}.author__desc p{margin:1em 0}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9rem;margin:0;font-weight:400;font-family:Georgia,serif}.wf-loaded-stage1 .author__desc__title{font-family:ElenaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .author__desc__title{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .author__desc__title{font-family:Elena}.author__image-wrapper,.settings__image-wrapper{position:absolute;top:0;left:0;border-radius:11px;overflow:visible;position:relative}.author__image-wrapper .author__image,.author__image-wrapper .settings__image,.settings__image-wrapper .author__image,.settings__image-wrapper .settings__image{transform:translateX(15%) rotateZ(-11deg) scale(.87);transition:transform .2s ease-out}.author__image-wrapper .author__image img,.author__image-wrapper .settings__image img,.settings__image-wrapper .author__image img,.settings__image-wrapper .settings__image img{transition:transform .2s ease-out;transform-origin:0 100%;transform:scale(1.2) translateX(-16%) translateY(-3%) rotateZ(11deg)}.author__image-wrapper::after,.settings__image-wrapper::after{transition-duration:.2s;opacity:1;transform:scaleX(1)}.author__image-wrapper::before,.settings__image-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url("https://d33wubrfki0l68.cloudfront.net/10f9f40f8856e393ab4525a46bd8e60af9580324/0ab7a/images/shadow.png");background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.author__image-wrapper{width:100%;min-width:60px;max-width:400px}@media all and (min-width:480px){.author__image-wrapper{min-width:80px;min-height:80px}}.author--full,.author--full--small{margin-right:0}.author--full--small>a,.author--full>a{display:block;width:30%;float:left;margin-right:1em;margin-bottom:.5em}.author--full--small>a:focus .tilt,.author--full>a:focus .tilt{transition-duration:.2s}.author--full--small>a:focus .tilt .author__image,.author--full>a:focus .tilt .author__image{transform:translateX(15%) rotateZ(0) scale(.87);transition-duration:.2s}.author--full--small>a:focus .tilt img,.author--full>a:focus .tilt img{transform:scale(1.2) translateX(-10%) translateY(6%) rotateZ(0);transition-duration:.2s}.author--full--small>a:focus .tilt::before,.author--full>a:focus .tilt::before{opacity:0;transform:scaleX(0);transition-duration:.2s}@media all and (max-width:600px){.author--full--small>a,.author--full>a{float:right;margin-right:0;margin-left:1em;margin-bottom:1.5em}}.author--full .author__image-wrapper .author__image,.author--full--small .author__image-wrapper .author__image{transform:translateX(15%) rotateZ(0) scale(.87);border-width:8px;border-radius:22px;transition:all .3s ease-in-out;min-height:30%}.author--full .author__image-wrapper.tilt .author__image,.author--full .author__image-wrapper.tilt .settings__image,.author--full--small .author__image-wrapper.tilt .author__image,.author--full--small .author__image-wrapper.tilt .settings__image{transform:translateX(15%) rotateZ(-11deg) scale(.87);transition:transform .6s ease-out}.author--full .author__image-wrapper.tilt .author__image img,.author--full .author__image-wrapper.tilt .settings__image img,.author--full--small .author__image-wrapper.tilt .author__image img,.author--full--small .author__image-wrapper.tilt .settings__image img{transition:transform .6s ease-out;transform-origin:0 100%;transform:scale(1.2) translateX(-16%) translateY(-3%) rotateZ(11deg)}.author--full .author__image-wrapper.tilt::after,.author--full--small .author__image-wrapper.tilt::after{transition-duration:.6s;opacity:1;transform:scaleX(1)}@media all and (max-width:480px){.author--full .author__image-wrapper,.author--full--small .author__image-wrapper{width:100%;max-width:250px;margin:0 auto;float:none}}.author--full .author__image-wrapper.tilt:hover,.author--full--small .author__image-wrapper.tilt:hover{transition-duration:.2s}.author--full .author__image-wrapper.tilt:hover .author__image,.author--full--small .author__image-wrapper.tilt:hover .author__image{transform:translateX(15%) rotateZ(0) scale(.87);transition-duration:.2s}.author--full .author__image-wrapper.tilt:hover img,.author--full--small .author__image-wrapper.tilt:hover img{transform:scale(1.2) translateX(-10%) translateY(6%) rotateZ(0);transition-duration:.2s}.author--full .author__image-wrapper.tilt:hover::before,.author--full--small .author__image-wrapper.tilt:hover::before{opacity:0;transform:scaleX(0);transition-duration:.2s}.author--full .author__desc,.author--full--small .author__desc{padding-left:0}.author__image-wrapper::before,.books__book__image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.author--full .author__image-wrapper .author__desc__image-placeholder{min-width:130px;min-height:130px;min-width:30%}@media all and (min-width:421px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:75px}}@media all and (min-width:550px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:100px}}@media all and (min-width:600px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:147px}}@media all and (min-width:750px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:180px}}@media all and (min-width:1100px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:120px}}@media all and (min-width:1150px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:136px}}@media all and (min-width:1200px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:150px}}@media all and (min-width:1250px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:178px}}@media all and (min-width:1380px){.author--full .author__image-wrapper .author__desc__image-placeholder{min-height:190px}}@supports (display:grid){.article .c-garfield-the-cat .product-panel{-ms-grid-column:1;grid-column-start:1;grid-column-end:17}}.article .product-panel{top:2.5em}.article .product-panel img{width:100%}@media all and (max-width:1025px){.article .product-panel{position:static;margin:0!important}}@media all and (max-width:1024px){.article .product-panel:nth-of-type(1){position:relative;left:0;top:4.5em;margin-bottom:calc(4.5em + 2.5em)!important}.article .product-panel:nth-of-type(1)::before{width:100%!important}}@media all and (min-width:1025px){.article .product-panel{position:relative}}.article .product-panel:nth-of-type(1)::before{position:absolute;top:-3.5em;width:75%;content:"Caution: shameless plug ahead! Continue reading below ↓";font-size:.7em;color:#666;padding-bottom:.5em;margin-bottom:2.5em;border-bottom:8px solid #eee;font-family:Arial,serif}.wf-loaded-stage1 .article .product-panel:nth-of-type(1)::before{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .article .product-panel:nth-of-type(1)::before{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .article .product-panel:nth-of-type(1)::before{font-family:Mija}.article .c-garfield-the-cat .product-panel{position:relative;margin-left:0!important;margin-right:0!important}.product-panel{border-radius:11px;padding:2.5em 0}.product-panel .container{width:90%;max-width:1300px;position:relative;display:-ms-flexbox;display:flex;-ms-flex-align:stretch;align-items:stretch;-ms-flex-direction:column;flex-direction:column}@media all and (min-width:750px){.product-panel .container{-ms-flex-direction:row;flex-direction:row}}.product-panel a{text-shadow:3px 0 #f6f6f6,2px 0 #f6f6f6,1px 0 #f6f6f6,-1px 0 #f6f6f6,-2px 0 #f6f6f6,-3px 0 #f6f6f6}.product-panel a:not(.btn):not(.toolbar-item){color:#006fc6}.product-panel ul{margin:calc(1em + .5vw) 0 calc(1.5em + .5vw) 0}.product-panel p{margin-top:0}@media all and (max-width:640px){.product-panel .btn,.product-panel .toolbar-item{width:100%}}.article .product-panel{margin-top:3em;margin-bottom:4em}.article .product-panel .product-panel__tilted{margin-top:5em;margin-bottom:5em}@media all and (max-width:1024px){.article .product-panel{width:100%;margin-right:0;margin-left:0}}.product-panel .panel__description{width:100%;margin-left:0;padding:0 1em;text-align:left}@media all and (min-width:750px){.product-panel .panel__description{width:calc(70% - 2vw)}}@media all and (min-width:480px){.product-panel .panel__description{padding:0 2em 0 1em}}@media all and (min-width:640px){.product-panel .panel__description{padding:0 3.5em 0 1em}}@media all and (min-width:1025px){.product-panel .panel__description{display:block;margin-left:0;padding:0 1em}}@media all and (min-width:1450px){.product-panel .panel__description{width:65%}}@media all and (min-width:2200px){.product-panel .panel__description{width:70%}}.product-panel .panel__image{width:100%;-ms-flex-order:-1;order:-1}@media all and (min-width:750px){.product-panel .panel__image{width:calc(30% + 2vw);-ms-flex-order:1;order:1}}.product-panel--book{background-color:#f6f6f6}.product-panel--book p a{text-shadow:3px 0 #f6f6f6,2px 0 #f6f6f6,1px 0 #f6f6f6,-1px 0 #f6f6f6,-2px 0 #f6f6f6,-3px 0 #f6f6f6}.product-panel--book .btn,.product-panel--book .toolbar-item{text-shadow:1px 1px 1px rgba(0,0,0,.3)}@media all and (min-width:1025px){.product-panel--book .panel__image--book{position:absolute;max-width:500px;top:calc(-5em - 5vw);right:0}}.sponsors ul{padding-left:0;text-align:center}.sponsors ul li{display:inline-block;margin-bottom:2em;font-size:.8em}.sponsors ul li img{max-width:auto}@media all and (max-width:600px){.sponsors ul li{margin-bottom:2em;margin-right:0;display:block}.sponsors ul li a{text-align:center}}.sponsors__centered li{width:auto;margin-right:1em;margin-left:1em}.c-promo-box--ad.sponsors li{width:auto}.article{padding-top:calc(.5em + 3vw)}.article__comments-count{font-size:1rem}@keyframes animatedGradient{from{background-color:#fff}to{background-color:#f6f3f2}}.article__content [data-src],[data-src]{display:block;width:100%;animation:.75s infinite alternate ease-out animatedGradient}.article__content [data-src]{min-height:350px}.article-container .author--full .author__desc{padding:0;width:100%}.article__content{line-height:1.5;padding:0}.article__content a:not(.btn):not(.toolbar-item){color:#006fc6}.drop-caps+p::first-line{font-weight:700;font-variant:all-small-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.1em}.wf-loaded-stage1 .drop-caps+p::first-line{font-family:ElenaInitial}.wf-loaded-stage2 .drop-caps+p::first-line{font-family:Elena}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}.article__meta{list-style:none;padding:0;margin:0;margin:1em 0}.article__meta::after{clear:both;content:"";display:block}.article__meta li{float:left;padding:0;margin:0;margin-right:0}.article__meta li::before{display:none}.article__meta li::after{content:"•";font-size:.8em;color:#d33a2c;display:inline-block;margin:0 .4em 0 .4em}.article__meta li:last-of-type::after{display:none}.article__meta time{color:#666;font-size:inherit}.article__meta li{float:left;font-size:.9em;font-family:Arial,serif}.wf-loaded-stage1 .article__meta li{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .article__meta li{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .article__meta li{font-family:Mija}.article__meta li span{margin:0}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.signature img{width:2em;margin-right:.75em;vertical-align:middle;position:relative;top:.5em}.article__content figure,.article__image,.internal__page__wrapper figure{padding:0;margin:1em 0}.article__content figure img,.article__image img,.internal__page__wrapper figure img{display:block;width:auto;max-width:100%;margin:0 auto}.article__content figure>a,.article__image>a,.internal__page__wrapper figure>a{display:block;background:0 0;position:relative;z-index:99}.article__content figure figcaption,.article__image figcaption,.internal__page__wrapper figure figcaption{color:#666;font-size:calc(.8em + .2vw);font-style:italic;padding:.75em 2em .75em 0;display:table}@supports (-ms-ime-align:auto){.article__content figure figcaption,.article__image figcaption,.internal__page__wrapper figure figcaption{display:inline-block}}.article__content figure figcaption a,.article__image figcaption a,.internal__page__wrapper figure figcaption a{color:#666}.article__content figure figcaption::before,.article__image figcaption::before,.internal__page__wrapper figure figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);display:inline-block;height:18px;width:18px;height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}@supports (-ms-ime-align:auto){.article__content figure figcaption::before,.article__image figcaption::before,.internal__page__wrapper figure figcaption::before{display:inline-block}}.article__content .author figcaption::before{display:none}.comment-form__sticky{margin-bottom:2em}@media all and (min-height:500px){body.articlepage{overflow:initial}div[data-component=CommentsArea]{overflow:initial}.comment-form__sticky{position:-webkit-sticky;position:sticky;top:-3.5em}}.article__comments{padding:5em 0 2.5em;padding-right:30px;font-feature-settings:"lnum" 1,"frac" 1,"sups" 1,"subs" 1}.article__comments::after{clear:both;content:"";display:block}.article__comments--notes{margin-bottom:2em;line-height:1.6em;display:block;background-color:#fff2cc;padding:1em 1.25em;border-radius:11px}.article__comments--notes code{display:inline;background-color:#fff2cc;color:#d33a2c}.comments__comment-count{color:#666;font-size:.5em;line-height:0;position:relative;top:-1em}.form__field.comment__message-field .form__field__label,.form__field.comment__name-field .form__field__label,.form__field.comment__twitter-field .form__field__label{font-size:1em}.comment__reply-to-container{position:relative;overflow:visible}.comment__reply-to-container{position:relative;overflow:visible}.books__book__image{text-align:center;margin-bottom:1em;margin-top:2em;padding:0;background:0 0;float:right;max-width:300px;transition:all .2s ease-out;position:relative}.books__book__image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url("https://d33wubrfki0l68.cloudfront.net/10f9f40f8856e393ab4525a46bd8e60af9580324/0ab7a/images/shadow.png");background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.books__book__image::before{top:84%;left:-45%}.books__book__image:hover::before{transform:scaleX(0);opacity:0}@media all and (max-width:1024px){.books__book__image{float:none;display:block;margin:0 auto 2em}}@media all and (max-width:640px){.books__book__image{max-width:250px}.books__book__image::before{display:none}}.books__book__img{width:100%;max-width:250px;will-change:transform;transform-origin:0 100%;transition:transform .2s ease-out}.books__book__meta{float:right;background:#f6f6f6;padding:1em;list-style:none;width:100%;border-radius:11px;font-size:.75em;font-family:Arial,serif}.wf-loaded-stage1 .books__book__meta{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .books__book__meta{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .books__book__meta{font-family:Mija}@media all and (max-width:640px){.books__book__meta{margin-bottom:1em}}.books__book__meta li{margin-bottom:.5em;line-height:1.4;padding-left:30px;background-size:auto 20px;background-repeat:no-repeat;background-position:left top}.book__meta__author{background-image:url("https://d33wubrfki0l68.cloudfront.net/e931d36d522214712667d1bfed00e960cc814fdb/45d22/images/icons/author.svg")}.book__meta__tags{background-image:url("https://d33wubrfki0l68.cloudfront.net/180a9e7926b4d2c9bfd3f4bf64c4e651404eb5ca/4eb18/images/icons/tags.svg")}.book__meta__published{background-image:url("https://d33wubrfki0l68.cloudfront.net/b72078d9329fd2931a168375356fd2f1c71110cf/bde3f/images/icons/published.svg")}code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}.ladda-button{position:relative}.ladda-button .ladda-spinner{position:absolute;z-index:2;display:inline-block;width:32px;height:32px;top:50%;margin-top:0;opacity:0;pointer-events:none}.ladda-button .ladda-label{position:relative;z-index:3}.ladda-button,.ladda-button .ladda-label,.ladda-button .ladda-spinner{transition:.3s cubic-bezier(.175,.885,.32,1.275) all!important}.ladda-button[data-style=expand-right] .ladda-spinner{right:-6px}form input[type=text],form textarea{color:#333}label{max-width:100%}.form__field{display:block;font-size:.9em;width:100%;margin-bottom:1.5em}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#fff;border:1px solid #bbb;transition:all .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.75em 2em .85em 1em;display:block;width:100%;outline:0;font-family:Georgia,serif}.wf-loaded-stage1 .form__field__input,.wf-loaded-stage1 input[type=email],.wf-loaded-stage1 input[type=password],.wf-loaded-stage1 input[type=text],.wf-loaded-stage1 textarea{font-family:ElenaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .form__field__input,.wf-loaded-stage1 .wf-loaded-stage2 input[type=email],.wf-loaded-stage1 .wf-loaded-stage2 input[type=password],.wf-loaded-stage1 .wf-loaded-stage2 input[type=text],.wf-loaded-stage1 .wf-loaded-stage2 textarea{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .wf-loaded-stage2 input[type=email],.wf-loaded-stage2 .wf-loaded-stage2 input[type=password],.wf-loaded-stage2 .wf-loaded-stage2 input[type=text],.wf-loaded-stage2 .wf-loaded-stage2 textarea{font-family:Elena}.form__field__input[data-optional],input[type=email][data-optional],input[type=password][data-optional],input[type=text][data-optional],textarea[data-optional]{border-color:#eee}.btn .sr-only,.sr-only,.toolbar-item .sr-only{display:inline-block;height:0;width:0;line-height:0;overflow:hidden}textarea{height:10em;resize:both;scroll:auto;max-width:100%;padding:.75em 1em .85em 1em}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}input[data-optional]{border-color:#eee}.form__field input.success,.form__field input:-webkit-autofill.success,.form__field input[type=text].success,.form__field textarea.success,.form__field textarea:-webkit-autofill.success{border-color:#41b14f;background-repeat:no-repeat;background-position:right 1em center;background-size:1em 1em;color:#41b14f;-webkit-text-fill-color:#41b14f;font-weight:700;transition:border-color .5s ease-in;font-family:Arial,serif}.wf-loaded-stage1 .form__field input.success,.wf-loaded-stage1 .form__field input:-webkit-autofill.success,.wf-loaded-stage1 .form__field input[type=text].success,.wf-loaded-stage1 .form__field textarea.success,.wf-loaded-stage1 .form__field textarea:-webkit-autofill.success{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .form__field input.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field input:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field input[type=text].success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field textarea.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field textarea:-webkit-autofill.success{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .form__field input.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field input:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field input[type=text].success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field textarea.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field textarea:-webkit-autofill.success{font-family:Mija}.form__field__input.success{border-color:#41b14f;background-repeat:no-repeat;background-position:right 1em center;background-size:1em 1em;color:#41b14f;-webkit-text-fill-color:#41b14f;font-weight:700;transition:border-color .5s ease-in;font-family:Arial,serif}.wf-loaded-stage1 .form__field__input.success{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .form__field__input.success{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .form__field__input.success{font-family:Mija}.form__field.comment__message-field input.success,.form__field.comment__message-field input:-webkit-autofill.success,.form__field.comment__message-field input[type=text].success,.form__field.comment__message-field textarea.success,.form__field.comment__message-field textarea:-webkit-autofill.success,.form__field.comment__name-field input.success,.form__field.comment__name-field input:-webkit-autofill.success,.form__field.comment__name-field input[type=text].success,.form__field.comment__name-field textarea.success,.form__field.comment__name-field textarea:-webkit-autofill.success,.form__field.comment__twitter-field input.success,.form__field.comment__twitter-field input:-webkit-autofill.success,.form__field.comment__twitter-field input[type=text].success,.form__field.comment__twitter-field textarea.success,.form__field.comment__twitter-field textarea:-webkit-autofill.success{color:#41b14f;-webkit-text-fill-color:#41b14f;font-weight:700;font-family:Arial,serif}.wf-loaded-stage1 .form__field.comment__message-field input.success,.wf-loaded-stage1 .form__field.comment__message-field input:-webkit-autofill.success,.wf-loaded-stage1 .form__field.comment__message-field input[type=text].success,.wf-loaded-stage1 .form__field.comment__message-field textarea.success,.wf-loaded-stage1 .form__field.comment__message-field textarea:-webkit-autofill.success,.wf-loaded-stage1 .form__field.comment__name-field input.success,.wf-loaded-stage1 .form__field.comment__name-field input:-webkit-autofill.success,.wf-loaded-stage1 .form__field.comment__name-field input[type=text].success,.wf-loaded-stage1 .form__field.comment__name-field textarea.success,.wf-loaded-stage1 .form__field.comment__name-field textarea:-webkit-autofill.success,.wf-loaded-stage1 .form__field.comment__twitter-field input.success,.wf-loaded-stage1 .form__field.comment__twitter-field input:-webkit-autofill.success,.wf-loaded-stage1 .form__field.comment__twitter-field input[type=text].success,.wf-loaded-stage1 .form__field.comment__twitter-field textarea.success,.wf-loaded-stage1 .form__field.comment__twitter-field textarea:-webkit-autofill.success{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__message-field input.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__message-field input:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__message-field input[type=text].success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__message-field textarea.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__message-field textarea:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__name-field input.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__name-field input:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__name-field input[type=text].success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__name-field textarea.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__name-field textarea:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__twitter-field input.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__twitter-field input:-webkit-autofill.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__twitter-field input[type=text].success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__twitter-field textarea.success,.wf-loaded-stage1 .wf-loaded-stage2 .form__field.comment__twitter-field textarea:-webkit-autofill.success{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__message-field input.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__message-field input:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__message-field input[type=text].success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__message-field textarea.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__message-field textarea:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__name-field input.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__name-field input:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__name-field input[type=text].success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__name-field textarea.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__name-field textarea:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__twitter-field input.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__twitter-field input:-webkit-autofill.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__twitter-field input[type=text].success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__twitter-field textarea.success,.wf-loaded-stage2 .wf-loaded-stage2 .form__field.comment__twitter-field textarea:-webkit-autofill.success{font-family:Mija}.form__field .input-wrapper,.form__field .select-wrapper,.form__field.comment__message-field .input-wrapper,.stripe-element.form__field__input{position:relative}.form__field .input-wrapper:after,.form__field .select-wrapper:after,.form__field.comment__message-field .input-wrapper:after,.stripe-element.form__field__input:after{content:"";position:absolute;top:50%;right:.25em;width:1em;height:1em;margin-top:-.5em;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4NCjxwYXRoIGZpbGw9IiM0MUIxNEYiIGZpbGwtb3BhY2l0eT0iMSIgZD0iTTE2IDBjLTguODM2IDAtMTYgNy4xNjQtMTYgMTZzNy4xNjQgMTYgMTYgMTYgMTYtNy4xNjQgMTYtMTYtNy4xNjQtMTYtMTYtMTZ6TTEzLjUyIDIzLjM4M2wtNy4zNjItNy4zNjMgMi44MjgtMi44MjggNC41MzMgNC41MzUgOS42MTctOS42MTcgMi44MjggMi44MjgtMTIuNDQ0IDEyLjQ0NXoiPjwvcGF0aD4NCjwvc3ZnPg0K);background-repeat:no-repeat;background-size:1em 1em;z-index:2;opacity:0;transition:opacity .15s ease-in-out,right .15s ease-in-out}.form__field.comment__message-field.success .input-wrapper,.form__field.success .input-wrapper,.form__field.success .select-wrapper,.stripe-element.form__field__input.success{position:relative}.form__field.comment__message-field.success .input-wrapper:after,.form__field.success .input-wrapper:after,.form__field.success .select-wrapper:after,.stripe-element.form__field__input.success:after{opacity:1;right:1em}.enhanced .form__field--floating{position:relative}.enhanced .form__field--floating .form__field__input,.enhanced .form__field--floating .form__field__label{display:block}.enhanced .form__field--floating .form__field__label{position:absolute;top:8px;left:1.25em;transition:all .3s ease-out;color:#aaa;font-size:calc(.8em + .1vw);padding:8px 0;z-index:1}@media all and (max-width:640px){.enhanced .form__field--floating .form__field__label{font-size:.8em;padding:10px 0}}.enhanced .form__field--floating.float .form__field__label{transform:translateY(-12px);font-size:.7em;left:1.5em}.enhanced .form__field--floating.float input[type=email],.enhanced .form__field--floating.float input[type=number],.enhanced .form__field--floating.float input[type=password],.enhanced .form__field--floating.float input[type=text],.enhanced .form__field--floating.float textarea{padding:1.2em 3em .4em 1em}.enhanced .form__field--floating.blurred .form__field__label{color:#8f979d}.green,.highlight,.success{color:#41b14f}.grey{color:#666!important}.clearfix:after,.clearfix:before{content:" ";display:table;clear:both}*,::after,::before{box-sizing:border-box}.hidden{display:none!important}.container{width:92vw;max-width:1440px;margin:0 auto}.container{width:92vw;max-width:1440px;margin:0 auto}@media all and (max-width:512px){.container{min-width:calc(100% - .5em)}}@media all and (max-width:1024px){.container{max-width:750px}}@media all and (min-height:40em){.container{max-width:66em}}.container::after,.container::before{content:" ";display:table}.container::after{clear:both}[class*=col-]{float:left}.row::after,.row::before{content:" ";display:table}.row::after{clear:both}.col-5{width:41.66667%}.col-7{width:58.33333%}.col-12{width:100%}embed,iframe,img,object{max-width:100%;height:auto}.c-garfield-the-cat>p:first-of-type{font-size:1.15em}.c-garfield-the-cat .article__header{margin:0;grid-column-end:15}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.col--article-head,.col--article-summary,.col--internal-summary{float:none;margin:0;top:0}.article__content{float:none;margin-top:50px}.article__content::before{display:none}}body{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;background-color:#bc3428}body.articlepage,body.dashboard{background-color:#fff}:focus{outline:3px dotted #811d15!important}.no-js body{background-color:#fff}body,html{min-height:100%;overflow-x:hidden}#main{position:relative;z-index:1;background-color:#fff}#main:focus{outline:0!important}.c-garfield-the-cat figcaption a:not(.btn):not(.toolbar-item){color:#666;background-image:linear-gradient(#666,#666)}.c-garfield-the-cat a:not(.btn):not(.toolbar-item){color:#006fc6}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn):not(.toolbar-item){color:#006fc6}.c-promo-box--ad li a{color:#006fc6;text-shadow:none;background-image:linear-gradient(#fff,#5da3db)}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:0 0 1.5em 0;font-size:.75em;font-style:italic;color:#666}.noads.c-promo-box--ad::before{display:none}.c-garfield-the-cat .author__desc{font-size:calc(.8em + .15vw);color:#555}.c-garfield-the-cat>.article__summary::before{font-size:.9em;content:"Quick summary ↬ ";font-style:normal;letter-spacing:2px;font-size:1rem;margin:0;font-weight:600;color:#d33a2c;text-transform:uppercase}.c-garfield-the-cat .books__book__meta{font-size:.8em}.c-garfield-the-cat>.c-promo-box--ad::before{content:"Our friends and supporters ↓"}@media all and (max-width:1024px){.c-garfield-the-cat>.c-promo-box--ad{padding:1em 1em .5em 0;background-color:#f7f7f7;margin:2.5em auto;text-align:center}.c-garfield-the-cat>.c-promo-box--ad::before{content:"Our friends and supporters. \A You know, they help us pay the bills ↓"}}.c-garfield-the-cat>div:last-child.c-promo-box--ad::before,.c-promo-box--wide::before,.signature+.c-promo-box--ad::before{margin-top:1em;border-top:8px solid #eee;padding:2em 0 3em 0;content:"Our friends and supporters. You know, they help us pay the bills ↓";text-align:center}.c-promo-box--wide{padding:0;max-width:66em;background:0 0;margin:0 auto}.c-promo-box--wide .bnnr-list,.signature+.c-promo-box--ad .bnnr-list{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;text-align:center;-ms-flex-pack:center;justify-content:center}@media all and (min-width:1024px){.c-promo-box--wide .bnnr-list,.signature+.c-promo-box--ad .bnnr-list{-ms-flex-direction:row;flex-direction:row}}.c-garfield-the-cat>div:last-child.c-promo-box--ad .bnnr-list{-ms-flex-direction:row;flex-direction:row}@media screen and (min-width:1024px){.c-garfield-the-cat>div:last-child.c-promo-box--ad li:not(:last-child),.c-promo-box--wide li:not(:last-child),.signature+.c-promo-box--ad li:not(:last-child){padding-right:2em}}.c-promo-box--ad img{border-radius:11px}.c-promo-box--ad ul{padding-left:0;margin:0}.c-promo-box--ad li{margin-bottom:1.5em}.c-promo-box--ad li:last-child{margin-bottom:0}.bnnr-list{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;text-align:center;-ms-flex-pack:center;justify-content:center;-ms-flex-direction:row;flex-direction:row}.sponsors:not(.c-promo-box) .bnnr-list{margin-top:1.5em}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{-ms-flex-direction:column;flex-direction:column}.bnnr-list li a:nth-of-type(1){background-image:none!important}.bnnr-list li a:nth-of-type(2){color:#006fc6;font-style:italic;background-image:linear-gradient(#fff,#5da3db);text-shadow:none}.c-garfield-the-cat{padding:0 1em}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat>h3{margin-top:calc(1.5 * (1em + .5vw));margin-bottom:0}.c-garfield-the-cat>h4{margin-top:calc(1em + .5vw);margin-bottom:calc(-1 * (1em + .5vw)/ 2)}.c-garfield-the-cat>pre[class*=language-]{margin-top:calc((1em + .5vw)/ 2);margin-bottom:calc((1em + .5vw)/ 2)}.c-garfield-the-cat>p:empty{display:none}.c-garfield-the-cat>*{-ms-grid-column:3;grid-column-start:3;grid-column-end:13}.c-garfield-the-cat>blockquote.pull-quote{margin:calc(1em + .5vw) 0}.c-garfield-the-cat>blockquote.pull-quote p{margin-top:0;margin-bottom:0}.c-garfield-the-cat>blockquote.pull-quote a:not(.btn):not(.toolbar-item){color:#333}.c-garfield-the-cat>table{margin-bottom:calc(1em + .5vw)}.c-garfield-the-cat>*,.c-garfield-the-cat>.c-felix-the-cat{margin-top:0;margin-bottom:0;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.article__content>.c-garfield-the-cat>.aspect-ratio,.article__content>.c-garfield-the-cat>.video-container{padding:0}.article-container .author--full{-ms-grid-column:1;grid-column-start:1;grid-column-end:2;-ms-grid-row:span 3;grid-row:span 3;-ms-flex-item-align:start;-ms-grid-row-align:start;align-self:start}.c-garfield-the-cat>.break-out{-ms-grid-column:1;grid-column-start:1;grid-column-end:15;max-width:50em;margin-left:auto;margin-right:auto}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{padding-top:calc((1em + .5vw)/ 2);padding-bottom:0;margin:0 auto}.c-garfield-the-cat>ol li,.c-garfield-the-cat>ul li{margin-bottom:calc((1em + .5vw)/ 2)}.c-garfield-the-cat>.c-promo-box{-ms-grid-column:10;grid-column-start:10;grid-column-end:15;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.c-garfield-the-cat>.c-promo-box--grey{-ms-grid-column:2;grid-column-start:2;grid-column-end:14;-ms-grid-row:span 2;grid-row:span 2}.c-newsletter-form input{padding-bottom:0}.c-newsletter-form .btn--full.toolbar-item,.c-newsletter-form .btn.btn--full{margin:0}.c-newsletter-form+small{margin-top:1em;display:inline-block;text-align:center}.c-garfield-the-cat>.c-promo-box--grey:not(.c-promo-box--full)+*,.c-garfield-the-cat>.c-promo-box--grey:not(.c-promo-box--full)+*+*{-ms-grid-column:6;grid-column-start:6;grid-column-end:14}.c-garfield-the-cat>.c-promo-box--grey+.signature{-ms-grid-column:3;grid-column-start:3;grid-column-end:10}.c-garfield-the-cat>.c-promo-box--ad{-ms-grid-column:1;grid-column-start:1;grid-column-end:2;-ms-grid-row:4;grid-row-start:4;grid-row-end:10;-ms-flex-item-align:start;-ms-grid-row-align:start;align-self:start;text-align:center;margin-top:-2em}.c-garfield-the-cat>.c-promo-box--newsletter{-ms-grid-column:14;grid-column-start:14;grid-column-end:17;-ms-grid-row:4;grid-row-start:4;grid-row-end:8;-ms-flex-item-align:start;-ms-grid-row-align:start;align-self:start}.c-garfield-the-cat>.c-promo-box--newsletter>.meow__content{left:0;margin:0;width:145%}.c-garfield-the-cat>.c-promo-box--newsletter>.meow__content small.padding__top{display:none}.c-garfield-the-cat>.c-promo-box--newsletter>.meow__content .meow__content__wrapper a{background-image:none}.c-garfield-the-cat>.c-promo-box--newsletter>.meow__content--small .meow__content__picture{float:none;width:100%;padding:0;top:0;position:relative;margin-top:-10em}.c-garfield-the-cat>.c-promo-box--newsletter .nl__form .btn:after{display:none}.c-garfield-the-cat>.c-promo-box--full{-ms-grid-column:2;grid-column-start:2;grid-column-end:14;margin:calc(2em + 1vw) 0 calc(1em + .5vw) 0}.c-garfield-the-cat>div:last-child.c-promo-box--ad{-ms-grid-column:1;grid-column-start:1;grid-column-end:17}.c-sidenote code{font-style:normal}.c-pre-sidenote--left{-ms-grid-column:3;grid-column-start:3;grid-column-end:10}.c-sidenote--right{-ms-grid-column:11;grid-column-start:11;grid-column-end:15;border-left:var(--sidenote-border,8px solid #eee);padding-left:var(--sidenote-padding,1em);text-align:left;border-top:0;border-bottom:0;font-style:italic}.c-sidenote--left{-ms-grid-column:1;grid-column-start:1;grid-column-end:5;border-right:var(--sidenote-border,8px solid #eee);padding-right:var(--sidenote-padding,1em);text-align:right;border-top:0;border-bottom:0;font-style:italic}.c-post-sidenote--right{-ms-grid-column:6;grid-column-start:6;grid-column-end:15}}}@media screen and (min-width:1100px){.meow__content--small{width:145%;max-width:280px}}@media screen and (min-width:1200px){.c-garfield-the-cat>.c-promo-box--newsletter>.meow__content{width:130%}}.article__content .books__book__meta{-ms-grid-column:14;grid-column-start:14;grid-column-end:17;-ms-grid-row:2;grid-row-start:2;grid-row-end:4;-ms-flex-item-align:start;-ms-grid-row-align:start;align-self:start;margin:0}.article__content .book__meta__tags a{text-shadow:none}.main-header{padding:1em 0;background:#d33a2c;position:relative;min-height:5.9375rem}@media all and (max-width:901px){.main-header{padding:1em 0 0 .5em}}.main-header.active{z-index:2}.auth .main-header,.dashboard .main-header{z-index:1}.header__head{width:100%;padding:0 2em;position:relative;color:#fff}@media all and (max-width:1024px){.header__head{padding:0 1em}}.header__head:after,.header__head:before{content:" ";display:table;clear:both}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}body:not(#home) .contrast-switcher{display:none}body{font-size:calc(18px + .25vw);font-feature-settings:"onum" 1;letter-spacing:-.25px;color:#333;overflow:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:Georgia,serif}.wf-loaded-stage1 body{font-family:ElenaInitial}.wf-loaded-stage1 .wf-loaded-stage2 body{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 body{font-family:Elena}body .form__field__label,body blockquote,body dl,body dt,body figcaption,body li,body p,body textarea{line-height:calc(1.5em + .2vw);word-break:break-word}body h1,body h2,body h3,body h4,body h5,body h6{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body h1,body h2,body h3{line-height:1.2}body h4,body h5,body h6{line-height:calc(1.3em + (1.5 - 1.3) * ((100vw - 21em)/ (35 - 21)))}body code{font-feature-settings:normal}@supports (-ms-ime-align:auto){body{font-feature-settings:normal}}.tnum{font-feature-settings:"tnum" 1}.lnum{font-feature-settings:"lnum" 1}::-webkit-input-placeholder{color:#666}time{font-size:.8em;color:#666;text-transform:lowercase;-ms-font-feature-settings:"smcp" 1,"c2sc" 1;-o-font-feature-settings:"smcp" 1,"c2sc" 1;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;font-variant:small-caps;text-transform:lowercase;background-position:center 72%;font-family:Georgia,serif}.wf-loaded-stage1 time{font-family:ElenaInitial}.wf-loaded-stage1 .wf-loaded-stage2 time{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 time{font-family:Elena}.lining-figures-lnum{font-feature-settings:"smcp" 1,"c2sc" 1,"lnum" 1,"frac" 1,"sups" 1,"subs" 1}.lining-figures-tnum{font-feature-settings:"smcp" 1,"c2sc" 1,"tnum" 1,"frac" 1,"sups" 1,"subs" 1}p{margin:calc(1em + .5vw) 0}b,strong{letter-spacing:0}code,pre{color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code a,pre a{text-shadow:3px 0 #f6f3f2,2px 0 #f6f3f2,1px 0 #f6f3f2,-1px 0 #f6f3f2,-2px 0 #f6f3f2,-3px 0 #f6f3f2}pre{padding:1em;margin:.5em 0;overflow:auto;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:calc(.9em + .1vw);border-radius:8px;min-width:250px;overflow:auto}@media all and (max-width:1024px){pre{max-width:100%}}:not(pre)>code,code{background:#f6f3f2;color:#333;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw)!important;padding:0 .2725em;display:inline-block}:not(pre)>code a,code a{text-shadow:3px 0 #f6f3f2,2px 0 #f6f3f2,1px 0 #f6f3f2,-1px 0 #f6f3f2,-2px 0 #f6f3f2,-3px 0 #f6f3f2}:not(pre)>code{white-space:normal}pre>code,pre[class]>code{line-height:calc(1.65em + .2vw)!important;background:0 0}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}a{text-decoration:none;padding:10px 0;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:100% 1.5px;background-position:center bottom 29%;background-origin:padding-box;text-shadow:3px 0 #fff,2px 0 #fff,1px 0 #fff,-1px 0 #fff,-2px 0 #fff,-3px 0 #fff;transition:color .1s ease-out;color:#2da2c5}a code{background:0 0!important;padding:0}@supports (-ms-ime-align:auto){a{text-shadow:none}}.h1,h1{font-size:calc(26px + 1.6vw);margin:0;font-family:Arial,sans-serif}.wf-loaded-stage1 .h1,.wf-loaded-stage1 h1{font-family:MijaInitial}.wf-loaded-stage2 .h1,.wf-loaded-stage2 h1{font-family:Mija}.wf-loaded-stage1 .wf-loaded-stage1 .h1,.wf-loaded-stage1 .wf-loaded-stage1 h1{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage1 .h1,.wf-loaded-stage2 .wf-loaded-stage1 h1{font-family:Mija}.wf-loaded-stage1 .wf-loaded-stage2 .h1,.wf-loaded-stage1 .wf-loaded-stage2 h1{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .h1,.wf-loaded-stage2 .wf-loaded-stage2 h1{font-family:Mija}.h2,h2{font-size:calc(22px + 1.6vw);margin:0;font-family:Arial,sans-serif}.wf-loaded-stage1 .h2,.wf-loaded-stage1 h2{font-family:MijaInitial}.wf-loaded-stage2 .h2,.wf-loaded-stage2 h2{font-family:Mija}.wf-loaded-stage1 .h2,.wf-loaded-stage1 h2{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .h2,.wf-loaded-stage1 .wf-loaded-stage2 h2{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .h2,.wf-loaded-stage2 .wf-loaded-stage2 h2{font-family:Mija}.h3,h3{font-size:calc(24px + .25vw);margin:2em 0 .75em;text-tranform:capitalize;color:#333;font-family:Georgia,serif}.wf-loaded-stage1 .h3,.wf-loaded-stage1 h3{font-family:ElenaInitial}.wf-loaded-stage2 .h3,.wf-loaded-stage2 h3{font-family:Elena}.wf-loaded-stage1 .wf-loaded-stage1 .h3,.wf-loaded-stage1 .wf-loaded-stage1 h3{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage1 .h3,.wf-loaded-stage2 .wf-loaded-stage1 h3{font-family:Elena}.wf-loaded-stage1 .wf-loaded-stage2 .h3,.wf-loaded-stage1 .wf-loaded-stage2 h3{font-family:ElenaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .h3,.wf-loaded-stage2 .wf-loaded-stage2 h3{font-family:Elena}.h4,h4{font-size:calc(18px + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em;color:#333}h2:target,h3:target,h4:target,h5:target,h6:target{color:#d33a2c;border-bottom:5px solid #d33a2c}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{background:inherit;text-transform:none}::-moz-selection{color:#fff;text-shadow:none;background:#d33a2c}::selection{color:#fff;text-shadow:none;background:#d33a2c}::-moz-selection{color:#fff;text-shadow:none;background:#d33a2c}ol,ul{padding:0;margin:1em 0}ol{list-style:none;counter-reset:listCounter}ol li{padding-left:1.75em;padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Arial,serif}.wf-loaded-stage1 ol li::before{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 ol li::before{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 ol li::before{font-family:Mija}ol ol li{padding-left:2.25em;padding-left:calc(1.85em + .7vw)}ol ol ol li{padding-left:3em;padding-left:calc(2.4em + 1.4vw)}ol[start="0"]{counter-reset:listCounter -1}ol ul li:before{content:""}ol ol{margin-left:1em;margin-top:0;margin-bottom:0}ol ol li::before{content:counters(listCounter, ".", decimal-leading-zero) " ";left:-1.5em}ul{list-style:none;padding-left:1.25em;list-style-image:url("https://d33wubrfki0l68.cloudfront.net/5242cdc0f8a0d710a02b6dcdd43ef5002bf5ae89/77199/images/bullet.svg")}ul li{margin-bottom:.5em;padding-left:.25em}ul li p{margin-top:0}ul li ul{margin-left:1em}.rh{color:#e33a2c}.btn,.toolbar-item{display:inline-block;border-radius:11px;padding:.5em 1em;text-align:center;color:#fff;border:none;font-weight:700;background:0 0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c);transition:all .2s ease-out;font-size:.9em;cursor:pointer;outline:0;font-family:Arial,serif}.wf-loaded-stage1 .btn,.wf-loaded-stage1 .toolbar-item{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .btn,.wf-loaded-stage1 .wf-loaded-stage2 .toolbar-item{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .btn,.wf-loaded-stage2 .wf-loaded-stage2 .toolbar-item{font-family:Mija}.btn span,.toolbar-item span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn span.ladda-label,.toolbar-item span.ladda-label{color:inherit;font-size:inherit;margin:0;line-height:inherit}.btn--green,.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff}.btn--green:focus,.btn--green:hover,.btn--member:focus,.btn--member:hover{background:#41b14f}.btn--green span,.btn--member span{color:rgba(0,0,0,.5)}.btn--white,.toolbar-item{background:#fff;color:#2da2c5;border:1px solid #fff}.btn--white--bordered,.toolbar-item{border:1px solid #ddd}.btn--medium.toolbar-item,.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}.btn--large.toolbar-item,.btn.btn--large{font-size:1.2em;padding:.75em 1em}button{cursor:pointer}a.btn,a.toolbar-item{text-shadow:none}.btn--lined{display:block;text-align:center;background-image:linear-gradient(#ddd,#ddd);background-size:100% .06em;background-repeat:no-repeat;background-position:center center;margin:2em 0}.btn--lined .btn,.btn--lined .toolbar-item{display:inline-block;box-shadow:0 0 0 1em #fff}.toolbar-item a{text-shadow:#fff 3px 0,#fff 2px 0,#fff 1px 0,#fff -1px 0,#fff -2px 0,#fff -3px 0}.menu-trigger{background:0 0;text-shadow:none;color:inherit;border:3px solid #fff;font-size:calc(.9em + .1vw);font-weight:700;color:#fff;float:right;cursor:pointer;border-radius:8px;padding:calc(.4em + .2vw) .5em calc(.4em + .2vw) .7em;width:6.25em;position:relative;z-index:1;margin-top:.3em;white-space:nowrap;text-shadow:1px 1px 1px rgba(0,0,0,.3);display:none;font-family:Arial,serif}.wf-loaded-stage1 .menu-trigger{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .menu-trigger{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .menu-trigger{font-family:Mija}@media all and (max-width:900px){.menu-trigger{position:absolute;top:0;right:1em;width:5.5em}}@media all and (min-width:900px){.menu-trigger{margin-top:calc(1.5em + .2vw)}}@media all and (min-width:1101px){.menu-trigger{margin-top:calc(1.5em + .7vw)}}.enhanced .menu-trigger{display:inline-block}@supports (display:flex){.enhanced .menu-trigger{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:center;align-items:center}.enhanced .menu-trigger svg{position:relative;margin-top:-1px;margin-right:10px}}.menu-trigger.open{border-color:#811d15;background-color:#811d15}.menu-trigger__plus-wrapper{position:relative}.menu-trigger__plus-wrapper span{display:inline-block;font-size:1.5em;transition:all .2s ease-in-out;position:relative;top:.075em;font-family:Arial,serif}.wf-loaded-stage1 .menu-trigger__plus-wrapper span{font-family:MijaInitial}.wf-loaded-stage1 .wf-loaded-stage2 .menu-trigger__plus-wrapper span{font-family:MijaInitial}.wf-loaded-stage2 .wf-loaded-stage2 .menu-trigger__plus-wrapper span{font-family:Mija}.menu-trigger__plus-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url("https://d33wubrfki0l68.cloudfront.net/10f9f40f8856e393ab4525a46bd8e60af9580324/0ab7a/images/shadow.png");background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.menu-trigger__plus-wrapper::before{width:90%;top:85%;left:-10%}.open .menu-trigger__plus-wrapper span{transform:rotate(-45deg)}.header__topics{text-align:center;display:none;clear:both;width:100%;margin:0 auto}.header__topics.closed{margin:0 auto}@media all and (max-width:768px){.header__topics{width:100%}}.enhanced .closed .header__topics{max-height:0;transition:max-height .4s ease-out;overflow:hidden;display:block;height:0}.enhanced .open .header__topics{max-height:50em;transition:max-height .4s ease-out;overflow:hidden;display:block;height:auto}.header__topics__title{color:#fff;font-size:.9em;margin:3.5em 0 2.5em}.header__topics__list{padding:0}.header__topics__list:after,.header__topics__list:before{content:" ";display:table;clear:both}.header__topics__item{display:inline-block;padding-left:0;color:#fff;font-size:1.3em;margin-bottom:.75em;text-align:center;line-height:1.2;transition:color .2s ease-out}@media all and (max-width:1024px){.header__topics__item{font-size:1.1em;margin-bottom:.5em}}.header__topics__item::before{content:"•";margin:0 5px;display:inline-block;color:#811d15;font-size:calc(1em + ((.4vw + .25vh)/ 2));position:relative;top:2px}.header__topics__item:first-of-type::before{display:none}.header__topics__item a{background:0 0;text-shadow:none;color:inherit}.header__topics__item a:focus,.header__topics__item a:hover{color:#61140f}@media all and (max-width:640px){.header__topics__item{margin-bottom:.5em;width:50%;float:left;text-align:left;font-size:1em}.header__topics__item:first-of-type::before{display:inline}}@media all and (max-width:480px){.header__topics__item{font-size:calc(.8em + .2vw);line-height:166%;width:50%;float:left;text-align:left}}.closed .header__topics__list,.closed .header__topics__title{opacity:0;transform:translateY(2em);transition:all .2s ease-in;transition-delay:0s}.open .header__topics__title{opacity:1;transform:translateY(0);transition:all .2s ease-out;transition-delay:.4s}.open .header__topics__title:target{color:#811d15}.open .header__topics__list{opacity:1;transform:translateY(0);transition:all .2s ease-out;transition-delay:.5s}.footer__topics{text-align:center;padding-bottom:50px}.authpage .footer__topics{display:none}.main-footer .footer__topics{display:block}.footer__topics__title{color:#fff;font-size:.9em;margin:2em 0;opacity:1!important;transform:translateY(0)!important}@media all and (max-width:640px){.footer__topics__title{text-align:left}}.footer__topics__list{padding:0}.footer__topics__list:after,.footer__topics__list:before{content:" ";display:table;clear:both}.search-topics-dropdown{overflow:hidden;clear:both;max-width:calc(900px + 15vw);margin:0 auto}.search-topics-dropdown.closed:not(.enhanced) .search-topics-dropdown.closed{max-height:12em}.search-topics-dropdown.closed.input-open{max-height:none}.search-topics-dropdown.closed.input-open .header__search{opacity:1;transform:none}.search-topics-dropdown.open{margin:5em auto 2em}@media all and (max-width:1025px){.search-topics-dropdown.open{margin-top:2em}}.header__search{padding:0 0 calc(.5em + .5vw) 0}@media all and (max-width:700px){.jobs__search{margin-top:calc(.5em + 6vh)}}.header__search,.jobs__search{width:100%;margin:calc(.5em + 3vh) 50px 0 0}@media all and (max-width:1024px){.header__search,.jobs__search{margin-right:5px;margin-right:5vw}}@media all and (max-width:480px){.header__search,.jobs__search{margin-right:0}}.header__search input[type=search],.header__search input[type=text],.jobs__search input[type=search],.jobs__search input[type=text]{border:none;display:block;width:100%;font-size:calc(1em + .2vw);color:#333;background-color:#fff;padding:.8em 1em;padding-left:2.5em;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:1em auto;background-position:.75em 50%;border-radius:11px;outline:0}@media all and (max-width:480px){.header__search input[type=search],.header__search input[type=text],.jobs__search input[type=search],.jobs__search input[type=text]{padding:.5em .5em .5em 1.75em;background-position:.5em 50%;font-size:.7em;padding:.9em 1.2em;padding-left:2.5em;background-position:.8em 50%}}.header__search input[type=search]::-ms-clear,.header__search input[type=text]::-ms-clear,.jobs__search input[type=search]::-ms-clear,.jobs__search input[type=text]::-ms-clear{display:none}.header__search input[type=search]::-webkit-input-placeholder,.header__search input[type=text]::-webkit-input-placeholder,.jobs__search input[type=search]::-webkit-input-placeholder,.jobs__search input[type=text]::-webkit-input-placeholder{color:#666}.header__search input[type=search]::-moz-placeholder,.header__search input[type=text]::-moz-placeholder,.jobs__search input[type=search]::-moz-placeholder,.jobs__search input[type=text]::-moz-placeholder{color:#666}.header__search input[type=search]:-ms-input-placeholder,.header__search input[type=text]:-ms-input-placeholder,.jobs__search input[type=search]:-ms-input-placeholder,.jobs__search input[type=text]:-ms-input-placeholder{color:#666}.header__search input[type=submit],.jobs__search input[type=submit]{width:0;height:0;padding:0}.enhanced .header__search input[type=submit],.enhanced .jobs__search input[type=submit]{display:none}@media screen and (-webkit-min-device-pixel-ratio:0){.header__search input[type=search],.header__search input[type=text]{font-size:calc(1em + .2vw)}}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;padding:0 .5em 0 .75em;position:absolute;right:13px;top:30%;transition:transform .2s ease-out,opacity .2s ease-out;transform:translateY(5px);opacity:0}.search-clear-button:hover{cursor:pointer}.search-clear-button.enabled{transform:translateY(0);opacity:1}.closed .header__search{opacity:0;transform:translateY(2em);transition:all .2s ease-in;transition-delay:0s}.no-js .closed .header__search{opacity:1;transform:none}.open .header__search{opacity:1;transform:translateY(0);transition:all .2s ease-out;transition-delay:.2s}.open .header__search:target{color:#811d15}.open .header__search{opacity:1;transform:translateY(0);transition:all .2s ease-out;transition-delay:.2s}.header__search-logo{margin-top:.8em;clear:both}.header__search-logo img{float:right;height:16px;width:130px}.main-footer{padding:2em 0;background-color:#d33a2c;font-size:.8em;color:#fff}.homepage .main-footer{position:relative;z-index:1}.footer__notes{text-align:center;color:#fff}.footer__notes p{margin:0}.footer__notes p:first-of-type{font-style:italic}.footer__links{margin:0 auto;padding:1em 0;text-align:center;max-width:30em}.footer__links li{margin:.5em 0;padding:0;display:inline-block;margin-right:1em}.footer__links a,.footer__notes a{color:#fff;background-image:linear-gradient(#fff,#fff);text-shadow:3px 0 #d33a2c,2px 0 #d33a2c,1px 0 #d33a2c,-1px 0 #d33a2c,-2px 0 #d33a2c,-3px 0 #d33a2c}.main-footer{padding-bottom:14em;background-repeat:no-repeat;background-image:url("https://d33wubrfki0l68.cloudfront.net/c844337352cace40e2973b30e2ebefad4b0f55ad/efa8c/images/footer/tablet__left.svg");background-position:left 1em bottom 1em;background-size:12em auto}@media all and (max-width:480px) and (max-height:600px){.main-footer{padding-bottom:13em;background-repeat:no-repeat;background-image:url("https://d33wubrfki0l68.cloudfront.net/c0161f22fb3c151eb5ab80058bc4c2659d1c548a/50a82/images/footer/mobile__left.svg"),url("https://d33wubrfki0l68.cloudfront.net/afe78e38bf5c4070e1d9659219d9eff9a1cb1a4d/53bd1/images/footer/mobile__right.svg");background-position:left .5em bottom .5em,right 6% bottom;background-size:12em auto,12em auto}}@media all and (min-width:480px){.main-footer{padding-bottom:12em;background-size:12em auto,12em auto}}@media all and (min-width:768px){.main-footer{padding-bottom:3em;background-image:url("https://d33wubrfki0l68.cloudfront.net/c844337352cace40e2973b30e2ebefad4b0f55ad/efa8c/images/footer/tablet__left.svg");background-position:left .5em bottom 3em;background-size:13.5em auto}}@media all and (min-width:1024px){.main-footer{padding-bottom:3em;background-image:url("https://d33wubrfki0l68.cloudfront.net/a30570bfa3e70a8de5e35c535522900d32d9f301/6c59a/images/footer/laptop__left.svg"),url("https://d33wubrfki0l68.cloudfront.net/d397e7a1b0a5401f19e97ecb9829ee61baadf3ed/9f677/images/smashing-cat/cat-the-behemoth.svg");background-position:left 6% bottom 2em,right 3vw bottom 2.75em;background-size:11em auto,14em auto}}@media all and (min-width:1264px){.main-footer{padding-bottom:3em;background-image:url("https://d33wubrfki0l68.cloudfront.net/a30570bfa3e70a8de5e35c535522900d32d9f301/6c59a/images/footer/laptop__left.svg"),url("https://d33wubrfki0l68.cloudfront.net/d397e7a1b0a5401f19e97ecb9829ee61baadf3ed/9f677/images/smashing-cat/cat-the-behemoth.svg");background-position:left 15% bottom 1em,right 12% bottom 2em;background-size:11em auto,14em auto}}.cart-wrapper{color:#333}.back-to-top-wrapper{will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .2s}.cart{display:none}.search-loader{display:block;margin:1.5em auto;width:3.5em}.loader{width:.75em;height:.75em;margin-right:.25em;border-radius:3px;background:#fff;display:inline-block;transform:translateY(.5em);opacity:0;animation:loading 1.5s ease-out forwards infinite;transform-origin:bottom left;animation-delay:.2s}.search-loader--red .loader{background:#d33a2c}.loader:nth-of-type(2){animation-delay:.3s}.loader:nth-of-type(3){animation-delay:.4s}.contrast-switcher--alt{display:-ms-flexbox;display:flex;margin:0 auto .25em auto;opacity:.9}.contrast-switcher--alt:active,.contrast-switcher--alt:focus,.contrast-switcher--alt:hover{opacity:1}@media all and (min-width:750px){.contrast-switcher--alt{display:none}}.contrast-switcher{background:0 0;border:none;-ms-flex-align:center;align-items:center}.contrast-switcher:not(.contrast-switcher--alt){display:none}@media all and (min-width:750px){.contrast-switcher:not(.contrast-switcher--alt){display:-ms-flexbox;display:flex;padding-right:0;z-index:3;position:absolute;bottom:calc(-38px - 18px - .25vw - 2em);right:calc(18px + .25vw)}}@media all and (min-width:1024px){.contrast-switcher:not(.contrast-switcher--alt){bottom:calc(-65px - 35px);right:calc(2 * (18px + .25vw))}}.contrast-switcher--alt{position:static}body:not(.enhanced) .contrast-switcher{display:none}.enhanced .closed{max-height:0}.enhanced .closed .main-nav__item{opacity:1;transform:none;transition:all .1s ease-in;transition-delay:0s}@media all and (max-width:901px){.enhanced .closed .main-nav__item{opacity:0}}.enhanced .closed .main-nav__item .main-nav__icon{transform:none;transition-delay:0s}@media all and (max-width:880px){.enhanced .closed .main-nav__item .main-nav__icon{transform:translateY(-.25em)}}.enhanced .closed .main-nav__item:nth-of-type(1){transition-delay:0s}.enhanced .closed .main-nav__item:nth-of-type(2){transition-delay:0s}.enhanced .closed .main-nav__item:nth-of-type(3){transition-delay:0s}.enhanced .closed .main-nav__item:nth-of-type(4){transition-delay:0s}.enhanced .closed .main-nav__item:nth-of-type(5){transition-delay:0s}.main-nav__dropdown{position:relative;float:left;width:80%;width:calc(100% - 18em)}@media all and (max-width:1349px){.main-nav__dropdown{width:80%;width:calc(100% - 10em)}}@media all and (max-width:900px){.main-nav__dropdown{width:80%}}@media all and (max-width:768px){.main-nav__dropdown{width:75%}}@media all and (max-width:640px){.main-nav__dropdown{width:100%;float:none;clear:both}}.main-nav{margin:0;overflow:hidden;text-align:center}.main-nav:after,.main-nav:before{content:" ";display:table;clear:both}.main-nav__list{overflow:hidden;list-style:none;margin:0;padding:0;display:inline-block;text-align:center;width:100%}.main-nav__list{display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around}@media all and (max-width:640px){.main-nav__list{display:block}}.main-nav__item{padding:0;-ms-flex:9999;flex:9999}@media all and (min-width:850px){.main-nav__item{width:20%}}.main-nav__item a{display:block;padding:0}@media all and (max-width:640px){.main-nav__item a{padding:.5em 0}}.main-nav__dropdown:target{display:block}.main-nav__dropdown:target .main-nav__list{display:block}.open .main-nav__item{display:inline-block;text-align:center;margin-bottom:-4px;padding:.5em;opacity:1;transform:translateY(0);transition:opacity .3s ease-out .4s,transform .3s cubic-bezier(.17,.67,.45,2.01) .4s}@media all and (min-width:1600px){.open .main-nav__item{font-size:1.2em}}@media all and (max-width:1100px){.open .main-nav__item{margin:0;text-align:center;padding:.5em}}@media all and (max-width:640px){.open .main-nav__item{width:50%;margin-right:0;float:left;font-size:1.1em}.open .main-nav__item a{display:block;width:100%;height:100%}.open .main-nav__item:nth-of-type(3n+1){background-color:#bc3428}.open .main-nav__item:nth-of-type(3n+2){background-color:#d7372a}.open .main-nav__item:nth-of-type(3n+3){background-color:#c13125}}.open .main-nav__item:last-of-type{width:100%;margin-top:1em;-ms-font-feature-settings:"smcp" 1,"c2sc" 1;-o-font-feature-settings:"smcp" 1,"c2sc" 1;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;font-variant:small-caps;text-transform:lowercase;background-position:center 72%;display:none}.open .main-nav__item:last-of-type a{background-position:center 72%}.open .main-nav__item:last-of-type a{color:#000;display:inline-block;border-bottom:1px solid;padding:0}.open .main-nav__item .main-nav__icon{display:block;margin:0 auto;position:relative;transition:transform .2s cubic-bezier(.17,.67,.45,2.01);transform:translateY(0);width:25px;height:42px;margin-bottom:.25em}.open .main-nav__item .main-nav__icon::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}.open .main-nav__item .main-nav__icon::before{top:65%;width:120%;left:-15%;height:10px;transition:all .2s ease-out}.open .main-nav__item .main-nav__icon img{transform-origin:0 100%;will-change:transform;transform:rotate(-11deg);transition:transform .2s ease-out}@media all and (max-width:640px){.open .main-nav__item .main-nav__icon{display:none!important}}@media all and (min-width:1600px){.open .main-nav__item .main-nav__icon{width:30px;height:50px}}@media all and (min-width:1700px){.open .main-nav__item .main-nav__icon{width:35px;height:59px}}.open .main-nav__item:hover .main-nav__icon::before{opacity:0;transform:scaleX(0)}.open .main-nav__item:hover .main-nav__icon img{transform:rotate(0)}.open .main-nav__item:nth-of-type(1) .main-nav__icon{transition-delay:.5s}.open .main-nav__item:nth-of-type(2){transition-delay:.5s}.open .main-nav__item:nth-of-type(2) .main-nav__icon{transition-delay:.6s}.open .main-nav__item:nth-of-type(3){transition-delay:.6s}.open .main-nav__item:nth-of-type(3) .main-nav__icon{transition-delay:.7s}.open .main-nav__item:nth-of-type(4){transition-delay:.7s}.open .main-nav__item:nth-of-type(4) .main-nav__icon{transition-delay:.8s}.open .main-nav__item:nth-of-type(5){transition-delay:.8s}.open .main-nav__item:nth-of-type(5) .main-nav__icon{transition-delay:.9s}.open .main-nav__item figure{margin:0;padding:0}.open .main-nav__item a{background:0 0;text-shadow:none;color:#fff;transition:color .25s ease-out}.open .main-nav__item a:focus,.open .main-nav__item a:hover{color:#390c09}.open .main-nav__item a:active h2,.open .main-nav__item a:focus h2,.open .main-nav__item a:hover h2{text-shadow:none}.open .main-nav__item.active a{color:#390c09;text-shadow:none}.open .main-nav__item.active h2{text-shadow:none}.open .main-nav__item figcaption h2{font-size:calc(.8em + .6vw);color:inherit;text-shadow:1px 1px 1px rgba(0,0,0,.3);white-space:nowrap;font-family:Arial,sans-serif}.wf-loaded-stage1 .open .main-nav__item figcaption h2{font-family:MijaInitial}.wf-loaded-stage2 .open .main-nav__item figcaption h2{font-family:Mija}.open .main-nav__item figcaption p{font-style:italic;font-size:calc(.7em + .15vw);margin-top:.5em;display:none;max-width:100%;margin:.2em auto;display:none;transition:opacity .4s ease-in-out;font-family:Georgia,serif}.wf-loaded-stage1 .open .main-nav__item figcaption p{font-family:ElenaInitial}.wf-loaded-stage2 .open .main-nav__item figcaption p{font-family:Elena}@media all and (min-width:1000px){.open .main-nav__item figcaption p{display:block;opacity:0;position:absolute}}@media all and (min-width:1101px){.open .main-nav__item figcaption p{opacity:1;position:static;white-space:nowrap}}.enhanced .slideDown{max-height:100em;transition:all .6s linear}.enhanced .slideDown.main-nav{max-height:50em}.enhanced .slideDown.search-loader-wrapper{max-height:100px;transition-duration:.2s}.enhanced .slideUp{transition:all .3s linear}.enhanced .slideUp.search-loader-wrapper{transition-duration:.1s}@media all and (min-width:901px){.enhanced .slideUp.main-nav{max-height:10em}}.book__meta__bird{background-image:url(//res.cloudinary.com/indysigner/image/upload/v1530815949/bird_j6gn7w.svg)}.article__content .book__meta__tags,.book__meta__bird a{text-shadow:none}.signature{margin:1.5em 0}.article-container .author--full .author__desc{padding:0;width:100%}@media all and (max-width:1099px){.article-container .author--full .author__desc{width:65%;margin-top:2em}}@media all and (max-width:600px){.article-container .author--full .author__desc{width:75%;margin-top:0}}@media all and (max-width:420px){.article-container .author--full .author__desc{width:100%}}.article-container .author--full>a{max-width:200px;width:100%;margin-bottom:3em;margin-top:.5em}.article-container .author--full .author__desc{padding:0;width:100%}@media all and (max-width:1099px){.article-container .author--full{margin-bottom:3em}.article-container .author--full>a{display:block;width:30%;float:left;margin-right:1em;margin-bottom:.5em;margin-top:0}.article-container .author--full .author__desc{width:65%;margin-top:2em}}@media all and (max-width:600px){.article-container .author--full{margin-bottom:2em}.article-container .author--full>a{margin-left:0;max-width:200px;width:20%}.article-container .author--full .author__desc{width:75%;margin-top:0}}@media all and (max-width:420px){.article-container .author--full{margin-bottom:1em}.article-container .author--full>a{margin-left:0;max-width:150px;width:100%;margin-bottom:2em}.article-container .author--full .author__desc{width:100%}}</style>
+  
+
+  <link rel="preload" href="https://d33wubrfki0l68.cloudfront.net/a978f759fa0230c1e590d1bdb5a1c03ceb538cec/fed6b/fonts/elenawebregular/elenawebregular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://d33wubrfki0l68.cloudfront.net/b324ee03d5048d2d1831100e323b0b6336ffce68/0445e/fonts/mijaregular/mija_regular-webfont.woff2" as="font" type="font/woff2" crossorigin>
+
+  
+    <link rel="preload" href="/printed-books/design-systems/" as="fetch" type="text/html">
+  
+
+  
+    <link rel="preload" href="/ebooks/design-systems-ebook/" as="fetch" type="text/html">
+  
+
+  <link rel="dns-prefetch" href="https://www.gravatar.com/" />
+  <link rel="dns-prefetch" href="https://smashingconf.com/" />
+  <link rel="dns-prefetch" href="https://smashed.by/" />
+  <link rel="dns-prefetch" href="https://cloud.netlifyusercontent.com/" />
+  <link rel="dns-prefetch" href="https://smashingcomments.netlify.com/" />
+
+  <link rel="preconnect" href="https://www.gravatar.com/" />
+  <link rel="preconnect" href="https://smashingconf.com/" />
+  <link rel="preconnect" href="https://smashed.by/" />
+  <link rel="preconnect" href="https://smashingcomments.netlify.com/" />
+  <link rel="preconnect" href="https://cloud.netlifyusercontent.com/" />
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta name="description" content="The flexible box layout module — or “flexbox,” to use its popular nickname — is an interesting part of the W3C Working Draft. The flexbox specification is still a draft and subject to change, so keep your eyes on the W3C, but it is part of a new arsenal of properties that will revolutionize how we lay out pages. At least it will be when cross-browser support catches up."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2011/09/css3-flexible-box-layout-explained/" />
+<link rel="publisher" href="https://plus.google.com/+SmashingMagazine‎"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='CSS3 Flexible Box Layout: Everything I Wish I Knew When I Started' />
+<meta property="og:description" content="The flexible box layout module — or “flexbox,” to use its popular nickname — is an interesting part of the W3C Working Draft. The flexbox specification is still a draft and subject to change, so keep your eyes on the W3C, but it is part of a new arsenal of properties that will revolutionize how we lay out pages. At least it will be when cross-browser support catches up." />
+<meta property="og:url" content="https://www.smashingmagazine.com/2011/09/css3-flexible-box-layout-explained/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+<meta property="article:tag" content="" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2011-09-19 09:19:24 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2011-09-19 09:19:24 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2011-09-19 09:19:24 &#43;0000 UTC" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="The flexible box layout module — or “flexbox,” to use its popular nickname — is an interesting part of the W3C Working Draft. The flexbox specification is still a draft and subject to change, so keep your eyes on the W3C, but it is part of a new arsenal of properties that will revolutionize how we lay out pages. At least it will be when cross-browser support catches up." />
+<meta name="twitter:title" content="CSS3 Flexible Box Layout: Everything I Wish I Knew When I Started" />
+<meta name="twitter:site" content="@smashingmag" />
+
+
+
+
+
+<meta property="DC.date.issued" content="2011-09-19 09:19:24 &#43;0000 UTC" />
+
+
+
+  <script>
+
+    if (sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded ||
+       ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+    ) {
+      
+    } else if ('fonts' in document) {
+      function fetchFonts(fonts) {
+        return Promise.all(fonts.map(function(font) {
+          return document.fonts.load(font);
+        }));
+      }
+
+      fetchFonts([
+        '1em ElenaInitial',
+        '1em MijaInitial'
+      ]).then(function() {
+        var docEl = document.documentElement;
+        docEl.classList.add('wf-loaded-stage1');
+        sessionStorage.foutFontsStage1Loaded = true;
+
+        fetchFonts([
+          '1em Elena',
+          '700 1em Elena',
+          'italic 1em Elena',
+          'italic 700 1em Elena',
+          '1em Mija',
+          '700 1em Mija'
+        ]).then(function() {
+          docEl.classList.add('wf-loaded-stage2');
+          sessionStorage.foutFontsStage2Loaded = true;
+        });
+      });
+    }
+  </script>
+
+  
+    <script>
+       
+      (function(w){"use strict";var loadCSS=function(href,before,media){var doc=w.document;var ss=doc.createElement("link");var newMedia=media||"all";var ref;if(before){ref=before}else{var refs=(doc.body||doc.getElementsByTagName("head")[0]).childNodes;ref=refs[refs.length-1]}var sheets=doc.styleSheets;ss.rel="stylesheet";ss.href=href;ss.media="only x";function ready(cb){if(doc.body){return cb()}setTimeout(function(){ready(cb)})}ready(function(){ref.parentNode.insertBefore(ss,before?ref:ref.nextSibling)});var onloadcssdefined=function(cb){var resolvedHref=ss.href;var i=sheets.length;while(i--){if(sheets[i].href===resolvedHref){return cb()}}setTimeout(function(){onloadcssdefined(cb)})};if(ss.addEventListener){ss.addEventListener("load",function(){this.media=newMedia})}ss.onloadcssdefined=onloadcssdefined;onloadcssdefined(function(){if(ss.media!==newMedia){ss.media=newMedia}});return ss};if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}else{w.loadCSS=loadCSS}})(typeof global!=="undefined"?global:this);
+      loadCSS('/css/main.css');
+    </script>
+    <noscript><link rel='stylesheet' href='https://d33wubrfki0l68.cloudfront.net/css/2d045b60bb432eb0350574c3952ce0e651a1f59a/css/main.css'/></noscript>
+  
+
+  <meta name="flattr:id" content="glyg5e">
+
+</head>
+
+
+<body class='no-js  articlepage' >
+  <div data-handler="PreLoad" id="top"></div>
+  <a href="#main" class="skip-main">Skip to main content</a>
+  <a href="#article__content" class="skip-main">Start reading the article</a>
+  <a href="/articles" class="skip-main">Jump to list of all articles</a>
+
+  <header class="main-header block" data-handler="MenuButton">
+      <div class="container--header">
+  			  <div class="header__head" role="navigation">
+
+            <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(min-width: 1350px)"
+				srcset="https://d33wubrfki0l68.cloudfront.net/81fa290218cedc39d32be7b1f1aba58a25829ebe/0a05f/images/logo--full.svg">
+
+			<img
+				src="https://d33wubrfki0l68.cloudfront.net/3fbf6ef77e5e00aea7a22423087373169b52ae7e/413ff/images/logo/logo.svg" alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+
+            <div class="menu-button-and-menu">
+
+              	<a href="#footer" class="menu-trigger" id="menu-button" aria-controls="main-nav" role="button" aria-expanded="false">
+
+		<svg tabindex="-1" viewBox="0 0 24 24" height=".85em" width=".85em" style="position: relative; margin-right: 8px;"><title>Search</title><path fill="#fff" d="M23.33 20.1l-4.73-4.74a10.06 10.06 0 1 0-3.23 3.23l4.74 4.74a2.29 2.29 0 1 0 3.22-3.23zm-17.48-5.84a5.94 5.94 0 1 1 8.42 0 6 6 0 0 1-8.42 0z"/></svg>
+		Topics
+
+		<script type="text/javascript">
+			var menuButton = document.getElementById('menu-button');
+
+      function makeLinksUnfocusable(links) {
+        links && Array.from(links).forEach(function(link) {
+          link.setAttribute('tabindex', '-1');
+        });
+      }
+
+      function makeLinksFocusable(links) {
+        links && Array.from(links).forEach(function(link) {
+          link.removeAttribute('tabindex');
+        });
+      }
+
+			menuButton.addEventListener('click', function () {
+				let expanded = this.getAttribute('aria-expanded') === 'true' ? true : false;
+        if (expanded) {
+          makeLinksUnfocusable();
+        } else {
+          makeLinksFocusable();
+        }
+        this.setAttribute('aria-expanded', (!expanded).toString());
+			});
+
+			function menuButtonTextHandler() {
+        var navigation = document.getElementById('main-nav');
+        var navigationLinks = navigation.querySelectorAll('a');
+        if (window.matchMedia("(min-width: 901px)").matches) {
+					menuButton.innerHTML = '<svg viewBox="0 0 24 24" height=".85em" width=".85em" style="position: relative; margin-right: 8px;"><title>Search</title><path fill="#fff" d="M23.33 20.1l-4.73-4.74a10.06 10.06 0 1 0-3.23 3.23l4.74 4.74a2.29 2.29 0 1 0 3.22-3.23zm-17.48-5.84a5.94 5.94 0 1 1 8.42 0 6 6 0 0 1-8.42 0z"/></svg> Topics';
+          makeLinksFocusable(navigationLinks);
+        }
+				else {
+					menuButton.innerHTML = '<svg viewBox="0 0 24 24" height=".85em" width=".85em" style="position: relative; margin-right: 8px;"><title>Search</title><path fill="#fff" d="M23.33 20.1l-4.73-4.74a10.06 10.06 0 1 0-3.23 3.23l4.74 4.74a2.29 2.29 0 1 0 3.22-3.23zm-17.48-5.84a5.94 5.94 0 1 1 8.42 0 6 6 0 0 1-8.42 0z"/></svg> Menu';
+          makeLinksUnfocusable(navigationLinks);
+        }
+			}
+
+      window.addEventListener('DOMContentLoaded', menuButtonTextHandler, false);
+			window.addEventListener('resize', menuButtonTextHandler, false);
+
+		</script>
+	</a>
+
+
+              
+<div class="main-nav__dropdown clearfix" id="menu">
+        <nav role="presentation" class="main-nav closed slideUp" id="main-nav">
+            <ul class="main-nav__list open" id="js-main-nav__list">
+                
+                  
+                
+                
+                
+                <li class="main-nav__item active">
+                    <a href="/articles/">
+                        <figure role="presentation">
+                            <span class="main-nav__icon">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/2bc30327ebf529a249e825447d86f18546a1d6db/36b19/images/nav-icons/articles.svg" alt="">
+                            </span>
+                            <figcaption role="presentation">
+                              <h2 class="main-nav__item__title" role="presentation">
+                                <span>Articles <span class="sr-only">.</span></span>
+                              </h2>
+                              <p>Design &amp; development</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class='main-nav__item '>
+                    <a href="/printed-books/">
+                        <figure role="presentation">
+                            <span class="main-nav__icon">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/9b4ab044835dfde9adcfb5433a36be21a66cee4c/5b489/images/nav-icons/books.svg" alt="">
+                            </span>
+                            <figcaption role="presentation">
+                              <h2 class="main-nav__item__title" role="presentation">
+                                <span>Books <span class="sr-only">.</span></span>
+                              </h2>
+                              <p class="main-nav__figcaption" >Physical &amp; digital books</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="main-nav__item  ">
+                    <a href="/events/">
+                        <figure role="presentation">
+                            <span class="main-nav__icon">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/5831a43ae2230e30a035539e7c2b831561d2d2fd/86bab/images/nav-icons/events.svg" alt="">
+                            </span>
+                            <figcaption role="presentation">
+                              <h2 class="main-nav__item__title" role="presentation">
+                                <span>Events <span class="sr-only">.</span></span>
+                              </h2>
+                              <p class="main-nav__item__figcaption" >Conferences &amp; workshops</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="main-nav__item  ">
+                    <a href="/jobs">
+                        <figure role="presentation">
+                            <span class="main-nav__icon">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/0b5647613c9ac6cfb7358e2c12d2912daa78af4f/15c46/images/nav-icons/jobs.svg" alt="">
+                            </span>
+                            <figcaption role="presentation">
+                              <h2 class="main-nav__item__title" role="presentation">
+                                <span>Jobs <span class="sr-only">.</span></span>
+                              </h2>
+                              <p class="main-nav__item__figcaption" >Find work &amp; employees</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class='main-nav__item '>
+                    <a href="/membership">
+                        <figure role="presentation">
+                            <span class="main-nav__icon">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/75778fbc97d23f2fca1610f78b2d7226b137fbfc/acdc3/images/nav-icons/membership.svg" alt="">
+                            </span>
+                            <figcaption role="presentation">
+                              <h2 class="main-nav__item__title" role="presentation">
+                                <span>Membership <span class="sr-only">.</span></span>
+                              </h2>
+                              <p class="main-nav__item__figcaption" >Webinars &amp; early-birds</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="#topics" id="js-topics-fallback">
+                        Browse All Topics
+                    </a>
+                </li>
+            </ul>
+        </nav>
+</div>
+
+
+            </div>
+
+            <div class="search-topics-dropdown container--header closed" id="header-dropdown">
+
+    <div class="header__search">
+    <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <label for="js-search-input"></label>
+        <div class="search-input-wrapper">
+            <input type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search Smashing..." aria-label="Search Smashing" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" name="submit" value="Search" class="btn" id="js-search-submit">
+    </form>
+    <div class="header__search-logo">
+        <a href="https://www.algolia.com/">
+            <img src="https://d33wubrfki0l68.cloudfront.net/11a5e7690621ea3c342176fe395f8ab04e74b963/24691/images/search-by-algolia-white.svg" alt="Search powered by our good friends at Algolia">
+        </a>
+    </div>
+</div>
+
+
+    <div data-component="SearchResults" data-lite="true"></div>
+
+
+    <div class="header__topics" id="topics-list">
+    <h4 class="header__topics__title">Browse All Topics</h4>
+    <ul class="header__topics__list">
+      
+        <li class="header__topics__item">
+            <a href="/category/accessibility" tabindex="-1">Accessibility</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/android" tabindex="-1">Android</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/animation" tabindex="-1">Animation</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/apps" tabindex="-1">Apps</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/css" tabindex="-1">CSS</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/design" tabindex="-1">Design</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/design-patterns" tabindex="-1">Design Patterns</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/design-systems" tabindex="-1">Design Systems</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/e-commerce" tabindex="-1">E-Commerce</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/freebies" tabindex="-1">Freebies</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/graphics" tabindex="-1">Graphics</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/html" tabindex="-1">HTML</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/illustrator" tabindex="-1">Illustrator</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/inspiration" tabindex="-1">Inspiration</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/ios" tabindex="-1">iOS</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/javascript" tabindex="-1">JavaScript</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/mobile" tabindex="-1">Mobile</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/pattern-libraries" tabindex="-1">Pattern Libraries</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/performance" tabindex="-1">Performance</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/photoshop" tabindex="-1">Photoshop</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/plugins" tabindex="-1">Plugins</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/react" tabindex="-1">React</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/responsive-web-design" tabindex="-1">Responsive Web Design</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/service-workers" tabindex="-1">Service Workers</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/sketch" tabindex="-1">Sketch</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/typography" tabindex="-1">Typography</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/ui" tabindex="-1">UI</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/usability" tabindex="-1">Usability</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/user-experience" tabindex="-1">User Experience</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/wallpapers" tabindex="-1">Wallpapers</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/web-design" tabindex="-1">Web Design</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/wordpress" tabindex="-1">WordPress</a>
+        </li>
+      
+        <li class="header__topics__item">
+            <a href="/category/workflow" tabindex="-1">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+
+    
+
+</div>
+
+
+          </div>
+
+          
+
+    </div>
+  </header>
+
+  
+  <main id="main" tabindex="-1">
+
+
+
+
+
+<script id="gotell" type="application/json">{"created_at":"2011-09-19T09:19:24Z"}</script>
+
+<article class="block article" role="main">
+	<div class="container article-container">
+		<div class="row">
+
+			<div class="col col-12 article__content" id="article__content">
+
+				
+				<div class="c-garfield-the-cat">
+
+					<figure class="author author--full">
+	<a href="/author/richard-shepherd">
+		<div class="author__image-wrapper tilt">
+			<div class="author__image">
+				
+<div class="author__desc__image-placeholder" data-src="https://www.gravatar.com/avatar/ee87c6d0fc9130bf15449c6dc50a1962?s=400&amp;d=mm&amp;r=g" data-alt="Richard Shepherd" data-size="500"></div>
+
+			</div>
+		</div>
+	</a>
+	<figcaption class="author__desc" id="author__desc">
+		<h3 class="author__desc__title">About The Author</h3>
+
+		<p>
+			Richard (<a href="http://twitter.com/richardshepherd">@richardshepherd</a>) is a UK based web designer and front-end developer. He loves to play with HTML5, CSS3, jQuery and WordPress, and currently works …
+			<a href="/author/richard-shepherd" class="show-more-link">More about <span>Richard</span></a>
+		</p>
+
+	</figcaption>
+</figure>
+
+
+					<header class="article__header">
+					<ul class="article__meta">
+						<li>
+							<time datetime="2011-09-19" class="article__date">
+								<span class="article__date__month">September</span>
+              19, 2011
+						</time>
+						</li>
+
+						
+							<li>
+								<span class="article__comments-count"><a href="#comments-css3-flexible-box-layout-explained">
+									<span data-component="CommentsCount" data-insert="true" data-thread="/2011/09/css3-flexible-box-layout-explained/" data-article="articles/2011-09-19-css3-flexible-box-layout-explained.md">Leave a comment</span>
+								</a></span>
+							</li>
+						
+					</ul>
+
+					<h1>CSS3 Flexible Box Layout: Everything I Wish I Knew When I Started</h1>
+
+					<div data-component="EditButton" data-collection="articles" data-path="articles/2011-09-19-css3-flexible-box-layout-explained.md"></div>
+				</header>
+
+					<ul class="books__book__meta">
+						<li class="book__meta__published"><span class="grey">27 min read</li>
+						<li class="book__meta__tags">
+							
+							
+	  							<a href="/category/coding">Coding</a>,
+	            		
+	  							<a href="/category/layouts">Layouts</a>,
+	            		
+	  							<a href="/category/css">CSS</a>,
+	            		
+	  							<a href="/category/flexbox">Flexbox</a>
+	            		
+						</li>
+						<li class="book__meta__bird">
+							<section>
+  	Share on <a href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=CSS3%20Flexible%20Box%20Layout%3a%20Everything%20I%20Wish%20I%20Knew%20When%20I%20Started&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2011%2f09%2fcss3-flexible-box-layout-explained%2f&via=smashingmag">Twitter</a> or&nbsp;<a href="https://smashing-delivery.herokuapp.com/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2011%2f09%2fcss3-flexible-box-layout-explained%2f&title=CSS3%20Flexible%20Box%20Layout%3a%20Everything%20I%20Wish%20I%20Knew%20When%20I%20Started">LinkedIn</a>
+</section>
+
+						</li>
+					</ul>
+
+
+					
+						<div class="c-promo-box c-promo-box--newsletter">
+							<div class="meow__content meow__content--small">
+    <div class="meow__content__wrapper">
+        <a href="/the-smashing-newsletter/">
+        <picture>
+                <img src="https://d33wubrfki0l68.cloudfront.net/1dbc465f56f3a812f09666f522fa226efd947cfa/a4d9f/images/smashing-cat/newsletter-fish-cat.svg" class="meow__content__picture" alt="A postcat. Sign up for our Smashing Newsletter." />
+           </picture>
+        </a>
+
+          <div class="meow__content__desc">
+            <h2 class="h2">Smashing Newsletter</h2>
+            <p class="meow__intro">Upgrade your inbox and get our editors’ picks twice a month.</strong></p>
+        </div>
+    </div>
+
+    <div class="nl__form nl__form-wrapper">
+        <form method="POST" onsubmit="alert" action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" class="nl__form">
+            <label for="email" class="form__field form__field--floating nl__form__content">
+                <span class="form__field__label">Your email</span>
+                <div class="input-span-wrapper">
+                    <input autocomplete="off" class="nl__form__field__input" type="email" pattern="(.+)@(.+){2,}\.(.+){2,}" name="EMAIL" id="email" required>
+                </div>
+            </label>
+            <button data-event-category="Button" data-event-action="click" data-event-label="Newsletter Box" type="submit" data-handler="AddLaddaButton" class="btn btn--medium btn--green ladda-button ladda-button--fixed">
+                Subscribe<span class="nl__form__arrow">&rarr;</span>
+            </button>
+        </form>
+    </div>
+
+    <small class="padding__top">With <a href="/the-smashing-newsletter/">useful tips for web devs</a>. Sent 2× a month. <br>You can unsubscribe any time — <em>obviously</em>.</small>
+</div>
+
+						</div>
+					
+
+
+
+					
+<div class="c-promo-box c-promo-box--ad sponsors sponsors__native" data-audience="non-subscriber" data-remove="true" data-rendered="true">
+  <ul class="bnnr-list">
+    <li>
+      <a data-title="Earn Your Master’s Degree Online" href="https://smashed.by/northwestern">
+        <img src="https://res.cloudinary.com/indysigner/image/upload/v1531292382/northwestern-opt_ssrftx.png" width="250">
+      </a>
+      <a data-title="Earn Your Master’s Degree Online" href="https://smashed.by/northwestern">Earn Your Master’s Degree Online</a>
+    </li>
+  </ul>
+</div>
+
+
+
+					<p class="article__summary">
+						
+							The flexible box layout module — or “flexbox,” to use its popular nickname — is an interesting part of the W3C Working Draft. The flexbox specification is still a draft and subject to change, so keep your eyes on the W3C, but it is part of a new arsenal of properties that will revolutionize how we lay out pages. At least it will be when cross-browser support catches up.
+						
+	        </p>
+
+					
+
+
+<div class="drop-caps" aria-hidden="true">
+  <img src="https://d33wubrfki0l68.cloudfront.net/a2b586e0ae8a08879457882013f0015fa9c31f7c/9e355/images/drop-caps/t.svg" alt="">
+  <img src="https://d33wubrfki0l68.cloudfront.net/af7798a3ff2553a4ee42f928f6cb9addbfc6de6f/0f7b2/images/drop-caps/character-15.svg" alt="">
+</div>
+        	
+
+<h3 id="the-display-property">The Display Property</h3>
+
+<p>So what <em>is</em> flexbox, and why was it created? First, let’s look at how we currently lay out pages and some of the problems with that model.</p>
+
+
+
+  <aside class="product-panel product-panel__tilted product-panel--book" data-audience="non-subscriber" data-remove="true">
+    <div class="container product-panel--book__container">
+      <div class="panel__description panel__description--book">
+        <p>Meet <strong><a href="https://smashed.by/sb6panel">Smashing Book 6</a></strong> — our brand new book focused on <em>real</em> challenges and <em>real</em> front-end solutions in the <em>real</em> world: from design systems and accessible single-page apps to CSS Custom Properties, CSS Grid, Service Workers, performance, AR/VR and <strong>responsive art direction</strong>. With Marcy Sutton, Yoav Weiss, Lyza D. Gardner, Laura Elizabeth and <a href="https://smashed.by/sb6paneltoc">many others</a>.</p>
+        <a href="https://smashed.by/sb6panel">
+          <button class="btn btn--green btn--large">
+            Table of Contents&nbsp;&rarr;
+          </button>
+        </a>
+      </div>
+      <div class="panel__image panel__image--book">
+        <a href="https://smashed.by/sb6panel" class="books__book__image">
+        <div class="books__book__img">
+          <img src="https://res.cloudinary.com/indysigner/image/upload/v1543572300/shop/smashing-book-6-product-image-opt.png">
+        </div>
+      </a>
+      </div>
+    </div>
+  </aside>
+
+
+
+
+<p>Until last year, most of us were using tables to lay out our pages. Okay, maybe not last year! But I suspect that many of you reading this have been guilty of relying on tables at some point in your career. At the same time, it actually made a lot of sense. And let’s face it: it worked… to a point. However, we all then faced the reality that tables were semantically dubious and incredibly inflexible. And through the haze of this mark-up hangover, we caught a glimpse of the future: the CSS box model. Hurray!</p>
+
+<p>The CSS box model allowed us to tell the browser how to display a piece of content, and in particular how to display it as a box. We floated left and right, we tried to understand what <code>inline-block</code> meant, and we read countless articles about <code>clearfix</code>, before just copying and pasting the <code>clearfix</code> hack-du-jour into our CSS.</p>
+
+<p>For those of us testing our websites back to IE6, we had to grapple with <code>hasLayout</code> and triggering it with the following or some similar fix:</p>
+
+<pre><code class="language-css">* html #element {
+height: 1%;
+}</code></pre>
+
+<p>The box model worked, and in most cases it worked well. But as the Web entered its teenage years, it demanded more complex ways of laying out content and — thanks to a certain Mr. Ethan Marcotte — of responding to the size of the browser and/or device.</p></p>
+
+<h4 id="percentage-padding-border-trouble">Percentage + Padding + Border = Trouble</h4>
+
+<p>Here’s another problem with the current box model: absolute values for padding, margin and border all affect the width of a box. Take the following:</p>
+
+<pre><code class="language-css">#element {
+width: 50%;
+border 1px solid #000;
+padding: 0 5px;
+}</code></pre>
+
+<p>This will <em>not</em> give us a box that is 50% of its parent. It will actually render an element that is 50% of the parent’s width <em>plus</em> 12 pixels (2-pixel border + 10-pixel padding). You could set the padding as a percentage value (although not for input elements in Firefox!), but adding percentage values of widths to the pixel values of borders can cause mathematical problems.</p>
+
+<p>There are two ways to fix this problem. The first is to use the new CSS3 <code>box-sizing</code> property, and setting it to <code>border-box</code>:</p>
+
+<pre><code class="language-css">#element {
+box-sizing: border-box;
+width: 50%;
+border 1px solid #000;
+padding: 0 5px;
+}</code></pre>
+
+<p>This new CSS3 panacea effectively tells the browser to render the element at the specified width, <em>including</em> the border width and padding.</p>
+
+<p>The second way to fix this problem is to use flexbox.</p></p>
+
+<h4 id="many-problems-many-solutions">Many Problems, Many Solutions</h4>
+
+<p>The W3C responded with a suite of answers: the flexible box model, columns, templates, positioned floats and the grid. Adobe <a href="http://labs.adobe.com/technologies/cssregions/">added regions</a> to the mix, but they are <a href="http://dev.w3.org/csswg/css3-regions/">not yet supported</a> by any browser.</p>
+
+<p>The <a href="http://www.w3.org/TR/CSS2/visuren.html#display-prop"><code>display</code> property</a> already has no less than a staggering 16 values: <code>inline</code>, <code>block</code>, <code>list-item</code>, <code>inline-block</code>, <code>table</code>, <code>inline-table</code>, <code>table-row-group</code>, <code>table-header-group</code>, <code>table-footer-group</code>, <code>table-row</code>, <code>table-column-group</code>, <code>table-column</code>, <code>table-cell</code>, <code>table-caption</code>, <code>none</code> and <code>inherit</code>.</p>
+
+<p>And now we can add a 17th: <code>box</code>.</p></p>
+
+<h3 id="living-in-a-box">Living In A Box</h3>
+
+<p>Let’s take a look at flexbox, which brings with it a brand new value for the display property (<code>box</code>) and no less than 8 new properties. Here’s how the W3C defines the new module:
+<blockquote>In this new box model, the children of a box are laid out either horizontally or vertically, and unused space can be assigned to a particular child or distributed among the children by assignment of <code>flex</code> to the children that should expand. Nesting of these boxes (horizontal inside vertical, or vertical inside horizontal) can be used to build layouts in two dimensions.</blockquote></p>
+
+<p>Sounds exciting! The Working Draft expands on this a little:
+<blockquote>Flexbox… lacks many of the more complex text or document-formatting properties that can be used in block layout, such as “float” and “columns,” but in return it gains more simple and powerful tools for aligning its contents in ways that Web apps and complex Web pages often need.</blockquote></p>
+
+<p>Now this is beginning to sound interesting. The flexbox model picks up where the box model leaves off, and the W3C reveals its motivation by noting that “Web apps and complex Web pages” need a better layout model. Here’s a list of the new flexbox properties:</p>
+
+<ul>
+<li><code>box-orient</code>,</li>
+<li><code>box-pack</code>,</li>
+<li><code>box-align</code>,</li>
+<li><code>box-flex</code>,</li>
+<li><code>box-flex-group</code>,</li>
+<li><code>box-ordinal-group</code>,</li>
+<li><code>box-direction</code>,</li>
+<li><code>box-lines</code>.</li>
+</ul>
+
+<p>For the sake of brevity, I will use only the official spec’s properties and values, but do remember to add the vendor prefixes to your work. (See the section on “Vendor Prefixes and Cross-Browser Support” below.)</p>
+
+<p>You might also want to check out <a href="http://prefixr.com/">Prefixr</a> from Jeffrey Way, which can help generate some of the CSS for you. However, I found that it incorrectly generated the <code>display: box</code> property, so check all of its code.</p></p>
+
+<h4 id="everything-will-change">Everything Will Change</h4>
+
+<p>If you take the time to read or even browse the latest Working Draft (from 22 March 2011), you’ll notice a lot of red ink, and with good reason. This spec has issues and is still changing; we are in unchartered waters.</p>
+
+<p>It’s worth noting that the syntax used in this article, and by all <em>current</em> browsers, is already out of date. The Working Draft has undergone changes to much of the syntax used in the flexbox model. For example:</p>
+
+<pre><code class="language-css">display: box;</code></pre>
+
+<p>This will become:</p>
+
+<pre><code class="language-css">display: flexbox;</code></pre>
+
+<p>Other changes include some properties being split (<code>box-flex</code> will become <code>flex-grow</code> and <code>flex-shrink</code>), while others will be combined (<code>box-orient</code> and <code>box-direction</code> will become <code>flex-direction</code>). Indeed, anything that starts <code>box-</code> will be changed to <code>flex-</code>. So, keep your eyes on <a href="http://www.w3.org/TR/css3-flexbox/">the spec</a> and on browser implementations. (<a href="http://caniuse.com/#search=flex">CanIUse</a> helps, but it doesn’t cover all of the properties.)</p>
+
+<h4 id="parappa-the-wrapper">PaRappa the Wrapper</h4>
+
+<p>Using flexbox often requires an extra div or two, because the parent of any flexbox element needs to have <code>display</code> set to <code>box</code>. Before, you could get away with the following:</p>
+
+<pre><code class="language-markup tmp-html">&lt;div style="float: left; width: 250px;"&gt; Content here &lt;/div&gt;
+&lt;div style="float: right; width: 250px;"&gt; Content here &lt;/div&gt;</code></pre>
+
+<p>Now with flexbox, you’ll need:</p>
+
+<pre><code class="language-markup tmp-html">&lt;div style="display: box"&gt;
+  &lt;div style="width: 250px"&gt; Content here &lt;/div&gt;
+  &lt;div style="width: 250px"&gt; Content here &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Many of you have already turned away, insulted by this extra mark-up that is purely for presentation. That’s understandable. But here’s the thing: once you master the CSS, this extra containing div becomes a small price to pay. Indeed, you’ll often already have a containing element (not necessarily a div) to add <code>display: box</code> to, so there won’t be a trade-off at all.</p>
+
+<p>On a broader note, sometimes you <em>need</em> presentational mark-up. It’s just the way it goes. I’ve found that, particularly when working on cross-browser support for a page, I have to add presentational mark-up for browsers such as IE6. I’m not saying to contract “div-itis,” but because we all use HTML5 elements in our mark-up, we find that sections often need div containers. That’s fine, as long as it’s kept to a minimum.</p>
+
+<p>With this in mind, let’s get busy with some code. I’ve put together a demo page, and you can download all of the <a href="https://github.com/richardshepherd/CSS3-Flexbox-Tutorial">source files</a>.</p>
+
+<p><img title="Our fictional Fruit Blog" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e181ef46-ffef-4173-b223-bb1fe655bf1d/fruitblog.jpg" alt="screenshot" width="550" height="400" /></p>
+
+<p>Over the next few paragraphs, we’ll use the new flexbox model to create a basic home page for a blog. You might want to launch a latest-generation browser, though, because we’re now coding at the cutting edge. And it’s an exciting place to be.</p></p>
+
+<h4 id="box-flex">box-flex</h4>
+
+<p>Let’s start with the basics: <code>box-flex</code>. Without <code>box-flex</code>, very little can be achieved. Simply put, it tells the browser how to resize an element when the element is too big or small for its parent.</p>
+
+<p>Consider the following classic problem. You have a container with three children that you want to position side by side. In other words, you float them left. If the total width of these boxes is wider than that of the parent — perhaps because of padding, margin or a border — then you need to either specify exact widths in pixels (which is not flexible) or work in percentages (and the sometimes mind-bending calculations that come with them!).</p>
+
+<p>Here’s the problem we have on our Fruit Blog, with three 320-pixel-wide asides (plus padding and margin) inside a 920-pixel-wide container:</p>
+
+<p><img title="Without flexbox" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4f07eba3-6409-46f7-ad5a-2c3b753169f6/asidespreflexbox.png" alt="screenshot" width="550" height="138" /></p>
+
+<p>As you can see, the content is wider than the parent. However, if we set set the parent to <code>display: box</code> and each of these asides to <code>box-flex: 1</code>, then the browser takes care of the math and renders the following:</p>
+
+<p><img title="With flexbox" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/a39316c2-3d72-4960-afbb-4942adadf0ec/asidespostflexbox.png" alt="screenshot" width="550" height="166" /></p>
+
+<p>So, what exactly has happened here?</p>
+
+<p>The <code>box-flex</code> property refers to how the browser will treat the width of the box — or, more specifically, the <strong>unused space</strong> (even if that space is negative — i.e. even if the rendered boxes are too big for the container) — after the box has rendered. The value (<code>1</code> in our example) is the <em>ratio</em>. So, with each aside set to a ratio of <code>1</code>, each box is scaled in exactly the same way.</p>
+
+<p>In the first instance, each aside was 320 pixels + 20 pixels of padding on the left and right. This gave us a total width of 360 pixels; and for three asides, the width was 1080 pixels. This is 160 pixels <em>wider</em> than the parent container.</p>
+
+<p>Telling the browser that each box is flexible (with <code>box-flex</code>) will make it shrink the <em>width</em> of each box — i.e. it will not change the padding. This calculation is a fairly easy one:
+<blockquote>160 pixels ÷ 3 asides = 53.333 pixels to be taken off each aside.</p>
+
+<p>320 pixels - 53.333 = 266.667 pixels</blockquote></p>
+
+<p>And, if we look in Chrome Developer tools, we will see this is exactly how wide the box now is (rounded up to the nearest decimal):</p>
+
+<p><img title="267px wide" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f76997f6-7c8a-4b5f-af76-e24c73148f9c/267px.png" alt="screenshot" width="174" height="69" /></p>
+
+<p>The same would be true if each aside had a width of 100 pixels. The browser would expand each element until it filled the <strong>unused space</strong>, which again would result in each aside having a width of 266.667 pixels.</p>
+
+<p>This is invaluable for flexible layouts, Because it means that your padding, margin and border values will always be honored; the browser will simply change the width of the elements until they fit the parent. If the parent changes in size, so will the flexible boxes within it.</p>
+
+<p>Of course, you can set <code>box-flex</code> to a different number on each element, thus creating different ratios. Let’s say you have three elements side by side, each 100 pixels wide, with 20 pixels padding, inside a 920-pixel container. It looks something like this:</p>
+
+<p><img title="100px wide" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/955aa629-b22f-4b2e-b2fb-8c005e5ba040/asides100px.png" alt="screenshot" width="550" height="143" /></p>
+
+<p>Now, let’s set the <code>box-flex</code> ratios:</p>
+
+<pre><code class="language-css">.box1 { box-flex: 2; }
+.box2 { box-flex: 1; }
+.box3 { box-flex: 1; }</code></pre>
+
+<p>Here’s what it looks like:</p>
+
+<p><img title="Flexbox with 2:1:1 ratio" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2b9d5a32-fa36-42b7-abd1-6d02663fc503/flexbox2to1.png" alt="screenshot" width="550" height="161" /></p>
+
+<p>What just happened?!</p>
+
+<p>Well, each aside started off as 140-pixels wide (100 pixels + 40 pixels padding), or 420 pixels in total. This means that 500 pixels were left to fill once we’d made them flexible boxes.</p>
+
+<p>However, rather than split the 500 pixels three ways, we told the browser to assign the first aside with a <code>box-flex</code> of <code>2</code>. This would grow it by 2 pixels for every 1 pixel that the other two boxes grow, until the parent is full.</p>
+
+<p>Perhaps the best way to think of this is that our ratio is 2:1:1. So, the first element will take up <sup>2</sup>&frasl;<sub>4</sub> of the unused space, while the other two elements will take up <sup>1</sup>&frasl;<sub>4</sub> of the unused space (<sup>2</sup>&frasl;<sub>4</sub> + <sup>1</sup>&frasl;<sub>4</sub> + <sup>1</sup>&frasl;<sub>4</sub> = 1).</p>
+
+<p><sup>2</sup>&frasl;<sub>4</sub> of 500 pixels is 250, and <sup>1</sup>&frasl;<sub>4</sub> is 125 pixels. The final widths, therefore, end up as:
+<blockquote><code>.box1</code> = <strong>350px (100px + <em>250px</em>)</strong> + 40px padding
+<code>.box2</code> = <strong>225px<strong> (100px + <em>125px</em>)</strong></strong> + 40px padding
+<code>.box3</code> = <strong>225px<strong> (100px + <em>125px</em>)</strong></strong> + 40px padding</blockquote></p>
+
+<p>Add all of these values up and you reach the magic number of 920 pixels, the width of our parent.</p>
+
+<p>An important distinction to make is that the ratio refers to how the additional pixels (or unused space) are calculated, <em>not</em> the widths of the boxes themselves. This is why the widths are 350:225:225 pixels, and not 460:230:230 pixels.</p>
+
+<p>The wonderful thing about the flexbox model is that you don’t have to remember — or even particularly understand — much of the math. While the Working Draft goes into detail on the calculation and distribution of free space, you can work safe in the knowledge that the browser will take care of this for you.</p></p>
+
+<h4 id="animating-flexible-boxes">Animating Flexible Boxes</h4>
+
+<p>A simple and elegant effect is already at your fingertips. By making the <code>li</code> elements in a navigation bar flexible, and specifying their width on <code>:hover</code>, you can create a nice effect whereby the highlighted <code>li</code> element expands and all the other elements shrink. Here’s the CSS for that:</p>
+
+<pre><code class="language-css">nav ul {
+display: box;
+width: 880px;
+}
+
+nav ul li {
+padding: 2px 5px;
+box-flex: 1;
+-webkit-transition: width 0.5s ease-out;
+min-width: 100px;
+}
+
+nav ul li:hover {
+width: 200px;
+}</code></pre>
+
+<p><img title="Expanding Menus" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ceb34af0-28d0-4041-9c91-34ca2f36e644/expandingmenus1.jpg" alt="screenshot" width="550" height="121" /></p>
+
+<p>You’ll spot a <code>min-width</code> on the <code>li</code> element, which is used to fix a display bug in Chrome.</p></p>
+
+<h4 id="equal-height-columns-the-happy-accident">Equal-Height Columns: The Happy Accident!</h4>
+
+<p>As we’ll see, all flexbox elements inherit a default value of <code>box-align: stretch</code>. This means they will all stretch to fill their container.</p>
+
+<p>For example, two flexbox columns in a parent with <code>display: box</code> will always be the same height. This has been the subject of CSS and JavaScript hacks for years now.</p>
+
+<p>There are a number of practical implementations of this fortunate outcome, not the least of which is that sidebars can be made the same height as the main content. Now, a <code>border-left</code> on a right-hand sidebar will stretch the full length of the content. Happy days!</p>
+
+<h4 id="box-orient-and-box-direction">box-orient and box-direction</h4>
+
+<p>The <code>box-orient</code> property defines how boxes align within their parent. The default state is <code>horizontal</code> or, more specifically, <code>inline-axis</code>, which is horizontal and left-to-right in most Western cultures. Likewise, <code>vertical</code> is the same as <code>block-axis</code>. This will make sense if you think about how the browser lays out inline and block elements.</p>
+
+<p>You can change the <code>box-orient</code> value to <code>vertical</code> to make boxes stack on top of each other. This is what we’ll do with the featured articles on our fruit blog.</p>
+
+<p>Here is what our articles look like with <code>box-orient</code> set to its default setting:</p>
+
+<p><img title="box-orient: horizontal" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03197261-c7b2-420c-ae0e-deeb469623c7/articleshorizontal.png" alt="screenshot" width="550" height="109" /></p>
+
+<p>Ouch! As you can see, the articles are stacking next to each other and so run off the side of the page. It also means that they sit on top of the sidebar. But by quickly setting the parent div to <code>box-orient: vertical</code>, the result is instant:</p>
+
+<p><img title="box-orient: vertical" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a1de1da-2273-4429-b620-c4c79e68f718/articles213.png" alt="screenshot" width="550" height="268" /></p>
+
+<p>A related property is <code>box-direction</code>, which specifies the direction in which the boxes are displayed. The default value is <code>normal</code>, which means the boxes will display as they appear in the code. But if you change this value to <code>reverse</code>, it will reverse the order, and so the last element in the code will appear first, and the first last.</p>
+
+<p>While <code>box-orient</code> and <code>box-direction</code> are essential parts of the model, they will not likely appear in the final specification, because they are being merged into the <a href="http://www.w3.org/TR/css3-flexbox/#flex-direction"><code>flex-direction</code> property</a>, which will take the following values: <code>lr</code>, <code>rl</code>, <code>tb</code>, <code>bt</code>, <code>inline</code>, <code>inline-reverse</code>, <code>block</code> and <code>block-reverse</code>. Most of these are self-explanatory, but as yet they don’t work in any browser.</p></p>
+
+<h4 id="box-ordinal-group">box-ordinal-group</h4>
+
+<p>Control over the order in which boxes are displayed does not stop at <code>normal</code> and <code>reverse</code>. You can specify the exact order in which each box is placed.</p>
+
+<p>The value of <code>box-ordinal-group</code> is set as a positive integer. The lower the number (<code>1</code> being the lowest), the higher the layout priority. So, an element with <code>box-ordinal-group: 1</code> will be rendered before one with <code>box-ordinal-group: 2</code>. If elements share the same <code>box-ordinal-group</code>, then they will be rendered in the order that they appear in the HTML.</p>
+
+<p>Let’s apply this to a classic blog scenario: the sticky post (i.e. content that you want to keep at the top of the page). Now we can tag sticky posts with a <code>box-ordinal-group</code> value of <code>1</code> and all other posts with a <code>box-ordinal-group</code> of <code>2</code> or lower. It might look something like this:</p>
+
+<pre><code class="language-css">article {
+box-ordinal-group: 2;
+}
+
+article.sticky {
+box-ordinal-group: 1;
+}</code></pre>
+
+<p>So, any article with <code>class=&ldquo;sticky&rdquo;</code> is moved to the top of the list, without the need for any front-end or back-end jiggering. That’s pretty impressive and incredibly useful.</p>
+
+<p>We’ve used this code in our example to stick a recent blog post to the top of the home page:</p>
+
+<p><img title="box-ordinal-group changes the order" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5aab3275-e868-4e96-a731-fce7a4406aed/articles213closeup.png" alt="screenshot" width="550" height="375" /></p>
+
+<h4 id="box-pack-and-box-align">box-pack and box-align</h4>
+
+<p>The <code>box-pack</code> and <code>box-align</code> properties help us position boxes on the page.</p>
+
+<p>The default value for <code>box-align</code> is <code>stretch</code>, and this is what we’ve been using implicitly so far. The <code>stretch</code> value stretches the box to fit the container (together with any other siblings that are flexible boxes), and this is the behavior we’ve seen so far. But we can also set <code>box-align</code> to <code>center</code> and, depending on the <code>box-orient</code> value, the element will be centered either vertically or horizontally.</p>
+
+<p>For example, if a parent inherits the default <code>box-align</code> value of <code>horizontal</code> (<code>inline-axis</code>), then any element with <code>box-align</code> set to <code>center</code> will be centered vertically.</p>
+
+<p>We can use this in our blog example to vertically center the search box in the header. Here’s the mark-up:</p>
+
+<pre><code class="language-markup tmp-html">&lt;header&gt;
+  &lt;form id="search"&gt;
+    &lt;label for="searchterm"&gt;Search&lt;/label&gt;
+    &lt;input type="search" placeholder="What’s your favourite fruit…" name="searchterm" /&gt;
+    &lt;button type="submit"&gt;Search!&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/header&gt;</code></pre>
+
+<p>And to vertically center the search box, we need just one line of CSS:</p>
+
+<pre><code class="language-css">header {
+display: box; box-align: center;
+}
+
+header #search {
+display: box; box-flex: 1;
+}</code></pre>
+
+<p>The height of <code>#search</code> has not been set and so depends on the element’s content. But no matter what the height of <code>#search</code>, it will always be vertically centered within the header. No more CSS hacks for you!</p>
+
+<p><img title="Centered Search" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/092f95c4-3b70-4b65-9a0d-d7022cfe0536/fifth-sixth-link.jpg" alt="screenshot" width="400" height="192" /></p>
+
+<p>The other three properties of <code>box-align</code> are <code>start</code>, <code>end</code> and <code>baseline</code>.</p>
+
+<p>When <code>box-orient</code> is set to <code>horizontal</code> (<code>inline-axis</code>), an element with <code>box-align</code> set to <code>start</code> will appear on the left, and one with <code>box-align</code> set to <code>end</code> will appear on the right. Likewise, when <code>box-orient</code> is set to <code>vertical</code> (<code>block-axis</code>), an element with <code>box-align</code> set to <code>start</code> will appear at the top, and one with <code>box-align</code> set to <code>end</code> will move to the bottom. However, <code>box-direction: reverse</code> will flip all of these rules on their head, so be warned!</p>
+
+<p>Finally, we have <code>baseline</code>, which is best explained by the specification:
+<blockquote>Align all flexbox items so that their baselines line up, then distribute free space above and below the content. This only has an effect on flexbox items with a horizontal baseline in a horizontal flexbox, or flexbox items with a vertical baseline in a vertical flexbox. Otherwise, alignment for that flexbox item proceeds as if <code>flex-align: auto</code> had been specified.</blockquote></p>
+
+<p>Another property helps us with alignment: <code>box-pack</code>. This enables us to align elements on the axis that is perpendicular to the axis they are laid out on. So, as in the search-bar example, we have vertically aligned objects whose parent have <code>box-orient</code> set to <code>horizontal</code>.</p>
+
+<p>But what if we want to horizontally center a box that is already horizontally positioned? For this tricky task, we need <code>box-pack</code>.</p>
+
+<p>If you look at the navigation on our fruit blog, you’ll see that it’s only 880 pixels wide, and so it naturally starts at the left of the container.</p>
+
+<p><img title="The nav bar on the left" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/db71f4c4-63da-4fa0-9d4a-42fef5d1a53b/left-of-the-container.jpg" alt="screenshot" width="552" height="75" /></p>
+
+<p>We can reposition this <code>ul</code> by applying <code>box-pack</code> to its parent. If we apply <code>box-pack: center</code> to the navigation element, then the navigation moves nicely to the center of the container.</p>
+
+<p><img title="Nav bar centered" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7ca3ca77-1233-4b1e-ab38-30b3bbcc1e0b/centre-of-the-rotation.jpg" alt="screenshot" width="552" height="71" /></p>
+
+<p>This behaves much like <code>margin: 0 auto</code>. But with the margin trick, you must specify an explicit width for the element. Also, we can do more than just center the navigation with <code>box-pack</code>. There are three other values: <code>start</code>, <code>end</code> and <code>justify</code>. The <code>start</code> and <code>end</code> values do what they do for <code>box-align</code>. But <code>justify</code> is slightly different.</p>
+
+<p>The <code>justify</code> value acts the same as <code>start</code> if there is only one element. But if there is more than one element, then it does the following:</p>
+
+<ul>
+<li>It adds no additional space in front of the first element,</li>
+<li>It adds no additional space after the last element,</li>
+<li>It divides the remaining space between each element evenly.</p></li>
+</ul>
+
+<h4 id="box-flex-group-and-box-lines">box-flex-group and box-lines</h4>
+
+<p>The final two properties have limited and/or no support in browsers, but they are worth mentioning for the sake of thoroughness.</p>
+
+<p>Perhaps the least helpful is <code>box-flex-group</code>, which allows you to specify the priority in which boxes are resized. The lower the value (as a positive integer), the higher the priority. But I have yet to see an implementation of this that is either useful or functional. If you know different, please say so in the comments.</p>
+
+<p>On the other hand, <code>box-lines</code> is a bit more practical, if still a little experimental. By default, <code>box-lines</code> is set to <code>single</code>, which means that all of your boxes will be forced onto one row of the layout (or onto one column, depending on the <code>box-orient</code> value). But if you change it to <code>box-lines: multiple</code> whenever a box is wider or taller than its parent, then any subsequent boxes will be moved to a new row or column.</p></p>
+
+<h3 id="vendor-prefixes-and-cross-browser-support">Vendor Prefixes and Cross-Browser Support</h3>
+
+<p>It will come as no surprise to you that Internet Explorer does not (yet) support the flexbox model. Here’s how <a href="http://caniuse.com/#search=flexbox">CanIUse</a> sees the current browser landscape for flexbox:</p>
+
+<p><img title="CanIUse.com" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dc21331d-5d8c-4678-836e-40a18b12d05b/caniuser.png" alt="screenshot" width="550" height="317" /></p>
+
+<p>The good news is that Internet Explorer 10 is coming to the party. Download the <a href="http://ie.microsoft.com/testdrive/Info/Downloads/Default.html">platform preview</a>, and then check out <a href="http://ie.microsoft.com/testdrive/HTML5/Flexin/Default.html">some interesting examples</a>.</p>
+
+<p>Also, we need to add a bunch of vendor prefixes to guarantee the widest possible support among other “modern” browsers. In a perfect world, we could rely on the following:</p>
+
+<pre><code class="language-css">#parent {
+display: box;
+}
+
+#child {
+flex-box: 1;
+}</code></pre>
+
+<p>But in the real world, we need to be more explicit:</p>
+
+<pre><code class="language-css">#parent {
+display: -webkit-box;
+display: -moz-box;
+display: -o-box;
+display: box;
+}
+
+#child {
+-webkit-flex-box: 1;
+-moz-flex-box: 1;
+-o-flex-box: 1;
+flex-box: 1;
+}</code></pre>
+
+<h4 id="helper-classes">Helper Classes</h4>
+
+<p>A shortcut to all of these vendor prefixes — and any page that relies on the flexbox model will have many of them — is to use helper classes. I’ve included them in the source code that accompanies this article. Here’s an example:</p>
+
+<p>You can change the <code>box-orient</code> value to <code>vertical</code> to make boxes stack on top of each other. This is what we’ll do with the featured articles on our fruit blog.</p>
+
+<p>Here is what our articles look like with <code>box-orient</code> set to its default setting:</p>
+
+<p><img title="box-orient: horizontal" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03197261-c7b2-420c-ae0e-deeb469623c7/articleshorizontal.png" alt="screenshot" width="550" height="109" /></p>
+
+<p>Ouch! As you can see, the articles are stacking next to each other and so run off the side of the page. It also means that they sit on top of the sidebar. But by quickly setting the parent div to <code>box-orient: vertical</code>, the result is instant:</p>
+
+<p><img title="box-orient: vertical" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a1de1da-2273-4429-b620-c4c79e68f718/articles213.png" alt="screenshot" width="550" height="268" /></p>
+
+<p>A related property is <code>box-direction</code>, which specifies the direction in which the boxes are displayed. The default value is <code>normal</code>, which means the boxes will display as they appear in the code. But if you change this value to <code>reverse</code>, it will reverse the order, and so the last element in the code will appear first, and the first last.</p>
+
+<p>While <code>box-orient</code> and <code>box-direction</code> are essential parts of the model, they will not likely appear in the final specification, because they are being merged into the <a href="http://www.w3.org/TR/css3-flexbox/#flex-direction"><code>flex-direction</code> property</a>, which will take the following values: <code>lr</code>, <code>rl</code>, <code>tb</code>, <code>bt</code>, <code>inline</code>, <code>inline-reverse</code>, <code>block</code> and <code>block-reverse</code>. Most of these are self-explanatory, but as yet they don’t work in any browser.</p></p>
+
+<h4 id="box-ordinal-group-1">box-ordinal-group</h4>
+
+<p>Control over the order in which boxes are displayed does not stop at <code>normal</code> and <code>reverse</code>. You can specify the exact order in which each box is placed.</p>
+
+<p>The value of <code>box-ordinal-group</code> is set as a positive integer. The lower the number (<code>1</code> being the lowest), the higher the layout priority. So, an element with <code>box-ordinal-group: 1</code> will be rendered before one with <code>box-ordinal-group: 2</code>. If elements share the same <code>box-ordinal-group</code>, then they will be rendered in the order that they appear in the HTML.</p>
+
+<p>Let’s apply this to a classic blog scenario: the sticky post (i.e. content that you want to keep at the top of the page). Now we can tag sticky posts with a <code>box-ordinal-group</code> value of <code>1</code> and all other posts with a <code>box-ordinal-group</code> of <code>2</code> or lower. It might look something like this:</p>
+
+<pre><code class="language-css">article {
+box-ordinal-group: 2;
+}
+
+article.sticky {
+box-ordinal-group: 1;
+}</code></pre>
+
+<p>So, any article with <code>class=&ldquo;sticky&rdquo;</code> is moved to the top of the list, without the need for any front-end or back-end jiggering. That’s pretty impressive and incredibly useful.</p>
+
+<p>We’ve used this code in our example to stick a recent blog post to the top of the home page:</p>
+
+<p><img title="box-ordinal-group changes the order" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5aab3275-e868-4e96-a731-fce7a4406aed/articles213closeup.png" alt="screenshot" width="550" height="375" /></p>
+
+<h4 id="box-pack-and-box-align-1">box-pack and box-align</h4>
+
+<p>The <code>box-pack</code> and <code>box-align</code> properties help us position boxes on the page.</p>
+
+<p>The default value for <code>box-align</code> is <code>stretch</code>, and this is what we’ve been using implicitly so far. The <code>stretch</code> value stretches the box to fit the container (together with any other siblings that are flexible boxes), and this is the behavior we’ve seen so far. But we can also set <code>box-align</code> to <code>center</code> and, depending on the <code>box-orient</code> value, the element will be centered either vertically or horizontally.</p>
+
+<p>For example, if a parent inherits the default <code>box-align</code> value of <code>horizontal</code> (<code>inline-axis</code>), then any element with <code>box-align</code> set to <code>center</code> will be centered vertically.</p>
+
+<p>We can use this in our blog example to vertically center the search box in the header. Here’s the mark-up:</p>
+
+<pre><code class="language-markup tmp-html">&lt;header&gt;
+  &lt;form id="search"&gt;
+    &lt;label for="searchterm"&gt;Search&lt;/label&gt;
+    &lt;input type="search" placeholder="What’s your favourite fruit…" name="searchterm" /&gt;
+    &lt;button type="submit"&gt;Search!&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/header&gt;</code></pre>
+
+<p>And to vertically center the search box, we need just one line of CSS:</p>
+
+<pre><code class="language-css">header {
+display: box; box-align: center;
+}
+
+header #search {
+display: box; box-flex: 1;
+}</code></pre>
+
+<p>The height of <code>#search</code> has not been set and so depends on the element’s content. But no matter what the height of <code>#search</code>, it will always be vertically centered within the header. No more CSS hacks for you!</p>
+
+<p><img title="Centered Search" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/092f95c4-3b70-4b65-9a0d-d7022cfe0536/fifth-sixth-link.jpg" alt="screenshot" width="400" height="192" /></p>
+
+<p>The other three properties of <code>box-align</code> are <code>start</code>, <code>end</code> and <code>baseline</code>.</p>
+
+<p>When <code>box-orient</code> is set to <code>horizontal</code> (<code>inline-axis</code>), an element with <code>box-align</code> set to <code>start</code> will appear on the left, and one with <code>box-align</code> set to <code>end</code> will appear on the right. Likewise, when <code>box-orient</code> is set to <code>vertical</code> (<code>block-axis</code>), an element with <code>box-align</code> set to <code>start</code> will appear at the top, and one with <code>box-align</code> set to <code>end</code> will move to the bottom. However, <code>box-direction: reverse</code> will flip all of these rules on their head, so be warned!</p>
+
+<p>Finally, we have <code>baseline</code>, which is best explained by the specification:
+<blockquote>Align all flexbox items so that their baselines line up, then distribute free space above and below the content. This only has an effect on flexbox items with a horizontal baseline in a horizontal flexbox, or flexbox items with a vertical baseline in a vertical flexbox. Otherwise, alignment for that flexbox item proceeds as if <code>flex-align: auto</code> had been specified.</blockquote></p>
+
+<p>Another property helps us with alignment: <code>box-pack</code>. This enables us to align elements on the axis that is perpendicular to the axis they are laid out on. So, as in the search-bar example, we have vertically aligned objects whose parent have <code>box-orient</code> set to <code>horizontal</code>.</p>
+
+<p>But what if we want to horizontally center a box that is already horizontally positioned? For this tricky task, we need <code>box-pack</code>.</p>
+
+<p>If you look at the navigation on our fruit blog, you’ll see that it’s only 880 pixels wide, and so it naturally starts at the left of the container.</p>
+
+<p><img title="The nav bar on the left" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/db71f4c4-63da-4fa0-9d4a-42fef5d1a53b/left-of-the-container.jpg" alt="screenshot" width="552" height="75" /></p>
+
+<p>We can reposition this <code>ul</code> by applying <code>box-pack</code> to its parent. If we apply <code>box-pack: center</code> to the navigation element, then the navigation moves nicely to the center of the container.</p>
+
+<p><img title="Nav bar centered" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7ca3ca77-1233-4b1e-ab38-30b3bbcc1e0b/centre-of-the-rotation.jpg" alt="screenshot" width="552" height="71" /></p>
+
+<p>This behaves much like <code>margin: 0 auto</code>. But with the margin trick, you must specify an explicit width for the element. Also, we can do more than just center the navigation with <code>box-pack</code>. There are three other values: <code>start</code>, <code>end</code> and <code>justify</code>. The <code>start</code> and <code>end</code> values do what they do for <code>box-align</code>. But <code>justify</code> is slightly different.</p>
+
+<p>The <code>justify</code> value acts the same as <code>start</code> if there is only one element. But if there is more than one element, then it does the following:</p>
+
+<ul>
+<li>It adds no additional space in front of the first element,</li>
+<li>It adds no additional space after the last element,</li>
+<li>It divides the remaining space between each element evenly.</p></li>
+</ul>
+
+<h4 id="box-flex-group-and-box-lines-1">box-flex-group and box-lines</h4>
+
+<p>The final two properties have limited and/or no support in browsers, but they are worth mentioning for the sake of thoroughness.</p>
+
+<p>Perhaps the least helpful is <code>box-flex-group</code>, which allows you to specify the priority in which boxes are resized. The lower the value (as a positive integer), the higher the priority. But I have yet to see an implementation of this that is either useful or functional. If you know different, please say so in the comments.</p>
+
+<p>On the other hand, <code>box-lines</code> is a bit more practical, if still a little experimental. By default, <code>box-lines</code> is set to <code>single</code>, which means that all of your boxes will be forced onto one row of the layout (or onto one column, depending on the <code>box-orient</code> value). But if you change it to <code>box-lines: multiple</code> whenever a box is wider or taller than its parent, then any subsequent boxes will be moved to a new row or column.</p></p>
+
+<h3 id="vendor-prefixes-and-cross-browser-support-1">Vendor Prefixes and Cross-Browser Support</h3>
+
+<p>It will come as no surprise to you that Internet Explorer does not (yet) support the flexbox model. Here’s how <a href="http://caniuse.com/#search=flexbox">CanIUse</a> sees the current browser landscape for flexbox:</p>
+
+<p><img title="CanIUse.com" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dc21331d-5d8c-4678-836e-40a18b12d05b/caniuser.png" alt="screenshot" width="550" height="317" /></p>
+
+<p>The good news is that Internet Explorer 10 is coming to the party. Download the <a href="http://ie.microsoft.com/testdrive/Info/Downloads/Default.html">platform preview</a>, and then check out <a href="http://ie.microsoft.com/testdrive/HTML5/Flexin/Default.html">some interesting examples</a>.</p>
+
+<p>Also, we need to add a bunch of vendor prefixes to guarantee the widest possible support among other “modern” browsers. In a perfect world, we could rely on the following:</p>
+
+<pre><code class="language-css">#parent {
+display: box;
+}
+
+#child {
+flex-box: 1;
+}</code></pre>
+
+<p>But in the real world, we need to be more explicit:</p>
+
+<pre><code class="language-css">#parent {
+display: -webkit-box;
+display: -moz-box;
+display: -o-box;
+display: box;
+}
+
+#child {
+-webkit-flex-box: 1;
+-moz-flex-box: 1;
+-o-flex-box: 1;
+flex-box: 1;
+}</code></pre>
+
+<h4 id="helper-classes-1">Helper Classes</h4>
+
+<p>A shortcut to all of these vendor prefixes — and any page that relies on the flexbox model will have many of them — is to use helper classes. I’ve included them in the source code that accompanies this article. Here’s an example:</p>
+
+<pre><code class="language-css">.box {
+display: -webkit-box;
+display: -moz-box;
+display: -o-box;
+display: box;
+}
+
+.flex1 {
+-webkit-flex-box: 1;
+-moz-flex-box: 1;
+-o-flex-box: 1;
+flex-box: 1;
+}
+
+.flex2 {
+-webkit-flex-box: 2;
+-moz-flex-box: 2;
+-o-flex-box: 2;
+flex-box: 2;
+}</code></pre>
+
+<p>This allows us to use this simple HTML:</p>
+
+<pre><code class="language-markup tmp-html">&lt;div class='box'&gt;
+  &lt;div class='flex2' id="main"&gt;
+   &lt;!-- Content here --&gt;
+ &lt;/div&gt;
+  &lt;div class="flex1" id="side”&gt;
+    &lt;!-- Content here --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Using non-semantic helper classes is considered bad practice by many; but with so many vendor prefixes, the shortcut can probably be forgiven. You might also consider using a “mixin” with <a href="http://sass-lang.com/">Sass</a> or <a href="http://lesscss.org/">Less</a>, which will do the same job. This is something that Twitter sanctions in its <em>preboot.less</em> file.</p></p>
+
+<h4 id="flexie-js">Flexie.js</h4>
+
+<p>For those of you who want to start experimenting with flexbox now but are worried about IE support, a JavaScript polyfill is available to help you out.</p>
+
+<p><a href="http://flexiejs.com/">Flexie.js</a>, by <a href="http://doctyper.com/">Richard Herrera</a>, is a plug-and-play file that you simply need to include in your HTML (download it on <a href="https://github.com/doctyper/flexie">GitHub</a>). It will then search through your CSS files and make the necessary adjustments for IE — no small feat given that it is remapping much of the layout mark-up on the page.</p>
+
+<p><img title="Flexie.js" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4f0f7f22-9bfd-4344-8bc5-032a864408b6/flexie.png" alt="screenshot" width="550" height="497" /></p>
+
+<h4 id="a-word-on-firefox">A Word on Firefox</h4>
+
+<p>The flexbox model was, at least originally, based on a syntax that Mozilla used in its products. That syntax, called <a href="https://developer.mozilla.org/En/XUL">XUL</a>, is a mark-up language designed for user interfaces.</p>
+
+<p>The irony here is that Firefox is still catching up, and its rendering of some flexbox properties can be buggy. Below are some issues to watch out for, which future releases of Firefox will fix. Credit here must go to the uber-smart Peter Gasston and Oli Studholme, giants on whose shoulders I stand.</p>
+
+<ul>
+<li>Flexbox ignores <code>overflow: hidden</code> and expands the flexbox child when the content is larger than the child’s width.</li>
+<li>The setting <code>display: box</code> is treated as <code>display: inline-box</code> if there is no width.</li>
+<li>The outline on flexbox children is padded as if by a transparent border of the same width.</li>
+<li>The setting <code>box-align: justify</code> does not work in Firefox.</li>
+<li>If you set <code>box-flex</code> to <code>0</code>, Firefox forces the element to act like it’s using the quirks-mode box model.</p></li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>The flexbox model is another exciting development in the CSS3 specification, but the technology is still very much cutting-edge. With buggy support in Firefox and no support in Internet Explorer until version 10 moves beyond the platform preview, it is perhaps of limited use in the mainstream.</p>
+
+<p>Nevertheless, the spec is still a working document. So, by experimenting with these new techniques now, you can actively contribute to its development.</p>
+
+<p>It’s hard to recommend the flexbox model for production websites, but envelopes need pushing, and it might well be the perfect way to lay out a new experimental website or idea that you’ve been working on.</p>
+
+<p>Offering a range of new features that help us break free of the float, the flexbox model is another step forward for the layout of modern Web pages and applications. It will be interesting to see how the specification develops and what other delights for laying out pages await the Web design community in the near future.</p></p>
+
+<h4 id="further-reading">Further Reading</h4>
+
+<p>From floats to flexbox, here’s everything else you need to know:</p>
+
+<ul>
+<li><a href="/2007/05/01/css-float-theory-things-you-should-know/">CSS Float Theory: Things You Should Know</a>,” *   <a href="https://www.smashingmagazine.com/2013/05/centering-elements-with-flexbox/">Flexbox Is As Easy As Pie – Designing CSS Layouts</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/11/css-grids-flexbox-and-box-alignment-our-new-system-for-web-layout/">CSS Grid, Flexbox And Box Alignment: System For Web Layout</a></li>
+<li><a href="https://www.smashingmagazine.com/2015/08/flexible-future-for-web-design-with-flexbox/">Laying Out A Flexible Future For Web Design With Flexbox</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/02/the-flexbox-reading-list/"><span class="headline">The Flexbox Reading List: Techniques And Tools</span></a></li>
+</ul>
+
+<p><em>Special thanks to <a href="http://www.timdavey.com">Tim Davey</a> for the artwork.</em></p>
+
+<p><div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial">
+  <span>(al)</span>
+</div>
+</p>
+
+				</div>
+				
+
+			</div>
+
+		</div> 
+
+    
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+    
+
+		
+		  <div id="sponsors-article-end" data-impression="true" class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden" data-audience="non-subscriber" data-remove="true"></div>
+		
+
+		
+			<div data-component="CommentsArea" id="comments-css3-flexible-box-layout-explained" data-thread="/2011/09/css3-flexible-box-layout-explained/" data-date="2011-09-19 09:19:24 &#43;0000 UTC"></div>
+
+		
+
+    
+
+
+
+
+	</div>
+</article>
+
+  </main> 
+
+  <footer class="main-footer">
+  	<div class="container">
+  		<div class="col-12">
+
+  			<div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-web-design">Responsive Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+  		</div>
+  		<div class="col-12">
+  			<div class="footer__notes">
+  				<p>With a commitment to quality content for the design community.</p>
+  				<p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2019</span>.</p>
+  				<p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+  				<p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+  			</div>
+
+  			<ul class="footer__links">
+  				<li>&#9998; <a href="/write-for-us/">Write for us</a></li>
+  				<li><a href="/contact/">Contact us</a></li>
+  				<li><a href="/about/">About us (Impressum)</a></li>
+  				<li><a href="/privacy-policy">Privacy policy</a></li>
+  				<li><a href="/auth/">Membership login</a></li>
+  				<li><a href="mailto:&#109;&#097;&#114;&#107;&#117;&#115;&#046;&#115;&#101;&#121;&#102;&#102;&#101;&#114;&#116;&#104;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a></li>
+  			</ul>
+  		</div>
+  	</div>
+
+  	
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+    
+  	   <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+    
+
+  </footer>
+
+  <div data-handler="PostLoad"></div>
+
+  
+
+  <script>
+    
+  	window.PRERELEASES = {}
+    
+
+    
+    
+
+    
+
+    
+      window.PUBLISH_DATE = new Date("2011-09-19T09:19:24Z")
+    
+  </script>
+
+  <script defer src='https://d33wubrfki0l68.cloudfront.net/js/b14633acf3e68f1247798b67e07bdfb50210e358/js/ga.js'></script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+  <script defer src='https://d33wubrfki0l68.cloudfront.net/js/4525476c05e9524779939f21dcb8a33670dbdcc4/js/app.js'></script>
+
+  
+    <script class='js-additional' defer src='https://d33wubrfki0l68.cloudfront.net/bundles/a138d7f8b28632f70f87c2162d2745b6fd0be402.js'></script>
+  
+
+  <link rel='stylesheet' type='text/css' media='print' href='https://d33wubrfki0l68.cloudfront.net/css/42fa98eae3246cbbd35d9a604805f1775f57e327/css/print.css'/>
+
+  <script>
+    function CookiebotCallback_OnLoad() { Cookiebot && Cookiebot.runScripts() }
+    function CookiebotCallback_OnAccept() { Cookiebot && Cookiebot.runScripts() }
+  </script>
+  <script async id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="477cf258-f4e3-42e2-811d-73547904d716" type="text/javascript"></script>
+
+</body>
+</html>
+

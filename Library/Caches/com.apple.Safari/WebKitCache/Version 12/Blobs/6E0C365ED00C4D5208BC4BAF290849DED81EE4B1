@@ -1,0 +1,1670 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Absolute Centering</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      /*
+////////////////////////////////////////
+ Absolute Centering
+//////////////////////////////////////// 
+*/
+.Absolute-Center {
+  height: 50%;
+  /* Set your own height: percents, ems, whatever! */
+  width: 50%;
+  /* Set your own width: percents, ems, whatever! */
+  overflow: auto;
+  /* Recommended in case content is larger than the container */
+  margin: auto;
+  /* Center the item vertically & horizontally */
+  position: absolute;
+  /* Break it out of the regular flow */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* Set the bounds in which to center it, relative to its parent/container */
+}
+/* //////////////////////////////////////// */
+/* Make sure our center blocks stay in their container! */
+.Center-Container {
+  position: relative;
+}
+/* //////////////////////////////////////// */
+/* Fixed floating element within viewport */
+.Absolute-Center.is-Fixed {
+  position: fixed;
+  z-index: 999;
+}
+/* //////////////////////////////////////// */
+/* Min/Max Width */
+.Absolute-Center.is-Responsive {
+  width: 60%;
+  height: 60%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+/* //////////////////////////////////////// */
+/* Align Right, still vertically centered */
+.Absolute-Center.is-Right {
+  left: auto;
+  right: 20px;
+  text-align: right;
+}
+/* //////////////////////////////////////// */
+/* Align Left, still vertically centered */
+.Absolute-Center.is-Left {
+  right: auto;
+  left: 20px;
+  text-align: left;
+}
+/* //////////////////////////////////////// */
+/* Responsive image, still absolutely centered! Apply the classes to the image itself. */
+.Absolute-Center.is-Image {
+  width: 50%;
+  height: auto;
+  padding: 0;
+}
+.Absolute-Center.is-Image img {
+  width: 100%;
+  height: auto;
+}
+/* //////////////////////////////////////// */
+/* Set content overflow if your content may go too long */
+.Absolute-Center.is-Overflow {
+  height: 250px;
+  max-height: 100%;
+  overflow: auto;
+}
+/* //////////////////////////////////////// */
+/* Variable content height with display: table; 
+Breaks cross browser compatibility, but now has a Modernizr test available!
+
+Modernizr test adds ".absolutecentercontent" to <html> if the browser will center correctly with a variable height, and ".no-absolutecentercontent" if it will not be centered with a variable height so that you can add fallback styles in your CSS or use Javascript to manually center it. */
+.absolutecentercontent .Absolute-Center.is-Variable {
+  display: table;
+  height: auto;
+  /* Only necessary because height was already declared */
+}
+/* //////////////////////////////////////// */
+/* Allow the user to resize */
+.Absolute-Center.is-Resizable {
+  min-width: 20%;
+  max-width: 90%;
+  min-height: 20%;
+  max-height: 80%;
+  resize: both;
+}
+.absolutecentercontent .Absolute-Center.is-Resizable {
+  /* necessary to override settings from .is-Variable, if used */
+  display: block !important;
+}
+/* 
+////////////////////////////////////////
+ Other Techniques  
+//////////////////////////////////////// 
+*/
+/* //////////////////////////////////////// */
+/* Negative Margin Technique */
+.Center-Block.is-Negative {
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -170px;
+  /* (width + padding)/2 */
+  margin-top: -120px;
+  /* (height + padding)/2 */
+}
+/* //////////////////////////////////////// */
+/* Display: Table Technique */
+.Center-Container.is-Table {
+  display: table;
+}
+.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.is-Table .Center-Block {
+  width: 50%;
+  margin: 0 auto;
+}
+/* //////////////////////////////////////// */
+/* Inline-Block Technique */
+.Center-Container.is-Inline {
+  text-align: center;
+  overflow: auto;
+}
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Center-Container.is-Inline:after {
+  content: ' ';
+  height: 100%;
+  margin-left: -0.25em;
+  /* to offset spacing. may vary with fonts */
+}
+.is-Inline .Center-Block {
+  text-align: left;
+  max-width: 80%;
+  /* Prevents issues with long content causes the content block to be pushed to the top */
+  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */
+}
+.lt-ie8 .is-Inline .Center-Block {
+  /* IE7 Support */
+  display: block;
+  margin-top: expression(this.offsetHeight < this.parentNode.offsetHeight ? parseInt((this.parentNode.offsetHeight - this.offsetHeight) / 2) + "px" : "0");
+}
+/* //////////////////////////////////////// */
+/* Transform Technique */
+.is-Translated {
+  width: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* //////////////////////////////////////// */
+/* Flexbox Technique */
+.Center-Container.is-Flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+/* 
+////////////////////////////////////////
+ Presentational Code. You can ignore this!
+//////////////////////////////////////// 
+*/
+.Shaw-Button {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  text-align: center;
+  background: #2e5f3e;
+  color: #FFF;
+  font-weight: bold;
+}
+.Shaw-Button:hover {
+  background: #3f8154;
+  color: #FFF;
+  text-decoration: none;
+}
+.Center-Container {
+  background: #2e5f3e;
+  color: #4fa46b;
+  width: 100%;
+  height: 400px;
+  margin: 20px auto 40px;
+  clear: both;
+}
+.Center-Block {
+  background: #4fa46b;
+  color: #FFF;
+  padding: 20px;
+}
+.Center-Block .Title {
+  padding: 0;
+  margin: 0 0 0.5em;
+  line-height: 1em;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background: #FFF;
+  color: #444;
+  padding: 40px 20px;
+  font: 300 16px/24px "Helvetica Neue", Helvetica, sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1em;
+  margin: 0 0 0.5em;
+}
+h1 {
+  font-size: 4em;
+}
+h2 {
+  font-size: 3em;
+}
+h3 {
+  font-size: 2em;
+}
+h4 {
+  font-size: 1.5em;
+}
+ul,
+ol {
+  padding-left: 20px;
+}
+p {
+  margin: 0 0 20px;
+}
+p:last-child,
+.Technique:last-child,
+section:last-child,
+.Container:last-child {
+  margin-bottom: 0;
+}
+a {
+  color: #4fa46b;
+  text-decoration: none;
+  transition: all 150ms ease;
+  border-bottom: dotted 1px transparent;
+}
+a:hover {
+  color: #2e5f3e;
+  text-decoration: underline;
+}
+table {
+  font-size: 12px;
+  line-height: 1.1em;
+  text-align: left;
+  max-width: 100%;
+}
+table th,
+table td {
+  padding: 2px 5px;
+}
+table .Technique-Title {
+  width: 130px;
+}
+table .Resize-Support,
+table .Browser-Support {
+  width: 100px;
+}
+.table-container {
+  max-width: 100%;
+  overflow-y: auto;
+}
+.no-js .is-Fixed {
+  display: none;
+}
+#Main-Title {
+  height: 300px;
+}
+#Main-Title .Title {
+  font-size: 2.5em;
+  width: 80%;
+  text-align: center;
+}
+.absolutecentercontent #Main-Title .Title {
+  background: transparent;
+}
+.Modal {
+  border: solid 5px #2e5f3e;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+.Modal-Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 3;
+}
+.toggle-Modal {
+  cursor: pointer;
+}
+.is-Hidden {
+  display: none;
+}
+.Notification {
+  font-size: 0.8em;
+  line-height: 1.25em;
+  color: #766841;
+  background: #FFFFC9;
+  border: solid 1px #F1E7B4;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 40px auto;
+}
+#Navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px 10px;
+  background: #4fa46b;
+  z-index: 2;
+  font-size: 11px;
+  line-height: 20px;
+  box-shadow: inset 0 -20px 20px -20px #2e5f3e;
+}
+#Navigation a {
+  color: #FFF;
+  display: inline-block;
+  padding: 0px 5px;
+  border-radius: 2px;
+}
+#Navigation a.is-Current {
+  background: #2e5f3e;
+  text-decoration: none;
+}
+.Content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+header,
+section {
+  margin: 0;
+  padding: 60px 0 60px;
+  border-bottom: dotted 1px #ccc;
+}
+header:last-child,
+section:last-child {
+  border-bottom: 0;
+}
+.Sub-Section {
+  margin: 20px 0;
+  padding: 40px 0;
+}
+.Technique {
+  border-top: solid 1px #ddd;
+}
+.Technique .Container {
+  background: #395442;
+}
+.Technique .Center-Block {
+  background: #619271;
+}
+pre,
+code {
+  background: #eee;
+  padding: 1px 7px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+.Center-Block code {
+  color: #555;
+}
+pre {
+  display: block;
+  width: 55%;
+  padding: 10px 10px;
+  margin: 20px auto;
+  box-shadow: inset 1px 1px 4px #ddd;
+  border-radius: 5px;
+  line-height: 1.25em;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.Float-Left,
+.Float-Right {
+  margin-bottom: 20px;
+  max-width: 40%;
+}
+.Float-Right {
+  float: right;
+  margin-left: 20px;
+}
+.Float-Left {
+  float: left;
+  margin-right: 20px;
+}
+.Float-Left pre,
+.Float-Right pre {
+  width: 100%;
+  margin: 0;
+}
+#Explanation ol li {
+  margin-bottom: 20px;
+}
+.Reference {
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+q {
+  font-style: italic;
+}
+.Caveats {
+  color: #a73529;
+}
+.Advantages {
+  color: #2e5f3e;
+}
+.Advantages,
+.Caveats {
+  font-size: 0.9em;
+  line-height: 1.25em;
+}
+.Advantages ul,
+.Caveats ul {
+  margin: 0 0 20px;
+}
+.Clear {
+  clear: both;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div class="Modal-Background toggle-Modal">
+  <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
+    <div class="Center-Content">
+      <h4 class="Title">Absolute Center.</h4>
+
+      <p>This box is absolutely centered within the viewport, horizontally and vertically, using only CSS.</p>
+
+      <p><a href="#" class="Shaw-Button trigger-Resize">Resize Me!</a></p>
+
+      <p><a href="#" class="Shaw-Button toggle-Modal">Close Modal</a></p>
+    </div>
+  </div>
+</div>
+
+<nav id="Navigation" role="navigation">
+  <a href="#Overview">Absolute Centering</a>
+  <a href="#Comparison-Table">Comparison Table</a>
+  <a href="#Explanation">Explanation</a>
+  <a href="#Alignment">Alignment</a>
+  <a href="#Responsive">Responsive</a>
+  <a href="#Overflow">Overflow</a>
+  <a href="#Resizing">Resizing</a>
+  <a href="#Images">Images</a>
+  <a href="#Height">Variable Height</a>
+  <a href="#Other">Other Techniques</a>
+  <a href="#Recommendations">Recommendations</a>
+</nav>
+
+<article class="Content">
+  <header id="Overview" class="clearfix">
+
+    <div class="Center-Container no-wp" id="Main-Title">
+      <h1 class="Title Center-Block Absolute-Center is-Variable">Absolute Centering in CSS</h1>
+    </div>
+
+    <div class="Notification no-wp">
+      <p>Thanks for the positive comments! Now you can read this article on <a href="http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/" target="_blank">Smashing Magazine</a> and experience a few new demos (like <a href="#Resizing">Resizing</a>) and code examples (<a href="#Height">Variable Height Modernizr Test</a> &amp; <a href="#Other">Other Techniques</a>)! I've also added a <a href="https://codepen.io/shshaw/full/gEiDt#Comparison-Table">Comparison Table</a> to see which vertical centering technique is right for you.</p>
+    </div>
+
+    <p>We've all seen <code>margin: 0 auto;</code> for horizontal centering, but <code>margin: auto;</code> has refused to work for vertical centering... <em>until now!</em> But actually (spoiler alert!) absolute centering <strong>only requires a <a href="#Height">declared height*</a> and these styles</strong>:</p>
+    <pre>.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}</pre>
+    <p>I'm not the pioneer of this method (yet I have dared to name it <em>Absolute Centering</em>), and it may even be a common technique, however, most vertical centering articles never mention it and I had never seen it until I dug through the comments section of a <a href="https://designshack.net/articles/css/how-to-center-anything-with-css" target="_blank">particular article</a>.</p>
+
+    <p>There, <a href="https://designshack.net/articles/css/how-to-center-anything-with-css/#comment-684580538" target="_blank">Simon</a> linked to this <a href="https://jsfiddle.net/mBBJM/1/" target="_blank">jsFiddle</a> that blew every other method out of the water (the same method was also mentioned by <a href="https://designshack.net/articles/css/how-to-center-anything-with-css/#comment-684580409" target="_blank">Priit</a> in the comments). Researching further, I had to use very specific keywords to find <a href="http://www.vanseodesign.com/css/vertical-centering/">some</a> <a href="http://www.student.oulu.fi/~laurirai/www/css/middle/" target="_blank">other</a> <a href="http://blog.themeforest.net/tutorials/vertical-centering-with-css/" target="_blank">sources</a> for this method.</p>
+
+    <p>Having never used this technique before, I put it to the test and discovered how incredible Absolute Centering really is.</p>
+
+    <div id="More-Info">
+      <p><strong><em>Leave a comment on <a href="https://codepen.io/shshaw/details/gEiDt">CodePen</a>, <a href="http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/#comments" target="_blank">Smashing Magazine</a>, or message <a href="https://twitter.com/shshaw" target="_blank">@shshaw</a> on Twitter if you have any additional features or suggestions.</em></strong></p>
+    </div>
+
+    <br />
+
+    <div class="Advantages Float-Left">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Cross-browser (including IE8-10)</li>
+        <li>No special markup, minimal styles</li>
+        <li>Responsive with percentages and min-/max-</li>
+        <li>Use one class to center any content</li>
+        <li>Centered regardless of padding (without <code>box-sizing</code>!)</li>
+        <li>Blocks can easily be resized</li>
+        <li>Works great on images</li>
+      </ul>
+    </div>
+
+    <div class="Caveats Float-Right">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Height must be declared (see <a href="#Height">Variable Height</a>)</li>
+        <li>Recommend setting <code>overflow: auto</code> to prevent content spillover (see <a href="#Overflow">Overflow</a>)</li>
+      </ul>
+    </div>
+    <div class="Clear"></div>
+
+    <h4>Browser Compatibility:</h4>
+    <p><strong> Chrome, Firefox, Safari, Mobile Safari, IE8-10.</strong><br />Absolute Centering was tested and works flawlessly in the latest versions of Chrome, Firefox, Safari, Mobile Safari, <a href="https://twitter.com/BrairMoss/status/475014563318886401">Windows Phone</a> and even IE8-10. <small>(Previous versions of the article mentioned issues with Windows Phone, but that may have been a CodePen limitation).</small></p>
+
+
+  </header>
+
+
+
+  <section id="Comparison-Table" class="clearfix">
+
+    <h3>Comparison Table</h3>
+
+    <p>Absolute Centering isn't the only option out there. Several unique methods exist for vertical centering, and each has their advantages. Which technique you choose mainly boils down to which browsers you support and what your existing markup looks like, but this comparison table can help make the right choice to match the features you need.</p>
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="Technique-Title">Technique</th>
+            <th scope="col" class="Browser-Support">Browser Support</th>
+            <th scope="col" class="Responsive-Support">Responsive</th>
+            <th scope="col" class="Overflow-Support">Overflow</th>
+            <th scope="col" class="Resize-Support"><code>resize:both</code></th>
+            <th scope="col" class="Height-Support">Variable Height</th>
+            <th scope="col" class="Major-Caveats">Major Caveats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Overview">Absolute Centering</a></th>
+            <td class="Browser-Support">Modern &amp; IE8+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes*</td>
+            <td class="Major-Caveats"><a href="#Height">Variable Height</a> not perfect cross-browser</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Negative-Margins">Negative Margins</a></th>
+            <td class="Browser-Support">All</td>
+            <td class="Responsive-Support">No</td>
+            <td class="Overflow-Support">Scroll</td>
+            <td class="Resize-Support">Resizes but doesn't stay centered</td>
+            <td class="Height-Support">No</td>
+            <td class="Major-Caveats">Not responsive, margins must be calculated manually</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Transforms">Transforms</a></th>
+            <td class="Browser-Support">Modern &amp; IE9+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Blurry rendering</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Table-Cell">Table-Cell</a></th>
+            <td class="Browser-Support">Modern &amp; IE8+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Expands container</td>
+            <td class="Resize-Support">No</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Extra markup</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Inline-Block">Inline-Block</a></th>
+            <td class="Browser-Support">Modern, IE8+ &amp; IE7*</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Expands container</td>
+            <td class="Resize-Support">No</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Requires container, hacky styles</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Flexbox">Flexbox</a></th>
+            <td class="Browser-Support">Modern &amp; IE10+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Requires container, vendor prefixes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section id="Explanation" class="clearfix">
+    <h3>Explanation</h3>
+
+    <p>After researching specs and documentation, this is my understanding of how Absolute Centering works:</p>
+
+    <ol>
+      <li>In the <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm#Layout" target="_blank">normal content flow</a>, <code>margin: auto;</code> equals '0' for the top and bottom.
+        <small class="Reference"><a href="https://www.w3.org/TR/CSS2/visudet.html#normal-block">W3.org</a>: <q>If 'margin-top', or 'margin-bottom' are 'auto', their used value is 0.</q></small></li>
+
+      <li><code>position: absolute;</code> breaks the block out of the typical content flow, rendering the rest of the content as if that block weren't there. 
+        <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Absolute_positioning" target="_blank">Developer.mozilla.org</a>: <q>...an element that is positioned absolutely is taken out of the flow and thus takes up no space</q></small></li>
+
+      <li>Setting <code>top: 0; left: 0; bottom: 0; right: 0;</code> gives the browser a new bounding box for the block. At this point the block will fill all available space in its offset parent, which is the body or <code>position: relative;</code> container. <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Notes" target="_blank">Developer.mozilla.org</a>: <q>For absolutely positioned elements, the top, right, bottom, and left properties specify offsets from the edge of the element's containing block (what the element is positioned relative to).</q></small></li>
+
+      <li>Giving the block a <code>width</code> or a <code>height</code> prevents the block from taking up all available space and forces the browser to calculate <code>margin: auto</code> based on the new bounding box. <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Notes" target="_blank">Developer.mozilla.org</a>: <q>The margin of the [absolutely positioned] element is then positioned inside these offsets.</q></small></li>
+
+      <li>Since the block is absolutely positioned and therefore out of the normal flow, the browser gives equal values to <code>margin-top</code> and <code>margin-bottom</code> centering the element in the bounds set earlier. 
+        <small class="Reference"><a href="https://www.w3.org/TR/CSS2/visudet.html#abs-non-replaced-height">W3.org</a>: <q>If none of the three [top, bottom, height] are 'auto': If both 'margin-top' and 'margin-bottom' are 'auto', solve the equation under the extra constraint that the two margins get equal values.</q> AKA: center the block vertically</small></li>
+    </ol>
+
+    <p>Absolute Centering appears to be the intended use for <code>margin: auto;</code> based on the spec and should therefore work in every standards compliant browser.</p>
+
+    <p><strong>TL;DR:</strong> Absolutely positioned elements aren't rendered in the normal flow, so <code>margin: auto;</code> centers vertically within the bounds set by <code>top: 0; left: 0; bottom: 0; right: 0;</code>.</p>
+
+  </section>
+
+
+  <section id="Alignment" class="clearfix">
+    <h3 class="no-wp">Alignment</h3>
+
+    <div id="In-Container" class="Sub-Section clearfix">
+
+      <h3>Within Container</h3>
+
+      <div class="Float-Right">
+        <pre>.Center-Container {
+  position: relative;
+}
+
+.Absolute-Center {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}</pre>
+      </div>
+
+      <p>With Absolute Centering, you can place your content block inside of a <code>position: relative</code> container to align the block within the container!</p>
+
+      <p><strong>The rest of the demos will assume these styles are already included and will provide add-on classes to implement various features.</strong></p>
+
+      <div class="Center-Container">
+        <div class="Center-Block Absolute-Center">
+          <h4 class="Title">Absolute Center,<br />Within Container.</h4>
+
+          <p>This box is absolutely centered, horizontally and vertically, within its container using <br /><code>position: relative</code></p>
+        </div>
+      </div>
+
+      <div class="Clear"></div>
+    </div>
+
+    <div id="Viewport" class="Sub-Section clearfix">
+
+      <h3>Within Viewport</h3>
+
+      <div class="Float-Right">
+        <pre>.Absolute-Center.is-Fixed {
+  position: fixed;
+  z-index: 999;
+}</pre>
+      </div>
+
+      <p>Want the content block centered in the viewport? Set it to <code>position: fixed</code> and give it a high z-index, like the modal on this page.</p>
+
+      <ul class="Caveats">
+        <li><strong>Mobile Safari:</strong> The content block will be centered vertically in the whole document, not the viewport, if it is not within a <code>position: relative</code> container.</li>
+      </ul>
+      <a class="toggle-Modal Shaw-Button" href="#Fixed-Modal">Show/Hide Modal.</a>
+
+      <div class="Clear"></div>
+
+    </div>
+
+    <div id="Offsets" class="Sub-Section clearfix">
+      <h3>Offsets</h3>
+
+      <div class="Float-Right">
+        <pre>.Absolute-Center.is-Right {
+  left: auto; right: 20px;
+  text-align: right;
+}
+
+.Absolute-Center.is-Left {
+  right: auto; left: 20px;
+  text-align: left;
+}</pre>
+      </div>
+
+      <p>If you have a fixed header or need to add other offsets, simply add it in your content block's styles like <code>top: 70px;</code>. As long as <code>margin: auto;</code> is declared, the content block will be vertically centered within the bounds you declare with <code>top</code> <code>left</code> <code>bottom</code> and <code>right</code>.</p>
+
+      <p>You can also stick your content block to the right or left while keeping it vertically centered, using <code>right: 0; left: auto;</code> to stick to the right or <code>left: 0; right: auto;</code> to stick to the left.</p>
+
+      <div class="Center-Container">
+        <div class="Center-Block Absolute-Center is-Right">
+          <h4 class="Title">Vertical Center,<br /> Align Right.</h4>
+
+          <p>This box is absolutely centered vertically within its container, but stuck to the right with <br /><code>right: 0; left: auto;</code></p>
+        </div>
+      </div>
+      </section>
+
+  </section>
+
+  <section id="Responsive" class="clearfix">
+    <h3>Responsive</h3>
+
+    <div class="Float-Right">
+      <pre>
+.Absolute-Center.is-Responsive {
+  width: 60%; 
+  height: 60%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+</pre>
+    </div>
+
+    <p>Perhaps the best benefit of Absolute Centering is percentage based width/heights work perfectly! Even <code>min-width/max-width</code> and <code>min-height/max-height</code> styles behave as expected for more responsive boxes.</p>
+
+    <p>Go ahead, add padding to the element; Absolute Centering doesn't mind!</p>
+
+    <div class="Center-Container">
+      <div class="Center-Block Absolute-Center is-Responsive">
+        <h4 class="Title">Absolute Center,<br />Percentage Based.</h4>
+
+        <p>This box is absolutely centered, horizontally and vertically, even with percentage based widths &amp; height, min-/max-, and padding!</code></p>
+    </div>
+  </div>
+</section>
+
+<section id="Overflow" class="clearfix">
+  <h3>Overflow</h3>
+
+  <div class="Float-Right">
+    <pre>.Absolute-Center.is-Overflow {
+  overflow: auto;
+}</pre>
+  </div>
+
+  <p>Content taller than the block or container (viewport or a <code>position: relative</code> container) will overflow and may spill outside the content block and container or even be cut off. Simply adding <code>overflow: auto</code> will allow the content to scroll within the block as long as the content block itself isn't taller than its container (perhaps by adding <code>max-height: 100%;</code> if you don't have any padding on the content block itself).</p>
+
+  <div class="Center-Container">
+    <div class="Center-Block Absolute-Center is-Overflow">
+      <h4 class="Title">Absolute Center,<br /> With Overflow.</h4>
+
+      <p>This box is absolutely centered within its container, with content set to overflow.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum, lorem vel tincidunt imperdiet, nibh elit laoreet felis, a bibendum nisl tortor non orci. Donec pretium fermentum felis, quis aliquet est rutrum ut. Integer quis massa ut lacus viverra pharetra in eu lacus. Aliquam tempus odio adipiscing diam pellentesque rhoncus.</p>
+
+      <p>Curabitur a bibendum est. Mauris vehicula cursus risus id luctus. Curabitur accumsan venenatis nibh, non egestas ipsum vulputate ac. Vivamus consectetur dolor sit amet enim aliquet eu scelerisque ipsum hendrerit. Donec lobortis suscipit vestibulum. </p>
+
+      <p>Nullam luctus pellentesque risus in ullamcorper. Nam neque nunc, mattis vitae ornare ut, feugiat a erat. Ut tempus iaculis augue vel pellentesque.</p>
+    </div>
+  </div>
+</section>
+
+<section id="Resizing" class="clearfix">
+  <h3>Resizing</h3>
+
+  <div class="Float-Right"> 
+    <pre>.Absolute-Center.is-Resizable {
+  min-width: 20%;
+  max-width: 80%;
+  min-height: 20%;
+  max-height: 80%;
+  resize: both;
+  overflow: auto;
+}</pre>
+  </div>
+
+  <p>You can resize your content block with other classes or Javascript without having to recalculate the center manually! Adding the <code>resize</code> property will even let your content block be resized by the user.</p>
+
+  <p>Absolute Centering keeps the block centered no matter how the block is resized. Setting min-/max- will limit the block's size to what you want and prevent it from overflowing the window/container.</p>
+
+  <p>If you don't use <code>resize: both</code>, you can add a <code>transition</code> to smoothly animate between sizes. Be sure to set <code>overflow: auto</code> since the block could be resized smaller than the content.</p>
+
+  <p>Absolute Centering is the only vertical centering technique tested that successfully supports the <code>resize: both</code> property.</p>
+
+  <div class="Caveats">
+    <h4>Caveats:</h4>
+
+    <ul>
+      <li>Set your <code>max-width/max-height</code> to compensate for any padding on the content block itself, otherwise it will overflow its container.</li>
+      <li>The <code>resize</code> property is not supported on mobile browsers or in IE 8-10 so make sure your users have an alternate way of resizing if that is essential to user experience.</li>
+      <li>Combining <code>resize</code> and <code>transition</code> properties causes a delay equal to the transition time when the user attempts to resize.</li>
+    </ul>
+  </div>
+
+  <div class="Center-Container">
+    <div id="Resize-Block" class="Center-Block Absolute-Center is-Resizable">
+      <h4 class="Title">Absolute Center,<br /> Resizable.</h4>
+
+      <p>This box is absolutely centered within its container and can be resized by the user or via Javascript.</p>
+
+      <p class="no-wp"><a href="#" class="trigger-Resize Shaw-Button">Resize Me!</a></p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum, lorem vel tincidunt imperdiet, nibh elit laoreet felis, a bibendum nisl tortor non orci. Donec pretium fermentum felis, quis aliquet est rutrum ut. Integer quis massa ut lacus viverra pharetra in eu lacus. Aliquam tempus odio adipiscing diam pellentesque rhoncus.</p>
+
+      <p>Curabitur a bibendum est. Mauris vehicula cursus risus id luctus. Curabitur accumsan venenatis nibh, non egestas ipsum vulputate ac. Vivamus consectetur dolor sit amet enim aliquet eu scelerisque ipsum hendrerit. Donec lobortis suscipit vestibulum. </p>
+
+      <p>Nullam luctus pellentesque risus in ullamcorper. Nam neque nunc, mattis vitae ornare ut, feugiat a erat. Ut tempus iaculis augue vel pellentesque.</p>
+    </div>
+  </div>
+</section>
+
+<section id="Images" class="clearfix">
+  <h3>Images</h3>
+
+  <div class="Float-Right">
+    <strong>HTML:</strong>
+    <pre>&lt;img src="http://placekitten.com/g/500/200" class="Absolute-Center is-Image" alt="" /&gt;</pre>
+
+    <strong>CSS:</strong>
+    <pre>.Absolute-Center.is-Image {
+  height: auto;
+}
+
+.Absolute-Center.is-Image img { 
+  width: 100%;
+  height: auto;
+}</pre>
+  </div>
+
+  <p>Images work too! Apply the class/style to the image itself and set <code>height: auto;</code> like you would with a responsively-sized image to let it resize with the container.</p>
+
+  <p>Note that <code>height: auto;</code> works for images, but causes a regular content block to stretch to fill the container unless you use the <a href="#Height">variable height technique</a>. It's likely that because browsers have to calculate the height for the image rendered image, so <code>margin: auto;</code> ends up working as if you'd declared the height in all tested browsers.</p>
+
+  <div class="Center-Container">
+    <img src="http://placekitten.com/g/500/200" class="Center-Block Absolute-Center is-Image" alt="Center Cat" />
+  </div>
+</section>
+
+<section id="Height" class="clearfix">
+
+  <h3>Variable Height</h3>
+
+  <div class="Float-Right">
+    <strong>Javascript:</strong>
+    <pre>/* Modernizr Test for Variable Height Content */
+Modernizr.testStyles('#modernizr { display: table; height: 50px; width: 50px; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; }', function(elem, rule) {
+  Modernizr.addTest('absolutecentercontent', Math.round(window.innerHeight / 2 - 25) === elem.offsetTop);
+});
+</pre>
+    <strong>CSS:</strong>
+    <pre>
+.absolutecentercontent .Absolute-Center.is-Variable {
+  display: table;
+  height: auto;
+}</pre>
+  </div>
+
+  <p>Absolute Centering does require a declared height, however the height can be percentage based and controlled by <code>max-height</code>. This makes it ideal for responsive scenarios, just make sure you set an appropriate <a href="#Overflow">overflow</a>.</p>
+
+  <p>One way around the declared height is adding <code>display: table</code>, centering the content block regardless of content length. This causes issues in a few browsers (IE and Firefox, mainly), so my buddy <a href="https://stackoverflow.com/users/2539605/kalley" target="_blank">Kalley</a> at <a href="http://ellcreative.com" target="_blank">ELL Creative</a> wrote a Modernizr test to check if the browser supports this method of centering. Now you can progressively enhance</p>
+
+  <div class="Caveats">
+    <h4>Caveats:</h4> This will break cross-browser compatibility. You may want to consider an <a href="#Other">alternate technique</a> if the Modernizr test doesn't meet your needs.
+    <ul>
+      <li>Not compatible with the <a href="#Resizing">Resizing</a> technique.
+      <li><strong>Firefox/IE8:</strong> Using <code>display: table</code> aligns the content block to the top, but is still centered horizontally.</li>
+
+      <li><strong>IE9/10:</strong> Using <code>display: table</code> aligns the content block to the top left.</li>
+
+      <li><strong>Mobile Safari:</strong> The content block is centered vertically, but becomes slightly off-center horizontally when using percentage based widths.</li>
+    </ul>
+  </div>
+
+  <div class="Center-Container">
+    <div class="Center-Block Absolute-Center is-Variable">
+      <h4 class="Title">Absolute Center,<br /> Variable Height.</h4>
+
+      <p>This box is absolutely centered vertically within its container, regardless of content height.</p>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="Other" class="clearfix">
+  <h3>Other Techniques</h3>
+  <p><em>Absolute Centering</em> is a great solution for centering, but there are other methods that may fit more specific needs. The most commonly used or recommended methods are <a href="#Negative-Margins">Negative Margins</a>, <a href="#Transforms">Transforms</a>, <a href="#Table-Cell">Table-Cell</a>, <a href="#Inline-Block">Inline-Block</a>, and now <a href="#Flexbox">Flexbox</a>. They are covered more in depth in other articles, so I'll only cover the basics here.</p>
+
+  <div id="Negative-Margins" class="Technique Sub-Section clearfix">
+
+    <h3>Negative Margins</h3>
+
+    <div class="Float-Right">
+      <pre>.is-Negative {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        position: absolute;
+        top: 50%; left: 50%;
+        margin-left: -170px; /* (width + padding)/2 */
+        margin-top: -120px; /* (height + padding)/2 */
+}</pre>
+    </div>
+
+    <p>Perhaps the most common technique. If exact dimensions are known, setting a negative margin equal to half the width/height (plus padding, if not using <code>box-sizing: border-box</code>) along with <code>top: 50%; left: 50%;</code> will center the block within a container.</p>
+
+    <p>It should be noted that this is the only method tested that worked as expected in IE6-7.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Works well cross-browser, including IE6-7</li>
+        <li>Requires minimal code</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>Not responsive. Doesn't work for percentage based dimensions and can't set min-/max-</li>
+        <li>Content can overflow the container</li>
+        <li>Have to compensate for <code>padding</code> or use <code>box-sizing: border-box</code></li>
+      </ul>
+    </div>
+
+    <div class="Center-Container Clear">
+      <div class="Center-Block is-Negative">
+        <h4 class="Title">Absolute Center,<br /> Negative Margins.</h4>
+        <p>This box is absolutely centered vertically within its container using negative margins.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Transforms" class="Technique Sub-Section clearfix">
+
+    <h3>Transforms</h3>
+
+    <div class="Float-Right"> 
+      <pre>.is-Transformed { 
+  width: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}</pre>
+    </div>
+
+    <p>One of the simplest techniques with about the same benefits as Absolute Centering, but supports variable height. Give the content block <code>transform: translate(-50%,-50%)</code> with the required vendor prefixes along with <code>top: 50%; left: 50%;</code> to get it centered.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Requires minimal code</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>Won't work in IE8</li>
+        <li>Need vendor prefixes</li>
+        <li>Can interfere with other <code>transform</code> effects</li>
+        <li>Results in blurry rendering of edges and text in some cases. Not as much of an issue in modern rendering engines, especially if you <a href="http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/">enable <code>transform-style: preserve-3d</code></a></li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Transform Centering in Chris Coyier’s article <a href="https://css-tricks.com/centering-percentage-widthheight-elements/">“Centering Percentage Width/Height Elements”</a> on <em>CSS-Tricks</em>.</p>
+
+    <div class="Center-Container Clear">
+      <div class="Center-Block is-Translated">
+        <h4 class="Title">Absolute Center,<br /> Translate(-50%,-50%).</h4>
+        <p>This box is absolutely centered vertically within its container using <code>translate(-50%,-50%)</code>.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Table-Cell" class="Technique Sub-Section clearfix">
+
+    <h3>Table-Cell</h3>
+
+    <div class="Float-Right">
+      <strong>HTML:</strong>
+      <pre>
+&lt;div class="Center-Container is-Table"&gt;
+  &lt;div class="Table-Cell"&gt;
+    &lt;div class="Center-Block"&gt;
+    &lt;!-- CONTENT --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <strong>CSS:</strong>
+      <pre>.Center-Container.is-Table { display: table; }
+.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.is-Table .Center-Block {
+  width: 50%;
+  margin: 0 auto;
+}</pre>
+    </div>
+    <p>This may be the best technique overall, simply because the height can vary with the content and browser support is great. The main disadvantage is the extra markup, requiring a total of three elements to get the final one centered.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Content overflows by stretching the parent element</li>
+        <li>Works well cross-browser</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Requires extra markup</li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Table-Cell Centering in Roger Johansson’s article <a href="http://www.456bereastreet.com/archive/201103/flexible_height_vertical_centering_with_css_beyond_ie7/">“Flexible height vertical centering with CSS, beyond IE7″</a> on <em>456bereastreet</em>.</p>
+
+    <div class="Center-Container is-Table Clear">
+      <div class="Table-Cell">
+        <div class="Center-Block">
+          <h4 class="Title">Absolute Center,<br /> Table/Table-Cell.</h4>
+          <p>This box is absolutely centered vertically within its <code>display: table-cell</code> parent, which is within a <code>display: table</code> container.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Inline-Block" class="Technique Sub-Section clearfix">
+
+    <h3>Inline-Block</h3>
+
+    <div class="Float-Right">
+      <strong>HTML:</strong>
+      <pre>
+&lt;div class="Center-Container is-Inline"&gt;
+  &lt;div class="Center-Block"&gt;
+    &lt;!-- CONTENT --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <strong>CSS:</strong>
+      <pre>.Center-Container.is-Inline { 
+  text-align: center;
+  overflow: auto;
+}
+
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Center-Container.is-Inline:after {
+  content: '';
+  height: 100%;
+  margin-left: -0.25em; /* To offset spacing. May vary by font */
+}
+
+.is-Inline .Center-Block {
+  max-width: 99%; /* Prevents issues with long content causes the content block to be pushed to the top */
+  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */ 
+}</pre>
+    </div>
+    <p>By popular demand: Inline-Block centering. The basic idea is using <code>display: inline-block</code>, <code>vertical-align: middle</code> and a psuedo element to center your content block inside of a container. The concept here is best explained in this CSS-Tricks article, <a href="https://css-tricks.com/centering-in-the-unknown/" target="_blank">Centering in the Unknown</a>. My implementation has a few new tricks here that I haven't seen elsewhere that help solve a few issues.</p>
+
+    <p>The content block's width must be declared to be no wider than 100% of the container minus 0.25em if the content is wider than the container. like a block with long paragraph text. Otherwise, the content block will be pushed to the top, which is the reason for using <code>:after</code>. Using <code>:before</code> caused the content to be pushed down 100%!</p>
+
+    <p>If your content block needs take up as much available horizontal space as possible, you can add either <code>max-width: 99%;</code>, which works for bigger containers, or <code>max-width: calc(100% - 0.25em)</code> depending on the browsers you support and the width of the container.</p>
+
+    <p>The benefits are mostly the same as the <a href="#Table-Cell">Table-Cell</a> technique, but I initially left this method out because it's very much a hack. Regardless, browser support is great and it proves to be a popular technique.</p> 
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Content overflows by stretching the parent element</li>
+        <li>Works well cross-browser, and can be adapted for IE7 support (view <a href="https://codepen.io/shshaw/pen/gEiDt">the CSS</a> to see)</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Requires a container</li>
+        <li>Relies on <code>margin-left: -0.25em;</code> to horizontally center correctly, but may need to be adjusted for different fonts/sizes</li>
+        <li>Content block's width must be declared to be no wider than 100% of the container minus 0.25em.</li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Transform Centering in Chris Coyier’s article <a href="https://css-tricks.com/centering-in-the-unknown/">"Centering In The Unknown”</a> on <em>CSS-Tricks</em>.</p>
+
+    <div class="Center-Container is-Inline Clear">
+      <div class="Center-Block">
+        <h4 class="Title">Absolute Center,<br /> Inline-Block.</h4>
+        <p>This box is absolutely centered vertically using <code>display: inline-block</code>, <code>vertical-align: middle</code> and a psuedo element.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Flexbox" class="Technique Sub-Section clearfix">
+
+    <h3>Flexbox</h3>
+
+    <div class="Float-Right">
+      <pre>.Center-Container.is-Flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+     -ms-flex-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+     -ms-flex-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}</pre>
+    </div>
+    <p>The future of layout in CSS, Flexbox is the latest CSS spec designed to solve common layout problems such as vertical centering. Smashing Magazine already has a great article on <a href="http://coding.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/" target="_blank">Centering Elements with Flexbox</a> that you should read to for a more complete overview. Keep in mind that Flexbox is more than just a way to center, it can be used for columns and all sorts of crazy layout problems.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Content can be any width or height, even overflows gracefully</li>
+        <li>Can be used for more advanced layout techniques.</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>No IE8-9 support</li>
+        <li>Requires a container or styles on the body</li>
+        <li>Requires <a href="https://css-tricks.com/using-flexbox/">many vendor prefixes with different syntaxes</a> to work on modern browsers</li>
+        <li>Possible <a href="https://css-tricks.com/does-flexbox-have-a-performance-problem/">performance issues</a></li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Flexbox Centering in David Storey’s article <a href="http://coding.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/">“Designing CSS Layouts With Flexbox Is As Easy As Pie”</a> on <em>Smashing Magazine</em>.</p>
+
+    <div class="Center-Container is-Flexbox Clear">
+      <div class="Center-Block">
+        <h4 class="Title">Absolute Center,<br /> Flexbox.</h4>
+        <p>This Flexbox box is absolutely centered vertically within its container.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="Recommendations" class="clearfix">
+  <h3>Recommendations</h3>
+
+  <p>Each technique has their advantages. Which one you choose mainly boils down to which browsers you support and what your existing markup looks like, but use the <a href="https://codepen.io/shshaw/full/gEiDt#Comparison-Table">comparison table</a> to make the right choice to match the features you need.</p>
+
+  <p><em>Absolute Centering</em> works great as a simple drop-in solution with no-fuss. Anywhere you used Negative Margins before, use Absolute Centering instead. You won't have to deal with pesky math for the margins or extra markup, and you can size your boxes responsively.</p>
+
+  <p>If your site requires variable height content with the best browser compatibility, try out the <a href="#Table-Cell">Table-Cell</a>, <a href="#Inline-Block">Inline-Block</a> techniques. If you're on the bleeding edge, give <a href="#Flexbox">Flexbox</a> a try and reap the benefits of its advanced layout techniques.</p>
+
+</section>
+</article>
+
+
+<!--[if lt IE 9]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+<![endif]-->
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+<script>
+;(function(){
+  
+  // bracket [≠] square [⠝] 
+  var svgIcon = '<svg class="shaw__icon" width="222" height="284" viewBox="0 0 2223 2846"><path fill="#f4d198" d="M1040 436c46-.8 71.4 17.4 103 31l82 35 441 189c-3 6.2-3.7 9-2 16 28.7 21.2 64 26.6 102 41 32 12.2 62.6 27.5 89 46 70 49.6 122 125.5 156 211 16.7 42.4 23 95.4 40 136 21.3 52.2 85.3 136.6 72 214-9 50.5-31.4 75-57 107-19 23.4-52 45.2-43 95 14.7 82.3 57.8 139 89 205 10.8 23.4 22 46.7 32.8 70l10 32c17.8 28 85.5 81.5 64 130-15 34.3-48.4 58.2-84 72-17 4.4-34 8.8-51 13 5 15.5 9 29.5 16 42-5.6 6.8-11.3 13.4-17 20 1.4 58 36.5 119.5 4 164-14 19.4-35 26.6-54 41 9.7 12.6 21.5 23.3 28 39 30 72.4-52.2 154.4-82 196-17.7 25-36.7 64.3-64 79-52.3-6.2-104.6-12.6-157-19-130.8-26-259.5-41.8-381-76-82.6-23-166-43.7-243-74l-143-59c-.2-50-.5-100-1-150h-1c-23.5 1.4-47.2 2.8-71 4l-15 15c-13.7 10.2-32 17.4-52 21-90.8 17.2-202.2-74.8-249.8-112l-42-38c-11.4-1.6-22.7-3.2-34-5-33.6-7.2-99.3-17.8-115-41l-67-167-142-339 166-20c1.4-27.2 26.6-95.5 51-97l181 49 2-1c-.7-51.7 2-106.3 10-154 8.6-51.6 8-103.5 17-152l18-124c29.5-135.3 55.3-266.4 104-381 41.2-97.2 85.7-194 164-254 22.4-17.2 48.8-32.8 79-42l47-8z"/><path fill="#bf3d27" d="M1008 59v-8c14.8 4.4 23.6 20.4 35 29l65 43c8.4 6.3 26.4 24.8 40 21 9.7-5 8.2-22.2 8-34 15 7.2 32.2 21.3 49 24v-5c-4.4-15.4-4.7-33-7-51h6c88.8 27.2 209.3 5.2 297 22l52-2c32.2 7.3 66.3 35.3 97 47l52 17c3.5 5.7 7.2 11.3 11 17 8.2 6.3 16.5 12.7 25 19 58.6 30.8 113.8 60 168 93l24 10c10.6 7.4 11 22.2 20 31 13.2 9.3 26.5 18.7 40 28 31.5 25.4 72.8 84 89 124 14 35.8 12.7 100 3 139-23.3 92-85 195.2-150 244-3.5-3.3-6.8-6.6-10-10l-51-46-213 57-196 85c-41.2 18-84.3 36-122 58-26 15-49.5 34-83 41-54 11.2-111-6.6-161-7 8.6 61.2 25 132 52 179 8 14.2 41.8 81.8 39 101-12.7 85.2-70.4 125.8-122 172l7 137 7 101c12.5 77.8 10 156.3 24 229 9 48 13 94 25 137l8 34c8.6 16 90.4 62.3 111 75 79.6 49.7 164.7 96.8 254 136 38.3 17 84 48.6 126 58 18.4-23 38-43 54-70 6.2-14.6 12.5-29.2 19-44 6.3-10.5 67.2-41 82-50 61.3-37.3 124.7-70.7 196-99 34.2-13.5 75.3-29.6 121-23 4.5 10.4 9.2 20.8 14 31 10.6 34.2.8 70.2-12 94-31.2 1-63 14.8-89 23-82.7 26.3-167.3 58-214 120-23.7 31.4-44 88.3-13 128 18.2 23.8 53.3 24 83 11 21.6-9.4 40-30.8 59-39 18.4-7.8 80.2-5.5 99 0-2.6 28.8-3.4 61.8-3 94v47c-14 83.2-40 137-95 177-94.4 68.6-214.8 41.3-315 2-60.8-21.5-121.4-43.2-182-65-120.6-58-243.3-122.3-355-190-72.2-43.5-139.8-77-182-150-17.7-30.3-20-87-12-132l28-184 6-76c5.3-33.3 2.7-117-9-139l-62-67c-57-57-198.2-164.5-324-138-42.3 9-87.2 26.4-109 56-32 43.3-40.3 141.8-16 201 27.5 67.4 69.7 136 112 191l80 84 4 40c11.4 71.7-24.4 176.2-59 205-10.4-11.6-20.7-23.2-31-35-22.4-28-47.7-53.4-70-82-60.6-77-115.6-155-167-243-18-31-29.4-66-44-100l-83-196C88.7 1670 27.3 1539.8 0 1406v-138c0-155.8 32.6-292.3 91-391 16.3-27.6 37-57 62-76l29-17 52-44 22-17 62-96 14-46 35-86c29.3-66.6 70.2-123.8 113-177 23.6-29.4 57-46.7 87-70C627.8 201 717.3 93.4 730 0h4c30 13 74.3 15.3 109 21h27c19.6 5.2 33.4 22.5 56 28l1-13h8l-1-8 26 11 3-4c10.6 9.8 27 22.4 45 24zm917 68h2-2zm2 1h2-2zm58 47c1.5 1.7 3.2 3.3 5 5l-3-2c-3.2-2-1.2-.3-2-3z"/></svg>';
+  
+  document.head.insertAdjacentHTML('beforeend','<style>.shaw { display: block; position: absolute; position: fixed; z-index: 9999; bottom: 5px; right: 5px; font-size: 10px; color: #c03b27; text-decoration: none; padding: 10px; border-radius: 50%; opacity: 0.4; transform-origin: 100% 100%; transition: all 300ms ease-in-out; } .shaw > * { transition: inherit; } .shaw:hover { opacity: 1; background: rgba(255,255,255,0.9); } .shaw__icon, .shaw__title { display: inline-block; vertical-align: middle; } .shaw__icon { width: 24px; height: 24px; position: relative; z-index: 1; } .shaw__title {  white-space: nowrap; opacity: 0; padding-right: 10px; transform: translateX(100%); } .shaw:hover .shaw__title { transform: scale(1); opacity: 1; } .shaw:hover .shaw__icon { transform: scale(1.4); } </style>'); // .shaw__title { position: absolute; right: 100%; top: 50%; margin-top: -0.5em;width: fit-content; position: absolute; right: 100%; margin-right: 10px; }
+  
+  var a = document.createElement('a');
+  a.setAttribute('href','https://codepen.io/shshaw');
+  a.setAttribute('target','_blank');
+  a.className = 'shaw';
+  a.innerHTML = svgIcon;
+  a.onclick = function(){
+    if ( ga ) {
+      var url = this.getAttribute('href');
+      ga('send', 'event', 'shawhead', 'click', url, {
+        'transport': 'beacon',
+        'hitCallback': function(){ console.log('callback!');window.open(url); }
+      });
+      return false;
+    }
+  };
+  
+  document.body.appendChild(a);
+  
+  //document.body.insertAdjacentHTML('beforeend','<a href="https://codepen.io/shshaw" target="_blank" class="shaw">'+svgIcon+'</a>');
+  
+})();
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-6412794-6', 'auto');
+ga('send', 'pageview');
+</script>
+
+  
+
+    <script >
+      Modernizr.testStyles('#modernizr { display: table; height: 50px; width: 50px; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; }', function(elem, rule) {
+	Modernizr.addTest('absolutecentercontent', Math.round(window.innerHeight / 2 - 25) === elem.offsetTop);
+});
+
+// Trigger Resize
+$(".trigger-Resize").on("click",function(e){
+	$resizeBlock = $(this).parents(".Center-Block");
+	if ( !$resizeBlock.hasClass("is-Small") ) {
+	$resizeBlock.animate({ "width" : "300px", "height" : "260px" },800).addClass("is-Small");
+	} else {
+		$resizeBlock.animate({ "width" : "500px", "height" : "350px" },800).removeClass("is-Small");
+	}
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
+});
+
+// Simple show/hide modal
+$(".toggle-Modal").on("click",function(e){
+	$(".Modal-Background").toggleClass("is-Hidden");
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
+});
+
+
+// Don't show modal on load in mobile webkit because of the document centering issue.
+ua = navigator.userAgent,
+isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
+if ( isMobileWebkit ) { $(".Modal, .Modal-Background").addClass("is-Hidden"); }
+
+// Unneccessary Scroll Functionality :-)
+var lastId,
+		topMenu = $("#Navigation"),
+		topMenuHeight = topMenu.outerHeight()+0,
+		menuItems = topMenu.find("a"),
+		scrollItems = menuItems.map(function(){
+			var item = $($(this).attr("href"));
+			if (item.length) { return item; }
+		});
+
+function highlightNav() {
+	var fromTop = $(window).scrollTop()+topMenuHeight;
+	var cur = scrollItems.map(function(){ if ($(this).offset().top < fromTop) { return this; } });
+	cur = cur[cur.length-1];
+	var id = cur && cur.length ? cur[0].id : "";
+//	console.log("id",id);
+	if (lastId !== id) {
+			lastId = id;
+			// Set/remove active class
+			menuItems
+				.removeClass("is-Current")
+				.filter("[href=#"+id+"]").addClass("is-Current");
+	}
+}
+highlightNav();
+$(window).scroll( highlightNav );
+
+var $links = $('[href^=#]');
+var $page  = $('.browser iframe.page');
+var $input = $('.browser .address-bar input');
+
+$links.on('click', function(e){
+  var $target = $(e.target);
+  var hash = $target.attr('href');
+  
+    
+  var src = window.location.href;
+  src = src.split('#')[0]
+  
+  window.location.href = src + "#" + hash;
+  e.preventDefault();
+});
+// jquery.arbitrary-anchor.js | briangonzalez.org/arbitrary-anchor
+(function(e,t){"use strict";function a(){var n=e.location.hash.substring(1).split("|");var r=n[0];var i=n[1]||600;if(r.charAt(0).search(/[A-Za-z]/)>-1)var s=t("#"+r);var u=t('a[name="'+r+'"]');if(u&&u.length>0||s&&s.length>0)return;var a=t(r).first();if(a&&a.length>0){var f=a}else{return}if(f&&f.length>0){var l=f.offset().top;o.stop(true,false).animate({scrollTop:l},parseInt(i))}}var n,r,i,s,o;var u=750;t(document).ready(function(){n=t(e);r=t(this);i=r.find("body");s=r.find("html");o=i.add(s);a();n.on("hashchange",a);n.on("mousewheel DOMMouseScroll touchstart mousedown MSPointerDown",function(e){o.stop(true,false)})})})(window,jQuery)
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

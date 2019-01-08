@@ -1,0 +1,5092 @@
+
+Messages.loadMessages({
+
+"absence.tutorial.message.step6": '&lt;b&gt;Absence overview&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;Here you can easily find all absence request within your team or your organisation.&nbsp;&lt;br \/&gt;You can filter results by teams, positions or dates, to find more easily information you need.',
+
+"absence.tutorial.message.step7": '&lt;b&gt;Available absences&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;Here you always find your current holiday entitlement. &lt;br\/&gt;',
+
+"holiday.error.cannotRemoveBecauseOfActiveAbsenceRequests": 'You can\'\'t delete holiday because of active absence leave in chosen period',
+
+"absence.tutorial.message.step2": '&lt;b&gt;To create absence request&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;To successfully request absence you need to chose type of absence you are requesting for. &lt;br\/&gt; Use select box to check absence types available for you.',
+
+"security.error.officeRegistration.uniqueDomain": 'You cannot install Calamari because... You have already installed account on Calamari which is fully integrated with Office 365. Just sign-in to application using your Office 365 account and use Calamari.',
+
+"absence.tutorial.message.step3": '&lt;b&gt;Checking absence pool&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;After selecting the absence type, you will see how many days or hours of desired period you will be able to take.&lt;br \/&gt;&nbsp;It will help you to estimate the proper period you are requesting for',
+
+"absence.tutorial.message.step4": '&lt;b&gt;Choosing absence period&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;The simplest way to request absences, is by marking the requested period and by selecting it on the calendar. &lt;br\/&gt;',
+
+"absence.tutorial.message.step5": '&lt;b&gt;My requests&lt;\/b&gt;&lt;br\/&gt;&lt;br\/&gt;This is the menu option which allows you to check the status and the history of your requests.',
+
+"password.change.newPassword.resetButton": 'Set new password',
+
+"jira.integration.conf.howto": 'To enable the integration, please take following steps:&lt;ol&gt;&lt;li&gt;Login to your Jira as administrator and add &quot;Application Link&quot; using credentials listed below&lt;\/li&gt;&lt;li&gt;Back to this window&lt;\/li&gt;&lt;li&gt;Provide URL to your Jira and click &quot;Turn on&quot;&lt;\/li&gt;&lt;\/ol&gt;',
+
+"absenceType.configuration.tabs.subtraction": 'Subtraction',
+
+"report.employees.position": 'Position',
+
+"absenceAllowance.list.details.pending": 'Pending for approval',
+
+"calendar.last3Months": 'Last 3 months',
+
+"absences.for.acceptance.end": 'End',
+
+"import.request.info.1": 'Column separator is &quot;;&quot;',
+
+"import.request.info.3": 'Requests are only added &lt;strong&gt;not updated&lt;\/strong&gt;',
+
+"terminal.type.beacon.uuid": 'UUID',
+
+"import.request.info.2": 'Tutorial how to import request you can find &lt;a href=&quot;https:\/\/help.calamari.io\/&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;.',
+
+"absenceRequest.attachments.validation.name": 'File type is not allowed. Allowed types of attachment are: &lt;ul&gt;&lt;li&gt;Pdf&lt;\/li&gt;&lt;li&gt;Text files&lt;\/li&gt;&lt;li&gt;Word documents&lt;\/li&gt;&lt;li&gt;Images&lt;\/li&gt;&lt;li&gt;Excel documents&lt;\/li&gt;&lt;\/ul&gt;',
+
+"absenceRequest.absenceEnd": 'To',
+
+"absenceType.configuration.attachments.enable": 'Enable attachments',
+
+"common.search": 'Search',
+
+"user.role.employee": 'Regular employee',
+
+"registration.tenant.clientId.validation.unique": 'This ID is just registered',
+
+"support.tutorial.howToSetup": 'Tutorial - how to setup',
+
+"security.error.google.responseError": 'Error with connection with G Suite',
+
+"slack.error.unknownError": 'Oops... :flushed: Unexpected error ocurred. Please wait a while and try again.',
+
+"absence.menu.list.reports": 'Reports',
+
+"notification.plannedabsences.day": 'Approved absences every day at 8 AM',
+
+"calendar.day.min.saturday": 'Sa',
+
+"absenceRequest.create.validation.noAbsencePool": 'Your absence allowance is not enough',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.sameAs.hire": 'First day at work',
+
+"absenceType.configuration.subtraction.includeBankHolidays": 'Include public holidays in leave request length',
+
+"security.error.loginerror": 'Incorrect email or password...',
+
+"security.error.jira.oauth.accessDenied": 'You have to accept Jira api usage to sign-in with Jira',
+
+"DateRangePicker.customRange": 'Custom range',
+
+"absencetype.title": 'Absence types',
+
+"common.error.view.conversionError": 'Incorrect value',
+
+"calendar.month.july": 'July',
+
+"context.help.question.title": 'Final message',
+
+"remindPassword.setNew.passwordRepeat": 'Repeat password',
+
+"absence.acceptance.validation.acceptance.name.required": 'Approval flow name is required',
+
+"common.view.calendar": 'Calendar view',
+
+"absences.for.acceptance.substitute.warning.info": 'Substitute has leave in the same period',
+
+"employee.plannedFiring": 'Termination date',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.WEEK.sameAs.eligibility": 'Day when gains eligibility',
+
+"employees.list.noData.introduction": 'Add or import your employees and explore full potential of Calamari',
+
+"team.members": 'Members',
+
+"import.requests.field.time.err.overlapsWithOtherInCsv": 'Request coincides with the others in the imported file',
+
+"terminal.type.webApp.allowedIp": 'Allowed clients IPs (e.g. 192.168.251.26\/32)',
+
+"welcomeScreen.start": 'Start your adventure with Calamari from',
+
+"notification.plannedabsences.day.subject": 'Today&rsquo;s approved absences',
+
+"common.OFF": 'OFF',
+
+"ical.sync.holiday": 'Subscribe public holidays',
+
+"employee.acceptanceFlow": 'Approval flow',
+
+"absenceRequest.firstDay": 'First day',
+
+"absencetype.comment.field.label": 'Comment',
+
+"absence.acceptance.list.nodata.explanation": 'Approval flow is essential feature in Calamari. You can specify here employees or groups to be notified when someone send new leave request. Each person in approval flow will decide about approving or rejecting particular leave request.',
+
+"employee.validattion.existing.email.notExists": 'Employee with this email doesn\'t exist',
+
+"report.entitlement.allowed.days": 'Allowed [days]',
+
+"clockin.report.timesheet.type": 'Type',
+
+"myWork.overview": 'Overview',
+
+"notification.birthday.today": 'Birthday celebrating today',
+
+"maritalStatus.SINGLE": 'Single',
+
+"company.size": 'Organization size',
+
+"jira.integration.conf.appLink.appName": 'Application name',
+
+"common.new.password": 'New password',
+
+"holiday.delete.overlap.requests.question": 'Do you want to delete the &quot;%s&quot; instead of existing absence requests in this day? The overlapping requests will be recalculated.',
+
+"ConditionConfigDialog.condition.legend": 'Employee who is ...',
+
+"ical.calendar.name.ORGANISATION_CALENDAR": 'Calamari - Company leaves',
+
+"clockin.report.timesheet.out": 'Out',
+
+"person.validation.confirmationPassword.equal": 'Passwords has to be identical.',
+
+"absence.configurations.dashboard.howto": 'How to setup?',
+
+"absenceType.configuration.accrualRule.mode.EARN_OVER_TIME": 'Same amount each period',
+
+"slack.message.leaveToAcceptance": 'Your employee sent you an absence request and it is waiting for your approval.',
+
+"calendar.month.may": 'May',
+
+"absenceType.configuration.requesting.accrualUpTo.UP_TO_TODAY": 'Calculate as of current day',
+
+"common.reject": 'Reject',
+
+"import.absenceRequests.error.uploadError": 'Error occurred during sending file',
+
+"apply.myself.button": 'For myself',
+
+"report.entitlement.absence.type": 'Absence type',
+
+"notification.selectChannelsToTurnOn": 'Select to turn it on',
+
+"absenceType.configuration.tabs.restrictions.reactionWhenViolation.block": 'Block request',
+
+"adjustEntitlement.asOfDate": 'as of day',
+
+"holiday.delete.error.message": 'Error has been occurred',
+
+"slack.configuration.disabled.introduction": 'Slack integration is disabled',
+
+"employee.detailsTabs.pool": 'Entitlement',
+
+"absence.menu.ical": 'iCalendar',
+
+"absencetype.validation.name.required": 'Name is required',
+
+"clockin.breaks.autoIncluded": 'Start break automatically',
+
+"common.time.calendar.days.tooltip": 'Duration given in calendar days',
+
+"absencetype.working.unit": 'Unit',
+
+"common.range.from": 'from',
+
+"common.week": 'Week',
+
+"mail.registration.confirmation.subject": 'Sign up confirmation',
+
+"person.address.street": 'Street',
+
+"absencetype.entitlement.referential.max.label": 'Limit taking amount to',
+
+"position.create.validation.name.required": 'Name is required',
+
+"import.employee.title": 'Employee import',
+
+"calendar.day.thursday": 'Thursday',
+
+"person.id": 'ID',
+
+"error.common.io": 'IO error has occurred. We are working to solve it.',
+
+"common.tip": 'Tip',
+
+"context.help.eligible.from.title": 'Eligibility',
+
+"notification.pending.request.mobile.text": '%s is waiting for your decision for %s days.',
+
+"clokin.report.timesheet.export.tab.text": 'Timesheet - text',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.BIMONTH.sameAs.hire": 'First day at work',
+
+"entitlementBalance.create.amount": 'Amount',
+
+"security.error.slack.noTenant": 'Your Slack team isn\'\'t integrated with Calamari. Please install Calamari first and configure Slack integration.',
+
+"clockin.breaks.type.REDUCING_SHIFT_TIME": 'Yes',
+
+"import.pool.error.title": 'Error occurred during importing data',
+
+"absenceRequest.absence.past.warning.question": 'Confirm, that you are creating request in the past?',
+
+"absenceRequest.partial.days.1_2": 'Half day',
+
+"absences.for.acceptance.transition.name.cancel": 'Cancel',
+
+"calendar.month.september.c": 'September',
+
+"security.error.notenant": 'Domain name \/ organisation ID required',
+
+"entitlement.undefined": 'Undefined',
+
+"absence.configurations.dashboard.employees": 'Managing employees',
+
+"contractType.new.title": 'New contract type',
+
+"calendar.day.short.1": 'Mon',
+
+"calendar.day.short.2": 'Tue',
+
+"calendar.day.short.3": 'Wed',
+
+"absenceRequest.partial.days.1_4": '1\/4 of day',
+
+"BalanceSummarize.TRANSFER_FROM_PREVIOUS_YEAR": 'Transferred from last year',
+
+"securityAction.request.leave.on.behalf.subordinates": 'Request leaves on behalf of subordinates',
+
+"calendar.month.next.january.c": 'January of the following year',
+
+"absenceType.configuration.tabs.reaction": 'Action',
+
+"absenceRequest.error.cannotRemoveTypeBecauseOfActiveAbsenceRequests": 'You can\'\'t delete absence type because there are active request with this type.',
+
+"employee.adjustEntitlement.anyAbsenceType": 'Employee is not entitled to reqest any absence type. Please verify if employee configuration is complete.',
+
+"absences.for.acceptance.acceptance.date": 'Approved',
+
+"notification.clockoutRemainder.mobile": 'Your work finishes at *%s*. It is time to finish for today, click clock out.',
+
+"dateRanges.year.next": 'Next year',
+
+"registration.firstUser.email": 'Business e-mail',
+
+"BalanceSummarize.CARRIED_OVER_EXPIRY": 'Transferred expired',
+
+"import.requests.field.status.err.invalid": 'Invalid absence status',
+
+"break.breakType": 'Break type',
+
+"google.integration.resync.message.title": 'Resync Calamari users and G Suite accounts',
+
+"absenceRequest.processing.error.statusCancelled": 'We cannot perform this operation because request has been already cancelled.',
+
+"organization.validation.date.format.id.required": 'Date format required',
+
+"calendar.month.short.january": 'Jan',
+
+"licenceExpired.title": 'Calamari subscription expired',
+
+"registration.inprogress.title": 'Thank you for signing up',
+
+"clockin.report.presence.export.filename": 'Presence_list',
+
+"EntitlementBalance.ACCRUAL": 'Accrual',
+
+"absences.for.acceptance.dialog.accept.question": 'Do you really want to approve this request?',
+
+"absenceRequest.create.validation.mustContainWorkingdays": 'Chosen period has only free days',
+
+"team.list.title": 'Teams',
+
+"problem.flow.membersDontHaveTeamManager": 'Employees attached to flow don\'t have \'team manager\' set',
+
+"security.error.jira.oauth.unknownError": 'Unexpected error ocurred.',
+
+"calendar.day.short.thursday": 'Thu',
+
+"calendar.day.short.4": 'Thu',
+
+"calendar.day.short.5": 'Fri',
+
+"common.problems": 'Problems:',
+
+"calendar.day.short.6": 'Sat',
+
+"calendar.day.short.7": 'Sun',
+
+"security.error.google.noDomainGoogleAccount": 'Account is not integrated with G Suite. Login only with your application login to Calamari',
+
+"timesheet.pending.CREATE": 'Pending creation',
+
+"notification.group.add.context.empty": 'All employees',
+
+"context.help.accrual.up.to.paragraph.3.body": '&lt;li&gt;&lt;strong&gt;Calculate as of current day&lt;\/strong&gt; - in this case the system will accrue entitlement up to the current day, and employee will be allowed to request days in future based on the entitlement already earned.&lt;\/li&gt;&lt;\/ul&gt;',
+
+"terminal.type.beacon.major": 'Major',
+
+"absence.status.CANCELED": 'Cancelled',
+
+"ical.user.settings": 'User calendar settings',
+
+"employee.validation.allowance.allAbsencetTypes": 'Complete annual configuration for all absence types',
+
+"absenceType.configuration.displaying.asFirst": 'Highlight and display as first on lists',
+
+"manager.buttons.makeForWholeOrganization": 'Whole organization',
+
+"absencetype.entitlement.type": 'Entitlement',
+
+"position.name": 'Position name',
+
+"clockin.timeentry.validation.breaks.inshiftRange": 'Breaks should be included in shift time range',
+
+"clockin.report.timesheet.overTime": 'Overtime',
+
+"common.range.to": 'to',
+
+"clockin.mail.shift.comment": 'Shift commented',
+
+"jira.integration.conf.integration.url": 'Jira URL',
+
+"report.pdf.unknown": 'Unknown',
+
+"context.help.eligible.to.paragraph.1.body": '&lt;strong&gt;Eligible to&lt;\/strong&gt; -  is the day when the employee is no longer allowed to earn the entitlement. By default it\'\'s the last day of work, but you can also choose:',
+
+"registration.tenant.email.validation.allowedDomain": 'Enter your business e-mail address (in corporate domain)',
+
+"manager.immediateManagerfor.additionally": 'Additionally immediate manager for',
+
+"context.help.google.paragraph.0.0.list": 'import employees\' list from G Suite',
+
+"absenceType.configuration.requesting.maxNegativeEntitlement": 'Maximum below the zero',
+
+"roles.type.admins": 'Administrators',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.WHOLE": '1 hour',
+
+"myWork.title": 'My work',
+
+"notification.plannedremotework.week": 'Approved remote work requests at the beginning of week',
+
+"calendar.month.june": 'June',
+
+"validation.time.isoDate": 'Invalid date format (should be yyyy-mm-dd)',
+
+"absenceRequest.accept.panel.title": 'Absence request',
+
+"projects.list.archived": 'Archived',
+
+"slack.message.clockin.shiftChangeRequest.EDIT": '%s requested shift update for approval.',
+
+"import.pool.field.toilAdjusted": 'Toil',
+
+"slack.error.unknownSecurityError.text": 'Something wrong with your integration with Calamari :dizzy_face: Please turn on Slack integration in Calamari panel once again.',
+
+"notification.leave.MyLeaveApproved": 'My absence request has been approved',
+
+"clockin.employee.validation.person.list.not.empty.title": 'Empty employee list',
+
+"absenceType.configuration.accrualRule.expirationDate": 'Expiration date',
+
+"report.attendance.summary.workingTime": 'Worked time',
+
+"common.archive": 'Archive',
+
+"manager.type.wholeOrganization": 'Manager for whole organization',
+
+"import.requests.field.time.err.maxTwoYears": 'To long absence request',
+
+"office.integration.config.disabled.integrate": 'Integrate',
+
+"common.wait": 'Wait...',
+
+"timezone.validation.valid": 'Invalid time zone provided',
+
+"ShiftChangeRequestMode.details.waitingFor.DELETE": 'Deletion is waiting for approval',
+
+"absences.for.acceptance.dialog.cancellation.reject.title": 'Rejecting cancellation of request',
+
+"EntitlementBalance.MANUAL_EDIT": 'Manually edited',
+
+"clockin.timesheet.help.entrymanipulation.hour.gotit": 'You can type time in any format you prefer. Some working examples: &lt;br \/&gt;&lt;ul&gt;&lt;li&gt;8&lt;\/li&gt;&lt;li&gt;8:00&lt;\/li&gt;&lt;li&gt;8pm&lt;\/li&gt;&lt;li&gt;8 PM&lt;\/li&gt;&lt;li&gt;8:11 PM&lt;\/li&gt;&lt;li&gt;8 31 pm&lt;\/li&gt;&lt;li&gt;20:31&lt;\/li&gt;&lt;li&gt;2031&lt;\/li&gt;&lt;\/ul&gt; If you forgett how to type use \'?\' to remind :)',
+
+"daysReducingLeavePool.validation.nameRequired": 'Name required',
+
+"clockin.settings.save.dialog.message": 'The configuration has been successfully saved',
+
+"BalanceSummarize.OTHER": 'Other',
+
+"person.start.week.day": 'First day of week',
+
+"office.integration.resync": 'Users resync',
+
+"clockin.work.edit.delete": 'Delete',
+
+"absenceType.configuration.tabs.restrictions.createNewRule": 'Add new restriction rule',
+
+"common.history": 'History',
+
+"slack.error.unknownSecurityError.fallback": 'Something wrong with your integration with Calamari',
+
+"person.validation.email": 'Invalid email',
+
+"absence.status.PENDING_CANCELLATION": 'Pending for cancellation',
+
+"employee.probationEndDate": 'Probation end',
+
+"absenceRequest.reason": 'Reason',
+
+"bookademo.text": 'for live demo with Kamil!',
+
+"absenceType.configuration.needHelp": 'If you feel confused how to set up the system just write to us and describe your leave policy.',
+
+"absenceRequest.processing.cancellationReject.success": 'Request cancellation of %s is rejected',
+
+"security.error.jira.oauth.noUser": 'Your Calamari user account is not connected with Jira account.',
+
+"common.save": 'Save',
+
+"employee.directManager": 'Direct manager',
+
+"absence.configurations.dashboard.acceptance": 'Approval process',
+
+"report.payroll.export.title": 'Report payroll',
+
+"holiday.import.overlap.requests.question": 'Holidays: &quot;%s&quot; overlaps some absence requests. Do you want to add these holidays? The overlapping requests will be recalculated.',
+
+"absence.intro.message.step4.info": '&lt;b&gt;Employees&lt;\/b&gt; you can adding users in few different ways.&lt;br\/&gt;All users\/employees would request for absence.&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;Configuration&lt;\/b&gt;&lt;br\/&gt;import form G Suite&lt;br\/&gt;creating internal users&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;More&lt;\/b&gt;&lt;br\/&gt;Each imported user also gets identity of internal user.&lt;br\/&gt;If your organization has &lt;b&gt;G Suite&lt;\/b&gt; account we would recommend to import users.',
+
+"report.pdf.HISTORY": 'History',
+
+"absenceType.configuration.validation.rule.effectiveDate": 'Required',
+
+"signup.company.checkEmail.message": 'Thank you for signing up. We are happy to welcome you to Calamari! To set up your account, follow the instructions we sent to your email.',
+
+"entitlement.list.absenceType": 'Absence type',
+
+"error.common.accessDenied": 'Insufficient privileges',
+
+"calendar.month.april": 'April',
+
+"absenceType.configuration.tabs.restrictions.days": 'days',
+
+"timesheet.reject.dialog.title": 'Rejecting timesheet change',
+
+"password.change.error.error": 'We cannot reset your password. Please go to &quot;Forgot password&quot; form again.',
+
+"holidayCalendar.validation.name.exists": 'Holiday calendar with this name already exists',
+
+"footer.terms": 'terms',
+
+"api.configuration.disabled.introduction": 'API access is turned off.',
+
+"report.employees.lastName": 'Surname',
+
+"mail.approval.comment.absence.subject": 'Added a comment to absence request.',
+
+"publicapi.errors.INVALID_JSON_PAYLOAD": 'Received json object is invalid. Please check API documentation.',
+
+"notification.clockoutRemainder.mobile.subject": 'Clock out reminder',
+
+"absenceType.configuration.accrualRule.eligibleFrom.PROBATION_START": 'When probation starts',
+
+"absenceType.configuration.accrualRule.eligibleFrom": 'Employee gains eligibility',
+
+"module.id.CLOCKIN": 'Clockin',
+
+"notification.group.list.noData.introduction": 'It seems that you haven\'\'t configured any group notification yet,',
+
+"absence.acceptance.row.name": 'Approval flow name',
+
+"notification.leave.appointedSubstituteOnAbsenceRequest": 'You have been appointed as the substitute',
+
+"BalanceSummarize.TOIL": 'Toil',
+
+"report.entitlement.employee": 'Employee',
+
+"context.help.duration.paragraph.1.title": 'Days or Hours',
+
+"jira.configuration.check.result.error": 'Calamari is NOT properly integrated  with Jira Tempo. Please check the error code and correct the configuration. Error: &quot;%s&quot;',
+
+"slack.message.clockin.shiftChangeRequest.EDIT.finallyAccepted.toOthers": '%s shift update %s have been accepted.',
+
+"roles.configuration.title": 'Managers',
+
+"break.validation.break.ovelap": 'Break can not impose on another break.',
+
+"absenceType.configuration.validation.effectiveDate.notNull": 'Provide effective date',
+
+"import.error.invalidfile": 'There are errors in imported file',
+
+"signup.form.email": 'Business e-mail',
+
+"registration.google.button": 'Install with G Suite',
+
+"google.calendar.sync.in.summary": 'Display in event summary',
+
+"manager.buttons.makeImmediateForPerson": 'Immediate for employee',
+
+"absence.acceptance.substitutesAsApprovers.label": 'Add substitute worker to the flow',
+
+"holidayCalendar.delete.question": 'Do you want to delete holiday calendar &quot;%s&quot;?',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.1": '1st day of month',
+
+"google.calendar.sync.statuses.ACCEPTED_AND_PENDING_AND_PENDING_CANCELLATION": 'Accepted and pending',
+
+"absence.tutorial.message.start": '&lt;center&gt;&lt;b&gt;Hello\\!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;In this tutorial I will show you all useful tips and features of Calamari.&lt;br\/&gt; During this tour you will learn how to :&lt;br\/&gt; - create new request&lt;br\/&gt; - check your holiday entitlement&lt;br\/&gt; - look at availability in your team',
+
+"user.avatar.current": 'Current profile photo',
+
+"beacon.iamclose.validation.apikey.null": 'No apikey provided',
+
+"absenceType.configuration.durationUnit": 'Duration unit',
+
+"clockin.breaks.autoIncluded.effectiveDate": 'Effective date of starting automatically',
+
+"context.help.slack.paragraph.2.list": '&lt;li&gt;&lt;strong&gt;request time-off&lt;\/strong&gt; using Slack command &lt;i&gt;\/calamari leave&lt;\/i&gt;&lt;\/li&gt;',
+
+"terminal.list.api.intro": 'API Terminal gives opportunity to integrate Calamari with custom solutions in your company.&lt;br\/&gt; API documentation and more information &lt;a href=&quot;https:\/\/developers.calamari.io&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;',
+
+"jira.configuration.fullsync": 'FullSync',
+
+"employee": 'Employee',
+
+"clockin.clockout.error.noShiftOpened": 'Your shift has already been closed. An outdated work status was presented on the screen.',
+
+"google.calendar.sync.color": 'Use color',
+
+"timesheet.toAcceptance.noData.introduction": 'There is no timesheet entries for your acceptance.',
+
+"report.request.absenceStart": 'From',
+
+"terminal.type.slack.conf.title": 'Slack terminal',
+
+"organization.validation.id.required": 'Company ID required',
+
+"clockin.break.open.not.found": 'Break not started.',
+
+"context.help.first.accrual.paragraph.2.body": '&lt;ul&gt;&lt;li&gt;The day when gains eligibility - if you choose this option employee will earn amount in the day when he gains eligibility and you can choose if it will be full amount or prorate&lt;\/li&gt;&lt;li&gt;In the next period after gains eligibility - in this case employee will start earning from the second absence period of eligibility (eg. after hire). &lt;\/li&gt;&lt;\/ul&gt;',
+
+"notification.plannedabsences.week.subject": 'Approved absences for this week',
+
+"absence.dashboard.myAbsences.pool": 'My entitlement',
+
+"slack.error.invalidSlackId.text": 'Your slack user is not connected with Calamari :dizzy_face: Please ask your Calamari admin to add your employee account.',
+
+"holidayCalendar": 'Holidays calendar',
+
+"registration.validation.clientId.length": 'Give address from 2 to 20 characters',
+
+"clockin.timeentry.validation.worklog.overlap": 'Projects overlap',
+
+"context.help.visibility.paragraph.1.body": 'In this column you can configure the visibility of particular field on the calendar, or details of the request.',
+
+"common.validator.numeric": 'Value should by a number',
+
+"clockin.report.abnormality.fromDate": 'From',
+
+"workingWeek.day": 'Day',
+
+"menu.conf.settings": 'Settings',
+
+"clockin.report.list.title": 'Reports',
+
+"team.name": 'Team name',
+
+"calendar.prevYear": 'Previous year',
+
+"context.help.slack.paragraph.4.list": '&lt;li&gt;&lt;strong&gt;start \/ finish breaks&lt;\/strong&gt; using Slack command &lt;i&gt;\/calamari break start &quot;Dinner break&quot;&lt;\/i&gt; or &lt;i&gt;\/calamari break stop&lt;\/i&gt; &lt;\/li&gt;',
+
+"acceptanceFlow.addAlternative": 'Add alternative flow',
+
+"absencetype.visibility.MANAGER_AND_ADMIN": 'Reporter, manager, approver and admins',
+
+"absenceRequest.onBehalfOf": 'On behalf of...',
+
+"dpa.agreement.title": 'Data Processing Agreement',
+
+"absences.for.acceptance.repoter": 'Reporter',
+
+"absence.configurations.dashboard.holidays": 'Holidays',
+
+"slack.error.invalidSlackId.fallback": 'Your slack user is not connected with Calamari :dizzy_face:',
+
+"context.help.google.paragraph.3.list": 'you can define which fields appear in summary and description',
+
+"calendar.month.february.c": 'February',
+
+"clockin.report.timesheet.period": 'Period',
+
+"licence.turnedOff": 'Application is turned off',
+
+"module.chata": 'Subscription',
+
+"terminal.list.qrcode.print": 'Print',
+
+"import.error.moreErrors": 'And %s more errors',
+
+"signup.selectMode.title": 'Start using Calamari as:',
+
+"google.sync.rule.validation.id.not.null": 'Set ID field',
+
+"workPlan.notHired": 'Not hired',
+
+"common.time.minute": 'minute',
+
+"position.list.title": 'Positions',
+
+"absenceType.configuration.validation.takeEntitlementFrom.requiredValid": 'Select valid superior absence type',
+
+"clockin.report.activities.title": 'Activities',
+
+"allowance.balance.reason.CANCELLED_REQUEST": 'Cancelled request',
+
+"employee.integratedWith": 'Integrated with',
+
+"absence.menu.calendar": 'Calendar',
+
+"security.section.title.manager": 'Managers can ...',
+
+"slack.clockin.shift.started": 'Hello %s, welcome to work!',
+
+"common.confirmation.password": 'New password',
+
+"absence.menu.toggl": 'Toggl',
+
+"absence.menu.google.integration": 'G Suite',
+
+"mail.create.employee.subject": 'Welcome to the CALAMARI!',
+
+"absenceType.configuration.accrualRule.eligibleFrom.WORKED_FULL_CALENDAR_YEARS": 'Full calendar years worked',
+
+"error.common.db": 'Database error has occurred. We are working to solve it.',
+
+"lifecycle.COMMENT": 'Comment',
+
+"calendar.yesterday": 'Yesterday',
+
+"absenceType.configuration.carryover.carriable": 'Carry over unused entitlement to next absence year',
+
+"import.requests.csv.settings.csvSeparator": 'CSV separator',
+
+"lang": 'en',
+
+"clockin.report.activities.startedDate": 'Start date',
+
+"absenceType.configuration.accrualRule.restricted": 'Restricted to',
+
+"holiday.create.validation.calendar.required": 'Holiday calendar is required',
+
+"office.integration.config.disabled.advantages.2": 'You can synchronize your employees\' list with your Office 365 account',
+
+"error.common.unknown": 'Error has occurred. We are working to solve it.',
+
+"absence.menu.requests": 'Requests',
+
+"employee.new.reducing.leave.pool.yearly": 'Annually',
+
+"comments": 'Comments',
+
+"office.integration.config.disabled.advantages.1": 'You can automatically sign in with your Office 365 account',
+
+"timesheet.photo.out.long": 'During clocking out',
+
+"report.list.title": 'Reports',
+
+"context.help.period.paragraph.3.title": 'Anniversary',
+
+"absenceType.configuration.requesting.NUMBER_OF_MONTHS_FROM_NOW": 'Some period in future',
+
+"registration.firstUser.firstName": 'Name',
+
+"shift.create.title": 'Create presence',
+
+"absenceType.configuration.entitlementSource.FROM_OTHER_ABSENCE_TYPE": 'This is subtype and use entitlement from other type',
+
+"employee.validation.lastName.required": 'Last name required',
+
+"ConditionConfigDialog.or": 'or',
+
+"google.calendar.sync.color.BY_CALENDAR_DEFAULT": 'default for google calendar',
+
+"notification.clockinRemainder.slack.projects": 'Start working on...',
+
+"report.employees.hireDate": 'Hire date',
+
+"clockin.report.timesheet.date": 'Date',
+
+"sign-in.title": 'Log in',
+
+"absences.for.acceptance.date.start": 'Start',
+
+"notification.clockoutRemainder.slack": 'Your work finishes at *%s*. It is time to finish for today, click clock out.',
+
+"absencetype.validation.finalQuestion.size": 'Final question is too long (max. 1024 characters)',
+
+"absenceType": 'Absence type',
+
+"absence.report.zip.filename": 'requests.zip',
+
+"clockin.breaks.name": 'Name',
+
+"ShiftProgressTimer.shiftStopIndicator.tooltip": 'Current time',
+
+"mail.absence.revoked.subject": 'Approval of your request has been revoked.',
+
+"slack.worklog.project.notAvailable": 'Projects are not available for you. Please ask your admin to assign you projects;',
+
+"clock.title": 'Clock in \/ clock out',
+
+"calendar.month.november.c": 'November',
+
+"google.calendar.sync.statuses": 'Absence statuses to synchronization',
+
+"common.support": 'Support',
+
+"jira.integration.validation.url": 'Provide valid url to your Jira',
+
+"holiday.new.title.2": 'Calendar',
+
+"absenceRequest.restrictionRule.cantbeshorter.validation.notification.fordays": 'The absence may not be shorter than %s days.',
+
+"google.calendar.message.reason": 'Reason:',
+
+"lifecycle.REJECT": 'Rejection',
+
+"jira.tempo.link.1": 'Configuration',
+
+"report.request.export.title": 'Requests',
+
+"jira.tempo.link.2": 'Calamari Tempo Connector',
+
+"absenceRequest.actions.revoke.question": 'Do you really want revoke approval of this: %s request ?',
+
+"flow.validation.duplicatedAlternatives": 'More than one alternative flow refers to the same type of request.',
+
+"holiday.new.title.1": 'Adding new holiday to',
+
+"absence.intro.message.step1": '&lt;center&gt;&lt;b&gt;Let\'\'s start!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;Now we go together through steps of necessary configuration&lt;br\/&gt;Main and minimal configuration will take 5 seconds.&lt;br\/&gt;Carefully read instructions and fill required forms.&lt;br\/&gt;',
+
+"absenceType.configuration.accrualRule.delete": 'Do you really want to remove this rule?',
+
+"absenceRequest.remove.done.notification": 'Absence request has been removed.',
+
+"absenceType.configuration.requesting.minDurationSection.DAYS.QUARTER": '1\/4 day',
+
+"absenceType.configuration.accrualRule.eligibleFrom.PROBATION_FINISH": 'After probation period',
+
+"common.language.pl": 'polski',
+
+"clockin.break.type.few.found": 'You have several types of break. Please enter break name in command.',
+
+"holidayCalendar.new.title": 'Add new holidays calendar',
+
+"absenceType.configuration.accrualRule.eligibleFrom.fromHireUnit.DAY": 'Days',
+
+"ui.customization.logo.ui.help": 'Change logo in the top left corner of the application. Supported image formats: &lt;ul&gt;&lt;li&gt;svg&lt;\/li&gt;&lt;li&gt;png&lt;\/li&gt;&lt;li&gt;jpeg&lt;\/li&gt;&lt;\/ul&gt;',
+
+"license.userNumber": 'User number',
+
+"absenceAllowance.list.details.allowed.inHours": 'In hours',
+
+"workReport.status.absence": 'Absence',
+
+"absencetype.color": 'Color of the calendar',
+
+"absenceType.configuration.validation.inFutureMonths.notNull": 'Required',
+
+"clockin.menu.presence": 'Presence',
+
+"absence.intro.message.step6": '&lt;center&gt;&lt;b&gt;Ready!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;Now you can enjoy fully configured application!&lt;br\/&gt; Remember, always you can go through this steps one more time.',
+
+"report.request.created": 'Created',
+
+"absenceAllowance.list.details.allowed.inHours.button": 'Description',
+
+"ShiftChangeRequestMode.DELETE": 'Shift was deleted',
+
+"password.change.button": 'Change password',
+
+"absenceType.configuration.tabs.restrictions.turnOnOff": 'Enable\/Disable',
+
+"dateRanges.year.previous": 'Previous year',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.ANNIVERSARY.eligibility": 'of day when gains eligibility',
+
+"absenceRequest.start.year": 'Absence ends in next year',
+
+"absence.dashboard.myAbsences.newRequest": 'Absence request',
+
+"context.help.ical.paragraph.1.body": 'Integration with iCalendar allows to subscribe user and organization absence requests calendar in email client (for example Outlook, Thunderbird). Below is some information about integration:',
+
+"remindPassword.setNew.title": 'Set a new password',
+
+"files.upload.validation.name": 'File type is not allowed',
+
+"jira.integration.conf.sso.enableCheckbox": 'Enable sign-in with Jira account',
+
+"team.new.title": 'New team',
+
+"registration.validation.contactUserLastName.required": 'Your surname is required',
+
+"slack.error.noCommand": 'What can I do for you :question: Please type Calamari command.',
+
+"report.payroll.title": 'Payroll',
+
+"holidayCalendar.error.cannotRemoveCalendarBecauseAttachedToEmployees": 'Cannot remove the calendar because it\'s attached to employees',
+
+"terminal.type.qrcode.new.title": 'Create new QRCode terminal',
+
+"calendar.day.sunday": 'Sunday',
+
+"context.help.first.accrual.title": 'New employee',
+
+"calendar.day.short.wednesday": 'Wed',
+
+"workingTimeUnit.WORKING_DAY.genitive": 'working days',
+
+"team.delete.oneTeam.question": 'Do you want to delete this team &quot;%s&quot;?',
+
+"report.pdf.DATES": 'In dates from :',
+
+"report.pdf.TITLE_LABEL": 'Absence request',
+
+"team.delete.title": 'Deleting team',
+
+"daysReducingLeavePool.validation.day.atLeastOneWorkingDay": 'Working week should have at least one working day',
+
+"calendar.ABSENCE_TYPE": 'Absence type',
+
+"absences.for.acceptance.title": 'Approval',
+
+"qrcode.iamclose.validation.terminal.apikey.valid": 'Terminal Api Key is invalid',
+
+"daysReducingLeavePool.validation.day.size": 'Value from 0 to 24',
+
+"absencetype.validation.reference.absencetype.required": 'Choose absence type',
+
+"calendar.security.show.team": 'only team members',
+
+"timesheet.planned": 'Planned',
+
+"absenceType.configuration.tabs.messages": 'Messages',
+
+"comment.add.title": 'Add a comment',
+
+"common.range.to.uppercase": 'To',
+
+"absenceRequest.absenceType": 'Absence type',
+
+"signup.selectMode.company.title": 'Company',
+
+"absenceType.configuration.accrualRule.period.DAY": 'Day',
+
+"absenceRequest.restrictionRule.isbeforeandislonger.validation.notification.fordays": 'The absence longer than %s days, should be requested %s calendar days before the start date.',
+
+"person.validation.timezone.required": 'Choose timezone',
+
+"absenceRequest.error.periodWithoutAbsenceYear": 'You can\'\'t request absence in chosen period.',
+
+"clockin.mail.shift.approved": 'Shift approved',
+
+"absences.for.acceptance.info.past.leave": 'The absence has been requested after start date.',
+
+"absenceType.configuration.validation.rule.intervalPoint": 'Required',
+
+"signup.form.firstStep.button": 'Sign up',
+
+"common.start.week.day.validation.required": 'First day of week required',
+
+"clockin.employee.detailsTabs.main": 'Overview',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.TWO": '2 hours',
+
+"common.validation.required": '*',
+
+"allowance.balance.reason.REVOKED_REQUEST": 'Revoked request',
+
+"employee.detailsTabs.main": 'Overview',
+
+"workReport.status.autoclosed.small": '??',
+
+"daysReducingLeavePool.edit.dialog.title": 'Saving changes',
+
+"notification.clockin.mail.button.error": 'Your work has been already started or you don not have permission to clock in from the current location.',
+
+"daysReducingLeavePool.error.in.employee": 'Working week is assigned to employee...',
+
+"common.view.preferences": 'Settings',
+
+"absence.status.validation.parsable": 'Invalid absence status name',
+
+"import.requests.int.err.invalid": 'Invalid value',
+
+"common.edit": 'Edit',
+
+"allowance.balance.reason.ABSENCE_YEAR_INITIAL": 'New absence year',
+
+"clockin.report.activities.finishCoordinate": 'End&nbsp;GPS',
+
+"context.help.rules.paragraph.2.body": 'Each rule works for all employees whose matching conditions of rule. &lt;ul&gt;&lt;li&gt;if an employee doesn\'\'t match time based conditions eg. eligibility, he will see the absence type but with zero amount&lt;\/li&gt;&lt;li&gt;if an employee isn\'\'t on restricted to the list of any rule for absence type he will not see absence type on the list to apply&lt;\/li&gt;&lt;\/ul&gt;',
+
+"terminal.access": 'Terminal access',
+
+"dpa.agreement.link": '&lt;a class=&quot;agreementLink&quot; href=&quot;https:\/\/calamari.io\/terms-of-use\/calamari_dpa_en.pdf&quot; target=&quot;blank&quot;&gt;The text of the Data Processing Agreement.&lt;\/a&gt;',
+
+"worklog.workingOn.anyProject": 'Working without project',
+
+"slack.absence.substitute.appointed": 'You have been appointed as the substitute. Details:',
+
+"clockin.report.timesheet.absenceTime": 'Absence',
+
+"calendar.month.short.may": 'May',
+
+"registragion.error.invalidCode": 'It seems Calamari registration link is not valid. Please click in link from sign up confirmation email.',
+
+"holiday.edit.message": 'Holiday has been saved',
+
+"dpa.agreement.introduction": 'Due to the new legal regulations on the protection of personal data - GDPR, coming into effect on 25 May 2018. we have prepared a new Data Processing Agreement. This consent is essential to continue providing you with services after 25 May 2018.',
+
+"acceptanceFlow.alternative.type.timesheetManualUpdate": 'Attendance and timesheet approval',
+
+"contractType.validation.exists": 'Contract type doesn\'\'t exist.',
+
+"person.family": 'Family',
+
+"common.error.message": 'An error has occurred, please try again.',
+
+"report.entitlement.allowed": 'Currently allowed',
+
+"clockin.workingWeek.list.title": 'Working week',
+
+"sign-in.alternatives.title2": 'Or login with:',
+
+"google.calendar.fields.REPORTER": 'Reporter',
+
+"files.upload.validation.category": 'No such file category',
+
+"common.employee": 'Employee',
+
+"security.error.googleRegistration.uniqueDomain": 'You cannot install Calamari because... you have already installed account on Calamari which is fully integrated with google. Just sign-in to application using your G Suite account and use Calamari.',
+
+"clockin.timesheet.plan": 'Plan',
+
+"calendar.month.september": 'September',
+
+"terminal.type.api": 'API',
+
+"break.invalid.time": 'Invalid time format',
+
+"ical.organization.settings": 'Organization calendar settings',
+
+"remindPassword.setNew.button": 'Set a password',
+
+"presenceStatus.REMOTE": 'Working remotely',
+
+"common.view.resetPassword": 'Reset pass',
+
+"absence.imported": 'Imported',
+
+"report.request.employeeFullName": 'Employee',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.WHOLE_DAY": 'Whole day',
+
+"employee.detailsTabs.absence.requests": 'Requests',
+
+"absenceType.configuration.accrualRule.lastAccrual.amount.FULL": 'Full amount',
+
+"notification.clockinRemainder.mobile": 'Your work schedule starts at %s.',
+
+"clock.in.button": 'START',
+
+"projects.title.archived": 'Archived projects',
+
+"absence.tutorial.message.end": '&lt;center&gt;&lt;b&gt;Thank you\\!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;Now you are fully trained to enjoy Calamari Leave\\!&lt;br\/&gt;',
+
+"notification.birthday.today.slack.intro.plural": '*Today* our teammates celebrate their :tada::tada::tada: *birthday* :tada::tada::tada::, let\'s open :champagne: and celebrate with:',
+
+"sex.MALE": 'Male',
+
+"security.error.googleRegistration.uniqueUser": 'This email has already been registered',
+
+"report.entitlement.groupBy": 'Group by',
+
+"absenceRequest.attachments.add.short": 'Attach',
+
+"absence.acceptance.additionalInformationStep": 'Send notification after final approval to:',
+
+"notification.birthday.today.subject": 'Happy birthday!',
+
+"daysReducingLeavePool.validation.day.workingDayShouldHaveWorkingHours": 'Working day should have working hours',
+
+"security.error.google.connectionError": 'Error with connection with G Suite',
+
+"login.useEmail": 'Please use your e-mail instead of login. In the near future signing in with login will be unavaialble.',
+
+"common.time.day": 'day',
+
+"terminal.validation.restrictions.ip": 'Invalid IP address',
+
+"context.help.amount.paragraph.1.title": 'Amount',
+
+"terminal.validation.name.required": 'Name is required',
+
+"absenceType.configuration.tabs.restrictions.choose.cantBeRequestInPast": 'Then absence can be requested up to ... days in the past',
+
+"context.help.effective.date.paragraph.1.body": 'Here you can choose the date that the rule will be applied from.',
+
+"holiday.validation.impose.holiday": 'Holiday can not impose on another holiday.',
+
+"absence.menu.listPositions": 'Positions',
+
+"dateRanges.day.tomorrow": 'Tomorrow',
+
+"google.calendar.sync.statuses.ACCEPTED": 'Accepted',
+
+"calendar.month.short.november": 'Nov',
+
+"signup.company.fillData.step2.title": 'Your user account',
+
+"employee.validation.edit.one.admin.exists": 'This is the last administrator, please nominate the new one first.',
+
+"absenceType.configuration.durationUnit.HOURS": 'Hours',
+
+"absenceRequest.create.validation.datesValidTimeline": 'Start date has to be before end date',
+
+"ui.customization.logo.email.help": 'Change logo in e-mails from the application. Supported image formats: &lt;ul&gt;&lt;li&gt;svg&lt;\/li&gt;&lt;li&gt;png&lt;\/li&gt;&lt;li&gt;jpeg&lt;\/li&gt;&lt;\/ul&gt;',
+
+"files.upload.error.title": 'Error during attaching file',
+
+"absenceRequest.processing.error.cancellationStopped": 'You cannot approve or reject cancellation of the request because someone dit it before.',
+
+"google.calendar.message.default": 'Event',
+
+"absenceType.configuration.\u0105bsenceYear.absenceYearRenewalType.ANNUALLY_WITH_MONTH_AND_DAY": 'In the given month and day',
+
+"absences.for.acceptance.already.taken": 'Already taken',
+
+"toggl.configuration.title": 'Toggl configuration',
+
+"api.configuration.baseURL": 'Base URL',
+
+"absencetype.validation.holiday.leave.exist": 'Holiday leave already exists',
+
+"terminal.list.qrcode.desc.1": 'Add QR code terminal and assign to employees.',
+
+"common.createDate": 'Created',
+
+"terminal.list.qrcode.desc.2": 'Print individual QR code for each employee.',
+
+"absenceType.durationUnit.HOURS": 'Hours',
+
+"email.exists": 'Email is already in use.',
+
+"notification.pending.request.mobile.title": 'Reminder about pending requests',
+
+"absenceType.configuration.allowDisplayAsDays": 'Display as days (on the basis of working week length)',
+
+"registration.tenant.phone": 'Phone number',
+
+"clockin.employee.terminals.global.select": 'Terminals available according terminal configuration',
+
+"jira.integration.conf.appLink.consumerKey": 'Consumer key',
+
+"absenceType.configuration.\u0105bsenceYear.absenceYearRenewalType.ANNIVERSARY_OF_HIRE_DATE": 'In the anniversary of hire date',
+
+"security.error.officeRegistration.unknown": 'Error has been occurred. Please try again later.',
+
+"terminal.list.qrcode.desc.3": 'Install mobile application Calamari Clockin QR &lt;a href=&quot;https:\/\/play.google.com\/store\/apps\/details?id=com.chrobrus.calamari.mobile.terminal&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;',
+
+"terminal.list.qrcode.desc.4": 'Configure mobile application.',
+
+"google.calendar.sync.busy.only": 'Visibility',
+
+"support.knowledge": 'Knowledge base \/ FAQ',
+
+"security.reset.password.invalidTenantName": 'Invalid company domain',
+
+"slack.leaveRequest.done": 'Great! Absence has been requested :ok_hand:',
+
+"absenceRequest.halfday.link": 'half-day',
+
+"notification.leave.AbsenceRequestCommented": 'An absence request has been commented on',
+
+"employees.filtr.nomatches": 'No results',
+
+"context.help.subtract.method.title": 'Duration of request',
+
+"report.employees.sex": 'Gender',
+
+"absenceType.configuration.requesting.accrualUpTo.FUTURE_ACCRUAL": 'Estimate future entitlement',
+
+"clockin.report.timesheet.balance": 'Balance',
+
+"absenceType.configuration.accrualRule.periods": 'Accrue periods',
+
+"menu.conf.terminals": 'Terminals',
+
+"organization.validation.language.required": 'Language required',
+
+"person.address.province_state": 'Province \/ State',
+
+"common.date": 'Date',
+
+"holidayCalendars.list.title": 'Holiday calendars',
+
+"allowance.balance.reason.MANUAL_EDITING": 'Editing',
+
+"absenceRequest.create.validation.notAvailable": 'This absence type is not available',
+
+"import.pool.error.uploadError": 'Error occurred during sending file',
+
+"context.help.accrual.up.to.paragraph.1.body": 'Here you can choose how the system will accrue and the way employees will be requesting leave in the future.',
+
+"absence.menu.teams": 'Teams',
+
+"admin.menu.licences": 'Licence',
+
+"clockin.report.activities.eventType": 'Type',
+
+"employee.archived.notification": '%s archived',
+
+"support.sendMessage.validation.blankMessage": 'Please write content of your question',
+
+"comment.content.validation.required": 'Type your comment',
+
+"import.requests.field.employee": 'Employee',
+
+"holidayCalendar.name": 'Name',
+
+"license.validFrom": 'Valid from',
+
+"terminal.conf.availability": 'Availability',
+
+"google.calendar.sync.holidays.true": 'Show public holidays in Google Calendar',
+
+"absenceType.configuration.accrualRule.lastAccrual": 'Last accrual',
+
+"signup.selectMode.user.title": 'Employee',
+
+"lifecycle.IMPORT": 'Import',
+
+"import.requests.field.time.err.overlapsWithOtherInDb": 'Request coincides with the others in Calamari',
+
+"person.address": 'Address',
+
+"absence.intro.message.step3.todo": '&lt;b&gt;Absence types&lt;\/b&gt;&lt;br\/&gt;Now add proper absence types or change those already defined in system.',
+
+"absenceRequest.actions.cancel.question": 'Do you really want cancel this: %s request ?',
+
+"employee.invitation.send.ALL_NOT_INVITED": 'All uninvited',
+
+"support.sendMessage.send": 'Send',
+
+"security.error.google.apiAccessDisabled": 'Cannot finish action because G Suite API access is disabled for your domain. Administrator of your domain must enable access. Details here: https:\/\/support.google.com\/a\/answer\/60757',
+
+"report.employees.maritalStatus": 'Marital status',
+
+"context.help.rules.paragraph.1.title": 'Rules work independently',
+
+"absenceType.configuration.accrualRule.eligibleFrom.IMMEDIATELY_FROM_HIRE": 'From the first day at work',
+
+"absence.menu.jira": 'Jira',
+
+"context.help.subtract.method.paragraph.2.body": 'Choose one:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Every working day&lt;\/strong&gt; - in this case, the system takes days or hours according to &lt;a href=&quot;\/absence\/main.do#\/clockin\/conf\/workingWeek\/list.do&quot; target=&quot;_blank&quot;&gt;working week grid&lt;\/a&gt; assigned to the reporter of the absence request.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;Every calendar day&lt;\/strong&gt; - duration is based on the calendar days including weekends. If you select hours as duration unit, you need to also configure how many hours count per one calendar day.&lt;\/li&gt;&lt;\/ul&gt;',
+
+"sex.FEMALE": 'Female',
+
+"absence.detail.absence.request.list.tab.title": 'Requests',
+
+"calendar.currentYear": 'Current year',
+
+"ical.calendar.message.absence.type": 'Absence type:',
+
+"context.help.question.paragraph.1.body": 'This message will appear right after creating the request. You can put here important information about the attachments or approval process.',
+
+"lifecycle.person": 'Person',
+
+"absenceType.configuration.accrualRule.period.WEEK": 'Week',
+
+"my.requests.filter.show.accepted": 'Show approved',
+
+"security.error.google.insufficientPermissions": 'In order to list your employees Calamari needs access to your G Suite account API. &lt;a href=&quot;https:\/\/support.google.com\/a\/answer\/60757&quot; target=&quot;_blank&quot;&gt;Here&lt;\/a&gt; is the tutorial how to turn on the API. In the next step please sign-in to G Suite admin console and then check &lt;a href=&quot;https:\/\/admin.google.com\/AdminHome?fral=1#AppDetails:service=428704666266&quot; target=&quot;_blank&quot;&gt;security configuration&lt;\/a&gt;.',
+
+"report.employees.contractType": 'Contract type',
+
+"person.date.format": 'Date format',
+
+"clockin.shiftChangeRequest.created.title": 'Your change of timesheet has been sent to acceptation',
+
+"calendar.month.april.c": 'April',
+
+"ui.customization.title": 'Organization logo',
+
+"terminal.type.toggl": 'Toggl',
+
+"calendar.day.short.monday": 'Mon',
+
+"users.delete.question": 'Are you sure you want to remove %s? &lt;br \/&gt;&lt;br \/&gt; If you proceed all the employee data will be completely removed. &lt;br \/&gt;&lt;br \/&gt; It is not possible to undo the removal or restore deleted data.',
+
+"common.or": 'or',
+
+"workPlan.workingDayWithoutHours": 'Working day',
+
+"toggl.configuration.accessToken": 'Access token (of Toggl administrator)',
+
+"common.group.employees": 'Group by employees',
+
+"clockin.validation.dateFromNotAfterDateTo": 'Invalid date range',
+
+"absence.menu.basecamp": 'Basecamp',
+
+"absenceType.configuration.accrualRule.period.ANNIVERSARY": 'Anniversary',
+
+"calendar.day.short.friday": 'Fri',
+
+"common.period.prev": 'Previous',
+
+"asana.configuration.title": 'Asana',
+
+"calendar.day.min.wednesday": 'We',
+
+"employee.validation.daysReducing.required": 'Working week required',
+
+"mail.absence.cancellation.finally.accepted.subject": 'Your absence cancellation has been approved.',
+
+"common.everybody": 'All',
+
+"jira.tempo.link.pre": 'Useful links:',
+
+"absences.for.acceptance.dialog.cancellation.accept.title": 'Approving cancellation of request',
+
+"ical.ACCEPTED_AND_PENDING": 'Accepted and pending',
+
+"import.requests.field.status": 'Status',
+
+"notification.clockout.mail.button.error": 'Your work has been already finished or you don not have permission to clock out from the current location.',
+
+"absence.dashboard.employees": 'Employees',
+
+"report.employees.title": 'Employees',
+
+"absence.detail.calendar.tab.title": 'Calendar',
+
+"common.gotit": 'Got it!',
+
+"report.pdf.ABSENCE_DURATION_WITH_UNIT": 'In an amount :',
+
+"dateRanges.year.current": 'Current year',
+
+"report.pdf.SYSTEM_CREATOR": 'System',
+
+"common.none": 'None',
+
+"employee.removed": 'User removed',
+
+"common.no": 'No',
+
+"common.ok": 'OK',
+
+"absenceRequest.remove.confirmation.message": 'Do you want to completely remove absence request: %s? It is not possible to undo the removal.',
+
+"absenceType.configuration.carryover.carriedExpiry": 'Expire carried over after ... months',
+
+"my.requests.filter.show.pending": 'Show pending',
+
+"common.view.changePassword": 'Change pass',
+
+"notification.clockoutRemainder.subject": 'Clock out reminder',
+
+"report.requests.notFound": 'Requests not found',
+
+"context.help.absence.type.title": 'How does it work?',
+
+"tenant.inactive.info.2": 'Your licence has expired and account is blocked. In order to unlock your account, please send an email to team@calamari.io',
+
+"tenant.inactive.info.1": 'Thank you for coming back to Calamari!',
+
+"absenceType.configuration.accrualRule.period.ONCE_ELIGIBILITY": 'One-time accrual when gains eligibility',
+
+"common.help": 'Help',
+
+"slack.worklog.project.workingOn": 'I am working on...',
+
+"ShiftProgressTimer.plannedStartIndicator.tooltip": 'Time you should start your work',
+
+"calendar.week.short": 'Week',
+
+"country.validation.valid": 'Invalid country',
+
+"person.change.password.question": 'Do you want to change password?',
+
+"context.help.period.paragraph.1.body": 'Each rule has its own accrual period. You can choose a single accrual or a cyclic accrual.',
+
+"absenceType.configuration.accrualRule.eligibleFrom.WORKED_AFTER_HIRE": 'After hire',
+
+"jira.configuration.enable.integration": 'Enable Jira integration',
+
+"flow.edition.autoAcceptation.info": 'Automatic immediate approval. &lt;br \/&gt;&lt;br \/&gt; Add approvers to steps to make flow non-automatic.',
+
+"tenant.domain.validation.unique": 'This domain is already registered',
+
+"security.password": 'Password',
+
+"absenceType.configuration.tabs.restrictions.choose.cantBeLonger": 'The absence may not be longer than...',
+
+"context.help.ical.paragraph.2.list": 'When you turn off the integration all links will be inactive',
+
+"absence.acceptance.list.count": 'Step count',
+
+"absence.dashboard.title": 'Dashboard',
+
+"clockin.timeentry.validation.worklog.inshiftRange": 'Projects should be included in shift time range',
+
+"common.date.format": 'Date format',
+
+"report.request.absenceType": 'Absence type',
+
+"employee.validation.acceptance.flow.exists": 'Approval flow not exists',
+
+"slack.message.comment": '%s said regarding %s leave &quot;%s&quot; from %s to %s:\n %s',
+
+"users.delete.oneUser.removeRequests.question": 'Do you also want to delete all employee absence requests?',
+
+"security.forgot.domain": 'I forgot company domain',
+
+"lifecycle.CANCELLATION_ACCEPT": 'Cancellation approved',
+
+"context.help.restricted.title": 'Restricted to',
+
+"slack.message.cancellationFinallyAccepted": 'Cancellation of your absence request has been approved.',
+
+"import.requests.field.employee.err.moreThanOne": 'More than one employee with this email',
+
+"google.sync.rule.validation.statuses.not.null": 'Choose statuses to synchronization',
+
+"absence.acceptance.basic.name": 'Basic approval flow',
+
+"workingTimeUnit.HOUR": 'hour',
+
+"absenceRequest.comment": 'Comment',
+
+"context.help.restricted.paragraph.1.body": 'Here you can restrict who the rule will be assigned to. Is is advised to restrict absence type to the teams.',
+
+"calendar.month.next.january": 'January of the following year',
+
+"clockin.report.timesheet.shouldWorkDuration": 'Planned',
+
+"absenceType.configuration.tabs.restrictions.islonger.label": 'If the absence is longer than',
+
+"absenceType.configuration.tabs.restrictions.label": 'Restriction',
+
+"workingTimeUnit.WORKING_DAY": 'working day',
+
+"context.help.rules.paragraph.2.title": 'Restrictions',
+
+"notification.plannedabsences.week": 'Approved absences at the beginning of week',
+
+"absences.for.acceptance.days.to.start": 'Beginning',
+
+"ConditionConfigDialog.condition.teams": 'In one of team',
+
+"absenceType.configuration.accrualCap": 'Accrual cap',
+
+"position.delete.onePosition.question": 'Do you want to delete &quot;%s&quot;?',
+
+"absenceType.configuration.accrualRule.firstAccrual.moment.ELIGIBILITY_PERIOD": 'In period when gains eligibility',
+
+"mail.absence.cancellation.to.accept.content": 'You have absence cancellation for approval.',
+
+"dateRanges.month.current": 'Current month',
+
+"absences.for.acceptance.date.create": 'Create date',
+
+"sign-in.alternatives.title": 'Or login with:',
+
+"report.employees.approvalFlow": 'Approval flow',
+
+"employees.office.import.title": 'Import from Office 365',
+
+"context.help.first.accrual.paragraph.1.title": 'First accrual for new hires',
+
+"google.calendar.fields.STATUS": 'Request status',
+
+"calendar.day.tuesday": 'Tuesday',
+
+"absenceType.configuration.accrualRule.firstAccrual.amount.FULL": 'Full amount',
+
+"person.preferences.overwrite": 'Activate custom settings',
+
+"absencetype.visibility.requirement.label": 'On &quot;Apply&quot; screen',
+
+"contractType.list.noData.answer1": 'To set up absence types policies that depends on contract types.',
+
+"notification.pending.requests": 'Reminder about pending requests',
+
+"google.integration.config.disabled.howToTurnOn.2": 'Click this button to connect Calamari and GSuite',
+
+"google.integration.config.disabled.howToTurnOn.1": 'Follow the instructions from our &lt;a href=&quot;https:\/\/help.calamari.io\/en\/article\/how-to-turn-on-integration-with-google-suite&quot; target=&quot;_blank&quot;&gt;help center&lt;\/a&gt;',
+
+"abnormality.FINISHED_TOO_EARLY": 'Finished too early',
+
+"employee.validation.publicId.notNull": 'Employee id cannot be empty',
+
+"workingWeek.workingDay": 'Working day',
+
+"common.error.security.accessDenied.title": 'Access denied',
+
+"slack.message.callback.leaveCancellationRequestRejected": ':disappointed_relieved: The cancellation request has been rejected.',
+
+"employee.birthDate": 'Birth date',
+
+"clockin.menu.conf.employees": 'Employees',
+
+"registration.tenant.country": 'Country',
+
+"person.contact": 'Contact',
+
+"import.title": 'Import data',
+
+"employee.gooogle.import.button": 'Google import',
+
+"dateRanges.month.next": 'Next month',
+
+"lifecycle.explanation.RESET_FLOW": 'The request has been reset to first step after approval flow update',
+
+"common.validation.emailFormat": 'Email is incorrect',
+
+"password.reset.question": 'Do you really want to reset password of &quot;%s&quot; ?',
+
+"security.error.googleRegistration.unknown": 'Error has been occurred. Please try again later.',
+
+"calendar.calendarEventColorShowing.required": 'Field is required',
+
+"common.error.defaultErrorWithMessage": '%s',
+
+"calendar.STATUS": 'Absence status',
+
+"absenceRequest.absence.finalQuestion.title": 'Notice',
+
+"problem.flow.emptyStep": 'Step %s is empty',
+
+"context.help.absence.type.body": 'The absence type is the heart of Calamari; on this screen you can configure all of its elements.',
+
+"context.help.google.paragraph.1.body": '&lt;strong&gt;Rules of Google Calendar synchronization:&lt;\/strong&gt;',
+
+"security.error.google.invalidStateId": 'Error while login with G Suite, please try again',
+
+"report.entitlement.pending": 'Pending',
+
+"absencetype.carriable.label": 'Transfer to next year',
+
+"teams.list.noData.tipContent": 'it\'\'s good to configure teams when you have 20 or more employees.',
+
+"absences.for.acceptance.no.data.introduction": 'There are no requests for your approval.',
+
+"absenceRequest.create.validation.availableAbsenceYears": 'You can\'\'t request absence for chosen period',
+
+"manager.conf.immediate": 'Direct manager',
+
+"error.common.internal": 'Error has occurred. We are working to solve it.',
+
+"absence.year.placeholder.month": 'Choose month',
+
+"ui.customization.logo.default.button": 'Default',
+
+"absence.acceptance.list.name": 'Flow name',
+
+"absenceRequest.error.InvalidCancelUser": 'Unable to perform operation. Permission deny.',
+
+"employee.validation.customNote.length": 'Note max length is ${max}',
+
+"project.restrictedTo": 'Time in this project can be logged by',
+
+"calendar.prev": '&amp;#x3c; Previous',
+
+"absenceType.configuration.accrualRule.periods.withCarryOver": 'Same as carry-over',
+
+"myWork.details": 'Details',
+
+"beacon.myprofile.beacon.header": 'Your mobile app configuration',
+
+"calendar.month": 'Month',
+
+"absenceType.configuration.tabs.carryover": 'Carry-over',
+
+"notification.clockin.AutoclosedShift": 'Shift has not been finished properly',
+
+"absences.for.acceptance.accepted.no.data.introduction": 'You have not approved any request yet.',
+
+"employee.validation.id.required": 'Employee required',
+
+"common.error.connection.message": 'Check your Internet connection and try again.',
+
+"security.loginPasswordPolicy.enable": 'Enable sign in method',
+
+"context.help.rules.paragraph.3.body": 'Change of any field of the rule triggers recalculation (including removal) all the history of entitlement accrued by the rule for all employees.',
+
+"absencetype.validation.reason.requirement.required": 'Reason is required',
+
+"common.signin.long": 'Sign in',
+
+"google.calendar.sync.organization.primary.calendar": 'Organization Google Calendar',
+
+"slack.message.clockin.shiftChangeRequest.DELETE.rejected.toOwner": 'Your shift removal %s have been rejected. More details: %s',
+
+"calendar.month.october.c": 'October',
+
+"report.employees.firstName": 'First name',
+
+"import.requests.date.err.notEmpty": 'Value is empty',
+
+"registration.tenant.url.validation.characters": 'Only small letters and numbers are allowed for URL',
+
+"calendar.month.february": 'February',
+
+"absenceType.configuration.tabs.restrictions.choose.isBeforeAndIsLonger": 'The absence must be requested ... calendar days before start date',
+
+"common.for": 'for',
+
+"ical.statuses": 'Show in calendar requests',
+
+"slack.message.leaveFinallyCancelledOtherEmployee": 'Absence request has been cancelled.',
+
+"DurationUnit.DAYS": 'Days',
+
+"projects.restoreFrom.done.notification": 'Project %s has been recovered',
+
+"google.integration.resync": 'Resync',
+
+"common.finish": 'Finish',
+
+"absenceRequest.processing.reject.group.success": 'Requests are rejected',
+
+"context.help.amount.title": 'Amount &amp; accrual moment',
+
+"initialEntitlement.button": 'Initial entitlement',
+
+"toggl.configuration.enable.integration": 'Enable Toggl integration',
+
+"daysReducingLeavePool.validation.day.startAndFinishShouldBeBoothOrAny": 'Fill booth start and finish hours or leave them empty',
+
+"flow.steps.header": 'Steps of approval',
+
+"welcomeScreen.leaveButton": 'Calamari Leave',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.WEEK.sameAs": 'Same weekday as',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.QUARTER.sameAs.eligibility": 'Day when gains eligibility',
+
+"roles.type.managers": 'Managers',
+
+"absenceRequest.validation.substitute": 'Substitute is required',
+
+"clockin.employee.export.qr.ids": 'Print QR codes for employees',
+
+"entitlementBalance.create.year": 'Year',
+
+"report.employees.customNote": 'Custom note',
+
+"absencetype.entitlement.referential.label": 'Get from',
+
+"slack.message.callback.leaveCancellationRequestAccepted": ':white_check_mark: The cancellation request has been approved.',
+
+"clockin.report.activities.firstName": 'Name',
+
+"signup.selectMode.user.desc": 'We use Calamari in our company. I want to get access to the application.',
+
+"security.error.google.noUserConnectedWithGoogle": 'Your user account not been integrated with G Suite yet. Please contact with your G Suite administrator.',
+
+"context.help.duration.paragraph.2.title": 'How to change it?',
+
+"toggl.configuration.excludedProjects": 'Excluded projects (comma separated)',
+
+"contractType.name": 'Name',
+
+"positions.list.noData.answer2": 'leave calendars for each position and each position in teams',
+
+"absenceType.configuration.accrualRule.prorata.rounding.one": 'Round to whole',
+
+"positions.list.noData.answer1": 'grouping of employees in your teams',
+
+"qrcode.iamclose.validation.terminal.apikey.null": 'Terminal can not be null',
+
+"positions.list.noData.answer4": '... and more',
+
+"absencetype.reference.taken.also": 'taken from:',
+
+"positions.list.noData.answer3": 'analysis of the availability of staff at the position before approving leave request',
+
+"signup.employee.title": 'Employee registration',
+
+"report.entitlement.export.filename": 'Entitlement',
+
+"absences.for.acceptance.header": 'Absences for approval',
+
+"absence.intro.message.step2.info": '&lt;b&gt;Working week&lt;\/b&gt; this is an element, which defines working hours in a working week. &lt;br\/&gt; In order to that configuration all absence request will be processed.&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;Configuration&lt;\/b&gt;&lt;br\/&gt;default configuration - we prepare samples of configuration&lt;br\/&gt;working hours - please fill with hours unit&lt;br\/&gt;working week - system automatically sum hours of working week&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;More&lt;\/b&gt;&lt;br\/&gt;To mark day as free from work, please fill field with zero value&lt;br\/&gt;',
+
+"google.calendar.message.link": 'Link:',
+
+"absence.status.PENDING": 'Pending',
+
+"report.attendance.summary.workOutTime": 'Remote work time',
+
+"password.reset.button": 'Password reset',
+
+"import.requests.int.err.notEmpty": 'Value is empty',
+
+"BalanceSummarize.LEAVE_REQUEST": 'Requested',
+
+"absenceType.configuration.validation.atLeastOneRule": 'Define at least one accrual rule',
+
+"clockin.menu.employeesWork": 'Timesheets',
+
+"office.errors.integration.usedDomain": 'Your domain is integrated with another Calamari company account. Please contact with support to solve this problem team@calamari.io',
+
+"mail.absence.cancellation.rejected.content": 'Your absence cancellation has been rejected.',
+
+"clockin.report.worked": 'Worked',
+
+"employee.error.changing.days": 'You can\'\'t change working week when employee has active absence requests.',
+
+"absenceRequest.processing.error.permissionOther": 'We cannot perform this operation because request status has changed before.',
+
+"signup.orHaveAccount": 'or if you have an account',
+
+"absenceType.configuration.requesting.minDurationSection.DAYS.WHOLE_DAY": 'Whole day',
+
+"user.role": 'User role',
+
+"notification.plannedremotework.week.pretext": 'Approved remote work requests for this week:',
+
+"lifecycle.action": 'Action',
+
+"absencetype.validation.holiday.leave.required": 'Holiday leave is required',
+
+"clockin.myterminals.title": 'My terminals',
+
+"calendar.calendarEventColorShowing.BY_ABSENCE_TYPE": 'Absence type',
+
+"workPlan.workingDay": 'Working day',
+
+"google.calendar.message.half.day.last": 'Last day:',
+
+"calendar.lastWeek": 'Last week',
+
+"common.sum": 'Sum',
+
+"project.restrictedTo.restricted": 'Some employees',
+
+"person.preferences.messaging": 'Notifications',
+
+"employee.complete": 'Complete',
+
+"clockin.breaks.list.title": 'Breaks',
+
+"publicapi.errors.UNKNOWN_ERROR": 'Unknown error.',
+
+"calendar.day.1": 'Monday',
+
+"terminal.list.toggl.intro": 'Use this terminal to automate import Toogle time entries to Calamari shifts.',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.QUARTER.sameAs": 'First day of quarter is',
+
+"calendar.month.august": 'August',
+
+"absence.dashboard.help": 'Help',
+
+"absenceType.configuration.tabs.restrictions.rule.isenabled.no": 'Disabled',
+
+"employee.invitation.send.ALL_USERS": 'All',
+
+"calendar.day.7": 'Sunday',
+
+"calendar.day.6": 'Saturday',
+
+"absenceType.configuration.carryover.carryNegative": 'Carry over the negative entitlement',
+
+"absenceType.configuration.tabs.general": 'General',
+
+"calendar.day.5": 'Friday',
+
+"timesheet.mode.workedTime": 'Worked time',
+
+"calendar.day.4": 'Thursday',
+
+"calendar.day.3": 'Wednesday',
+
+"common.logout": 'Logout',
+
+"slack.message.cancellationToAcceptance": 'Your employee want to cancel absence request and it is waiting for your acceptance.',
+
+"ical.calendar.message.reason": 'Reason:',
+
+"calendar.day.2": 'Tuesday',
+
+"absencetype.validation.max.reference.required": 'Limit value of entitlement is required',
+
+"context.help.ical.paragraph.1.list.link.1": 'user settings',
+
+"person.address.city": 'City',
+
+"absenceType.configuration.accrualRule.accrueMoment.PERIOD_START": 'When the period begins',
+
+"employee.reducingLeavePool": 'Working week',
+
+"absences.for.acceptance.dialog.reject.question": 'Do you really want to reject this request?',
+
+"common.this.year": 'in this year',
+
+"workingTimeUnit.HOUR.genitive": 'hours',
+
+"clockin.report.timesheet.dayOfWeek": 'Weekday',
+
+"clockin.breaks.autoIncluded.startTime.afterWorked": 'Start after worked',
+
+"absenceType.configuration.tabs.restrictions.rule.isenabled.yes": 'Enabled',
+
+"ui.customization.logo.error.title": 'Cannot change the logo',
+
+"absences.for.acceptance.transition.name.cancel.long": 'Cancel request',
+
+"terminal.list.qrcode.intro": 'Qrcode terminal provide you to track time by scanning the QR code on mobile application.&lt;br\/&gt;In order to start using this type of terminal You should:',
+
+"support.sendMessage.title": 'Send your question(s) to the Calamari&rsquo;s team',
+
+"context.help.slack.paragraph.2.body": 'Accounts are connected via &lt;strong&gt;employee email&lt;\/strong&gt;, that requires you to use same email in Calamari and in Slack.',
+
+"employee.edit.settings.additional": 'Additional',
+
+"projects.create.title": 'New project',
+
+"absenceType.configuration.entitlementSource.OWN": 'This absence type has own entitlement',
+
+"password.change.newPassword.retype": 'Retype password',
+
+"mobile.absence.substitute.appointed": '%s appointed You as the substitute.',
+
+"maritalStatus.NOT_SET": '-',
+
+"asana.configuration.company": 'Company name',
+
+"support.sendMessage.ok.message": 'Message has been sent. We will contact with you as fast as possible.',
+
+"google.sign-in": 'Sign in with Google',
+
+"absenceRequest.restrictionRule.default.validation.notification": 'You\'re breaking the absence policy',
+
+"common.back": 'Back',
+
+"absenceType.configuration.tabs.restrictions.cantbeshorter.label": '=The absence may not be shorter than',
+
+"clockin.work.edit.edit": 'Edit',
+
+"employee.validation.firstName.required": 'Name required',
+
+"employee.invitation.sent.all": 'The invitations have been sent',
+
+"context.help.period.paragraph.2.title": 'Absence year',
+
+"presence.status.PRESENT": 'Present',
+
+"registration.contact.data": 'First user',
+
+"problem.flow.all.users": 'All employees assigned to this approval flow',
+
+"google.calendar.sync.all.day.PART_DAY": 'show time intervals according to the working week',
+
+"terminal.type.beacon": 'Beacon',
+
+"common.updateDate": 'Updated',
+
+"absenceType.configuration.accrualRule.periods.onlyOnce": 'Accrue only once',
+
+"calendar.month.short.september": 'Sep',
+
+"import.requests.float.err.invalid": 'Invalid value',
+
+"lifecycle.CANCELLATION_REJECT": 'Cancellation rejected',
+
+"absencetype.delete.question": 'Do you want to delete absence type &quot;%s&quot;?',
+
+"timesheet.accept.dialog.question": 'Do you really want to accept this request?',
+
+"absenceRequest.create.validation.future": 'Absence request can\'\'t be in the past',
+
+"terminal.list.beacon.desc.3": 'Configure mobile application.',
+
+"clockin.settings.autoclosing": 'Automatically close unclosed shifts at the end of the day',
+
+"absence.menu.asana": 'Asana',
+
+"terminal.list.beacon.desc.2": 'Install mobile application Calamari Clockin &lt;a href=&quot;https:\/\/play.google.com\/store\/apps\/details?id=com.chrobrus.calamari.mobile.employee&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;',
+
+"employee.new.reducing.leave.pool.left": 'Left',
+
+"import.csv.errorsTable.line": 'Line',
+
+"terminal.list.beacon.desc.1": 'Add and configure beacon terminal and assign to employees.',
+
+"allowance.balance.year": 'Year',
+
+"absenceRequest.create.validation.absenceTypeId.required": 'Absence type required',
+
+"absencetype.name": 'Name',
+
+"absenceRequest.created.title": 'Absence has been requested',
+
+"employee.validation.acceptance.flow.id.required": 'Approval flow required',
+
+"absence.year.list.title": 'Absence years',
+
+"absenceType.configuration.validation.rule.amount": 'Required',
+
+"absence.menu.holidays": 'Holidays',
+
+"absenceType.configuration.requesting.activateNewYearInAdvanceMonths": 'Activate new year ... months in advance',
+
+"registration.tenant.domain.validation.unique": 'This domain is already registered',
+
+"clockin.report.activities.duration": 'Duration',
+
+"clockin.breaks.type.NOREDUCING_SHIFT_TIME": 'No',
+
+"common.calculated.to": 'calculated to',
+
+"person.validation.language.required": 'Choose language',
+
+"absences.for.acceptance.transition.name.accept": 'Approve',
+
+"comment.add": 'Add a comment',
+
+"terminal.type": 'Type',
+
+"clockin.reports.dashboard.timesheet": 'Timesheet',
+
+"clockin.report.breaks": 'Breaks',
+
+"clockin.report.timesheet.deficit": 'Deficit',
+
+"lifecycle.CANCELLATION_BEGIN": 'Cancellation',
+
+"clockin.report.activities.SHIFT": 'Work',
+
+"context.help.entitlement.paragraph.1.body": 'You can choose the type of entitlement accrual:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Unlimited&lt;\/strong&gt; - this type allows employees to apply for leave without any system limit, only approver will decide if the employee can be out of office.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;Accrued&lt;\/strong&gt; - all employees earn entitlement according to the rules.&lt;\/li&gt;&lt;\/ul&gt;',
+
+"absences.for.acceptance.info.no.data": 'There are no absences at this time',
+
+"notification.clockin.ShiftChangeRequestToApprove": 'I have got new timesheet change request for approval',
+
+"acceptanceFlow.alternativesInfo": 'This acceptance flow works the same way for all types of requests. You can configure different flows for:&lt;ul&gt;&lt;li&gt;specific absence types&lt;\/li&gt;&lt;li&gt;manual timesheet changes&lt;\/li&gt;&lt;\/ul&gt;For example: you can configure &quot;Sick leave&quot; to be auto approved but leave other types for approval by the manager.',
+
+"validator.future": 'Set date in future',
+
+"registration.validation.name.required": 'Organization name is required',
+
+"absenceRequest.error.InvalidAcceptanceUser": 'Unable o perform operation. Permission deny.',
+
+"absences.for.acceptance.status": 'Status',
+
+"manager.conf.emptyManager": 'Is still not manager, choose subordinates.',
+
+"person.validation.password.equal": 'Current password is different. Please try again.',
+
+"employee.adjustEntitlement.button": 'Adjust entitlement',
+
+"calendar.month.short.april": 'Apr',
+
+"absence.configurations.dashboard.googleImport": 'Import from Google',
+
+"registration.tenant.url": 'Desired URL',
+
+"absence.acceptance.error.permission": 'Access denied to perform operation. Request status has changed before.',
+
+"report.pdf.REPORTER_FULL_NAME_LABEL": 'Employee name',
+
+"lifecycle.title.history": 'History',
+
+"password.reset.title": 'Password reset',
+
+"holiday.holidayStart": 'Start date',
+
+"security.login": 'Email',
+
+"absences.for.acceptance.date.end": 'End',
+
+"clockin.timeentry.validation.breaks.overlap": 'Breaks overlap',
+
+"calendar.day.min.sunday": 'Su',
+
+"registration.tenant.agreement": 'Accept terms of use and privacy policy',
+
+"common.time.hour.short": 'h',
+
+"absenceType.configuration.accrualRule.prorata.months.countPartAsFullMonth": 'Based on partial months',
+
+"manager.buttons.makeForTeam": 'Team',
+
+"maritalStatus.WIDOWED": 'Widowed',
+
+"import.csv.errorsTable.errors": 'Errors',
+
+"holiday.create.validation.endTime.required": 'End date is required',
+
+"slack.configuration.title": 'Slack',
+
+"jira.integration.conf.disabled": 'Integration with Jira is disabled',
+
+"absenceType.configuration.accrualRule.period.BIMONTH": '2 Months',
+
+"context.help.ical.paragraph.4.list": 'Instructions on how to use integrate iCalendar are available in&amp;nbsp;',
+
+"allowance.balance.reason.TRANSFER_TO_NEXT_YEAR": 'Transfer to next year',
+
+"absenceType.configuration.accrualRule.period.ONCE_HIRE_DATE": 'One-time accrual at the first day of work',
+
+"absenceRequest.lastDay": 'Last day',
+
+"EntitlementBalance.LEAVE_REQUEST": 'Requested',
+
+"comment.required": 'Comment is required',
+
+"terminal.type.qrcode.myprofile.message": 'Download ID to QRcode terminals',
+
+"clockin.report.presence.employeeFullName": 'Employee',
+
+"allowance.balance.pool.before.value": 'Before',
+
+"position.new.title": 'New position',
+
+"security.reset.password.invalidEmail": 'Invalid email',
+
+"slack.message.clockin.shiftChangeRequest.comment": '%s said regarding shift change request %s %s :\n %s',
+
+"absenceRequest.nextAssignee": 'Next approval',
+
+"absence.menu.list.imports": 'Import',
+
+"common.accept": 'Approve',
+
+"terminal.list.slack.intro": 'Use this terminal if you want start and stop your work using commands in Slack. Just type &quot;\/calamari clockin&quot; to start and &quot;\/calamari clockout&quot; to stop.',
+
+"dpa.agreement.button.agree": 'Agree',
+
+"clockin.report.abnormality.toDate": 'To',
+
+"clockin.employee.detailsTabs.additional": 'Additional',
+
+"absenceType.configuration.subtraction.subtractMethod.CALENDAR_DAYS": 'every calendar day',
+
+"employees.office.import.selectEmployees.message": 'You need to select at least one user to import. All configuration will be made in further steps.',
+
+"support.filesharing.link": 'Send files',
+
+"RequestFuturePresentation.nowWaiting": 'Now:',
+
+"absencetype.holiday.leave.label": 'Holiday leave',
+
+"person.sex": 'Gender',
+
+"clockin.breaks.create.title": 'New break type',
+
+"registration.configuration.info": 'Calamari is the HR management system, before you will use Calamari please set up basic configuration.',
+
+"ical.subscribe": 'Subscribe',
+
+"terminal.type.webApp.defaultName": 'Web browser terminal',
+
+"google.integration.config.disabled.advantages.3": 'Show employees time off in Google Calendar',
+
+"google.integration.config.disabled.advantages.2": 'Synchronise employees with Google domain',
+
+"google.integration.config.disabled.advantages.1": 'Sign-in with G Suite account',
+
+"absenceType.configuration.carryover.carryMax": 'Max',
+
+"clockin.report.presence.export.filter.info.contractTypes": 'contract types:',
+
+"calendar.day.min.friday": 'Fr',
+
+"securityAction.entitlement.check.subordinates": 'Check entitlement of subordinates',
+
+"absencetype.validation.id.not.exists": 'Absence type not exists',
+
+"daysReducingLeavePool.name": 'Name',
+
+"security.error.asana.unknownError": 'Unexpected error ocurred.',
+
+"absenceRequest.last.requests": 'Requests history',
+
+"terminal.validation.uuid.required": 'Uuid is required',
+
+"absence.menu.daysReducingLeavePool": 'Working week',
+
+"entitlementBalance.create.absenceType": 'Absence type',
+
+"employee.externalNumber": 'Employee number',
+
+"abnormality.LATE": 'Late',
+
+"context.help.subtract.method.paragraph.3.title": 'Public holidays',
+
+"common.time.minute.short": 'min',
+
+"absence.acceptance.placeholder": 'Choose employee or team',
+
+"absenceType.configuration.accrualRule.eligibleFrom.fromHireUnit.WEEK": 'Weeks',
+
+"person.changePassword": 'Password change',
+
+"report.employees.address": 'Address',
+
+"registration.consent": 'I accept the following statement',
+
+"registration.tenant.domain": 'Domain',
+
+"calendar.page.title": 'Absence requests calendar',
+
+"allowance.balance.reason.REJECTED_REQUEST": 'Rejected request',
+
+"clokin.report.timesheet.export.filename": 'Timesheet',
+
+"common.time": 'Time',
+
+"import.pool.field.absenceYear": 'Absence year',
+
+"common.nomatches": 'No results',
+
+"employeeWork.WARN": 'Warning',
+
+"acceptanceFlow.alternative.header.default": 'Default approval steps',
+
+"bookademo.link": 'Sign up',
+
+"slack.message.leaveRejected": 'Your absence request has been rejected.',
+
+"office.integration.config.enabled.advantages.title": 'Your account is integrated with Office 365, you can now:',
+
+"dpa.agreement.agreement": 'I have read and accept the Data Processing Agreement.',
+
+"google.calendar.sync.user.primary.calendar": 'User Private Google Calendar',
+
+"absenceType.configuration.validation.unit.validUnit": 'Select absence type unit',
+
+"daysReducingLeavePool.countWorkingDays": 'Number of working days',
+
+"absence.menu.contractTypes": 'Contract types',
+
+"securityAction.calendar.security.show.team.only": 'See on calendar absence requests:',
+
+"clockin.report.presence.ordinalNumber": 'No.',
+
+"absenceType.configuration.accrualRule.period.BIWEEK": '2 weeks',
+
+"import.absenceRequests.success.title": 'Requests history imported',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.15": '15th day of month',
+
+"report.request.title": 'Requests',
+
+"absence.menu.listYears": 'Absence years',
+
+"my.request.tabs.all.requests": 'All requests',
+
+"report.pdf.AUTOAPPROVAL": 'Automatic approval',
+
+"absenceRequest.processing.error.cancellationStoppedToApproved": 'You cannot perform this operation because cancellation of this request has been rejected before.',
+
+"project": 'Project',
+
+"organization.validation.timezone.required": 'Timezone required',
+
+"absenceType.configuration.accrualRule.eligibleTo.FIRE_DATE": 'Last day at work',
+
+"beacon.iamclose.validation.etag.null": 'No eTag provided',
+
+"maritalStatus.SEPARATED": 'Separated',
+
+"clockin.report.presence.export.filter.info.teams": 'teams:',
+
+"context.help.subtract.method.paragraph.1.title": 'What is taken into consideration?',
+
+"timesheet.worked": 'Worked',
+
+"absenceAllowance.list.details.accepted": 'Approved',
+
+"google.integration.config.disabled.advantages.title": 'Do you use G Suite? Try our integration:',
+
+"absence.year.status.active": 'Active',
+
+"jira.configuration.check.result.title": 'Checking your Jira Tempo connection',
+
+"terminal.type.qrcode": 'QRCode',
+
+"absence.intro.message.step2.todo": '&lt;b&gt;Working week&lt;\/b&gt;&lt;br\/&gt;Now set proper working hours or change those already defined in system.',
+
+"timesheet.pending.EDIT": 'Pending update',
+
+"positions.list.noData.introduction": 'It seems that you haven\'\'t added any position yet.',
+
+"google.calendar.sync.holidays.false": 'Left holidays inside Calamari',
+
+"security.error.basecamp.noUserConnectedWithBasecamp": 'Hmm... it seems that you don\'t have employee account in Calamari. Please contact with your Calamari administrator.',
+
+"context.help.slack.paragraph.1.list": '&lt;li&gt;&lt;strong&gt;receive notifications&lt;\/strong&gt; from Slack instead of email (eg. notifications about approval), notification channels can be configured in &lt;a href=&quot;\/absence\/main.do#\/settings\/userSettings.do&quot;&gt;user settings&lt;\/a&gt;&lt;\/li&gt;',
+
+"security.configuration.title": 'Permissions',
+
+"absenceType.configuration.tabs.restrictions.cantrequestinpast.daysafter.label": 'days in the past',
+
+"clockin.break.type.not.exist": 'Breaks are not configured in Calamari.',
+
+"absenceType.configuration.accrualRule.period.ABSENCE_YEAR": 'Annual or anniversary according to the carry-over',
+
+"clockin.report.abnormality.employeeName": 'Employee',
+
+"clockin.breaks.autoIncluded.startTime.fixedHour": 'Start at',
+
+"absencetype.list.reason.requirement.label": 'Reason',
+
+"context.help.accrual.up.to.title": 'Accrual up to',
+
+"clockin.menu.clock": 'Clock',
+
+"absenceType.configuration.requesting.minDurationSection.DAYS.HALF": '1\/2 day',
+
+"absenceType.configuration.tabs.restrictions.chooseRestrictionType": 'Choose',
+
+"lifecycle.AUTO_FINAL_ACCEPT": 'Final approval',
+
+"absenceAllowance.list.details.allowed": 'Currently allowed',
+
+"clockin.report.dashboard.activities": 'Activities',
+
+"common.prev": 'Previous',
+
+"security.error.office.noDomainOfficeAccount": 'Account is not integrated with Office 365. Login only with your application login to Calamari',
+
+"terminal.list.mobile.intro": 'Mobile application terminal makes possible to clock in by native mobile application.',
+
+"context.help.amount.paragraph.1.body": 'This amount will be added to the entitlement of all employees for whom the rule is restricted. Unit of this amount is always taken from the absence type unit field.',
+
+"security.error.basecamp.oauthNotAuthorized": 'If you want to sign-in to Calamari via Basecamp you have to authorize access.',
+
+"common.view.employee.setting": 'User settings',
+
+"context.help.accrual.up.to.paragraph.2.body": '&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Estimate future entitlement&lt;\/strong&gt; - in this case system will accrue entitlement up to the end of the possible requesting period, and employee will be allowed to request days in futureAccrue based on the futureAccrue entitlement.&lt;\/li&gt;',
+
+"clockin.report.timesheet.regularTime": 'Planned',
+
+"common.expire": 'Expire',
+
+"absenceType.configuration.tabs.restrictions.cantrequestinpast.label": 'Absence can be requested up to',
+
+"DurationUnit.HOURS": 'Hours',
+
+"license.applicationCode": 'Application code',
+
+"report.pdf.CREATE_DATE_LABEL": 'Creation date',
+
+"slack.message.clockin.shiftChangeRequest.CREATE.finallyAccepted.toOwner": 'Your shift creation %s have been accepted. More details: %s',
+
+"presence.status.DAY_OFF": 'Day off',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.BIMONTH.sameAs.eligibility": 'Day when gains eligibility',
+
+"terminal.type.beacon.minor": 'Minor',
+
+"absence.configurations.title": 'Configuration',
+
+"abnormalities.list.title": 'Configure abnormalities',
+
+"dateRanges.month.previous": 'Previous month',
+
+"lifecycle.date": 'Date',
+
+"calendar.month.march": 'March',
+
+"common.change": 'Change',
+
+"common.any-whatever": 'Any',
+
+"context.help.eligible.from.paragraph.1.body": '&lt;strong&gt;Eligible from&lt;\/strong&gt; - is the starting date when the employee is allowed to earn the entitlement. &lt;ul&gt;&lt;li&gt;&lt;strong&gt;First day at work&lt;\/strong&gt; - it means from hire date (the day is included)&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;After hire&lt;\/strong&gt; - you can choose period from hire date (the last day of offset is included)&lt;\/li&gt;',
+
+"absence.acceptance.delete.question": 'You are deleting approval flow',
+
+"notification.birthday.today.slack.outro.plural": 'Happy Birthday Guys!',
+
+"person.change.password.message": 'Password has been changed.',
+
+"ical.calendar.name.EMPLOYEE_PRIVATE_CALENDAR": 'Calamari - My leaves',
+
+"context.help.google.title": 'How it works?',
+
+"notification.clockinRemainder.subject": 'Clock in reminder',
+
+"person.email": 'Email',
+
+"allowance.balance.reason.OTHER": 'Other',
+
+"calendar.week": 'Week',
+
+"clockin.breaks.type": 'Unpaid break',
+
+"slack.error.invalidParams.text": 'Hmm... you provided invalid or incomplete parameters :confused: Please type \/calamari help to learn how to use it',
+
+"allowance.balance.reason.EMPLOYEE_CREATE": 'New user',
+
+"clockin.work.edit.createShiftSameDay": 'Add presence this day',
+
+"absences.for.acceptance.detail.title": 'Absence for approval details',
+
+"contractType": 'Contract type',
+
+"google.integration.config.title": 'G Suite integration',
+
+"security.error.asana.oauthNotAuthorized": 'If you want to login in to Calamari via Asana you have to authorize access.',
+
+"notification.group.validation.duplicate": 'There is identical notification configured already',
+
+"jira.integration.conf.connector.enableCheckbox": 'Enable integration with &quot;Calamari Jira Connector&quot; plugin',
+
+"terminal.conf.add.button": 'Add access to terminal for employee',
+
+"context.help.effective.date.title": 'Effective date',
+
+"person.lastName": 'Last name',
+
+"organization.license.info": 'You currently have:',
+
+"absences.for.acceptance.type": 'Type',
+
+"terminal.type.beacon.identification": 'Identification',
+
+"absenceType.configuration.accrualRule.title": 'Accrual rules',
+
+"jira.configuration.save.ok": 'Successfully saved.',
+
+"absenceType.configuration.effectiveDate.help": 'When accrual engine can should start accruing',
+
+"employee.edit.settings.main": 'Main',
+
+"jira.integration.conf.title": 'Jira',
+
+"employee.validation.idNotExists": 'Employee not exists',
+
+"slack.error.notIntegrated.fallback": 'It seems that your Slack team is not properly integrated with Calamari.',
+
+"calendar.day.short.tuesday": 'Tue',
+
+"import.pool.field.handAdjusted": 'Hand adjusted',
+
+"beacon.iamclose.validation.beacon.notExists": 'Beacon doesn\'t exists',
+
+"dpa.agreement.button.later": 'Later',
+
+"jira.integration.conf.appLink.title": 'Application Link Configuration',
+
+"sign-in.sign-up.button": 'Sign up',
+
+"apply.onBehalf.button": 'On behalf of...',
+
+"absenceType.durationUnit.DAYS": 'Days',
+
+"calendar.showBirthdaysOnAbsenceCalendar": 'Show birthdays on the calendar',
+
+"common.old.password": 'Current password',
+
+"absenceType.configuration.tabs.absenceYear": 'Absence year',
+
+"security.error.google.domainNotRelatedWithTenant": 'Your G Suite domain administrator needs to set up Calamari before you can use it. Please encourage them to do so!',
+
+"notification.clockinRemainder.slack": 'Your work starts at *%s*. It is time to clock in.',
+
+"slack.clockin.shift.stopped": 'Bye %s, have a great time!',
+
+"common.selectAll": 'Select all',
+
+"notification.leave.MyLeaveCancellationApproved": 'My absence request cancellation has been approved',
+
+"common.start.week.day.validation.interval": 'Invalid value of first day of week, please choose day number from 0 to 6',
+
+"common.period.current": 'Current',
+
+"toggl.configuration.workspaceId": 'Workspace id',
+
+"context.help.fieldname.paragraph.1.body": 'Here you can find a list of fields in each absence request with this absence type.',
+
+"report.entitlement.accepted.days": 'Approved [days]',
+
+"calendar.wholeYear": 'Whole year',
+
+"employee.validation.existing.email.exists": 'Employee with duplicated email exists.',
+
+"context.help.question.paragraph.1.title": 'Just after apply',
+
+"dpa.agreement.checkbox.alert": 'Select the checkbox to confirm that you have read and accepted the terms and conditions of the Data Processing Agreement.',
+
+"employeesWork.title": 'Work',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.sameAs.eligibility": 'Day when gains eligibility',
+
+"mail.absence.finally.accepted.content": 'Your absence request has been approved.',
+
+"absenceType.configuration.accrualRule.prorata.rounding.no": 'Do not round result',
+
+"registragion.confirmationSuccess": 'Registration confirmed. We are starting to prepare application especially for you. When it will be ready we send you email with instructions.',
+
+"organization.license.max.users": 'Maximum users:',
+
+"context.help.period.paragraph.3.body": 'In this type, accrual will occur in the anniversary of the given event: moment of eligibility gains or the day of hire. Carry-over and expire engine works independently.',
+
+"context.help.fieldname.paragraph.1.title": 'Field name',
+
+"EntitlementBalance.MAIN_TYPE_RUNOUT": 'Main type run out',
+
+"calendar.last30Days": 'Last 30 days',
+
+"context.help.slack.title": 'How Slack integration works?',
+
+"person.preferences.datetime": 'Date time, language and region',
+
+"clockin.report.presence.title": 'Presence list',
+
+"security.error.basecamp.noTenant": 'Your Basecamp account isn\'\'t integrated with Calamari. Please install Calamari first and configure Basecamp integration.',
+
+"absenceRequest.processing.error.alreadyApproved": 'Someone has already approved this request before.',
+
+"google.calendar.subscribe.link": 'subscribe link',
+
+"absenceType.configuration.accrualRule.prorata.days": 'Based on days',
+
+"maritalStatus.DIVORCED": 'Divorced',
+
+"dashboard.integrations": 'Integrations',
+
+"calendar.month.short.february": 'Feb',
+
+"calendar.today": 'Today',
+
+"absenceType.configuration.validation.rule.intervalPointDayOfWeek": 'Required',
+
+"context.help.google.paragraph.0.2.list": 'Google Calendar synchronization',
+
+"report.employees.childrenCount": 'Number of children',
+
+"notification.clockin.MyShiftChangeRequestApproved": 'My timesheet change request has been approved',
+
+"clockin.report.timesheet.sum": 'Overall total',
+
+"mail.absence.rejected.content": 'Your absence request has been rejected.',
+
+"manager.conf.addImmediateSubordinate": 'Add subordinate',
+
+"notification.leave.AbsenceRequestToApprove": 'I have got new absence request for approval',
+
+"report.employees.workingWeek": 'Working week',
+
+"absenceType.configuration.\u0105bsenceYear.absenceYearRenewalType.label": 'Each absence year starts',
+
+"common.turnOff": 'Turn Off',
+
+"absenceRequest.processing.cancellationApprove.success": 'Request cancellation of %s is approved',
+
+"holiday.delete.overlap.requests.title": 'Overlapping requests.',
+
+"security.error.slack.noUserConnectedWithSlack": 'Hmm... it seems that you don\'t have employee account in Calamari. Please contact with your Calamari administrator.',
+
+"manager.conf.inTeams.wholeOrg": 'Whole organization',
+
+"clockin.report.timesheet.dayOff": 'Type',
+
+"slack.message.callback.leaveRequestRejected": ':disappointed_relieved: The request has been rejected.',
+
+"context.help.first.accrual.paragraph.1.body": 'Here you can choose the moment, and amount of first accrual for the employee, just after hiring him.',
+
+"absencetype.requirement.DISABLED": 'Disabled',
+
+"registration.waitawhile": 'Wait for a while, we are preparing application especially for you...',
+
+"google.year": 'Year',
+
+"google.calendar.fields.SUBSTITUTE": 'Substitute',
+
+"projects.remove.confirmation.message": 'Do you want to completely remove project %s? After the removal all time logged on this project will be marked as \'Any projekt\'.',
+
+"absenceType.configuration.requesting.END_OF_NEXT_ABSENCE_YEAR": 'Current and next absence year',
+
+"lifecycle.ACCEPT": 'Approval',
+
+"basecamp.configuration.title": 'Basecamp',
+
+"report.export.title": 'Export to Excel',
+
+"employees.list.notFound": 'no employees found',
+
+"common.time.hour": 'hour',
+
+"abnormality.ABSENCE": 'Absence',
+
+"notification.group.add.channel": 'Send to',
+
+"absenceType.configuration.limitation.undefined": 'Undefined',
+
+"absences.for.acceptance.dialog.reject.title": 'Rejecting of request',
+
+"calendar.lang.filename": 'en',
+
+"calendar.month.november": 'November',
+
+"absenceType.configuration.requesting.fieldsRequirement": 'Request fields requirements',
+
+"absence.intro.message.step5.todo": '&lt;b&gt;Approval&lt;\/b&gt;&lt;br\/&gt;Now add proper approval flows or change those already defined in system.',
+
+"notification.birthday.today.slack.intro.singular": '*Today* %s celebrates :tada::tada::tada: *birthday* :tada::tada::tada:.',
+
+"maritalStatus.MARRIED": 'Married',
+
+"notification.leave.MyLeaveRejected": 'My absence request has been rejected',
+
+"absenceType.configuration.tabs.restrictions": 'Restrictions',
+
+"common.ON": 'ON',
+
+"menu.profile": 'My profile',
+
+"absenceType.configuration.accrualRule.lastAccrual.amount.PRORATE": 'Prorate amount',
+
+"adjustEntitlement.comment": 'with comment',
+
+"absence.acceptance.error.in.active.requests": 'Approval flow is used in active requests',
+
+"security.error.slack.oauthNotAuthorized": 'If you want to sign-in to Calamari via Slack you have to authorize access.',
+
+"common.time.format": 'Time format',
+
+"common.error.internalError": 'Something went wrong...',
+
+"mail.absence.finally.cancelled.otherEmployee.subject": 'Employee absence request cancelled',
+
+"BalanceSummarize.MANUAL_EDIT": 'Manually edited',
+
+"google.sync.rule.validation.busy.only.not.null": 'Choose visibility',
+
+"clockin.timeentry.validation.atLeastMinute": 'At least minute',
+
+"mobile.message.leaveFinallyAccepted": 'Your absence request has been approved.',
+
+"asana.configuration.disabled.introduction": 'Asana integration is disabled',
+
+"files.upload.validation.size": 'File is too big',
+
+"terminal.type.webApp.restricted": 'Ip restricted',
+
+"setting.validation.timeFormat.exists": 'Time format not exists',
+
+"absenceAllowance.list.details.futureAccrue": 'Future accrue',
+
+"common.error.title": 'Oops...',
+
+"cookies.information.part3": 'You can specify the conditions for cookies storage and access in your browser.',
+
+"cookies.information.part2": 'Privacy Policy.',
+
+"cookies.information.part1": 'This web page uses cookies to deliver services in accordance with',
+
+"absencetype.substitute.field.label": 'Substitute',
+
+"person.businessPhone": 'Business phone',
+
+"lifecycle.CREATE": 'Creation',
+
+"ShiftChangeRequestMode.details.waitingFor.CREATE": 'Creation is waiting for approval',
+
+"jira.integration.conf.appLink.publicKey": 'Public key',
+
+"jira.configuration.url": 'Address Your Jira',
+
+"holiday.create.validation.datesValidTimeline": 'Start date has to be before end date',
+
+"notification.clockinRemainder.mobile.subject": 'It is time to clock in',
+
+"office.integration.config.disabled.howToTurnOn.1": 'Ask your admin to install Calamari in your company domain with the following link: &lt;a href=&quot;https:\/\/chrome.google.com\/webstore\/detail\/calamari\/ilkaieljlgejliejoemnnjkeebcholfm&quot; target=&quot;_blank&quot;&gt;https:\/\/chrome.google.com\/webstore\/detail\/calamari\/ilkaieljlgejliejoemnnjkeebcholfm&lt;\/a&gt;',
+
+"context.help.google.paragraph.2.list": 'event color depends on absence type or status',
+
+"office.integration.config.disabled.howToTurnOn.2": 'Click this button to connect Office 365 and Calamari:',
+
+"absence.acceptance.no.matches": 'Not found',
+
+"daysReducingLeavePool.validation.day": 'Invalid number of hours',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.BIWEEK.sameAs.hire": 'First day at work',
+
+"employee.new.periodType": 'Expressed in :',
+
+"user.role.manager": 'Manager',
+
+"terminal.type.slack": 'Slack',
+
+"workingTimeUnit.MINUTE.genitive": 'minutes',
+
+"report.employees.directManager": 'Direct manager',
+
+"notification.clockout.remainder": 'Clock out reminder',
+
+"slack.message.callback.leaveRequestAccepted": ':white_check_mark: You have successfully approved the request.',
+
+"worklog.workingOn": 'Working on',
+
+"context.help.duration.paragraph.1.body": 'You need to decide which unit you would like to use: &lt;ul&gt;&lt;li&gt;&lt;strong&gt;hours&lt;\/strong&gt; - it also can be displayed as days according to &quot;Working week&quot; hours grid.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;days&lt;\/strong&gt; - entitlement of this absence type will be calculated only in days (or 1\/2, 1\/4, of day, etc.)&lt;\/li&gt;&lt;\/ul&gt;',
+
+"common.error.loadPageError": 'Error while opening window. Try again.',
+
+"calendar.REPORTER": 'Reporter',
+
+"clockin.report.timesheet.breakTime": 'Breaks',
+
+"security.reset.password": 'Reset password',
+
+"module.clockin": 'Clockin',
+
+"common.ago": 'ago',
+
+"office.integration.config.disabled.howToTurnOn.title": 'How to turn on?',
+
+"project.restrictedTo.everybody": 'All employees',
+
+"calendar.month.short.december": 'Dec',
+
+"absencetype.entitlement.type.REGULAR_YEARLY": 'regular, renewal yearly',
+
+"absenceType.configuration.requesting.accrualUpTo": 'Calculations',
+
+"terminal.name": 'Name',
+
+"support.sendMessage.message": 'Your question(s)',
+
+"holiday.google.import.selectHolidays.message": 'Select at least one holiday',
+
+"employee.validation.allowancePool.allAbsencetTypes": 'Complete annual configuration for all absence types',
+
+"import.csv.downloadFormatFile": 'Download CSV format file',
+
+"context.help.period.paragraph.2.body": 'This type of cycle is based on the date that you will choose in &quot;Carry-over&quot; tab. This is the date of the expire and carry-over of entitlement it also can be the moment of next accrual.',
+
+"import.pool.field.initiallyAlocated": 'Initially allocated',
+
+"common.absence.type": 'Absence type',
+
+"organization.license.invalid": 'Your licence has expired',
+
+"import.section.users": 'Employees',
+
+"person.time.format": 'Time format',
+
+"report.employees.youngestChildBirthDate": 'The youngest child birth date',
+
+"employee.validation.current": 'You can\'t remove yourself.',
+
+"absenceType.configuration.accrualRule.period.once.linkWord": 'once',
+
+"absence.category": 'Absence category',
+
+"report.entitlement.pending.days": 'Pending [days]',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.sameAs": 'Same day of month as',
+
+"support.website": 'Website',
+
+"absences.for.acceptance.info.position.unknown": 'No position',
+
+"clockin.reports.dashboard.presence": 'Presence list',
+
+"manager.conf.addManager.button": 'Add manager',
+
+"terminal.type.toggl.conf.title": 'Toggl terminal',
+
+"absence.dashboard.help.generalTutorial": 'Tutorial',
+
+"absenceAllowance.list.details.allowed.inHours.details": 'Your working days has got various amount of working hours. You can take different number of working days in order to their lenght.',
+
+"users.list.title": 'Users',
+
+"jira.integration.conf.connector.apiKey": 'Api Key',
+
+"employee.list.archived.short": 'Archived',
+
+"daysReducingLeavePool.sumTime": 'Sum of working time',
+
+"manager.conf.inTeams": 'Manager for teams',
+
+"attachments": 'Attachments',
+
+"signup.company.checkEmail.title": 'Check your inbox',
+
+"employee.experience": 'Experience',
+
+"absence.intro.message.step5.info": '&lt;b&gt;Approval&lt;\/b&gt; Calamari allows to configure many approval flows.&lt;br\/&gt;Admin has been default approver .&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;Configuration&lt;\/b&gt;&lt;br\/&gt;- many steps of approval&lt;br\/&gt;- choose form existing users &lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;More&lt;\/b&gt;&lt;br\/&gt;Now you try to add your own approval flow.',
+
+"clockin.breaks.defaultName": 'Break',
+
+"security.section.title.employee": 'Employees can ...',
+
+"context.help.requirement.paragraph.1.body": 'This configuration allows you to choose if the field will be visible and required or optional for the absence request.',
+
+"absencetype.visibility.fieldname.label": 'Field name',
+
+"ui.customization.logo.email.title": 'Logo in emails',
+
+"report.request.export.filename": 'Requests',
+
+"terminal.type.webApp.new.title": 'Create new Webapp terminal',
+
+"beacon.iamclose.validation.apikey.invalid": 'Invalid apikey',
+
+"jira.configuration.apiKey": 'Key API',
+
+"entitlement.title": 'Entitlement in',
+
+"holiday.error.cannotCreateBecauseOfActiveAbsenceRequests": 'You can\'\'t create holiday because of active absence leave in chosen period',
+
+"terminal.list.beacon.intro": 'Terminal beacon provide you to track time using IBeacon technology. &lt;br\/&gt;In order to start using this type of terminal you should:',
+
+"jira.tempo.info.pre": 'Remember, that:',
+
+"ShiftProgressTimer.plannedStopIndicator.tooltip": 'Time you should finish your work',
+
+"import.requests.field.absenceType.err.invalid": 'Invalid absence type name',
+
+"slack.message.leaveCancellationRejected": 'Cancellation of your absence request has been rejected.',
+
+"absenceType.configuration.validation.rule.eligibilityEndUnit": 'Required',
+
+"person.firstName": 'First name',
+
+"absenceType.configuration.tabs.entitlement": 'Accrual',
+
+"calendar.lastMonth": 'Last month',
+
+"clockin.report.timesheet.work": 'Event',
+
+"context.help.requirement.paragraph.1.title": 'The &quot;apply&quot; screen',
+
+"report.employees.country": 'Country',
+
+"absenceType.configuration.requesting.END_OF_CURRENT_ABSENCE_YEAR": 'Only current absence year',
+
+"context.help.first.accrual.paragraph.3.body": 'Here you set the amount of the last accrual.',
+
+"notification.group.add.notification": 'Notification',
+
+"absence.status": 'Status',
+
+"context.help.subtract.method.paragraph.3.body": 'You can include or exclude public holidays to be counted in duration of the request (that what will be taken from entitlement).',
+
+"company.nip": 'Tax ID',
+
+"user.avatar": 'Profile photo',
+
+"absenceType.configuration.accrualRule.eligibleFrom.fullCalendarYearsUnitLabel": 'Full calendar years',
+
+"report.pdf.EMPLOYEE": 'Employee :',
+
+"terminal.type.api.conf.title": 'API Terminal',
+
+"daysReducingLeavePool.title": 'Working week configuration',
+
+"calendar.day.monday": 'Monday',
+
+"users.delete.title": 'Delete user',
+
+"EntitlementBalance.INITIAL": 'Initially allocated',
+
+"menu.timesheet": 'Timesheet',
+
+"common.add": 'Add',
+
+"holiday.halfday.period.am": 'AM',
+
+"person.timezone": 'Timezone',
+
+"absenceType.configuration.accrualRule.accrueMoment.PERIOD_END": 'When the period ends',
+
+"allowance.balance.reason.ACCEPTED_ABSENCE": 'Approved request',
+
+"clockin.breaks.autoIncluded.allowManual": 'Allow employee to manually start and stop this break',
+
+"slack.message.clockin.shiftChangeRequest.DELETE.finallyAccepted.toOwner": 'Your shift removal %s have been accepted. More details: %s',
+
+"absence.menu.apply": 'Apply',
+
+"slack.break.start.done": 'Great! Break started, you can grab a coffee now.',
+
+"absenceType.configuration.accrualRule.restricted.ALL": 'For all',
+
+"daysReducingLeavePool.countOfEmployee": 'Number of employees',
+
+"allowance.balance.pool.change.value": 'Amount',
+
+"absencetype.entitlement.type.REFERENTIAL.info": 'Get also from',
+
+"daysReducingLeavePool.validation.name.required": 'Name is required',
+
+"calendar.showFreeWorkingOnAbsenceCalendar": 'Show \'out of office\' as marked in working week configuration',
+
+"worklog.report.export.tab.text": 'Projects - text',
+
+"absences.for.acceptance.info.team.unknown": 'No team',
+
+"holiday.list.no.data.question": 'Reasons to configure holidays?',
+
+"ConditionConfigDialog.cond.notEverybody": 'Some employees...',
+
+"workPlan.dayOff": 'Day off',
+
+"person.youngestChildBirthDate": 'The youngest child birth date',
+
+"notification.plannedremotework.week.subject": 'Approved remote work requests for this week',
+
+"slack.message.clockin.shiftChangeRequest.CREATE": '%s created new shift for approval.',
+
+"terminal.list.webApp.intro": 'Web terminal provide you to track work time using web browser. &lt;br\/&gt; In order to start using this type of terminal you should:',
+
+"report.attendance.title": 'Attendance',
+
+"slack.integration.error.MISSING_SCOPE": 'We need to refresh Slack access privileges. You will be redirect to Slack authorization screen.',
+
+"slack.worklog.project.workingOn.dontUnderstandTitle": 'I don\'t know project name you typed...',
+
+"person.validation.date.format.id.required": 'Choose date format',
+
+"terminal.type.qrcode.myprofile.header": 'QRcode Terminals',
+
+"presence.employee.name.placeholder": 'Search employee...',
+
+"absenceRequest.error.onlyFuture": 'You can\'\'t choose dates in the past.',
+
+"slack.message.clockin.shiftChangeRequest.EDIT.rejected.toOwner": 'Your shift update %s have been rejected. More details: %s',
+
+"google.calendar.sync.in.description": 'Display in description',
+
+"holiday.googleImport.title.1": 'Import holidays from Google to',
+
+"clockin.shift.open.not.found": 'Shift not started.',
+
+"calendar.last7Days": 'Last 7 days',
+
+"absences.for.acceptance.transition.name.cancellation.reject": 'Reject Cancellation',
+
+"ui.customization.logo.error.size": 'Logo file cannot be bigger than 5MB. Please optimize your file and send again.',
+
+"ical.inDescription": 'Display in description',
+
+"holiday.googleImport.title.2": 'Calendar',
+
+"acceptance.step": 'Step',
+
+"absenceType.configuration.accrualRule.periods.periodsStart": 'Periods start',
+
+"workReport.status.presentButNotPlanned": 'Present but should not',
+
+"report.employees.homePhone": 'Home phone',
+
+"mail.absence.cancellation.finally.accepted.content": 'Your absence cancellation has been approved.',
+
+"notification.plannedremotework.day.pretext": 'Today&rsquo;s approved remote work requests:',
+
+"absenceType.configuration.validation.rule.eligibilityStartUnit": 'Required',
+
+"absenceType.configuration.requesting.requestingInFutureMonthsField": 'Number of months in future',
+
+"clockin.employees.export.qr.title": 'Print QR codes for employees',
+
+"team.create.validation.name.required": 'Name is required',
+
+"clockin.timesheet.unapprovedShift": 'Unapproved shift',
+
+"notification.group.add.context": 'Regarding',
+
+"absenceRequest.create.validation.hours.noLongerThanWorkingDay": 'You cannot request more leave hours than you work',
+
+"slack.message.leaveRevoked": 'Approval of your absence request has been revoked.',
+
+"jira.configuration.check.result.ok": 'Calamari is properly configured to work with Jira Tempo.',
+
+"common.time.minutes": 'minutes',
+
+"holiday.list.no.data.introduction": 'It seems that you haven\'\'t added any holidays to &quot;&lt;span class=&quot;holiday_no_data_introduction_calendar&quot;&gt;&lt;\/span&gt;&quot; calendar in &lt;span class=&quot;holiday_no_data_introduction_year&quot;&gt;&lt;\/span&gt; year yet.',
+
+"ConditionConfigDialog.cond.everybody": 'Everybody',
+
+"clockin.break.autoincluded.manualNotAllowed": 'This break is included automaticaly and you are not allowed to stop it.',
+
+"common.year": 'Year',
+
+"absenceRequest.restrictionRule.cantbeshorter.validation.notification.forhours": 'The absence may not be shorter than %s hours.',
+
+"absenceType.durationUnit": 'Unit',
+
+"allowance.balance.comment": 'Comment',
+
+"presenceStatus.BREAK": 'Break',
+
+"allowance.balance.parameter.required": 'Field is required',
+
+"security.email": 'Email',
+
+"projects.list.active": 'Active',
+
+"terminal.type.qrcode.pdf.profile.filename": 'Calamari_QRCode_Id.pdf',
+
+"import.requests.field.workingDays.halfDaysOnlyOneDay": 'To many days for &quot;half-day&quot; request',
+
+"context.help.period.title": 'Accrual period',
+
+"absencetype.validation.source.required": 'Choose entitlement allocation method',
+
+"google.calendar.fields.REASON": 'Reason',
+
+"registration.tenant.phone.validation": 'Please enter the valid phone number',
+
+"context.help.ical.paragraph.3.list": 'When you remove employee his individual links will be inactive',
+
+"common.details": 'Details',
+
+"absencetype.validation.default.entitlement.required": 'Default value is required',
+
+"absence.acceptance.validation.employees.proper": 'Approval list is invalid',
+
+"worklog.report.export.tab.numeric": 'Projects - num',
+
+"absenceRequest.warning.substitute.requests.exist": 'Substitute has absence request i the same period',
+
+"common.turnOn": 'Turn On',
+
+"holidayCalendar.inSelectMenu": 'Calendar:',
+
+"registration.error.unexpectedError": 'Error has been occurred :( We are working to solve it... please try again later.',
+
+"securityAction.clockin.reports.access.subordinates": 'View reports of subordinates',
+
+"absence.configurations.dashboard.absence.title": 'Absence configuration',
+
+"absenceType.configuration.validation.takeMaxAmount.validNumber": 'Give number or leave empty',
+
+"import.pool.error.invalidFile.title": 'There are errors in CSV file',
+
+"report.attendance.summary.absenceTime": 'Absence time',
+
+"break.validation.startBeforeEnd": 'Start break time should be earlier than end time.',
+
+"employee.validation.team.exists": 'Team not exists',
+
+"absences.for.acceptance.forAcceptance": 'For approval',
+
+"common.years.genitive": 'years',
+
+"module.absence": 'Leave',
+
+"footer.aboutCalamari": 'about',
+
+"common.unit": 'Unit',
+
+"absence.acceptance.multiselect": 'Selection of approver',
+
+"lifecycle.FINAL_ACCEPT": 'Final approval',
+
+"report.employees.probationEndDate": 'Probation end',
+
+"absence.menu.jiraTempo": 'Jira Tempo',
+
+"auth.validation.loginPasswordAuthDataExistenceValidator": 'Login already exists',
+
+"absenceType.configuration.validation.rule.eligibilityStartValue": 'Required',
+
+"absenceType.configuration.accrualRule.eligibleTo.PROBATION_FINISH": 'When probation finishes',
+
+"absenceRequest.create.validation.hours.morethan1": 'Type number of hours',
+
+"absence.acceptance.delete.question.message": 'Are you sure to continue deleting of : &lt;b&gt;%s&lt;\/b&gt;?',
+
+"holiday.date": 'Date',
+
+"context.help.ical.paragraph.1.list": 'Individual links are available for employee in&amp;nbsp;',
+
+"import.requests.date.err.invalid": 'Invalid date format (give yyyy-mm-dd)',
+
+"abnormality.AUTOCLOSED": 'Automatically closed',
+
+"signup.company.firstStep.title": 'Try Calamari for free',
+
+"workReport.status.tooEarlyFinished": 'Finished too early',
+
+"slack.worklog.project.workingOn.title": 'What are you working on?',
+
+"absence.year.name": 'Year',
+
+"PartDayValue.MORNING": 'Morning',
+
+"absenceRequest.validation.request.in.future": 'Due to company policy, you can not request for absence in future',
+
+"beacon.iamclose.validation.beacon.null": 'No beacon provided',
+
+"employee.validation.one.admin.exists": 'You can\'\'t delete last administrator, please nominate the new one first.',
+
+"employee.emergencyContact": 'Emergency contact',
+
+"report.entitlement.extended": 'Detailed',
+
+"absenceRequest.validation.comment": 'Comment is required',
+
+"company.industry": 'Industry',
+
+"absence.dashboard.myAbsences": 'My absence requests',
+
+"google.webstore.installationTestFailed": 'Your Calamari account is integrated with Google but you didn\'\'t installed Calamari in your G Suite domain. It will cause many integration issues. &lt;br \/&gt;&lt;strong&gt;To use full potential of Calamari click button below in order to turn in on in your G Suite domain.&lt;\/strong&gt;',
+
+"problem.flow.onlyEmptyTeamsInStep": 'Only empty teams in step %s',
+
+"common.start.week.day": 'First day of week',
+
+"notification.lateSubordinates.mobile": 'Following employees should be at work by %s but still absent:',
+
+"absenceRequest.restrictionRule.notification.requestDuration.forhours": 'You request for absence %s-hours long.\n',
+
+"calendar.month.1": 'January',
+
+"absence.menu.absence.types": 'Absence types',
+
+"my.requests.filter.show.canceled.and.rejected": 'Show cancelled and rejected',
+
+"calendar.month.4": 'April',
+
+"calendar.month.5": 'May',
+
+"calendar.month.2": 'February',
+
+"calendar.month.3": 'March',
+
+"absenceRequest.restrictionRule.cantbelonger.validation.notification.forhours": 'The Absence may not be longer than %s hours.',
+
+"calendar.month.8": 'August',
+
+"calendar.month.9": 'September',
+
+"absenceType.configuration.validation.absenceYearRenewal.notNull": 'Required',
+
+"absenceRequest.title.details": 'Details',
+
+"calendar.month.6": 'June',
+
+"calendar.month.7": 'July',
+
+"absenceRequest.processing.approve.success": 'Request of %s is approved',
+
+"webAppTerminal.unavailable.reason.NO_TERMINAL": 'You can\'t start or stop shift using web browser. Use another terminal.',
+
+"google.errors.notIntegrated": 'Your account is not integrated with Google so you can\'\'t use this function.',
+
+"report.pdf.DETAILS": 'Details',
+
+"absenceType.configuration.accrualRule.firstAccrual": 'First accrual for new employees',
+
+"contractType.list.noData.introduction": 'It seems that you haven\'\'t added any contract type yet.',
+
+"shift.edit.title": 'Edit presence',
+
+"clockin.report.timesheet.workedTime": 'Worked',
+
+"clockin.employee.terminals.employee.select": 'Additional terminals available only for this employee',
+
+"absenceRequest.create.validation.reason.size": 'Reason is too long (max. 1024 characters)',
+
+"common.sendingFile": 'Sending file',
+
+"google.calendar.fields.CALAMARI_LINK": 'Request link',
+
+"security.forgotPassword": 'I forgot my password',
+
+"common.duration": 'Duration',
+
+"workingWeek.hours": 'Working hours',
+
+"common.undo": 'Undo',
+
+"import.from.office": 'From Office 365',
+
+"common.all": 'All',
+
+"absenceRequest.backToList": 'My requests',
+
+"absenceRequest.waitingForAcceptanceOf": 'Waiting for approval of',
+
+"employee.search.placeholder": 'Search employee...',
+
+"employees.google.import.selectEmployees.title": 'Select at least one user',
+
+"clockin.tutorial.step9": 'After adding break employees can report break by using Clock window. Depend on configuration break time will be subtracted or not from the shift time.',
+
+"flow.autoAcceptation.desc": 'Automatic immediate approval',
+
+"timesheet.accept.dialog.title": 'Accepting timesheet change',
+
+"employeeWork.status": 'Status',
+
+"registragion.error.unexpectedError": 'Error has been occurred :( We are working to solve it... please try again later.',
+
+"clockin.tutorial.step3": 'Calamari allows to clock in\/out work through: &lt;ul&gt;&lt;li&gt;&lt;strong&gt;Web App&lt;\/strong&gt; - Calamari clock screen, by clicking START\/STOP.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;Beacons&lt;\/strong&gt; - mobile app installed on employee\\\'s phone, the app clock in the employee when he come close to the Beacon device.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;QRcodes&lt;\/strong&gt; - employee punch in\/out by scanning unique QR code. &lt;\/li&gt;&lt;li&gt;&lt;strong&gt;Slack&lt;\/strong&gt; - employee can start and finish work from Slack   command line.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;Api&lt;\/strong&gt; - you can integrate your systems and clock in\/out employees using API.',
+
+"clockin.tutorial.step4": 'When you want to add a terminal you will have to select the type of terminal, in the following step define fill settings and decide who can use it. The Web App terminal is available by default, but you can adjust it.',
+
+"clockin.tutorial.step1": 'Now we will go together through several steps to help you to understand main concepts of Calamari Clockin.&lt;strong&gt; Click \'next\' and let&rsquo;s start!&lt;\/strong&gt;',
+
+"clockin.tutorial.step2": 'We use &lt;strong&gt;Terminals&lt;\/strong&gt; to define possible ways to start and finish work.',
+
+"absenceRequest.processing.error.statusRejected": 'We cannot perform this operation because request has been already rejected.',
+
+"clockin.tutorial.step7": 'When you creating \\&quot;Working week\\&quot; you should specify days, working hours (from, to) and the duration of hours that employees have to work in this regime. Calamari detects abnormalities related to working time. If you want to turn it of leave empty \\&quot;Work from\\&quot; and \\&quot;Work to\\&quot; fields.',
+
+"clockin.tutorial.step8": 'In next step, you can specify types of break that employees may report.',
+
+"clockin.tutorial.step5": 'In the next step you should specify weekly work schedules by filling \\&quot;Working week\\&quot;.',
+
+"clockin.tutorial.step6": 'Inside, you can manage work schedules. The \\&quot;Working week\\&quot; configuration is shared with Leave module. Each employee can be assigned to one \\&quot;Working week\\&quot;.',
+
+"slack.error.unknownCommand": 'I can\'t understand you :worried: Please use one of following commands.',
+
+"clockin.report.timesheet.in": 'In',
+
+"calendar.day.friday": 'Friday',
+
+"allowance.balance.reason.ABSENCE_TYPE_CREATED": 'Create absence type',
+
+"terminal.validation.uuid.invalid": 'Invalid UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)',
+
+"absenceType.configuration.accrualRule.prorata.months": 'Based on full months',
+
+"clockin.shift.validation.stopTimeShouldNotBeBeforeShiftStartTime": 'Provided shift stop time is before start time',
+
+"calendar.security.show.all": 'all employees',
+
+"ical.calendar.message.substitute": 'Substitute:',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.HALF": '30 min',
+
+"api.dashboard.button": 'API',
+
+"slack.help.Aliases": 'Aliases',
+
+"context.help.period.paragraph.4.title": 'Monthly, weekly, annually',
+
+"ical.calendar.message.reporter": 'Reporter:',
+
+"calendar.calendarEventColorShowing.BY_ABSENCE_STATUS": 'Absence status',
+
+"report.request.reason": 'Reason',
+
+"holiday.import.overlap.requests.title": 'Overlapping requests',
+
+"clockin.timesheet.shift": 'Shift',
+
+"person.fullName": 'Full name',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.MONTH.dayOfMonth": 'Day of each month',
+
+"absence.dashboard.employees.requests": 'Absence calendar',
+
+"absenceType.configuration.validation.rule.eligibilityStart": 'Required',
+
+"clockin.breaks.type.delete.title": 'Do you want to delete &quot;%s&quot;',
+
+"timezones.inYourCountry": 'In your country',
+
+"google.calendar.sync.all.day.label": 'Events displaying',
+
+"common.and": 'and',
+
+"clockin.report.timesheet.locationStarted": 'Location started',
+
+"notification.leave.MyLeaveRevoked": 'My absence request has been revoked',
+
+"absenceType.configuration.validation.rule.intervalPointDayOfMonth": 'Required',
+
+"slack.message.clockin.shiftChangeRequest.CREATE.finallyAccepted.toOthers": '%s new shift %s have been accepted.',
+
+"import.requests.field.wholeLine": 'CSV line',
+
+"clockin.report.timesheet.workingDay": 'Working day',
+
+"report.entitlement.teams": 'Teams',
+
+"employee.validation.seniority.geZero": 'Should be greater or equals to 0',
+
+"sage.configuration.enabled.introduction": 'Sage integration is enabled. Click &lt;a href=&quot;\/absence\/main.do#\/reports\/requests.do&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;  if you want to generate the export file.',
+
+"google.calendar.message.reporter": 'Reporter:',
+
+"absenceRequest.fromEntitlement": 'Requested',
+
+"clockin.mail.shift.autoclosing.subject": 'Automatic shift closing',
+
+"workReport.status.ok": 'Well done',
+
+"absenceType.configuration.requesting.entitlementUsageOrder.USE_FROM_PREVIOUS_WITH_TRANSFER": 'At first from the current year',
+
+"holiday.delete.title": 'Deleting holiday',
+
+"absenceType.configuration.takeEntitlementFrom.max": 'Take max amount',
+
+"absenceRequest.restrictionRule.validator.isEnabled": 'Rule is enabled, enter a value',
+
+"common.time.format.placeholder": 'Choose time format',
+
+"notification.config.mobile.tip.link": 'Install Calamari mobile application.',
+
+"employee.customNote": 'Custom note',
+
+"timesheet.mode.projects": 'Projects',
+
+"support.sendMessage": 'Contact us',
+
+"allowance.balance.reason.TRANSFER_FROM_PREVIOUS_YEAR": 'Transfer from previous year',
+
+"auth.password": 'Password',
+
+"absence.acceptance.error.in.employee": 'Approval flow is assigned to employee. In order to remove flow assign your employee to the different approval flow.',
+
+"absenceRequest.absence.finalQuestion.question": 'Do you want to create absence request?',
+
+"ical.calendar.message.status": 'Status:',
+
+"registration.confirmationSuccess": 'Registration confirmed. We are starting to prepare application especially for you. When it will be ready we send you email with instructions.',
+
+"employee.teamManager": 'Team manager',
+
+"slack.helpIntroduction": 'Calamari commands:',
+
+"messaging.channel.mail.group.destination.help": 'E-mail',
+
+"common.date.format.placeholder": 'Choose date format',
+
+"report.request.lengthInPeriod": 'Length in period',
+
+"common.register": 'Sign up',
+
+"initialEntitlement.title": 'Set initial entitlement',
+
+"lifecycle.RESET_FLOW": 'Reset approval flow',
+
+"employee.teams": 'Teams',
+
+"worklog.addEntry": 'Worked on',
+
+"AbsenceAllowanceBar.allowedBar": 'Available',
+
+"slack.message.clockin.autoclosed": 'Your shift started %s has not been finished... so Calamari did it automatically. Please contact the administrator to fill properly end time your work.',
+
+"calendar.day.saturday": 'Saturday',
+
+"password.change.newPassword": 'New password',
+
+"common.timezone": 'Timezone',
+
+"presence.status.ABSENT": 'Absent',
+
+"report.entitlement.allowed.hour": 'Allowed [h]',
+
+"teams.list.noData.question": 'Why you should configure teams?',
+
+"support.tutorial.howToUse": 'Tutorial - how to use',
+
+"clockin.report.abnormality.date": 'Start work',
+
+"footer.version": 'version',
+
+"acceptanceFlow.alternative.type.group.timesheet": 'Timesheet',
+
+"beacon.myprofile.message": 'Scan QR Code with mobile application',
+
+"presence.title": 'Presence',
+
+"clockin.report.timesheet.BREAK": 'BREAK',
+
+"holiday.create.overlap.requests.title": 'Overlapping requests',
+
+"absenceType.configuration.subtraction.secondsForCalendarDay": 'How many hours count per one calendar day',
+
+"menu.organization": 'Account settings',
+
+"context.help.effective.date.paragraph.2.body": 'If hire dates of your employees start in the period before the effective date, the rule will start to count entitlement from the effective date , but calculations will consider the day of hire.',
+
+"absences.for.acceptance.export.to.pdf": 'Download PDF',
+
+"person.validation.overriding.required": 'Field required',
+
+"absenceRequest.error.revokeTransitionNotFound": 'Absence request might be already revoked. Please refresh page and try one more time.',
+
+"terminal.collectGpsLocation": 'Track location with GPS',
+
+"calendar.month.may.c": 'May',
+
+"holiday.google.import.button": 'Import from Google',
+
+"timesheet.toAcceptance.noData.answer1": 'Don\'\'t worry, Calamari will send you an email when new request come.',
+
+"timesheet.toAcceptance.noData.answer2": 'Remember, Calamari will help you with decision of acceptance the timesheet change request.',
+
+"context.help.google.paragraph.0.1.list": 'your employees can sign in with Gmail',
+
+"person.maritalStatus": 'Marital status',
+
+"qrcode.iamclose.validation.apikeys.maches": 'Invalid terminal for employee',
+
+"my.request.tabs.recent.requests": 'Recent requests',
+
+"password.change.error.invalid": 'Your reset password request token is invalid. Please check if the link opened is correct.',
+
+"ShiftChangeRequestMode.CREATE": 'Shift was created',
+
+"security.error.google.installationOnlyForAdmin": 'Your G Suite domain administrator needs to set up Calamari before you can use it. Please encourage them to do so!',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.HALF_DAY": 'Half day',
+
+"error.mail.send": 'Error while sending email',
+
+"slack.message.clockin.shiftChangeRequest.EDIT.finallyAccepted.toOwner": 'Your shift update %s have been accepted. More details: %s',
+
+"context.help.rules.paragraph.3.title": 'Changes',
+
+"clockin.mail.shift.toapprove": 'Shift to approve',
+
+"report.employees.email": 'E-mail',
+
+"EntitlementBalance.TRANSFER_FROM_PREVIOUS_YEAR": 'Transferred from prev year',
+
+"clockin.report.timesheet.employee": 'Employee',
+
+"clockin.topmenu.mobile": 'Mobile App',
+
+"absenceRequest.status": 'Status',
+
+"registration.google.introduction": 'If your company has G Suite account install Calamari in your domain.',
+
+"employee.complete.attachEmployeeToRules.notice": 'You have configuration that filters absence types per particular employees. It\'s not good practice in Calamari. If you want to have smarter configuration drop us the line on team@calamari.io',
+
+"absence.menu.entitlement": 'Entitlement',
+
+"absenceType.configuration.accrualRule.firstAccrual.amount.PRORATE": 'Prorate amount',
+
+"holiday.create.message": 'Holiday has been created',
+
+"absence.menu.employees": 'Employees',
+
+"holidayCalendar.manage": 'Manage',
+
+"jira.integration.conf.integration.title": 'Integration',
+
+"my.requests.title": 'My requests',
+
+"absenceType.configuration.subtraction.subtractMethod": 'Include ... in leave request length',
+
+"employee.validation.allowedInYearMap.allAbsencetTypes": 'Complete configuration for all absence types and all active absence years',
+
+"absences.for.acceptance.add.comment": 'Comment',
+
+"absenceType.configuration.tabs.fields": 'Fields &amp; visibility',
+
+"report.employees.holidayCalendar": 'Holidays calendar',
+
+"notification.pending.request.subject": 'Reminder about pending requests',
+
+"absencetype.visibility.visibility.label": 'Visible to',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.ANNIVERSARY.hire": 'of first day at work',
+
+"common.period.next": 'Next',
+
+"messaging.channel.slack.group.destination.help": 'Slack channel',
+
+"absencetype.list.entitlement.default.label": 'Default value',
+
+"absences.for.acceptance.duration": 'Working \/ Calendar',
+
+"absenceType.configuration.accrualRule.prorata.options": 'Prorate calculation mode',
+
+"employee.new.title": 'New employee',
+
+"jira.configuration.save": 'Save',
+
+"absencetype.list.carriable.label": 'Carriable',
+
+"integration.error": 'Integration with %s doesn\'t work properly. Please check integration settings and if Calamari access is enabled in %s administration panel.',
+
+"calendar.month.december": 'December',
+
+"common.delete": 'Delete',
+
+"common.uploadFile": 'Upload file',
+
+"clockin.report.presence.export.filter.info.employees": 'employees:',
+
+"ConditionConfigDialog.condition.employee": 'Particular employe',
+
+"terminal.details": 'Details',
+
+"EntitlementBalance.CARRIED_OVER_EXPIRY": 'Transferred expired',
+
+"allowance.balance.change.person": 'Changer',
+
+"organization.address": 'Address',
+
+"absenceType.configuration.requesting.minDurationSection": 'Min leave duration within one day',
+
+"absenceType.configuration.accrualRule.number": 'Rule No',
+
+"terminal.type.mobile": 'Mobile application',
+
+"signup.dontHaveAccountQuestion": 'Don\'t have an account yet?',
+
+"terminal.type.webApp": 'Web App',
+
+"employee.list.archived.title": 'Archived employees',
+
+"clockin.breaks.button.stop": 'End Break',
+
+"employeeWork.FAIL": 'Incorrect',
+
+"absencetype.entitlement.max.carriable.label": 'maximum',
+
+"clockin.topmenu.qr.identifier": 'QR identifier',
+
+"absenceRequest.attachments": 'Attachments',
+
+"absenceRequest.end.year": 'Absence begins on the previous year',
+
+"absenceRequest.validation.reason": 'Reason is required',
+
+"report.amount": 'Amount',
+
+"import.pool.success.title": 'Absence entitlement imported',
+
+"clockin.report.activities.lastName": 'Surname',
+
+"absenceRequest.restrictionRule.violate.proceed": 'Proceed',
+
+"common.start.week.day.placeholder": 'Choose weekday',
+
+"report.pdf.COMPANY_NAME_LABEL": 'Organisation name',
+
+"report.pdf.REASON": 'Reason :',
+
+"messaging.channel.slack.name": 'Slack',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.QUARTER.calendar.FIRST_DAY_OF_YEAR": '1st of January',
+
+"remindPassword.backToSignin": 'Back to log in',
+
+"registration.consent.content": 'I accept [Terms of Use](https:\/\/calamari.io\/terms-of-use) and I agree to processing of personal data in accordance with [Privacy Policy](https:\/\/calamari.io\/privacy-policy).',
+
+"employee.invitation.send.ALL_USERS.question": 'Do you want to send email invitation to all employees ?',
+
+"context.help.duration.body": 'Here you can configure the basic unit to calculate absence.',
+
+"terminal.type.webApp.restricted.false": 'No IP address restrictions',
+
+"import.requests.field.status.err.notEmpty": 'Value is empty',
+
+"google.calendar.sync.busy.only.true": 'Show only busy status',
+
+"absencetype.entitlement.header": 'Entitlement',
+
+"context.help.eligible.to.paragraph.2.body": '&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Overall seniority&lt;\/strong&gt; - period from hire date summed with field &quot;Seniority before hire&quot;&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;After hire&lt;\/strong&gt; - period from hire date&lt;\/li&gt;&lt;\/ul&gt;',
+
+"allowance.balance.reason.CREATED_ABSENCE": 'New request',
+
+"mail.reset.password.subject": 'Password reset',
+
+"calendar.month.october": 'October',
+
+"terminal.validation.major.required": 'Major is required',
+
+"slack.clockin.shift.isNotStarted": 'Your work has been already finished or you did not start it today :smirk:',
+
+"absenceType.configuration.accrualRule.delete.remove": 'Remove entitlement',
+
+"ShiftProgressTimer.notstarted.startIn": 'Should start in %s',
+
+"absences.for.acceptance.transition.name.cancellation.accept": 'Approve Cancellation',
+
+"employee.active": 'Active',
+
+"calendar.day.short.saturday": 'Sat',
+
+"daysReducingLeavePool.edit.dialog.message": 'Do you want to change &quot;%s&quot;? This configuration is assigned to %s employees',
+
+"absenceType.configuration.durationUnit.DAYS": 'Days',
+
+"context.help.amount.paragraph.2.title": 'Accrual moment',
+
+"person.validation.businessPhone.length": 'Phone number max length is ${max}',
+
+"break.timeTo": 'Break finished',
+
+"securityAction.leave.reports.access.subordinates": 'View reports of subordinates',
+
+"security.loginPasswordPolicy.title": 'Login and password policy',
+
+"absenceType.configuration.accrualRule.add": 'Add another rule',
+
+"absenceType.configuration.accrualRule.earn": 'Employee earns',
+
+"ShiftChangeRequestMode.detailed.CREATE": 'Creating new shift',
+
+"registration.tenant.name": 'Organization name',
+
+"google.integration.resync.message.question": 'This process checks and repairs links of all your employees accounts in Calamari with their G Suite accounts, are you sure to continue?',
+
+"footer.website": 'website',
+
+"context.help.period.paragraph.4.body": 'Those types give you a possibility to give your employees entitlement in shorter cycles than a year.',
+
+"allowance.balance.system": 'System',
+
+"common.view.setting": 'Settings',
+
+"report.pdf.STATUS": 'Status :',
+
+"employees.google.import.selectEmployees.message": 'You need to select at least one user to import. All configuration will be made in further steps.',
+
+"team.none": 'Without team',
+
+"registration.company.data": 'Company',
+
+"mail.absence.finally.accepted.otherEmployee.subject": 'Employee absence request',
+
+"comment.add.change.pool.title": 'Calamari has detected changes in absence entitlement.',
+
+"absenceRequest.interval": 'Absence period',
+
+"organization.subscription": 'Subscription information',
+
+"abnormality.WORKED_TOO_SHORT": 'Worked too short',
+
+"absenceType.configuration.validation.rule.intervalPointMonth": 'Required',
+
+"report.employees.seniorityMonthsBeforeHire": 'Seniority before hire',
+
+"google.sync.rule.validation.fields.not.empty": 'This field can not be empty',
+
+"employee.validation.email.required": 'Email is required',
+
+"common.time.hours": 'hours',
+
+"clockin.menu.reports": 'Reports',
+
+"absences.for.acceptance.acceptance": 'Approval',
+
+"clockin.report.timesheet.duration": 'Duration',
+
+"import.from.csv": 'From CSV',
+
+"context.help.first.accrual.paragraph.3.title": 'The last accrual',
+
+"absenceType.configuration.validation.rule.eligibilityEndValue": 'Required',
+
+"common.deleteEntity.title": 'Deleting...',
+
+"users.new.action": 'New user',
+
+"clockin.work.abnormalities": 'Abnormalities',
+
+"absenceType.configuration.accrualRule.eligibleFrom.PERSON_CREATE_DATE": 'From the moment of adding employee',
+
+"absencetype.create.title": 'Creating absence type',
+
+"ui.customization.logo.error.format": 'You attached the file with unsupported format. Please upload your logo in SVG, JPG or PNG.',
+
+"sex.NOT_SET": '-',
+
+"mail.absence.to.accept.subject": 'Request for approval',
+
+"security.error.asana.noTenant": 'Your Asana workspace isn\'\'t integrated with Calamari. Please install Calamari first and configure Asana integration.',
+
+"BalanceSummarize.NEW_ABSENCE_YEAR": 'New year',
+
+"absences.for.acceptance.transitions": 'Actions',
+
+"BalanceSummarize.TRANSFER_TO_NEXT_YEAR": 'Transferred to the following year',
+
+"shift.create.timeTo": 'Work finished',
+
+"absenceAllowance.list.details.futureReduce": 'Future reduce',
+
+"ical.calendar.message.half.day.first": 'First day:',
+
+"ConditionConfigDialog.condition.sex": 'Gender',
+
+"employee.new.roleAdmin": 'Administrator',
+
+"common.month": 'Month',
+
+"daysReducingLeavePool.delete.question": 'Do you want to delete &quot;%s&quot;',
+
+"mail.registration.success.subject": 'Your account is ready to use!',
+
+"entitlement.my.entitlement": 'My entitlement',
+
+"notification.mobile.absenceToApprove": '%s sent you an absence request and is waiting for your approval.',
+
+"slack.message.clockin.shiftChangeRequest.DELETE": '%s requested shift update for approval.',
+
+"absenceType.configuration.accrualRule.firstAccrual.moment.ELIGIBILITY_NEXT_PERIOD": 'In next period after gains eligibility',
+
+"notification.lateSubordinates.subject": 'Late employees',
+
+"absencetype.visibility.ALL_EMPLOYEES": 'All employees',
+
+"employee.validation.position.exists": 'Position not exists',
+
+"absence.configurations.dashboard.help.title": 'Help',
+
+"absencetype.entitlement.reference.placeholder": 'Choose type',
+
+"break.edit.title": 'Edit break',
+
+"ical.organization.enabled": 'Activate ability to subscribe organization calendar',
+
+"clockin.employee.get.pdf": 'Download QR codes',
+
+"module.id.CALAMARI": 'Leave',
+
+"mail.absence.revoked.content": 'Approval of your request has been revoked.',
+
+"ShiftChangeRequestMode.EDIT": 'Shift was edited',
+
+"absence.dashboard.myAbsences.myRequests": 'My requests',
+
+"absenceType.configuration.accrualRule.period.YEAR": 'Year',
+
+"calendar.REASON": 'Reason',
+
+"entitlement.list.details": 'Details at the:',
+
+"workingWeek.to": 'Work to',
+
+"manager.immediateManagerfor": 'Direct manager for',
+
+"absence.year.activate": 'Activate',
+
+"clockin.report.timesheet.notHired": 'Not hired',
+
+"import.requests.csv.settings.skipNonExistingEmployees": 'Skip nonexistent employees',
+
+"absenceType.configuration.accrualRule.mode.EARN_FOR_SHIFTS_TIME.forWorked": 'For each worked',
+
+"clockin.break.type.not.found": 'Break name not found.',
+
+"absenceType.configuration.accrualRule.period.MONTH": 'Month',
+
+"dateRanges.week.previous": 'Previous week',
+
+"report.pdf.DATES_TO": 'to :',
+
+"absenceRequest.processing.error.notInFlow": 'You cannot approve or reject the request because you are not an approver in the approval flow.',
+
+"absences.for.acceptance.accepted": 'Approved',
+
+"report.employees.teams": 'Teams',
+
+"slack.configuration.team": 'Slack team',
+
+"common.selectNone": 'Clear',
+
+"absenceType.configuration.validation.entitlementType.notNull": 'Select entitlement type',
+
+"import.requests.field.absenceType": 'Absence type',
+
+"employee.seniorityBeforeHire": 'Seniority before hire',
+
+"notification.clockin.MyShiftChangeRequestRejected": 'My timesheet change request has been rejected',
+
+"validator.past": 'Set date in past',
+
+"menu.conf.breaks": 'Breaks',
+
+"context.help.google.paragraph.4.list": 'you can sync public holidays into the organization calendar',
+
+"absenceRequest.dates": 'Date',
+
+"absencetype.entitlement.unlimited.label": 'Employees can request unlimited number of time of this absence type.',
+
+"jira.integration.conf.appLink.url": 'Application link URL',
+
+"beacon.iamclose.validation.beaconDoesntMatchToApikey": 'Invalid beacon for this apikey',
+
+"report.request.finalApprovalDate": 'Final approval',
+
+"notification.leave.AbsenceRequestCancellationToApprove": 'I have got new absence request cancellation for approval',
+
+"calendar.eventType.ROSTER_FREE": 'Absence (due to the Working week)',
+
+"positions.list.noData.tipContent": 'it\'\'s good to configure positions when you have employees grouped in bigger teams',
+
+"google.integration.config.disabled.integrate": 'Integrate',
+
+"employee.validation.emergencyPhone.length": 'Phone number max length is ${max}',
+
+"projects.delete.done.notification": 'Project %s has been deleted',
+
+"google.calendar": 'Country holidays',
+
+"context.help.fields.title": 'Fields &amp; visibility',
+
+"PartDayValue.AFTERNOON": 'Midday',
+
+"absence.configurations.dashboard.absencetypes": 'Absence types',
+
+"context.help.slack.paragraph.3.list": '&lt;li&gt;&lt;strong&gt;clock in\/out&lt;\/strong&gt; using Slack command &lt;i&gt;\/calamari clockin&lt;\/i&gt; or &lt;i&gt;\/calamari clockout&lt;\/i&gt; &lt;\/li&gt;',
+
+"absence.menu.sage": 'Sage',
+
+"notification.leave.MyLeaveCancellationRejected": 'My absence request cancellation has been rejected',
+
+"lifecycle.CANCEL": 'Cancelled',
+
+"api.configuration.documentation": 'Documentation',
+
+"absencetype.delete.yes.with.requests": 'Yes, remove also requests',
+
+"import.absenceRequests.title": 'Requests history import',
+
+"person.homePhone": 'Home phone',
+
+"signup.company.fillData.step3.title": 'Set up URL for your company',
+
+"dashboard.help": 'Help',
+
+"notification.plannedremotework.day": 'Approved remote work requests every day at 8 AM',
+
+"tutorial.howtosetup.step13.a": '&lt;strong&gt;Fill hire date&lt;\/strong&gt;. Before Calamari can calculate employee entitlement it has to know when employee joined the company. &lt;br \/&gt;&lt;br \/&gt; Even though all fields are essential, the joining date seems to the most crucial.',
+
+"entitlement": 'Entitlement',
+
+"person.language": 'Language',
+
+"welcomeScreen.h1": 'It\'\'s great to see you in Calamari!',
+
+"position.members": 'Members',
+
+"context.help.google.paragraph.0.body": 'The G Suite integration gives you many benefits, now you can:',
+
+"licenceExpired.message": 'Your Calamari subscription has expired. Please notify an administrator of your account to renew the subscription.',
+
+"office.integration.config.title": 'Office 365 integration',
+
+"common.later": 'Later',
+
+"absencetype.requirement.OPTIONAL": 'Optional',
+
+"person.personalEmail": 'Personal email',
+
+"mobileApplication": 'Mobile application',
+
+"absence.acceptance.list.title": 'Approval flow',
+
+"common.error.connection.title": 'No message from server',
+
+"teams.list.noData.answer5": '... and more',
+
+"teams.list.noData.answer4": 'flexible configuration of approval flow (eg. approving whoever from Human Resources team)',
+
+"absenceRequest.dates.longer": 'Dates (from - to)',
+
+"teams.list.noData.answer3": 'analyze team capacity before approve leave request',
+
+"import.requests.field.wholeLine.err": 'Invalid CSV format',
+
+"teams.list.noData.answer2": 'leave calendars for each team',
+
+"teams.list.noData.answer1": 'grouping of employees',
+
+"import.from.google": 'From G Suite',
+
+"clockin.report.timesheet.locationFinished": 'Location finished',
+
+"google.calendar.sync.color.BY_ABSENCE_STATUS": 'to mark the absence status',
+
+"ShiftProgressTimer.started.toStopBeforePlanned": '%s to work end',
+
+"absenceRequest.restrictionRule.cantrequestinpast.violation.notification.fordays": 'The absnence was requested  %s days after allowed time.',
+
+"absenceType.configuration.accrualRule.eligibleTo": 'Loses eligibility',
+
+"clockin.report.activities": 'Activities',
+
+"holiday.halfday.status": 'Half a day',
+
+"absenceRequest.absence.year.validator": 'Invalid interval of years',
+
+"users.new.title": 'New user',
+
+"shift.invalid.time": 'Invalid time format',
+
+"employee.validation.publicId": 'Invalid employee id',
+
+"import.pool.field.carriedOver": 'Carried over',
+
+"report.request.absenceStatus": 'Status',
+
+"terminal.list.webApp.desc.2": 'Assign a web terminal for concrete or all employees.',
+
+"shift.create.date": 'Date',
+
+"organization.datetime.settings": 'Date and time settings',
+
+"report.attendance.export.filename": 'Attendance',
+
+"clockin.report.timesheet.absence": 'Absence',
+
+"calendar.month.january.c": 'January',
+
+"terminal.list.webApp.desc.1": 'Add web terminal and configure range IP addresses from which will be available.',
+
+"absenceRequest.create.validation.past.year": 'Absence request can\'\'t be in the past year',
+
+"import.requests.field.time": 'Absence time',
+
+"import.pool.field.takenHours": 'Taken hours',
+
+"signup.company.fillData.step1.title": 'Fill company data',
+
+"abnormality.PENDING_ABSENCE_REQUEST": 'Pending absence request',
+
+"common.timezone.placeholder": 'Choose timezone',
+
+"calendar.month.december.c": 'December',
+
+"common.goto.date": 'Go to date',
+
+"clockin.breaks.button.start": 'Break',
+
+"allowance.balance.reason.TOIL": 'Toil',
+
+"report.payroll.export.filename": 'Payroll',
+
+"projects": 'Projects',
+
+"break.timeFrom": 'Break started',
+
+"common.range.from.uppercase": 'From',
+
+"clockin.employees.list.title": 'Employees',
+
+"calendar.month.short.march": 'Mar',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.QUARTER.calendar": 'According to calendar',
+
+"notification.late.subordinates": 'My subordinate came in too late',
+
+"BalanceSummarize.INITIAL": 'Initially allocated',
+
+"office.integration.config.enabled.advantages.1": 'Sign in with office 365 account',
+
+"office.integration.config.enabled.advantages.2": 'Synchronise employees with Office Account',
+
+"context.help.google.paragraph.0.3.list": '&lt;a href=&quot;https:\/\/calamari.io\/leave-management\/google-apps-integration&quot;&gt;learn more&lt;\/a&gt; about integration',
+
+"break.validation.shift.noovelap": 'Break can not exceed the presence time.',
+
+"ShiftProgressTimer.shiftProgressContainer.tooltip": 'How long i am in work',
+
+"absences.for.acceptance.dialog.cancellation.reject.question": 'Do you really want to reject this cancellation?',
+
+"import.request.info.pre": 'Remember that:',
+
+"timesheet.reject.dialog.question": 'Do you really want to reject this request?',
+
+"person.validation.time.format.id.required": 'Choose time format',
+
+"ui.customization.logo.ui.title": 'Logo in the application interface',
+
+"security.go.to.login": 'Go to login',
+
+"context.help.effective.date.paragraph.2.title": 'Hire date',
+
+"allowance.balance.reason": 'Reason',
+
+"notification.plannedremotework.day.subject": 'Today&rsquo;s approved remote work requests',
+
+"google.errors.integration.usedDomain": 'Your domain is integrated with another Calamari company account. Please contact with support to solve this problem team@calamari.io',
+
+"absenceRequest.remove.confirmation.title": 'Removing absence request',
+
+"absenceRequest.create.validation.startTime.required": 'Start date required',
+
+"absenceType.configuration.tabs.restrictions.hours": 'hours',
+
+"common.group.week": 'Group by week',
+
+"security.forgot.domain.info.1": 'If you have forgotten your company domain',
+
+"security.forgot.domain.info.2": 'contact Us',
+
+"organization.nip": 'Tax ID',
+
+"absenceRequest.create.created.title": 'Absence has been requested',
+
+"absencetype.visibility.whole.request.label": 'Requests of this absence type will be visible to:',
+
+"calendar.day.wednesday": 'Wednesday',
+
+"clockin.report.activities.description": 'Description',
+
+"flow.validation.defaultIsRequired": 'You have to add default flow',
+
+"clockin.terminal.not.available": 'No terminal available.',
+
+"absencetype.validation.delete.referential.exist": 'You can\'t remove this absence type, it is configured in other absence type as referential.',
+
+"qrcode.iamclose.validation.local.date.null": 'Local date can not be null',
+
+"common.cancel": 'Cancel',
+
+"slack.help.moreInfo": 'More info',
+
+"clockin.report.timesheet.sum.week": 'Week total',
+
+"employee.new.absenceType": 'Absence type',
+
+"absenceType.configuration.accrualRule.effectiveDate": 'Effective date',
+
+"absenceRequest.create.validation.maxLength": 'Cannot request more than 366 days',
+
+"signup.company.firstStep.subtitle": 'No credit card required &amp;sdot; Cancel any time',
+
+"common.details.hide": 'Hide details',
+
+"ConditionConfigDialog.title.restrictedTo": 'Restricted to...',
+
+"absencetype.source.placeholder": 'Choose ...',
+
+"timesheet.photo.in.long": 'During clocking in',
+
+"absences.for.acceptance.start": 'Starts',
+
+"security.forgot.domain.info.3": 'entering your email and company name.',
+
+"workingWeek.from": 'Work from',
+
+"common.dateFrom": 'From date',
+
+"context.help.eligible.from.paragraph.2.body": '&lt;li&gt;&lt;strong&gt;Overall seniority&lt;\/strong&gt; - period from hire date summed with field &quot;Seniority before hire&quot; (the last day of offset is included)&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;The moment of adding employee&lt;\/strong&gt; - should be used when entitlement is not calculated based on hire date&lt;\/li&gt;&lt;\/ul&gt;',
+
+"clokin.report.activities.export.filename": 'Activities',
+
+"import.absenceRequests.error.invalidFile.title": 'There are errors in CSV file',
+
+"office.integration.config.disabled.introduction": 'Office 365 integration in turned off.',
+
+"holiday.holidayEnd": 'End date',
+
+"security.error.jira.oauth.turnedOff": 'Integration with Jira is turned off in your company.',
+
+"absenceRequest.show.title": 'Absence request details',
+
+"report.request.workingHours": 'Hours',
+
+"registration.error.invalidCode": 'It seems registration link is invalid. Please click in link from email sign up confirmation.',
+
+"import.pool.field.employee": 'Employee',
+
+"registration.tenant.firstUser.mail.validation.unique": 'This email has already been registered',
+
+"absence.detail.important.tab.title": 'Overview',
+
+"beacon.iamclose.validation.localDateTime.null": 'No date and time provided',
+
+"google.calendar.sync.color.BY_ABSENCE_TYPE": 'to tag different absence types',
+
+"security.error.officeRegistration.uniqueUser": 'This email has already been registered',
+
+"absenceRequest.processing.reject.success": 'Request of %s is rejected',
+
+"terminal.makePhotoDuringScanning": 'Make photo during clocking',
+
+"absenceType.configuration.validation.rule.expirationDate": 'Expiration date have to be after effective date',
+
+"lifecycle.PDF_DOWNLOADED": 'PDF downloaded',
+
+"invitation.accept.error.token": 'Your invitation is not valid anymore. Please ask your admin to invite you again.',
+
+"absenceType.configuration.tabs.status": 'Status',
+
+"report.entitlement.basic": 'Basic',
+
+"slack.validation.text": 'I am sorry, Calamari can not recognize parameters. Please check if all the params are valid.',
+
+"absenceRequest.restrictionRule.validator.range": 'Enter a value greater than zero',
+
+"absencetype.entitlement.default.label": 'Default value',
+
+"holiday.edit.error.message": 'Error has been occurred',
+
+"report.employees.personalEmail": 'Personal email',
+
+"absences.for.acceptance.cancellation.header": 'Absences cancellation',
+
+"absence.dashboard.help.configuration": 'Configuration',
+
+"comment.no.comment": 'No comment',
+
+"allowance.balance.pool.after.value": 'After',
+
+"clockin.report.presence.export.title": 'Presence list for',
+
+"password.sendReminder.success": 'Please check your inbox. We\'ve sent you an email with further instructions on how to set a new password.',
+
+"clockin.report.timesheet.title": 'Timesheet',
+
+"absenceType.configuration.accrualRule.prorata.rounding.one.alwaysUp": 'Round to whole (always up)',
+
+"terminal.type.beacon.new.title": 'Create new beacon terminal',
+
+"employee.adjustEntitlement": 'Adjust',
+
+"mail.absence.cancellation.to.accept.subject": 'You have absence cancellation for approval.',
+
+"absenceType.configuration.tabs.restrictions.choose.cantBeShorter": 'The absence may not be shorter than...',
+
+"EntitlementBalance.TOIL": 'Toil',
+
+"jira.configuration.title": 'Jira Tempo integration',
+
+"absenceType.configuration.limitation.accrued": 'Accrued',
+
+"registration.error.invalidStatusToConfirm": 'It seems registration has been already confirmed. Please wait we are working on your application. In few minutes we will send you an email with information...',
+
+"AbsenceAllowanceBar.futurePredictionBar": 'Available in future',
+
+"slack.error.notIntegrated.text": 'It seems that your Slack team is not properly integrated with Calamari :dizzy_face: Please turn on integration in Calamari configuration panel and try again.',
+
+"security.error.invalidtenant": 'Incorrect domain name \/ organisation ID',
+
+"slack.message.leaveFinallyAccepted": ':white_check_mark: Your absence request has been approved.',
+
+"registragion.error.invalidStatusToConfirm": 'It seems registration has been already confirmed. Please wait we are working on your application. In few minutes we will send you an email with information...',
+
+"absence.menu.listAbsenceWorkflows": 'Approval flow',
+
+"clockin.report.activities.startCoordinate": 'Start GPS',
+
+"report.employees.birthDate": 'Birth date',
+
+"company.address": 'Address',
+
+"employee.emergencyContactName.short": 'Contact name',
+
+"security.error.office.installationOnlyForAdmin": 'Your Office 365 domain administrator needs to set up Calamari before you can use it. Please encourage them to do so!',
+
+"absence.menu.dashboard": 'Board',
+
+"comment.add.title.question": 'Do you want comment changes?',
+
+"context.help.ical.title": 'How ICalendar integration works?',
+
+"google.calendar.sync.all.day.ALL_DAY": 'show absences as all-day events',
+
+"daysReducingLeavePool.avarageTime": 'Average daily working time',
+
+"timesheet.pending.DELETE": 'Pending delete',
+
+"terminal.validation.minor.required": 'Minor is required',
+
+"absenceType.configuration.accrualRule.periods.manyTimes": 'Repeat every...',
+
+"holiday.name": 'Name of holiday',
+
+"context.help.duration.title": 'Duration unit',
+
+"common.warning.title": 'Warning',
+
+"absenceRequest.createOnBehalfOf.title": 'Absence request on behalf of...',
+
+"slack.clockin.shift.wasStartedBefore": 'The shift has been already started before your request.',
+
+"absenceType.configuration.accrualRule.restricted.CONDITIONDS.employees": 'Particular employees',
+
+"absences.for.acceptance.dialog.accept.title": 'Approving of request',
+
+"context.help.rules.body": 'Main principles you need to know to configure rules.',
+
+"context.help.google.paragraph.0.list": 'every absence is analyzed and synchronized with chosen calendars, Private Calendar and Organization Calendar',
+
+"absencetype.finalQuestion": 'Final question before absence request confirmation',
+
+"qrcode.iamclose.validation.employee.apikey.null": 'Employee Api Key can not be null',
+
+"common.months.genitive": 'months',
+
+"notification.lateSubordinates.slack": 'Following employees should be at work by *%s* but still absent:',
+
+"clockin.report.activities.finishedDate": 'End date',
+
+"absence.status.REVOKED": 'Revoked',
+
+"person.validation.password.required": 'Field is required',
+
+"positions.list.noData.question": 'Why you should configure positions?',
+
+"absenceRequest.restrictionRule.notification.cantrequestinpast.requestDuration.fordays": 'You are requesting absence starting %s days ago.\n',
+
+"clockin.breaks.autoIncluded.length": 'Break length',
+
+"sage.configuration.title": 'Sage',
+
+"welcomeScreen.clockinButton": 'Calamari Clockin',
+
+"employee.office.import.button": 'Office import',
+
+"basecamp.configuration.disabled.introduction": 'Basecamp integration is disabled. You can integrate Calamari with Basecamp 3.',
+
+"flow.membersHeader": 'Process requests of following employees',
+
+"report.entitlement.accepted.hour": 'Approved [h]',
+
+"organization.license.valid.to": 'Valid till:',
+
+"employee.validation.childrenCount.geZero": 'Should be greater or equals to 0',
+
+"absence.configurations.dashboard.daysreducing": 'Working week',
+
+"menu.clock": 'Clock',
+
+"manager.type.immediate.additionally": 'Additionally immediate manager for',
+
+"context.help.slack.paragraph.0.list": '&lt;li&gt;sign in with Slack&lt;\/li&gt;',
+
+"securityAction.clockin.timesheet.manual.edit": 'Edit their timesheets manually',
+
+"absenceRequest.substitute": 'Substitute',
+
+"user.profile": 'User profile',
+
+"common.time.today": 'Today',
+
+"google.integration.config.disabled.howToTurnOn.title": 'How to turn on?',
+
+"clockin.work.edit.addShift": 'Add shift',
+
+"calendar.month.short.august": 'Aug',
+
+"ConditionConfigDialog.addAlternativeConditionButton": 'Add alternative condition',
+
+"absencetype.validation.name.not.exists": 'Absence type doesn\'\'t exist',
+
+"google.calendar.message.substitute": 'Substitute:',
+
+"common.group.none": 'Not grouped',
+
+"employee.invitation.send.title": 'Sending invitation to Calamari',
+
+"signup.employee.message": 'If your company is already using Calamari, you should receive an e-mail invitation. Haven\'t received it yet? Ask your administrator to send you an invitation.',
+
+"absenceType.configuration.accrualRule.mode.EARN_FOR_SHIFTS_TIME": 'Based on Calamari Clockin',
+
+"import.requests.float.err.notEmpty": 'Value is empty',
+
+"calendar.month.short.9": 'Sep',
+
+"calendar.month.short.8": 'Aug',
+
+"calendar.month.short.7": 'Jul',
+
+"calendar.month.short.6": 'Jun',
+
+"calendar.month.short.5": 'May',
+
+"dateRanges.week.next": 'Next week',
+
+"calendar.day.short.sunday": 'Sun',
+
+"calendar.month.short.4": 'Apr',
+
+"calendar.month.short.3": 'Mar',
+
+"calendar.month.short.2": 'Feb',
+
+"calendar.month.short.1": 'Jan',
+
+"employee.licence.exceeded": 'Max users exceeded',
+
+"organization.license.max.users.unlimited": 'unlimited',
+
+"holidayCalendar.validation.idNotExists": 'Holidays calendar not exists',
+
+"context.help.restricted.paragraph.2.body": 'If you don\'t assign an employee to any of rules of the absence type, then it will be unavailable for him.',
+
+"registration.error": 'Something went wrong :( Try once more in a few minutes',
+
+"messaging.channel.mobile.name": 'Mobile',
+
+"jira.integration.conf.appLink.consumerName": 'Consumer name',
+
+"shift.create.timeFrom": 'Work started',
+
+"absences.for.acceptance.no.data.answer3": 'Remember, Calamari is there to make your decisions easier. It will automatically suggest you the best decisions, taking into considerations the previous absence requests.',
+
+"common.group.teams": 'Group by teams',
+
+"absences.for.acceptance.no.data.answer2": 'There are two kinds of approval. You can be asked for approval of absence request or cancellation of absence.',
+
+"absences.for.acceptance.no.data.answer1": 'Don\'\'t worry, Calamari will send you an email when new request comes.',
+
+"absenceRequest.ofAbsence": 'of absence',
+
+"ShiftProgressTimer.started.late": '%s late',
+
+"terminals.list.title": 'Terminals',
+
+"common.error.defaultError": 'An error has occurred, everything is under control :)',
+
+"clockin.report.presence.export.filter.info.all": 'Report is generated for all employees',
+
+"office.integration.config.disabled.advantages.title": 'If you have Office 365 for Work in your company you should integrate it with Calamari because:',
+
+"person.validation.start.week.day.required": 'Choose first day of week',
+
+"absenceType.configuration.requesting.entitlementUsageOrder.label": 'When the employee request for the next year, deduct entitlement',
+
+"common.time.days": 'days',
+
+"absence.acceptance.error.not.found": 'Approval flow not exists',
+
+"webAppTerminal.unavailable.reason.IP": 'To start or stop your shift open application from a proper location.',
+
+"absenceType.category.WORK": 'Remote work',
+
+"security.error.google.insufficientPermissions.title": 'Redirecting to G Suite...',
+
+"securityAction.clockin.timesheet.manual.edit.onbehalfOfSubordinates": 'Edit timesheet of subordinates',
+
+"calendar.month.short.11": 'Nov',
+
+"absence.year.config.label.begin": 'Month of the year when open next absence year. From this month employees can make absence requests for next year.',
+
+"calendar.month.short.12": 'Dec',
+
+"absenceType.configuration.tabs.restrictions.tittle.isbefore.before": 'calendar days before start date',
+
+"tenant.invalidUrl.info.1": 'Oops...',
+
+"contractType.list.noData.question": 'Why you should configure contract types?',
+
+"ical.inSummary": 'Display in summary',
+
+"flow.additionalInformationStep.header": 'Notify upon approval:',
+
+"google.calendar.message.status": 'Status:',
+
+"employee.invitation.send.INVITED": 'invited',
+
+"presenceStatus.PRESENT": 'Present',
+
+"allowance.balance.create.date": 'Date',
+
+"tenant.invalidUrl.info.2": 'You provided invalid application URL.',
+
+"google.integration.config.disabled.introduction": 'G Suite integration in turned off.',
+
+"absenceType.configuration.requesting.minDurationSection.HOURS.QUARTER": '15 min',
+
+"common.restore": 'Restore',
+
+"api.configuration.apiKey": 'Api Key',
+
+"position.delete.title": 'Deleting position',
+
+"calendar.month.short.10": 'Oct',
+
+"google.calendar.sync.busy.only.false": 'Show description to all who has access to calendar',
+
+"common.employeesAndTeams": 'Employees and Teams',
+
+"ical.calendar.message.half.day.last": 'Last day:',
+
+"office.integration.resync.message.title": 'Resync Calamari users and Office365 accounts',
+
+"clockin.break.open.exist": 'Break was just started before your request.',
+
+"application.name": 'Calamari',
+
+"clokin.report.abnormality.export.filename": 'Abnormalities',
+
+"absence.menu.slack": 'Slack',
+
+"import.section.entitlement": 'Absence entitlement',
+
+"common.selectDatesRange": 'Dates range',
+
+"import.requests.field.employee.err.employeeNotFound": 'Employee not found',
+
+"clockin.settings.title": 'Clockin - automation settings',
+
+"slack.break.stop.done": 'Welcome back. Your break has been finished.',
+
+"lifecycle.REVOKE": 'Approval revoked',
+
+"absenceType.configuration.limitation.unlimited": 'Unlimited',
+
+"worklog.anyProject": 'Without project',
+
+"employeeWork.OK": 'Correct',
+
+"absenceType.configuration.validation.rule.eligibilityEnd": 'Required',
+
+"clockin.mail.shift.rejected": 'Shift rejected',
+
+"clockin.work.edit.createBreak": 'Add break',
+
+"security.error.basecamp.unknownError": 'Unexpected error occurred.',
+
+"absence.menu.acceptance": 'Approval',
+
+"setting.validation.dateFormat.exists": 'Date format not exists',
+
+"employee.detailsTabs.additional": 'Additional',
+
+"organization.validation.time.format.id.required": 'Time format required',
+
+"absence.acceptance.list.nodata": 'There is no approval flow configured. You should have at least one approval flow configured here.',
+
+"common.language.es": 'Espa&ntilde;ol',
+
+"messaging.channel.mail.name": 'E-mail',
+
+"employee.invitation.sent": '%s invited',
+
+"holiday.create.error.message": 'Error has been occurred',
+
+"absenceType.configuration.accrualRule.eligibleFrom.fromHireUnit.MONTH": 'Months',
+
+"import.pool.title": 'Absence entitlement import',
+
+"absenceRequest.restrictionRule.isbeforeandislonger.validation.notification.forhours": 'The absence longer than %s hours, should be requested %s calendar days before the start date.',
+
+"registration.validation.timeZone.required": 'Time zone is required',
+
+"absence.status.ACCEPTED": 'Approved',
+
+"common.language.placeholder": 'Choose language',
+
+"tutorial.howtosetup.step16": 'Approval flow can have many steps. The number of steps is placed in the left side of flow table. Request goes to the next step when &lt;strong&gt;any person&lt;\/strong&gt; from current step approves the leave request. &lt;br \/&gt;&lt;br \/&gt; In each step you can assign many&nbsp;alternative&nbsp;approvers, and each one of them will be notified about leave request, but only one (first who will click) will have the final decision. &lt;br \/&gt;&lt;br \/&gt; If you have a small company, most likely, you will be satisfied with only one flow between the boss and its employees. In more complex structure, this is very flexible simple way to fit your needs. If you need help, please feel free to contact us (office@chrobrus.com).',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.QUARTER.sameAs.hire": 'First day at work',
+
+"manager.conf.addSubordinateTeam": 'Add subordinate team',
+
+"tutorial.howtosetup.step15": 'You can define as many approval flows as you need.&lt;br \/&gt;Each employee can be assigned to different approval flow.',
+
+"tutorial.howtosetup.step17": '&lt;center&gt;&lt;b&gt;Thank you!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;Now you are fully trained to enjoy Calamari Leave! &lt;br \/&gt;Remember, you can always go through these steps one more time. We also recommend you to check other tutorials. &lt;br \/&gt;&lt;br \/&gt; &lt;strong&gt;In case of any questions use \\&quot;Support\\&quot; menu and feel free to ask :-). &lt;\/strong&gt;',
+
+"tutorial.howtosetup.step12": 'In this tab you can edit your employees\\\' list. You can also view their personal information that includes: leave entitlement, requests history, entitlement change history. &lt;br \/&gt;&lt;br \/&gt;For integrated accounts with G Suite, the best solution here is import users from your Google Domain, so you can allow an access to all employees with just a few clicks.&lt;br \/&gt;&lt;br \/&gt;Let\\&rsquo;s go to employee edit window to learn some important things.',
+
+"person.validation.homePhone.length": 'Phone number max length is ${max}',
+
+"tutorial.howtosetup.step11": 'In order to give Calamari access to your teammates you need to add them here as employees.',
+
+"tutorial.howtosetup.step14": 'Here you can choose employees or groups of employees to be notified when someone sends a new leave request. It is called &lt;strong&gt;\\&rdquo;Approval flow\\&rdquo;&lt;\/strong&gt;.&lt;br \/&gt;&lt;br \/&gt; Each person responsible for the approval process will decide weather to approve or reject particular leave request.',
+
+"holiday.create.validation.name.required": 'Name is required',
+
+"tutorial.howtosetup.step13": 'Here you can set-up essential employee data. It is easy and does not need any explanation. But there is something worth knowing about the second tab...',
+
+"common.nextTutorial": 'Next tutorial',
+
+"common.dateTo": 'To date',
+
+"common.language.fr": 'Fran&ccedil;ais',
+
+"organization.license.REGULAR": 'regular paid plan',
+
+"menu.security": 'Permissions',
+
+"absenceType.configuration.accrualCap.validation": 'Invalid accrual cap amount',
+
+"google.registration.success.2": 'We are preparing application especially for you. When it will be ready we send you email with instructions.',
+
+"google.registration.success.1": 'Registration with G Suite was successfully confirmed.',
+
+"absencetype.delete.no": 'No',
+
+"absence.status.REJECTED": 'Rejected',
+
+"domain.validation.valid": 'Invalid domain, try e.g. : www.your_company_name.com',
+
+"manager.subordinates": 'Subordinates',
+
+"context.help.google.paragraph.1.list": 'requests are sync each 30 seconds',
+
+"entityCreator.system": 'System',
+
+"menu.myWork": 'Work',
+
+"clockin.reports.dashbord.title": 'Reports',
+
+"employee.invitation.send": 'Invite',
+
+"manager.type.teams": 'Manager in teams',
+
+"calendar.month.short.july": 'Jul',
+
+"common.language.en": 'English',
+
+"report.request.fullLength": 'Full length',
+
+"calendar.month.june.c": 'June',
+
+"context.help.effective.date.paragraph.1.title": 'The moment is starts up',
+
+"google.sync.rule.validation.active.not.null": 'Set active field',
+
+"clockin.reports.dashboard.abnormalities": 'Abnormalities',
+
+"problem.flow.membersDontHaveDirectManager": 'Employees attached to flow don\'t have \'direct manager\' set',
+
+"clockin.report.activities.finishTerminal": 'End terminal',
+
+"context.help.absence.type.tooltip": 'To learn more about each configuration field just click:',
+
+"absence.intro.message.step4.todo": '&lt;b&gt;Employees&lt;\/b&gt;&lt;br\/&gt;Now import employees from G Suite',
+
+"calendar.month.10": 'October',
+
+"calendar.month.11": 'November',
+
+"calendar.month.12": 'December',
+
+"absence.menu.configuration": 'Configuration',
+
+"absencetype.validation.allowHoursRequesting.required": 'Define if allow requesting leave in hours',
+
+"timesheet.changeRequestMode": 'Request type',
+
+"import.entitlement.info.pre": 'Remember that:',
+
+"PartDayValue.END_OF_DAY": 'End of day',
+
+"absencetype.name.field.label": 'Type name',
+
+"common.language.de": 'Deutsch',
+
+"common.language": 'Language',
+
+"notification.clockin.ShiftCommented": 'A shift has been commented on',
+
+"daysReducingLeavePool.delete.title": 'Deleting',
+
+"calendar.day.min.tuesday": 'Tu',
+
+"notification.plannedabsences.day.pretext": 'Today&rsquo;s approved absences:',
+
+"import.csv.errorsTable.field": 'Field',
+
+"absenceType.configuration.accrualRule.firstAccrual.moment.ELIGIBILITY_MOMENT": 'The day when gains eligibility',
+
+"report.request.workingDays": 'Days',
+
+"dateRanges.day.yesterday": 'Yesterday',
+
+"absencetype.requirement.REQUIRED": 'Required',
+
+"ShiftChangeRequestMode.detailed.EDIT": 'Updating shift',
+
+"report.pdf.FROM_CALAMARI_LABEL": 'Downloaded from Calamari',
+
+"common.view.list": 'List view',
+
+"clockin.settings.save.dialog.title": 'Saving configuration',
+
+"report.pdf.ABSENCE_TYPE_NAME": 'Absence type :',
+
+"user.role.admin": 'Administrator',
+
+"shift.validation.startBeforeEnd": 'Start shift time should be earlier than end time.',
+
+"context.help.subtract.method.paragraph.1.body": 'You need to decide how to calculate the duration of a request.',
+
+"report.pdf.imported": 'Imported - without approval',
+
+"absenceType.configuration.requesting.minDurationSection.DAYS.WHOLE": 'Whole day',
+
+"clockin.report.timesheet.holiday": 'Holiday',
+
+"absenceType.configuration.requesting.entitlementUsageOrder.USE_PROPORTIONAL_FROM_EACH": 'Proportional from each year',
+
+"contractType.list.title": 'Contract types',
+
+"absence.validation.can.export.to.pdf": 'Permission denied to export this request',
+
+"common.deleteEntityQuestion": 'Do you want to delete &quot;%s&quot;?',
+
+"employee.position": 'Position',
+
+"holiday.create.validation.startTime.required": 'Start date is required',
+
+"absenceType.configuration.accrualRule.prorata.rounding.half": 'Round result to a half',
+
+"absenceRequest.attachments.validation.size": 'Max attachment size is 10 MB',
+
+"holidayCalendar.validation.name.required": 'Name is required',
+
+"dateRanges.day.today": 'Today',
+
+"employee.new.details": 'Details',
+
+"jira.integration.conf.connector": 'Jira Calamari Connector',
+
+"calendar.month.short.june": 'Jun',
+
+"context.help.visibility.paragraph.1.title": 'Field visibility',
+
+"calendar.next": 'Next &amp;#x3e;',
+
+"calendar.month.march.c": 'March',
+
+"absenceType.configuration.accrualRule.eligibleFrom.OVERALL_SENIORITY": 'When overall seniority reaches',
+
+"absenceType.configuration.takeEntitlementFrom": 'Take entitlement from',
+
+"absence.acceptance.list.members": 'Employee count',
+
+"report.pdf.CURRENT_DATE_LABEL": 'Download date',
+
+"projects.remove.confirmation.title": 'Removing project...',
+
+"terminal.delete.question": 'Do you want to delete terminal &quot;%s&quot;?',
+
+"slack.message.leaveFinallyAcceptedOtherEmployee": 'The absence request has been approved.',
+
+"notification.clockin.remainder": 'Clock in reminder',
+
+"holiday.google.import.selectHolidays.title": 'Import holiday from Google',
+
+"security.error.slack.unknownError": 'Unexpected error ocurred.',
+
+"notification.group.delete.question": 'Delete selected notification?',
+
+"absencetype.reason.field.label": 'Reason',
+
+"projects.archive.done.notification": 'Project %s has been archived',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.BIWEEK.sameAs.eligibility": 'Day when gains eligibility',
+
+"ShiftProgressTimer.notstarted.startLate": 'Should start %s ago',
+
+"absence.validation.substitute.id.validator": 'Select another employee',
+
+"absence.intro.message.step3.info": '&lt;b&gt;Absence types&lt;\/b&gt; defines types of possible absence of employees of your organization&lt;br\/&gt;We prepare some samples and examples. You can edit those or add new ones.&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;Configuration&lt;\/b&gt;&lt;br\/&gt;default value - value is suggested while config every new user&lt;br\/&gt;unit - absence can be calculate in hours or working days&lt;br\/&gt;holiday leave - you can mark only one absence type as holiday leave (in many countries this is the one restricted byl law)&lt;br\/&gt;carriable - you can set this property when available absence pool should be carried to next absence year&lt;br\/&gt;&lt;br\/&gt;&lt;b&gt;More&lt;\/b&gt;&lt;br\/&gt;',
+
+"absences.for.acceptance.transition.name.revoke.long": 'Revoke approval',
+
+"organization.calendar.settings": 'Calendar settings',
+
+"BalanceSummarize.MAIN_TYPE_RUNOUT": 'Main type run out',
+
+"clockin.report.activities.BREAK": 'Break',
+
+"calendar.month.short.october": 'Oct',
+
+"google.calendar.sync.holidays": 'Public holidays',
+
+"absencetype.allowRequestingInHours.label": 'Allow absence requesting in hours or half days',
+
+"employee.validation.externalNumber.unique": 'Employee with this Number exists',
+
+"mail.absence.cancellation.rejected.subject": 'Your absence cancellation has been rejected',
+
+"license.validTo": 'Valid till',
+
+"calendar.day.min.monday": 'Mo',
+
+"ical.config.title": 'ICalendar integration',
+
+"mail.absence.rejected.subject": 'Your absence request has been rejected.',
+
+"notification.pending.request.slack.2": '*%s* is waiting for your decision for *%s days*.',
+
+"notification.pending.request.slack.1": 'Employees are waiting for approval of their requests.',
+
+"notification.pending.request.slack.4": 'Details',
+
+"absences.for.acceptance.info.part.1": 'Absent at the same time',
+
+"common.group.absence_type": 'Group by absence type',
+
+"notification.pending.request.slack.3": 'Number of pending requests: %s',
+
+"absenceRequest.partial.wholeDay": 'Whole day',
+
+"google.calendar.message.absence.type": 'Absence type:',
+
+"context.help.displaying.color.title": 'Color of the calendar',
+
+"admin.menu.dashboard": 'Dashboard',
+
+"holiday.list.title": 'Holidays',
+
+"common.employees": 'Employees',
+
+"absenceRequest.create.error.message": 'Error has been occurred. Please try again.',
+
+"common.name": 'Name',
+
+"holiday.create.overlap.requests.question": 'After this change, the length of absence requests will be recalculated. Do you want to continue?',
+
+"ical.calendar.link.EMPLOYEE_PRIVATE_CALENDAR": 'Your personal calendar',
+
+"terminal.configuration": 'Configuration',
+
+"registration.firstUser.lastName": 'Surname',
+
+"absenceRequest.restrictionRule.cantrequestinpast.validation.notification.fordays": 'You cannot request an absence earlier than %s days ago.',
+
+"presenceStatus.ABSENT": 'Absent',
+
+"registration.tenant.url.validation.unique": 'This URL is already registered',
+
+"absenceType.configuration.requesting.requestingInFutureField": 'Requesting is possible in',
+
+"mail.comment": 'Remarque',
+
+"absence.configurations.dashboard.employees.title": 'Employees',
+
+"ShiftChangeRequestMode.details.waitingFor.EDIT": 'Update is waiting for approval',
+
+"absenceType.configuration.category": 'Consider as',
+
+"ShiftChangeRequestMode.detailed.DELETE": 'Removing shift',
+
+"context.help.ical.paragraph.0.list": 'If integration is activated, every employee gets their individual links that allow him to synchronise calendars',
+
+"absenceRequest.error.InvalidRejectUser": 'Unable to perform operation. Permission deny.',
+
+"manager.name": 'Manager',
+
+"tutorial.howtosetup.step8": 'You can import holidays from Google Calendar with a single click. On the other hand, you can add them manually by using the &ldquo;Add&rdquo; button or Calamari calendar (drag and drop here).',
+
+"common.activate": 'Activate',
+
+"absenceType.configuration.accrualRule.delete.message": 'Rule and entitlement accrued will be completely removed',
+
+"clockin.menu.conf.terminals": 'Terminals',
+
+"absenceType.category.TIMEOFF": 'Time off',
+
+"clockin.clock.title": 'Clock in \/ out',
+
+"signup.selectMode.company.desc": 'I am an administrator or a business owner. I want to start 14 days free trial for my organization.',
+
+"import.section.requests": 'Absence requests',
+
+"common.signin": 'Login',
+
+"admins.conf.add.button": 'Add administrator',
+
+"securityAction.clockin.employee.work.check.subordinates": 'Check timesheet of subordinates',
+
+"EntitlementBalance.OTHER": 'Other',
+
+"menu.conf.tutorial": 'Tutorial',
+
+"tutorial.howtosetup.step6": 'Ok, so now you can configure your Working Week tab to match the policies within your company. There are numerous options available and you can assign different policies to each employee. &lt;br \/&gt;&lt;br \/&gt;&lt;strong&gt;At this stage we recommend you to go through the tutorial and come back here later.&lt;\/strong&gt;',
+
+"ical.calendar.link.ORGANISATION_CALENDAR": 'Organization\'s calendar',
+
+"auth.validation.loginPasswordAuthDataLength": 'Invalid length of login',
+
+"tutorial.howtosetup.step7": '&lt;strong&gt;Holidays&lt;\/strong&gt; resolve the same problem with absence entitlement as \\&ldquo;working week\\&rdquo;. You can add days off in your country here and let Calamari save your time.',
+
+"tutorial.howtosetup.step4": 'We have added some absence types that fit with your country, but you probably should verify it and prepare configuration that will match your company\'s policies. &lt;br\/&gt;&lt;br\/&gt;&lt;strong&gt;At this stage, we recommend you to go through the tutorial and come back here later.&lt;\/strong&gt;',
+
+"tutorial.howtosetup.step5": '&lt;strong&gt;Working week&lt;\/strong&gt;&nbsp;is an important element of Calamari, to properly calculate and control the absence entitlement. Here you will define the working days and hours of your employees.&lt;br \/&gt;&lt;br \/&gt;&lt;strong&gt;Example:&lt;\/strong&gt; employee has a full-time job, so he works from Monday to Friday, 8 hours per day. When he goes on annual leave for two weeks, Calamari subtracts 10 days (80 hours) from his entitlement as Saturday and Sunday are non working days.&lt;br\/&gt;&lt;br\/&gt;Thanks to &ldquo;working week&rdquo; configuration your employees don\'&rsquo;t specify how many hours or days of time-off they are requesting. They simply select the desired days off on the calendar and Calamari does the counting!&lt;br\/&gt;&lt;br\/&gt;You configure is once and forever. This is the place where Calamari is different from many competitive solutions.',
+
+"report.export.pdfs": 'Download PDFs',
+
+"tutorial.howtosetup.step2": '&lt;strong&gt;Absence types&lt;\/strong&gt; is the tab where you can choose your absence policies and the time-off types. List of absence types depends on your country law or company rules. It can be &ldquo;Annual Leave&rdquo;, &ldquo;Maternity leave&rdquo;, &ldquo;Sickness&rdquo;, &ldquo;Unpaid&rdquo;, etc. &lt;br \/&gt;&lt;br \/&gt;Employee will have separate entitlement for each absence type. So for example, he can take 20 days of &ldquo;Annual leave&rdquo; and maximum 5 days of &ldquo;Educational leave&rdquo;.&lt;br \/&gt;&lt;br \/&gt;Each absence type can be reported separately and have different configuration. For example, when employee requests &ldquo;Unpaid time-off&rdquo; you can require him to give a reason for that, but it&rsquo;s not necessary when employee requests &ldquo;Annual leave&rdquo;.',
+
+"tutorial.howtosetup.step1": 'This tutorial covers main concepts in &lt;strong&gt;Calamari Leave Management.&lt;\/strong&gt; We encourage you to familiarize yourself with the Clockin module after this tutorial.  &lt;br \/&gt;&lt;br \/&gt;Our introduction will take less than 10 minutes. &lt;strong&gt;Click \'\'next\'\' and let&rsquo;\'s start!&lt;\/strong&gt; &lt;br \/&gt;&lt;br \/&gt;',
+
+"absences.for.acceptance.dialog.cancellation.accept.question": 'Do you really want to approve this cancellation?',
+
+"dateRanges.week.current": 'Current week',
+
+"registration.success": 'Thank you for sign up. Please check your inbox. We have sent you an email with further instructions.',
+
+"clockin.breaks.autoIncluded.allowManual.help": 'When employee manually start the break automatically start and stop will not occur',
+
+"employee.complete.attachEmployeeToRules": 'Attach employees to rules',
+
+"absence.menu.roles": 'Managers',
+
+"context.help.slack.paragraph.5.list": '&lt;li&gt;&lt;strong&gt;list present employees&lt;\/strong&gt; with Slack command &lt;i&gt;\/calamari presence&lt;\/i&gt;&lt;\/li&gt;',
+
+"person.address.country": 'Country',
+
+"AbsenceAllowanceBar.acceptedBar": 'Already taken or expired',
+
+"support.filesharing.title": 'File sharing with support team',
+
+"google.conf.adminEmail": 'G Suite admin email',
+
+"absenceType.configuration.tabs.restrictions.reactionWhenViolation.report": 'Display a warning',
+
+"context.help.ical.paragraph.4.link.2": 'Thunderbird',
+
+"absence.menu.office.integration": 'Office 365',
+
+"context.help.ical.paragraph.4.link.1": 'Outlook',
+
+"registration.title": 'Sign Up',
+
+"absenceType.configuration.tabs.restrictions.cancel": 'Cancel',
+
+"absencetype.delete.yes": 'Yes, archive requests',
+
+"holidayCalendar.validation.required": 'Select holidays calendar',
+
+"employees.list.title": 'Employees',
+
+"context.help.google.paragraph.2.body": 'Remember, if the Organization Calendar is turned ON then automatically will be available to all employees.',
+
+"absenceRequest.absenceStart": 'From',
+
+"common.group.absence_type_monthly_view": 'Group by absence type, monthly',
+
+"absenceType.configuration.accrualRule.eligibleFrom.fromHireUnit.YEAR": 'Years',
+
+"absenceType.configuration.accrualRule.period.repeating.linkWord": 'every',
+
+"absenceRequest.create.validation.endTime.required": 'End date required',
+
+"context.help.amount.paragraph.2.body": 'There are two moments of period, when the amount can be added to the entitlement: &lt;ul&gt;&lt;li&gt;&lt;strong&gt;When the period ends&lt;\/strong&gt; - in the last day of period the amount will be accrued and available for employee.&lt;\/li&gt;&lt;li&gt;&lt;strong&gt;When the period begins&lt;\/strong&gt; - in the first day of accrual period the amount will be accrued and available for employee.&lt;\/li&gt;&lt;\/ul&gt;',
+
+"absenceRequest.processing.approve.group.success": 'Requests are approved',
+
+"ical.ACCEPTED": 'Accepted',
+
+"common.change.password": 'Change pass',
+
+"absenceType.configuration.tabs.restrictions.isbefore.label": ', it must be requested',
+
+"holiday.halfday.period.pm": 'PM',
+
+"sage.configuration.disabled.introduction": 'Sage integration is disabled.',
+
+"security.error.asana.noUserConnectedWithAsana": 'Hmm... it seems that you don\'t have employee account in Calamari. Please contact with your Calamari administrator.',
+
+"calendar.SUBSTITUTE": 'Substitute',
+
+"report.entitlement.pending.hour": 'Pending [h]',
+
+"employee.complete.fieldsOptionalFill": 'Fill in the fields affecting leave availability',
+
+"entitlement.unlimited": 'Unlimited',
+
+"holiday.delete.message": 'Holiday has been deleted',
+
+"api.configuration.title": 'API',
+
+"break.create.title": 'Create break',
+
+"absencetype.validation.default.entitlement": 'Invalid value',
+
+"report.entitlement.title": 'Entitlement',
+
+"absences.for.acceptance.transition.name.revoke": 'Revoke',
+
+"calendar.year": 'Year',
+
+"google.sync.rule.validation.id.exist": 'Rule not exists',
+
+"employee.emergencyContactRelationship.short": 'Relationship',
+
+"ShiftProgressTimer.started.afterTime": '%s after the time',
+
+"report.request.absenceEnd": 'To',
+
+"common.searching": 'Searching...',
+
+"notification.config.mobile.tip": 'Do you want to receive notifications on your mobile?',
+
+"terminal.scope": 'Available to all employees',
+
+"person.childrenCount": 'Number of children',
+
+"common.close": 'Close',
+
+"clockin.report.presence.export.filter.info": 'Report generated for',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.WEEK.sameAs.hire": 'First day at work',
+
+"absenceRequest.restrictionRule.cantbelonger.validation.notification.fordays": 'The absence may not be longer than %s days.',
+
+"google.errors.io": 'IO',
+
+"calendar.day.min.thursday": 'Th',
+
+"ConditionConfigDialog.and": 'and',
+
+"absence.absenceTypes.title": 'Absence types',
+
+"beacon.iamclose.validation.etagInvalid": 'Invalid eTag',
+
+"organization.license.TRIAL": 'free trial plan, no costs, no worries',
+
+"employee.new.positions": 'Positions',
+
+"workReport.status.late": 'Late',
+
+"entitlement.list.allowance": 'Allowance',
+
+"common.yes": 'Yes',
+
+"manager.type.immediate": 'Direct manager for',
+
+"import.entitlement.info.1": 'Column separator is &quot;|&quot;',
+
+"clockin.report.activities.startedTime": 'Start time',
+
+"ShiftProgressTimer.started.toStopAfterPlanned": '%s after planned end',
+
+"import.entitlement.info.2": 'This import will replace current information about absence entitlement',
+
+"import.entitlement.info.3": 'Tutorial how to import entitlement you can find &lt;a href=&quot;https:\/\/help.calamari.io\/&quot; target=&quot;_blank&quot;&gt;here&lt;\/a&gt;.',
+
+"terminal.type.qrcode.config": 'Configuration for QRCode terminal',
+
+"absenceRequest.create.title": 'Absence request',
+
+"google.calendar.message.half.day.first": 'First day:',
+
+"absencetype.validation.name.exists": 'Absence type already exists',
+
+"report.pdf.ABSENCE_YEARS": 'In year :',
+
+"absenceRequest.absence.past.warning.title": 'You\'re creating leave in a past',
+
+"common.employeesTeamsPositions": 'Employees, Teams, Positions',
+
+"report.employees.businessPhone": 'Business phone',
+
+"report.entitlement.employees": 'Employees',
+
+"common.reset.password.title": 'Password reset',
+
+"absenceType.configuration.tabs.restrictions.cantbelonger.label": 'The absence may not be longer than',
+
+"absenceType.configuration.accrualRule.restricted.CONDITIONDS": 'Employees who are ...',
+
+"timesheet.title": 'Timesheet',
+
+"registration.validation.contactUserEmail.required": 'Email is required',
+
+"organization.company.name": 'Organization name',
+
+"employee.customFields": 'Custom fields',
+
+"absenceType.configuration.requesting.allowNegativeEntitlement": 'Allow negative entitlement \/ taking in advance',
+
+"employee.hireDate": 'Hire date',
+
+"workReport.status.working": 'Working...',
+
+"registration.validation.country.required": 'Country is required',
+
+"absenceRequest.create.validation.acceptance.flow": 'Your approval flow is not configured..',
+
+"absenceType.configuration.tabs.displaying": 'Display',
+
+"remindPassword.setNew.password": 'Password',
+
+"person.address.postalCode": 'Postal code',
+
+"organization.license.FREE": 'free plan',
+
+"office.integration.resync.message.question": 'This process checks and repairs links of all your employees accounts in Calamari with their Office365 accounts, are you sure to continue?',
+
+"absenceRequest.create.validation.otherAbsencesRequestedInTime": 'Chosen period has absence already requested',
+
+"absence.acceptance.createOrupdate.title": 'Building approval flow',
+
+"google.errors.insufficient.permission": 'INSUFFICIENT_PERMISSION',
+
+"clokin.report.timesheet.export.tab.numeric": 'Timesheet - num',
+
+"workingTimeUnit.WORKING_DAY.single.genitive": 'day',
+
+"holiday.list.no.data.answer1": 'holidays are automatically counted while requesting absence',
+
+"holiday.list.no.data.answer2": 'holidays are available to check by your employees',
+
+"clock.out.button": 'STOP',
+
+"notifications": 'Notifications',
+
+"common.settings": 'Settings',
+
+"presenceStatus.LEAVE": 'Leave',
+
+"clockin.tutorial.step12": 'In &lt;strong&gt;Employees&lt;\/strong&gt; window you can view employees personal data.',
+
+"absenceType.configuration.accrualRule.period.QUARTER": 'Quarter',
+
+"common.in.future": 'in',
+
+"slack.message.clockin.shiftChangeRequest.DELETE.finallyAccepted.toOthers": '%s shift removal %s have been accepted.',
+
+"clockin.tutorial.step13": 'Here you can add\/remove your employees and manage their configuration.',
+
+"absenceType.configuration.tabs.requesting": 'Requesting',
+
+"clockin.tutorial.step10": 'The next step is about alerts configuration, it allows to detect abnormalities in shifts.',
+
+"clockin.tutorial.step11": '&lt;strong&gt;In alerts&lt;\/strong&gt;, you can set time intervals which are used to detect abnormalities.&lt;br \/&gt; System uses \\&quot;Working week\\&quot; and alert configuration to detect delays and too early departures from work.',
+
+"notification.plannedabsences.week.pretext": 'Approved absences for this week:',
+
+"clockin.tutorial.step14": '&lt;center&gt;&lt;b&gt;Thank you!&lt;\/b&gt;&lt;\/center&gt;&lt;br\/&gt;Now you are fully trained to enjoy Calamari Clockin! Remember, you can always go through this steps one more time. We also recommend to see other tutorials. &lt;br \/&gt;&lt;br \/&gt; &lt;strong&gt;In case of any questions click \\&quot;Support\\&quot; and ask :-)&lt;\/strong&gt;',
+
+"clockin.report.abnormality.summaryDescription": 'Abnormalities',
+
+"BalanceSummarize.ACCRUAL": 'Accrual',
+
+"terminal.scope.global": 'Available to all employees',
+
+"absences.for.acceptance.allowance": 'Current allowance',
+
+"daysReducingLeavePool.workHours": 'Working week',
+
+"qrcode.iamclose.validation.employee.apikey.valid": 'Employee Api Key is invalid',
+
+"entitlementBalance.create.comment": 'Comment',
+
+"workReport.status.working.small": 'working ...',
+
+"report.entitlement.accepted": 'Approved',
+
+"slack.message.clockin.shiftChangeRequest.CREATE.rejected.toOwner": 'Your shift creation %s have been rejected. More details: %s',
+
+"clockin.report.abnormality.title": 'Abnormalities',
+
+"absence.year.status.title": 'Status',
+
+"common.color": 'Colour',
+
+"google.calendar.fields.ABSENCE_TYPE": 'Absence type',
+
+"slack.message.leaveFinallyRevokedOtherEmployee": 'Absence request has been revoked.',
+
+"absence.year.status.closed": 'Inactive',
+
+"registration.signin": 'sign in',
+
+"report.employees.plannedFiring": 'Termination date',
+
+"absences.for.acceptance.dialog.title": 'Approving \/ Rejecting of request',
+
+"report.employees.externalNumber": 'Employee number',
+
+"organization.license.active.users": 'Active users:',
+
+"context.help.duration.paragraph.2.body": 'Chosen duration unit, can not be changed.',
+
+"employee.emergencyPhone.short": 'Phone',
+
+"context.help.displaying.color.paragraph.1.body": 'Here you can select the colour of absence request on the calendar. Colour will be visible on the calendar if you will choose &quot;Use colour to show: absence type&quot; in the &lt;a href=&quot;\/absence\/main.do#\/settings\/organization.do&quot; target=&quot;_blank&quot;&gt;Calendar settings&lt;\/a&gt;',
+
+"jira.configuration.check": 'Test',
+
+"security.tenant": 'Company domain',
+
+"clockin.report.activities.startTerminal": 'Start terminal',
+
+"ShiftProgressTimer.started.startBeforeTheTime": '%s before the time',
+
+"password.change.error.tokenExpired": 'Your reset password request expired. Please notice that the link you received is valid only for one-time usage and for a few hours.',
+
+"AbsenceAllowanceBar.pendingBar": 'Pending for approval',
+
+"mail.absence.substitute.appointed.subject": 'You have been appointed as the substitute',
+
+"contractType.members": 'Members',
+
+"common.group.employees_monthly_view": 'Group by employees, monthly',
+
+"employee.validation.overriding.settings.required": 'All settings are required',
+
+"absenceRequest.attachments.add": 'Attach files',
+
+"employees.office.import.selectEmployees.title": 'Select at least one user',
+
+"absencetype.entitlement.type.REFERENTIAL": 'get from other type',
+
+"absenceType.configuration.tabs.attachments": 'Attachments',
+
+"signup.iHaveAnAccount": '... if you have an account',
+
+"report.export.sage": 'Export to Sage',
+
+"admin.name": 'Administrator',
+
+"footer.pricing": 'pricing',
+
+"calendar.month.january": 'January',
+
+"employees.import.title": 'Import employees',
+
+"common.next": 'Next',
+
+"clockin.report.planned": 'Planned',
+
+"employees.google.import.title": 'Import from G Suite',
+
+"notification.lateSubordinates.subject.withCount": '%s late employees',
+
+"mail.absence.finally.accepted.subject": 'Your absence request has been approved.',
+
+"ical.calendar.feeds": 'Calendar feeds',
+
+"import.absenceRequests.error.title": 'Error occurred during importing data',
+
+"holiday.list.no.data.tip": 'You can import holidays from Google Calendar',
+
+"common.day": 'Day',
+
+"absenceType.configuration.limitation": 'Entitlement',
+
+"notification.mobile.absenceCancellationToApprove": '%s sent you an absence cancellation request and is waiting for your approval.',
+
+"absencetype.delete.title": 'Deleting absence type',
+
+"registration.validation.contactUserFirstName.required": 'Your name is required',
+
+"clockin.menu.profile": 'My profile',
+
+"clockin.report.timesheet.SHIFT": 'WORK',
+
+"clockin.settings.printQrByEmployee": 'Employee can print their QR identifiers',
+
+"ical.user.enabled": 'Activate ability to subscribe user calendar',
+
+"context.help.rules.paragraph.1.body": 'Each rule calculates and accrues entitlement according to it\'\'s own configuration. Sometimes more rules from the same absence type can accrue entitlement for one employee.',
+
+"daysReducingLeavePool.validation.day.required": 'Field is required',
+
+"absenceType.configuration.subtraction.subtractMethod.WORKING_DAYS": 'every working day',
+
+"employee.complete.fieldsShouldFill": 'Complete the data to determine leave entitlement',
+
+"employee.detailsTabs.allowance.balance": 'Entitlement changes',
+
+"comment.back": 'Back',
+
+"EntitlementBalance.TRANSFER_TO_NEXT_YEAR": 'Transferred to next year',
+
+"timesheet.mode.shifts": 'Shifts',
+
+"jira.tempo.info.4": 'After enabling synchronization and clicking &quot;Full Sync&quot; all requests will appear in your Jira.',
+
+"jira.tempo.info.3": 'Your Jira - http:\/\/jira_host_and_context\/rest\/calamaritempo\/* must be accessible from the Internet.',
+
+"context.help.rules.title": 'Rule based accrual',
+
+"jira.tempo.info.2": 'To remove all requests from Jira Tempo disable Sync and use &quot;Full Sync&quot; then all requests will be removed from Jira.',
+
+"clockin.employee.detailsTabs.terminals": 'Terminals',
+
+"jira.tempo.info.1": 'Calamari matches Jira users by their email addresses.',
+
+"context.help.slack.paragraph.1.body": 'Integration with Slack gives your company possibility to:',
+
+"absenceType.configuration.validation.not.unlimited.when.has.subtypes": 'Absence type with subtypes can\'t be unlimited',
+
+"notification.group.list.noData.answer1": 'Here you can configure group notifications to many employees.',
+
+"notification.group.list.noData.answer2": 'Employees can receive notifications on group email or Slack channel.',
+
+"notification.group.list.noData.answer3": 'We have several types of notifications including: upcoming leaves, birthdays notifications.',
+
+"context.help.entitlement.title": 'Type of entitlement',
+
+"clockin.report.timesheet.group.summary": 'Only summary',
+
+"acceptanceFlow.alternative.header.case": 'Steps in case of',
+
+"position.positionName": 'Position',
+
+"import.requests.field.time.err.startBeforeEnd": 'Start date shouldn\'\'t be after end date',
+
+"person.address.number": 'Building \/ flat number',
+
+"jira.integration.conf.sso": 'Sign In with Jira',
+
+"clockin.report.presence.status": 'Presence status',
+
+"mail.absence.finally.revoked.otherEmployee.subject": 'Employee absence request revoked',
+
+"timezones.all": 'All',
+
+"notification.birthday.today.slack.outro.singular": 'Happy Birthday %s :birthday:!',
+
+"clockin.employee.validation.person.list.not.empty": 'Select at least one employee to print QR code identifier',
+
+"mail.registration.needConfiguration.subject": 'Your account is almost ready to use!',
+
+"teams.list.noData.introduction": 'It seems that you haven\'\'t added any team yet.',
+
+"company.name": 'Organization name',
+
+"report.pdf.APPROVERS": 'Approved by :',
+
+"absence.year.dialog.title": 'Absence year configuration has been saved',
+
+"calendar.calendarEventColorShowing": 'Use color to show',
+
+"workingTimeUnit.MINUTE": 'minute',
+
+"clockin.report.activities.finishedTime": 'End time',
+
+"common.reset.password.question": 'Do you really want to reset password to user &quot;%s&quot; ?',
+
+"common.problem.members": 'Problems concern:',
+
+"import.requests.field.employee.err.noWorkflow": 'Employee doesn\'\'t have approval flow',
+
+"calendar.month.july.c": 'July',
+
+"jira.configuration.save.title": 'Saving configuration',
+
+"clockin.timesheet.pending": 'Pending',
+
+"person.validation.password.length": 'Password minimum length is 6 characters.',
+
+"calendar.month.august.c": 'August',
+
+"absenceRequest.restrictionRule.notification.requestDuration.fordays": 'You request for absence %s-days long.\n',
+
+"clockin.report.timesheet.worked": 'Worked',
+
+"absence.dashboard.employees.forAcceptance": 'For approval',
+
+"holiday.delete.oneHoliday.question": 'Do you want to delete holiday &quot;%s&quot;?',
+
+"ShiftProgressTimer.shiftStartIndicator.tooltip": 'Time you started working today',
+
+"absenceType.configuration.accrualRule.periods.periodsStart.WEEK.weekday": 'Weekday',
+
+"menu.conf.abnormalities": 'Abnormalities',
+
+"import.requests.field.absenceType.err.notEmpty": 'Value is empty',
+
+});

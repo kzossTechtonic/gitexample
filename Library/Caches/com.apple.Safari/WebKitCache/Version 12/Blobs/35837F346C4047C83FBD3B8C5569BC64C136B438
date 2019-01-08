@@ -1,0 +1,478 @@
+define([
+    'angular',
+    'jquery',
+    'lodash',
+    'lib.ocLazyLoad',
+    'lib.angular-animate',
+    'lib.angular-messages',
+    'lib.angular-resource',
+    'lib.angular-sanitize',
+    'lib.angular-material',
+    'lib.moment',
+    'paychex.app.landing.shared/globalFrame/GlobalFrameService',
+    'paychex.app.landing.shared/globalFrame/GlobalFrameController',
+    'paychex.app.landing.shared/states/Mode',
+    'paychex.app.landing.shared/states/Clients',
+    'paychex.app.landing.shared/states/App',
+    'paychex.tracking.common',
+    'paychex.core/Tracker',
+    'paychex.app.common/data',
+    'paychex.app.common/constants',
+    'paychex.app.common/tracking/FilteredCollector',
+    'paychex.app.common/tracking/GTMCollector',
+    'paychex.app.common/tracking/SplunkCollector',
+    'paychex.app.common/tracking/GoogleAnalyticsCollector',
+    'paychex.app.common/services',
+    'paychex.app.common/directives',
+    'paychex.app.common/components',
+    'paychex.app.common/internalClientSearch/module',
+    'paychex.app.common/globalFrameUI/module',
+    'paychex.app.common/preload/module',
+    'paychex.app.common/tileRegistry/module',
+    'paychex.framework.angular.ui2/module',
+    'paychex.app.landing.shared/app-config-logging',
+    'paychex.app.landing.shared/appLoaders/module',
+    'paychex.app.landing.shared/backToClassicDialog/module',
+    'paychex.app.landing.shared/applicationSelector/module',
+    'paychex.app.landing.shared/helpIcon/module',
+    'paychex.app.landing.shared/login/module',
+    'paychex.app.landing.shared/leftNav/module',
+    'paychex.app.landing.shared/messageList/module',
+    'paychex.app.landing.shared/messagesIcon/module',
+    'paychex.app.landing.shared/slideout/module',
+    'paychex.framework.angular.ui2/heightFix/module',
+    'paychex.framework.angular.ui2/accordion/module',
+    'paychex.app.landing.shared/userInfoIcon/module',
+    'paychex.framework.angular.ui2/progressIndicator/module',
+    'paychex.core/Errors',
+    'paychex.core/Promise',
+    'paychex.app.landing.shared/singleCompanySelectorDesktop/module',
+    'paychex.app.landing.shared/globalSettingsDrawer/module',
+    'paychex.app.landing.shared/userVoiceDrawer/module',
+    'paychex.app.landing.shared/feedback/module',
+    'paychex.app.landing.shared/security/module',
+    'htmlregistry',
+    'paychex.app.landing.shared/contact/module',
+    'paychex.app.landing.shared/contactSupport/module',
+    'paychex.app.landing.shared/gaffers/module',
+    'paychex.app.landing.shared/pin/module',
+    'paychex.app.landing.shared/internalClientSearchDrawer/js/module',
+    'paychex.app.landing.shared/components/module',
+    'paychex.app.dashboard',
+    'paychex.app.common/walkThrough/module',
+    'paychex.framework.angular.forms/module',
+    'paychex.app.landing.shared/security/EntitlementsResetHandler',
+    'paychex.app.landing.shared/clientAccess/module',
+    'paychex.framework.angular.eventing/module',
+    'paychex.app.common/messages/DirtyPromptMessage',
+    'paychex.topics.common',
+    'paychex.app.landing.shared/appLoaders/module',
+    'paychex.app.landing.shared/help/module',
+    'paychex.core/Workflows',
+    'paychex.app.landing.shared/templates',
+    'paychex.app.landing.shared/app-icons-sprite-svg',
+    'paychex.app.landing.shared/core-ui-icons-sprite-svg',
+    'paychex.app.landing.shared/landing-sprite-svg',
+    'paychex.app.landing.shared/avatarDrawer/module',
+    'paychex.app.landing.shared/headerIcons/module'
+], function setUpApplication(angular,
+                             $,
+                             _,
+                             ocLazyLoad,
+                             ngAnimate,
+                             ngMessages,
+                             ngResource,
+                             ngSanitize,
+                             ngMaterial,
+                             moment,
+                             GlobalFrameService,
+                             GlobalFrameController,
+                             StateMode,
+                             StateClients,
+                             StateApp,
+                             trackerName,
+                             Tracker,
+                             pacDataModule,
+                             pacConstantsModule,
+                             FilteredCollector,
+                             GTMCollector,
+                             SplunkCollector,
+                             GoogleAnalyticsCollector,
+                             pacServicesModule,
+                             pacDirectivesModule,
+                             pacComponentsModule,
+                             InternalClientSearchModule,
+                             globalFrameUIModule,
+                             PreloadModule,
+                             tileRegistryModule,
+                             ui2Module,
+                             configLoggersModule,
+                             appLoadersModule,
+                             backToClassicDialogModule,
+                             appSelModule,
+                             helpIconModule,
+                             loginModule,
+                             leftNavModule,
+                             messageListModule,
+                             messagesIconModule,
+                             slideoutModule,
+                             heightFixModule,
+                             accordionModule,
+                             userInfoIconModule,
+                             progressIndicatorModule,
+                             Errors,
+                             Promise,
+                             singleCompanySelectorModule,
+                             globalSettingsDrawerModule,
+                             userVoiceDrawerModule,
+                             feedbackModule,
+                             SecurityInfoModule,
+                             htmlregistry,
+                             ContactInfoModule,
+                             ContactSupportModule,
+                             gaffersModule,
+                             PinModule,
+                             internalClientSearchDrawer,
+                             Components,
+                             Dashboard,
+                             TourGuideModule,
+                             FormsFrameworkModule,
+                             entitlementsResetHandler,
+                             ClientAccessModule,
+                             EventingService,
+                             DirtyPromptMessage,
+                             EventTopics,
+                             SubAppLoaderModule,
+                             helpOverlayModule,
+                             Workflows,
+                             landingTemplates,
+                             appIconSvgSprite,
+                             coreIconsSvgSprite,
+                             landingSvgSprite,
+                             AvatarEditorDrawerModule,
+                             headerIconsModule) {
+
+    'use strict';
+
+    Tracker.marks.set('app-def-all loaded', {
+        category: 'Global Frame',
+        tags: ['load', 'script']
+    });
+
+    return angular.module('paychex.app.landing.shared-all', [
+        'ng',
+        'ngAnimate',
+        'ngMessages',
+        'ngResource',
+        'ngSanitize',
+        'ngMaterial',
+        configLoggersModule.name,
+        ui2Module.name,
+        appSelModule.name,
+        InternalClientSearchModule.name,
+        globalFrameUIModule.name,
+        PreloadModule.name,
+        helpIconModule.name,
+        appLoadersModule.name,
+        backToClassicDialogModule.name,
+        loginModule.name,
+        leftNavModule.name,
+        messageListModule.name,
+        messagesIconModule.name,
+        slideoutModule.name,
+        heightFixModule.name,
+        accordionModule.name,
+        userInfoIconModule.name,
+        progressIndicatorModule.name,
+        pacDataModule.name,
+        pacConstantsModule.name,
+        pacServicesModule.name,
+        pacDirectivesModule.name,
+        pacComponentsModule.name,
+        singleCompanySelectorModule.name,
+        globalSettingsDrawerModule.name,
+        userVoiceDrawerModule.name,
+        feedbackModule.name,
+        SecurityInfoModule.name,
+        ContactInfoModule.name,
+        ContactSupportModule.name,
+        gaffersModule.name,
+        PinModule.name,
+        internalClientSearchDrawer.name,
+        Components.name,
+        Dashboard.name,
+        TourGuideModule.name,
+        FormsFrameworkModule.name,
+        ClientAccessModule.name,
+        EventingService.name,
+        SubAppLoaderModule.name,
+        helpOverlayModule.name,
+        AvatarEditorDrawerModule.name,
+        headerIconsModule.name
+    ])
+        .service('GlobalFrameService', GlobalFrameService)
+        .controller('GlobalFrameController', GlobalFrameController)
+        .config(['$provide', function ($provide) {
+            var $root; // store away $rootScope so can use by closure
+
+            // Bad hack used for accessing $provide later and refresh ngLocale
+            window.$provide = $provide;
+            $provide.decorator('$q', function decorator() {
+                return Promise;
+            });
+
+            $provide.decorator('$rootScope', function decorator($delegate) {
+                $root = $delegate;
+                return $delegate;
+            });
+
+            // wait for $root to be set in decorator above
+            setTimeout(function bindPromiseToAngular() {
+                // eslint-disable-next-line jquery/no-bind
+                Promise.config.setScheduler($root.$applyAsync.bind($root));
+            });
+
+            // stop running a digest when every $http call finishes; instead,
+            // rely on the promise scheduling that uses $applyAsync to batch
+            // digest calls for us
+            $provide.decorator('$httpBackend', function decorator($delegate) {
+                // eslint-disable-next-line jquery/no-bind
+                var $digest = $root.$digest.bind($root);
+                return function $httpBackend() {
+                    var args = Array.prototype.slice.call(arguments),
+                        INDEX = 3,
+                        done = args[INDEX];
+                    args[INDEX] = function doneWrapper() {
+                        // NOTE: applyAsync probably breaks out of this,
+                        // but that's okay -- it's a good optimization
+                        // on its own and doesn't need this hack
+                        $root.$digest = _.noop;
+                        done.apply($delegate, arguments);
+                        $root.$digest = $digest;
+                    };
+                    return $delegate.apply(null, args);
+                };
+            });
+
+            // end HMAP-9085
+
+        }])
+        .config(['$httpProvider', function ($httpProvider) {
+            // more HMAP-9085
+            // batch HTTP results arriving within 1 clock tick
+            // (~6-12ms) into a single $digest cycle
+            $httpProvider.useApplyAsync(true);
+        }])
+        .run(['LocaleService', function (LocaleService) {
+            LocaleService.addAvailableLocales(['en', 'es']);
+            // Only set translation path to CUE which may occur before we get any user info
+            LocaleService.addTranslationPath(htmlregistry.commonHtml.common + '/localization/translations/cue-{localeId}.js');
+        }])
+        .config(['$sceDelegateProvider', function ($sceDelegateProvider) {
+            var list = _.uniq([
+                'self', // Allow same origin resource loads.
+                'http://**.paychexinc.com/',
+                'https://**.paychexinc.com/**',
+                window.cdnUrl + '/**',
+                'http://localhost:8125/**' // Allow loading from our assets domain.
+            ]
+                .concat(_.values(_.reduce(htmlregistry.urlPrefix.nonCdn, function getNonCdnValue(result, nonCdnValue, key) {
+                    result[key] = nonCdnValue + '/**';
+                    return result;
+                }, {})))
+                .concat(_.values(_.reduce(htmlregistry.urlPrefix.cdn, function getCdnValue(result, cdnValue, key) {
+                    result[key] = cdnValue + '/**';
+                    return result;
+                }, {}))));
+
+            $sceDelegateProvider.resourceUrlWhitelist(list);
+        }])
+        .config(['$mdDateLocaleProvider', function ($mdDateLocaleProvider) {
+            $mdDateLocaleProvider.formatDate = function formatDate(date) {
+                var m = moment(date);
+                return m.isValid() ? m.format('M/D/YYYY') : '';
+            };
+
+            $mdDateLocaleProvider.parseDate = function parseDate(dateString) {
+                var m = moment(dateString, 'M/D/YYYY', true);
+                return m.isValid() ? m.toDate() : new Date(NaN);
+            };
+        }])
+        .config(['$mdIconProvider', function mdIconProvider($mdIconProvider) {
+            $mdIconProvider.defaultIconSet(htmlregistry.components.libs + '/paychex-framework-core-ui/dist/png-md-icons.svg');
+            $mdIconProvider.iconSet('appIcons', htmlregistry.components.libs + '/paychex-framework-core-ui/dist/png-md-app-icons.svg');
+            $mdIconProvider.iconSet('landing', htmlregistry.paths['paychex.app.landing'] + '/src/assets/landing-sprite.svg');
+        }])
+        .config(['$mdThemingProvider', function ($mdThemingProvider) {
+            // PESR-6411: Make pink halo blue on md components.
+
+            var pngBlueName = 'pngBlue',
+                pngBluePalette = $mdThemingProvider.extendPalette('blue', {
+                    600: '#0369B1', /* @primaryColor4=#0369b1*/
+                    contrastDefaultColor: 'light'
+                });
+            $mdThemingProvider.definePalette(pngBlueName, pngBluePalette);
+            $mdThemingProvider.theme('default')
+                .primaryPalette(pngBlueName, {'default': '600'})
+                .accentPalette(pngBlueName, {'default': '600'});
+        }])
+        .config(['$mdInkRippleProvider', function ($mdInkRippleProvider) {
+            $mdInkRippleProvider.disableInkRipple();
+        }])
+        .run(appIconSvgSprite)
+        .run(coreIconsSvgSprite)
+        .run(landingSvgSprite)
+        .run(landingTemplates)
+        .run(function configurePromise() {
+
+            // Used for Chrome Timing Debugging
+            // console.timeEnd("Load Sequence Time");
+
+            // bloodhound lets us enable pretty stack traces
+            if (!!Promise.config && !!Promise.config.prettyStacks) {
+                Promise.config.prettyStacks.enable();
+            }
+
+            // Allow for non-critical errors to not throw
+            if (!!Promise.config && !!Promise.config.onUnhandledRejection) {
+                Promise.config.onUnhandledRejection(function severityHandler(e) {
+                    if (_.get(e, 'reason.severity') === 'NONE') {
+                        e.handled = true;
+                    }
+                });
+            }
+        })
+
+        .run(['Environment', 'LogoutStatus', function (Environment, LogoutStatus) {
+            var shouldTrack = function shouldTrack(info) {
+                    // HMAP-8093: stop sending network timings to Splunk in production
+                    if (Environment.prod && info.type === 'network') {
+                        return false;
+                    }
+                    return (!info.label || !_.includes(info.label, ': keepAlive')) && // exclude keepalive lifecycle marks/measures
+                        (info.type !== 'network' || (
+                            !_.includes(info.label, 'framework.TimingService') && // exclude the logTracking remote
+                            !_.includes(info.label, 'google-analytics') && // exclude google analytics
+                            !_.includes(info.label, 'keepAlive.do')) // exclude keepAlive.do pings
+                        );
+                },
+                gtmCollector = new GTMCollector(window.gtmId || 'GTM-K6XZRSX'),
+                splunkCollector = new SplunkCollector({}, null, LogoutStatus),
+                gaCollector = new GoogleAnalyticsCollector({
+                    mark: false,
+                    network: false
+                }),
+                filteredSplunkCollector = new FilteredCollector(splunkCollector, shouldTrack),
+                filteredGACollector = new FilteredCollector(gaCollector, function shouldSendToGA(info) {
+                    /* eslint complexity: 0 */
+                    // HMAP-20507: add current stage app as dimension 118
+                    // NOTE: i'm using Tracker instead of GlobalStateService because after
+                    // HMAP-20487, the Tracker has more accurate data when a state change
+                    // hasn't yet finished
+                    _.merge(info.data, {dimension118: Tracker.static.getContext('app')});
+                    return shouldTrack(info) && _.get(info, 'data.ga', true) &&
+                        (!info.label || !_.includes(info.label, '[SKIPPED]')) &&
+                        (!info.label || !_.includes(info.label, 'LazyLoad')) &&
+                        // HMAP-3798: do not send Global Frame tracking data to GA
+                        (!info.category || _.toLower(info.category) !== 'global frame') &&
+                        (!info.category || _.toLower(info.category) !== 'pngangularlifecycle');
+                });
+            Tracker.collectors.add(gtmCollector);
+            Tracker.collectors.add(filteredGACollector);
+            Tracker.collectors.add(filteredSplunkCollector);
+        }])
+        .run(['GlobalStateService', 'UrlService', function (GSP, UrlService) {
+            GSP.addState(StateMode);
+            GSP.addState(function selectedInteralClient() {
+                return {
+                    key: 'selectedInternalClient',
+                    shouldDefault: _.constant(false)
+                };
+            });
+            GSP.addState(StateClients);
+            GSP.addState(StateApp);
+            UrlService.addAllowedKeys('mode', 'clients', 'app', 'loglevel');
+        }])
+        // we're registering a global state handler, we have to make sure
+        // we run after the GlobalStateService is initialized
+        .run(['GlobalStateService', 'FormSecurityService', entitlementsResetHandler])
+        .run(['DrawerManager','FormManager', 'INotificationService', 'GlobalStateService', 'StageApplicationManagerService', 'EventingService',
+            function (DrawerManager, FormManager, INotificationService, GlobalStateService, StageApplicationManagerService, EventingService) { // eslint-disable-line no-shadow
+
+                var steps = {
+                        dirtyPromptAll: {
+                            execute: function dirtyPromptStep() {
+                                return DrawerManager.navigateCheckAndCloseAll();
+                            }
+                        },
+                        unloadStageApplication: {
+                            execute: function unloadStageApplicationStep() {
+                                return StageApplicationManagerService.unloadAppBeforeNavigating();
+                            }
+                        }
+                    },
+
+                    workflow = Workflows.create('paychex.app.landing.shared.logout')
+                        .addStep('dirty-prompt-all', steps.dirtyPromptAll)
+                        .addStep('unload-stage-application', ['dirty-prompt-all'], steps.unloadStageApplication),
+
+                    loggingOut,
+                    dirtyVoter = function dirtyVoter(event, reject, approve) {
+                        // If user has requested logout a second time before
+                        // logout occurred, just leave.
+                        if (loggingOut) {
+                            approve();
+                        } else {
+                            loggingOut = true;
+                            workflow.dispatch()
+                                .then(approve, reject)
+                                .finally(function logoutFinally() {
+                                    loggingOut = false;
+                                })
+                                .catch(Errors.rethrowAs('Exception in dirty form voter'))
+                                .done();
+                        }
+                    };
+
+                // Set the default dirty prompt of the modal popup.
+                FormManager.setDefaultDirtyPrompt(
+                    function defaultDirtyPrompt() {
+                        return INotificationService.displayDirtyMessage({message: new DirtyPromptMessage()}).then(
+                            function dialogSuccess(response) {
+                                if (response.value === DirtyPromptMessage.LEAVE) {
+                                    Tracker.events.fire('Abandon Edits', {
+                                        category: _.get(GlobalStateService.getState(), 'app.name', 'No app selected yet.'),
+                                        label: 'Dirty Prompt',
+                                        dimension32: _.get(GlobalStateService.getState(), 'app.name', 'No app selected yet.')
+                                    });
+                                    return Promise.resolve();
+                                } else if (response.value === DirtyPromptMessage.STAY) {
+                                    Tracker.events.fire('Continue Editing', {
+                                        category: _.get(GlobalStateService.getState(), 'app.name', 'No app selected yet.'),
+                                        label: 'Dirty Prompt',
+                                        dimension32: _.get(GlobalStateService.getState(), 'app.name', 'No app selected yet.')
+                                    });
+                                    return Promise.reject(Errors.get('UserCancellationError', 'User chose to stay on Dirty form', {severity: 'NONE'}));
+                                }
+                            }
+                        );
+                    }
+                );
+
+                // Hook global nav with dirty prompt.
+                EventingService.subscribe(
+                    EventTopics.PAYCHEX_GLOBAL_NAVIGATION_REQUESTED,
+                    dirtyVoter,
+                    angular.noop,
+                    angular.noop
+                );
+
+                // Hook logout with dirty prompt.
+                EventingService.subscribe(
+                    EventTopics.PAYCHEX_GLOBAL_LOGOUT_REQUESTED,
+                    dirtyVoter,
+                    angular.noop,
+                    angular.noop
+                );
+            }]);
+});

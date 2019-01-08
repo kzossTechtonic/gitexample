@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Dashboard - Flexbox Fridays 7</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      @import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px 40px 80px;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/tiny_grid.png);
+  font-family: 'Merriweather Sans', sans-serif;
+  color: ghostwhite;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.Dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Widget {
+  margin: 10px;
+  box-shadow: 1px 1px 5px #333;
+  text-align: center;
+}
+
+.Widget-header {
+  padding: 10px 20px;
+}
+
+.Widget-headline {
+  margin: 0;
+}
+
+.NotesWidget {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background: white;
+  font-size: 1.2em;
+  color: #717A8D;
+}
+
+.NotesWidget .Widget-header {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.NotesWidget .Widget-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.NotesWidget .Widget-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 0 0 10px;
+  background: ghostwhite;
+}
+
+.NotesWidget img {
+  height: 40px;
+}
+
+/*
+ * Events Widget
+ */
+.EventsWidget {
+  display: flex;
+  flex-direction: column;
+  background: #239ED9;
+}
+
+.EventsWidget .Widget-header {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EventsWidget .Widget-body {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 20px 10px;
+  background: #2180AC;
+}
+
+.EventsWidget img {
+  height: 30px;
+}
+
+.EventsWidget .Widget-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.EventsWidget-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: #239ED9;
+}
+
+/*
+ * Color Forecast Widget
+ */
+.ColorForecastWidget {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: ghostwhite;
+  color: #717A8D;
+}
+
+.ColorForecastWidget .Widget-header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.ColorForecastWidget .Widget-body {
+  flex: 2;
+  margin: 0;
+  padding: 0;
+}
+
+.ColorForecastWidget li {
+  padding: 1em 0;
+  list-style: none;
+}
+
+/*
+ * Commute Widget
+ */
+.CommuteWidget {
+  display: flex;
+  background: #E67053;
+}
+
+.CommuteWidget-graphic {
+  width: 120px;
+}
+
+.CommuteWidget .Widget-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px 20px 0;
+}
+
+.CommuteWidget .Widget-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #e98369;
+}
+
+.CommuteWidget .Widget-subHeadline {
+  margin: 1em 0 0;
+  font-weight: normal;
+}
+
+.CommuteWidget .Widget-data {
+  margin: .5em 0;
+}
+
+/*
+ * Weather Widget
+ */
+.WeatherWidget {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background: #5CC8E5;
+}
+
+.WeatherWidget .Widget-header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.WeatherWidget .Widget-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.WeatherWidget-primaryIcon {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  height: 120px;
+  width: 120px;
+  z-index: 0;
+  opacity: .4;
+}
+
+.WeatherWidget .Widget-headline {
+  font-size: 3em;
+  z-index: 1;
+}
+
+.WeatherWidget .Widget-body {
+  flex: 1;
+  background: #39bcdf;
+  padding: 20px;
+  font-weight: 300;
+}
+
+/*
+ * Calendar Widget
+ */
+.CalendarWidget {
+  background: #2699D0;
+  overflow-x: auto;
+}
+
+.CalendarWidget .Widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CalendarWidget img {
+  height: 30px;
+}
+
+.CalendarWidget .Widget-headline {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.CalendarWidget .Widget-body {
+  background: #2180AC;
+}
+
+.CalendarWidget-dayHeaders td {
+  color: #A1E0F5;
+}
+
+.CalendarWidget td {
+  padding: 6px 8px;
+}
+
+/*
+ * Message Widget
+ */
+.MessageWidget {
+  display: flex;
+  flex-direction: column;
+  background: #ECEDF0;
+  color: #717A8D;
+}
+
+.MessageWidget .Widget-header {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 20px;
+}
+
+.MessageWidget-graphic {
+  width: 60px;
+}
+
+.MessageWidget .Widget-subHeadline {
+  font-weight: 300;
+}
+
+.MessageWidget .Widget-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  background: #E67053;
+}
+
+.MessageWidget .Widget-body img {
+  height: 30px;
+}
+
+.Color-1 {
+  background: #D4F4E8;
+}
+
+.Color-2 {
+  background: #FF95A2;
+}
+
+.Color-3 {
+  background: #ED8161;
+  color: white;
+}
+
+.Color-4 {
+  background: #68A691;
+  color: white;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div class="Dashboard">
+  <section class="Widget NotesWidget">
+    <header class="Widget-header">
+      <h2 class="Widget-headline">Notes</h2>
+      
+      <div class="Widget-controls">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/plus-01.svg" alt="" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/minus-02.svg" alt="" />
+      </div>
+    </header>
+    <div class="Widget-body">
+      
+      <img 
+           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/mic-03.svg" 
+           alt="" />
+    </div>
+  </section>
+
+  <section class="Widget EventsWidget">
+    <header class="Widget-header">
+      <h2 class="Widget-headline">Don't Forget</h2>
+    </header>
+    <div class="Widget-body">
+      <p>Feed the dog or he will die :(</p>
+      
+      <div class="Widget-controls">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/pencil-06.svg" alt="" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/cal.svg" alt="" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/trash.svg" alt="" />
+        <span class="EventsWidget-count">2</span>
+      </div>
+    </div>
+  </section>
+  
+  <section class="Widget ColorForecastWidget">
+    <header class="Widget-header">
+      <h2 class="Widget-headline">Color Forecast</h2>
+    </header>
+    
+    <ul class="Widget-body">
+      <li class="Color-1">#D4F4E8</li>
+      <li class="Color-2">#FF95A2</li>
+      <li class="Color-3">#ED8161</li>
+      <li class="Color-4">#68A691</li>
+    </ul>
+  </section>
+  
+  <section class="Widget CommuteWidget">
+    <header class="Widget-header">
+      <img class="CommuteWidget-graphic" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/house-12.svg" alt="" />
+    </header>
+    <div class="Widget-body">
+      <h2 class="Widget-headline">Commute Home</h2>
+      <h3 class="Widget-subHeadline">Current Estimate</h3>
+      <h4 class="Widget-data">1 hour</h4>
+    </div>
+  </section>
+  
+  <section class="Widget WeatherWidget">
+    <header class="Widget-header">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/sun.svg" alt=""
+           class="WeatherWidget-primaryIcon"/>
+      
+      <h2 class="Widget-headline">58&deg;</h2>
+    </header>
+    <div class="Widget-body">
+      <p>Wear a light jacket.<br />You might end up carrying it.</p>
+    </div>
+  </section>
+  
+  <section class="Widget CalendarWidget">
+    <header class="Widget-header">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/arrowl.svg" alt="" />
+      <h2 class="Widget-Title">March</h2>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/arrowr.svg" alt="" />
+    </header>
+      <table class="Widget-body">
+        <thead class="CalendarWidget-dayHeaders">
+          <tr>
+            <td>Sun</td>
+            <td>Mon</td>
+            <td>Tue</td>
+            <td>Wed</td>
+            <td>Thu</td>
+            <td>Fri</td>
+            <td>Sat</td>
+          </tr>
+        </thead>
+        <tbody class="CalendarWidget-days">
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </section>
+  
+  <section class="Widget MessageWidget">
+    <header class="Widget-header">
+       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/mail.svg" alt="" class="MessageWidget-graphic"/>
+      <h2 class="Widget-headline">Do you have enough socks?</h2>
+      <h3 class="Widget-subHeadline">Mom</h3>
+    </header>
+    <div class="Widget-body">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/pencil-06.svg" alt="" />
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/dots-19.svg" alt="" />
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/reply-05.svg" alt="" />
+    </div>
+  </section>
+</div>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  
+  
+
+    <script >
+      /*
+Post for this demo here:
+https://codepen.io/team/lincolnloop/blog/flexbox-fridays-week-7
+
+Inspired by lots of dashboard designs like this one: 
+https://dribbble.com/shots/974693-Easy-Note/attachments/112631
+*/
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

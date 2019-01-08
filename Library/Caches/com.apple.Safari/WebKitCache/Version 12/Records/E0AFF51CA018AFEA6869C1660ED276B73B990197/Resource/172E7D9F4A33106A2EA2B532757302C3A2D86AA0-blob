@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Responsive Flexbox Grid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+      <style>
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans:600");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #f1f1f1;
+  color: #333;
+  font: 12px/1 'Open Sans', sans-serif;
+}
+
+.wrapper {margin: 20px auto;}
+
+[class*="col-"] {
+  margin-bottom: 20px;
+  min-height: 30px;
+  background: #fff;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+}
+@media all and (max-width: 500px){
+	.no-mobile {display: none;}
+}
+
+@media all and (min-width: 500px) {
+  .wrapper {
+    padding: 0 20px;
+	 background-color: #e1e1e1;
+	 padding-top: 20px;
+	 border-radius: 5px;
+  }
+
+  .row {display: flex;}
+
+  [class*="col-"] {margin-right: 20px;}
+
+  [class*="col-"]:last-child {margin-right: 0;}
+
+  .col-1 {flex: 1;}
+  .col-2 {flex: 2;}
+  .col-3 {flex: 3;}
+  .col-4 {flex: 4;}
+  .col-5 {flex: 5;}
+  .col-6 {flex: 6;}
+  .col-7 {flex: 7;}
+  .col-8 {flex: 8;}
+  .col-9 {flex: 9;}
+  .col-10 {flex: 10;}
+  .col-11 {flex: 11;}
+  .col-12 {flex: 12;}
+}
+@media all and (min-width: 1000px) {
+  .wrapper {max-width: 1000px;}
+}
+
+h2 {
+  font: 600 20px/1 'Open Sans', sans-serif;
+  color: #888;
+  margin: 20px 0;
+}
+
+h3 {
+	font: 600 15px/1 'Open Sans', sans-serif;
+	color: #999;
+	margin: 20px 0;
+}
+
+p {
+  font: 12px/1 'Open Sans', sans-serif;
+  color: #777;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+a:hover {text-decoration: underline;}
+
+/* Just so you can get an impression of what it looks like when the height changes without spamming the code with useless text. */
+.blank-col {
+	min-height: 150px;
+	max-height: 150px;
+}
+
+.sticky {
+  font: 600 20px/1 'Open Sans', sans-serif;
+  top: 0;
+  position:fixed;
+  width: 100%;
+  max-height: 150px;
+}
+
+.no-back {
+	 background-color: #f1f1f1; /* make sure to change this to the background color */
+  }
+
+.warn {background: #FFDB4D;}
+.note {
+	background: #5CADFF;
+	color: #fff;
+}
+.error {
+	background: #FF5353;
+	color: #fff;
+}
+.correct {
+	background: #33D685;
+	color: #fff;
+}
+.rounded {border-radius: 100px;}
+
+.top-r {border-top-right-radius: 100px;}
+.top-l {border-top-left-radius: 100px;}
+.bottom-r {border-bottom-right-radius: 100px;}
+.bottom-l {border-bottom-left-radius: 100px;}
+
+.rad-l {border-radius: 100px 0 0 100px;}
+.rad-r {border-radius: 0 100px 100px 0;}
+
+.hidden-col {visibility: hidden;}
+
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+
+.back-img {
+	/* Use on columns only! */
+	background-image: url(http://xendox.com/assets/img/header_bg.jpg);
+	height: 150px;
+	background-size:cover;
+	color: #fff; /*change this to the best color with your background */
+}
+
+
+/*
+===============
+Contributions
+===============
+*/
+/* by BCasal.es */
+.full-width { margin-bottom: 0; }
+
+.full-width:last-child { margin-bottom: 20px; }
+
+.space-off,
+.space-off:last-child {
+  margin-bottom: 0;
+}
+
+@media all and (min-width: 500px) {
+	.full-width {
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+
+  .space-off,
+  .space-off:last-child {
+    margin-bottom: 0;
+  }
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <!-- Yep, a column without the wrapper will look like this. Pretty isn't it? -->
+<div class="sticky row">
+	<div class="col-12">
+		<h2>Responsive Flexbox Grid Examples/Playground</h2>
+		<h3>A project by <a href="http://guuslieben.nl/">Guus Lieben</a>.</h3>
+	</div>
+</div>
+
+<div class="blank-col"></div> <!-- add some space below, make sure it doesn't overlap -->
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-2"><p>Col-2</p></div>
+		<div class="col-2"><p>Col-2</p></div>
+		<div class="col-2"><p>Col-2</p></div>
+		<div class="col-2"><p>Col-2</p></div>
+		<div class="col-2"><p>Col-2</p></div>
+		<div class="col-2"><p>Col-2</p></div>
+	</div>
+	<div class="row">
+		<div class="col-1"><p>Col-1</p></div>
+		<div class="col-1"><p>Col-1</p></div>
+		<div class="col-1"><p>Col-1</p></div>
+		<div class="col-1"><p>Col-1</p></div>
+		<div class="col-1"><p>Col-1</p></div>
+	</div>
+	<div class="row">
+		<div class="col-3"><p>Col-3</p></div>
+		<div class="col-3"><p>Col-3</p></div>
+		<div class="col-3"><p>Col-3</p></div>
+		<div class="col-3"><p>Col-3</p></div>
+	</div>
+</div>
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-12"><p>As you can see on the second row in the first wrapper, it is possible to add working columns which don't have the sum of 12. As long as they're the same size it will work perfectly fine.</p><br>
+			<p>Also, the wrappers have some spacing in between to make sure it looks great when placed below each other. I rounded the borders to make it look more fluent.</p></div>
+	</div>
+</div>
+
+<!-- You can also add multiple columns like this, good for full-width pages. -->
+<div class="row">
+	<div class="col-6"><p>This row is outside of a wrapper, great if you want full-width pages. Or.. whatever you want to do with it, it's up to you!</p></div>
+	<div class="col-6 warn"><i class="fa fa-exclamation-triangle"></i> You can add notifications as well, let's make it a warning.</div>
+</div>
+
+<div class="wrapper no-mobile">
+	<div class="row">
+		<div class="col-12"><p>This wrapper is only visible on desktop computers and will be hidden on mobile devices (up to 500px {note the viewport tag} )</p></div>
+	</div>
+</div>
+
+	<div class="wrapper no-back">
+		<div class="row">
+			<div class="col-8"><p>This wrapper has no background color, well, it kinda does, but it's the same as the default background so you don't see it.</p></div>
+			<div class="col-4"><p>You can use it on rows and columns, but it won't look very good.</p></div>
+		</div>
+	</div>
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-12"><p>Let's add some color! Good idea for buttons maybe?</p></div>
+	</div>
+	<div class="row">
+		<div class="col-3 warn">Warning</div>
+		<div class="col-3 note">Note</div>
+		<div class="col-3 error">Error</div>
+		<div class="col-3 correct">Correct</div>
+	</div>
+</div>
+	
+	<div class="row">
+		<div class="col-12 error">
+			<i class="fa fa-exclamation-triangle"></i> Full width Error notification?
+		</div>
+	</div>
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-6 rounded"><p>Want a fully rounded column somewhere? No problem!</p></div>
+		<div class="col-2 rounded"><p>It's simple!</p></div>
+		<div class="col-4 rounded"><p>Just add class 'rounded'.</p></div> 
+	</div>
+	<div class="row">
+		<div class="col-12"><p>You can also add rounded corners, these can be placed in corners in non-wrapper columns. Ofcourse you can also just use them anywhere else.</p></div>
+	</div>
+	<div class="row">
+		<div class="col-3 top-r"><p>top-r</p></div>
+		<div class="col-3 top-l"><p>top-l</p></div>
+		<div class="col-3 bottom-r"><p>bottom-r</p></div>
+		<div class="col-3 bottom-l"><p>bottom-l</p></div>
+	</div>
+	<div class="row">
+		<div class="col-12"><p>You can also round just the left or right.</p></div>
+	</div>
+<div class="row">
+		<div class="col-6 rad-r"><p>rad-r</p></div>
+		<div class="col-6 rad-l"><p>rad-l</p></div>
+	</div>
+</div>
+
+<div class="wrapper no-back">
+	<div class="row">
+		<div class="col-6 hidden-col"></div>
+		<div class="col-6"><p>This column will align right, because there is a hidden column on its left. I added the 'no-back' class to make it look nicer.</p></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-9 warn"><i class="fa fa-exclamation-circle"></i> Warning? This one is aligned to the left!</div>
+	<div class="col-3 hidden-col"></div>
+</div>
+
+<div class="wrapper">
+	<div class="row">
+		<div class="col-4 text-left"><p>This text is aligned left</p></div>
+		<div class="col-4"><p>This text is centered</p></div>
+		<div class="col-4 text-right"><p>This text is aligned right</p></div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="back-img col-12">
+		<h2>Background Image</h2>
+		This is some text within a normal column, the difference? This one has an image as background instead of a solid color.
+	</div>
+</div>
+
+<div class="wrapper">
+		<div class="row">
+			<div class="col-1 correct full-width">
+			These columns don't have horizontal space between them
+			</div>
+			<div class="col-1 note full-width">
+				Useful if you want to create stuff that will take up the entire page
+			</div>
+		</div>
+	</div>
+
+		<div class="row">
+			<div class="col-1 warn full-width space-off">
+				By adding both the no-margin and the no-space classes..
+			</div>
+			<div class="col-1 note full-width space-off">
+				You can do some pretty epic stuff!
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1 error full-width space-off">
+				By removing the wrapper like I did here..
+			</div>
+			<div class="col-1 correct full-width space-off">
+				You can really make good use of the entire page
+			</div>
+		</div>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  
+  
+
+    <script >
+      /* Changelog:
+Version 1.0.1 / 1.1.0 {Styling}
+
+	1.0.1 - Adding some styling to the columns, possible adding stuff to the rows soon.
+
+	1.0.2 - Nope, the rows haven't changed. The wrapper however has been given some styling.
+
+	1.0.4 - Added back default typography styling to make it look better and added some other styling. Made the background of the wrapper lighter, now only added on desktop, mobile devices will not have this layout (^500px) ! Skipped 1.0.3
+
+	1.0.5 - Added the 'full width column', which is basically a column outside the wrapper. Removed rounded corners from it to make it look good.
+	
+1.0.7 - Added the 'no-mobile' class, this can be used for wrappers, rows and even specific colums. It will hide until the width >= 500px (Note: the viewport tag will make sure it hides on high-end phones)
+
+1.0.8 - Added the 'sticky' class to make a sticky header out of the first row, try not to use it on multiple rows. Also changed some styling (it's a bit lighter and the corners are a bit less rounded)
+
+1.0.9 - Five new classes 'no-back' which does what is says, it removes the darkened back from the wrapper. And 4 color classes 'warn', 'note', 'error', 'correct'
+
+1.1.0 - Added 7 new classes for wrappers and columns 'rounded' & '.bottom-l/r .top-l/r .rad-l/r'. all of them take care of rounding the corners. Also added the '.hidden-col' class, which makes it invisible, but does not hide it in the debug code, which makes it great for aligning other columns which isn't natively supported in flexbox.
+*/
+/*
+================
+Contributions
+================
+by BCasal.es [https://codepen.io/BCasal/] {
+ the .space-off and .full-width classes to make better use of the entire page. 
+}
+*/
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

@@ -1,0 +1,508 @@
+[01/07/19, 11:53:42:520] info: ╔═══════════════════════════════════════════════════════════════════════════════╗
+[01/07/19, 11:53:42:521] info: ║      Slack 3.3.3, darwin (Store) 17.5.0 on x64 at 01/07/19, 11:53:42:518      ║
+[01/07/19, 11:53:42:521] info: ╚═══════════════════════════════════════════════════════════════════════════════╝
+[01/07/19, 11:53:42:932] info: Initializing local storage instance at path: /Users/karennazoss/Library/Containers/com.tinyspeck.slackmacgap/Data/Library/Application Support/Slack/local-settings.json
+[01/07/19, 11:53:43:017] error: Locale: Tried to access systemLocale before application was ready
+[01/07/19, 11:53:43:304] info: TraceRecorder: setting up trace recorder, trace will be stored under /Users/karennazoss/Library/Containers/com.tinyspeck.slackmacgap/Data/Library/Application Support/Slack/logs/recorded-trace
+[01/07/19, 11:53:43:309] info: Configuring uncaughtExceptionHandler
+[01/07/19, 11:53:43:309] info: Configuring unhandledRejectionHandler
+[01/07/19, 11:53:43:309] info: Registered with apiKey acaff8df67924f677747922423057034
+[01/07/19, 11:53:43:696] info: Store: persist/REHYDRATE
+[01/07/19, 11:53:43:766] info: Store: UPDATE_SETTINGS
+{
+  "isSignedIntoSlackOrg": false
+}
+[01/07/19, 11:53:43:768] info: UpdaterEpics: Updates disabled because
+{
+  "reasons": [
+    "Mac App Store build"
+  ]
+}
+[01/07/19, 11:53:43:770] info: Created uuid 'aebcc348-1a26-540b-b175-182fb01560a7'
+[01/07/19, 11:53:43:810] info: Store: INITIALIZE_SETTINGS
+{
+  "releaseChannel": "mas",
+  "platformVersion": {
+    "major": 17,
+    "minor": 5,
+    "build": 0
+  },
+  "isTitleBarHidden": false,
+  "isDevMode": false,
+  "appVersion": "3.3.3",
+  "versionName": "Dirty Computer",
+  "devEnv": null,
+  "resourcePath": "/Applications/Slack.app/Contents/Resources/app.asar",
+  "webappSrcPath": null,
+  "webappParams": null,
+  "launchOnStartup": false,
+  "openDevToolsOnStart": false,
+  "logFile": null,
+  "pretendNotReallyWindows10": false,
+  "isAeroGlassEnabled": false,
+  "isGpuCompositionAvailable": true
+}
+[01/07/19, 11:53:43:812] info: AutoLoginEpic: Checking for autologin.
+[01/07/19, 11:53:43:823] info: Store: UPDATE_SETTINGS
+{
+  "hasRunApp": true
+}
+[01/07/19, 11:53:43:826] info: WebContentsMediator: Attaching to new webContents
+[01/07/19, 11:53:43:834] info: Store: ADD_WINDOW
+{
+  "id": 2,
+  "type": "main"
+}
+[01/07/19, 11:53:43:835] info: BrowserViewManager: Starting initialization
+[01/07/19, 11:53:43:836] info: PersistSettingsWindowBehavior: Loading windowMetrics
+{
+  "settings": null
+}
+[01/07/19, 11:53:43:837] info: PersistSettingsWindowBehavior: Resetting to default window position
+{
+  "settings": {
+    "position": [
+      208,
+      43
+    ],
+    "size": [
+      1024,
+      768
+    ]
+  }
+}
+[01/07/19, 11:53:43:837] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "position": [
+    208,
+    43
+  ],
+  "size": [
+    1024,
+    768
+  ]
+}
+[01/07/19, 11:53:43:843] info: Store: UPDATE_SETTINGS
+{
+  "PrefSSBFileDownloadPath": "/Users/karennazoss/Library/Containers/com.tinyspeck.slackmacgap/Data/Downloads"
+}
+[01/07/19, 11:53:43:845] info: DownloadListener: Downloads directory set to
+{
+  "downloadsDirectory": "/Users/karennazoss/Library/Containers/com.tinyspeck.slackmacgap/Data/Downloads"
+}
+[01/07/19, 11:53:43:845] info: Application: Setting main window ID
+{
+  "id": 2
+}
+[01/07/19, 11:53:43:847] info: App: Welcome to Slack 3.3.3 x64
+[01/07/19, 11:53:43:847] info: App load time: 1,628130437
+[01/07/19, 11:53:44:992] info: Store: BACKGROUND_CLIENTS_INITIALIZED
+[01/07/19, 11:53:44:998] info: Store: BACKGROUND_CLIENTS_INITIALIZED true
+[01/07/19, 11:53:45:961] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 11:53:45:963] info: Store: MAIN_WINDOW_SHOWN
+[01/07/19, 11:53:45:968] info: createSignInWindowEpic: No teams signed in, showing sign-in window
+[01/07/19, 11:53:45:970] info: WebContentsMediator: Attaching to new webContents
+[01/07/19, 11:53:45:976] info: Store: ADD_WINDOW
+{
+  "id": 3,
+  "type": "sign-in"
+}
+[01/07/19, 11:53:45:977] info: SignInEpic: Loading URL in new window https://slack.com/signin
+[01/07/19, 11:54:38:474] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/"
+}
+[01/07/19, 11:54:38:474] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/"
+}
+[01/07/19, 11:54:38:474] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/"
+}
+[01/07/19, 11:55:58:684] info: SignInEpic: Page redirect
+{
+  "newURL": "https://slack.com/checkcookie?redir=https%3A%2F%2Ftechtonicacademy.slack.com%2Fsignin%3Fssb_success%3D1%26ssb_relogin%3D"
+}
+[01/07/19, 11:55:58:684] info: SignInEpic: Page redirect
+{
+  "newURL": "https://slack.com/checkcookie?redir=https%3A%2F%2Ftechtonicacademy.slack.com%2Fsignin%3Fssb_success%3D1%26ssb_relogin%3D"
+}
+[01/07/19, 11:55:58:685] info: SignInEpic: Page redirect
+{
+  "newURL": "https://slack.com/checkcookie?redir=https%3A%2F%2Ftechtonicacademy.slack.com%2Fsignin%3Fssb_success%3D1%26ssb_relogin%3D"
+}
+[01/07/19, 11:55:58:884] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/signin?ssb_success=1&ssb_relogin="
+}
+[01/07/19, 11:55:58:885] info: Store: SIGN_IN_COMPLETE
+[01/07/19, 11:55:58:886] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/signin?ssb_success=1&ssb_relogin="
+}
+[01/07/19, 11:55:58:887] info: SignInEpic: Page redirect
+{
+  "newURL": "https://techtonicacademy.slack.com/signin?ssb_success=1&ssb_relogin="
+}
+[01/07/19, 11:55:59:200] info: SignInEpic: Received team(s) from the webapp
+[01/07/19, 11:55:59:200] info: SignInEpic: Got signal!
+[01/07/19, 11:55:59:201] info: Store: SIGN_IN_CANCELED
+[01/07/19, 11:55:59:202] info: SignInEpic: Sign-in window closed
+[01/07/19, 11:55:59:202] info: Store: REMOVE_WINDOW 3
+[01/07/19, 11:55:59:204] info: maybeQuitAppAction
+{
+  "canceledSignIn": false,
+  "hasNoTeams": true
+}
+[01/07/19, 11:55:59:204] info: SignInEpic: End of the road
+{
+  "action": "ADD_NEW_TEAM"
+}
+[01/07/19, 11:55:59:204] info: Store: ADD_NEW_TEAM
+{
+  "id": "UF9HUTTNJ",
+  "name": "[REDACTED]",
+  "team_id": "T44ULKQPL",
+  "team_name": "[REDACTED]",
+  "team_url": "[REDACTED]"
+}
+[01/07/19, 11:55:59:209] info: BrowserViewManager: Creating views for new teams
+{
+  "newTeamIds": [
+    "T44ULKQPL"
+  ]
+}
+[01/07/19, 11:55:59:210] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:55:59:210] info: BrowserViewManager: Creating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:55:59:212] info: WebContentsMediator: Attaching to new webContents
+[01/07/19, 11:55:59:212] info: Store: UPSERT_WEB_CONTENTS
+{
+  "id": 4,
+  "teamId": "T44ULKQPL",
+  "state": "unloaded"
+}
+[01/07/19, 11:55:59:216] info: Background Clients Update: 
++-----------+-------+------------+
+|           | Full  | Background |
+|-----------+-------+------------+
+| T44ULKQPL | start |            |
++-----------+-------+------------+
+[01/07/19, 11:55:59:222] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:55:59:226] info: Background Clients Update: 
++-----------+-------+------------+
+|           | Full  | Background |
+|-----------+-------+------------+
+| T44ULKQPL | start |            |
++-----------+-------+------------+
+[01/07/19, 11:55:59:927] info: Team boot count
+{
+  "count": 1
+}
+[01/07/19, 11:56:02:987] info: WebContents LifeCycle: webContents:4 from 'unloaded' to 'loaded' took 3768 ms
+[01/07/19, 11:56:02:987] info: Store: UPSERT_WEB_CONTENTS
+{
+  "id": 4,
+  "state": "loaded",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:02:988] info: Background Clients Update: 
++-----------+---------+------------+
+|           | Full    | Background |
+|-----------+---------+------------+
+| T44ULKQPL | loading |            |
++-----------+---------+------------+
+[01/07/19, 11:56:03:188] info: Store: UPDATE_SESSION_STATUS
+{
+  "hasValidSession": true,
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:03:469] info: Store: SELECT_CHANNEL C44SKMV4K
+[01/07/19, 11:56:03:474] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:03:483] info: Store: UPDATE_SETTINGS
+{
+  "locale": "en-US"
+}
+[01/07/19, 11:56:03:491] info: Store: UPDATE_TEAM_THEME
+{
+  "teamId": "T44ULKQPL",
+  "theme": {
+    "active_item": "#4C9689",
+    "active_item_text": "#FFFFFF",
+    "active_presence": "#38978D",
+    "badge": "#EB4D5C",
+    "column_bg": "#4D394B",
+    "hover_item": "#3E313C",
+    "menu_bg": "#3E313C",
+    "text_color": "#FFFFFF"
+  }
+}
+[01/07/19, 11:56:03:726] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:03:735] info: WebContents LifeCycle: webContents:4 from 'loaded' to 'webapp-loaded' took 749 ms
+[01/07/19, 11:56:03:735] info: Store: UPSERT_WEB_CONTENTS
+{
+  "id": 4,
+  "state": "webapp-loaded",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:03:736] info: Background Clients Update: 
++-----------+-------+------------+
+|           | Full  | Background |
+|-----------+-------+------------+
+| T44ULKQPL | ready |            |
++-----------+-------+------------+
+[01/07/19, 11:56:03:740] info: Store: UPDATE_SETTINGS
+{
+  "sandboxSigninWindow": true
+}
+[01/07/19, 11:56:04:029] info: Store: STORE_ENTERPRISE_ID_PAIR
+{
+  "teamId": "T44ULKQPL",
+  "enterpriseId": null
+}
+[01/07/19, 11:56:04:032] info: Store: STORE_API_TOKEN
+{
+  "token": "xoxs-⋯",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 11:56:30:990] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    552,
+    57
+  ],
+  "isMaximized": false
+}
+[01/07/19, 11:56:36:045] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/07/19, 11:56:50:276] info: WindowCloseBehavior: Attempted to close the window, hiding due to run from tray
+[01/07/19, 11:56:50:279] info: Store: UPDATE_SETTINGS
+{
+  "hasRunFromTray": true
+}
+[01/07/19, 11:56:50:281] info: Store: SHOW_TRAY_BALLOON
+{
+  "title": "Why didn’t Slack quit?",
+  "content": "Slack’s set to stay running in the notification area. To change this, visit Preferences > Linux App."
+}
+[01/07/19, 11:56:50:282] warn: Tray Handler: Attempted to show a balloon before the tray icon exists.
+[01/07/19, 12:03:34:914] info: Store: SET_SUSPEND_STATUS
+[01/07/19, 12:25:48:443] info: Store: SET_SUSPEND_STATUS true
+[01/07/19, 12:26:01:647] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 12:26:05:647] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 12:26:06:977] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 12:26:06:988] info: Store: FOREGROUND_APP
+[01/07/19, 12:31:37:126] info: Store: FOREGROUND_APP
+[01/07/19, 12:31:37:647] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 12:31:38:658] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/07/19, 12:31:56:025] info: Store: FOREGROUND_APP
+[01/07/19, 12:48:54:081] info: Store: FOREGROUND_APP
+[01/07/19, 12:48:54:612] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 12:48:55:621] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/07/19, 12:50:27:439] info: Store: FOREGROUND_APP
+[01/07/19, 12:51:29:087] info: Store: FOREGROUND_APP
+[01/07/19, 12:59:40:232] info: Store: FOREGROUND_APP
+[01/07/19, 13:05:16:816] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 13:05:22:011] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 13:05:29:885] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 13:06:39:093] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 13:33:43:185] info: Store: SET_SUSPEND_STATUS
+[01/07/19, 13:41:59:665] info: Store: SET_SUSPEND_STATUS true
+[01/07/19, 13:42:11:925] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 13:42:16:914] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 13:42:18:603] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 13:42:19:509] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 13:49:39:928] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 13:50:34:929] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 13:50:38:930] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 13:51:50:932] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 14:22:41:003] info: Store: NEW_NOTIFICATION
+{
+  "authorName": "[REDACTED]",
+  "avatarImage": "[REDACTED]",
+  "channel": "C44SKMV4K",
+  "channelName": "[REDACTED]",
+  "content": "[REDACTED]",
+  "id": "YNgI3hVR3LjD9p",
+  "launchUri": "slack://channel?id=C44SKMV4K&message=1546896160.015100&team=T44ULKQPL",
+  "msg": "[REDACTED]",
+  "ssbFilename": "knock_brush.mp3",
+  "subtitle": "",
+  "teamId": "T44ULKQPL",
+  "title": "[REDACTED]"
+}
+[01/07/19, 14:22:41:048] info: Creating new macOS notification.
+[01/07/19, 14:23:05:777] info: Store: FOREGROUND_APP
+[01/07/19, 14:24:34:478] info: Store: FOREGROUND_APP
+[01/07/19, 14:24:59:889] info: Store: FOREGROUND_APP
+[01/07/19, 14:27:42:863] info: Store: FOREGROUND_APP
+[01/07/19, 14:30:44:068] info: Store: FOREGROUND_APP
+[01/07/19, 14:31:50:108] info: Store: FOREGROUND_APP
+[01/07/19, 14:50:56:994] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 14:51:02:995] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 14:51:09:993] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 15:01:19:006] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 15:01:47:229] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 15:31:33:451] info: Store: FOREGROUND_APP
+[01/07/19, 15:31:33:980] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/07/19, 15:31:35:014] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/07/19, 15:44:51:081] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 15:45:04:080] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 15:45:08:081] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 15:45:14:080] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 16:49:18:491] info: Store: SET_SUSPEND_STATUS
+[01/07/19, 16:49:33:587] info: Store: SET_SUSPEND_STATUS true
+[01/07/19, 16:49:45:513] info: Store: SET_SUSPEND_STATUS
+[01/07/19, 16:50:26:938] info: Store: SET_SUSPEND_STATUS true
+[01/07/19, 16:50:57:315] info: Store: FOREGROUND_APP
+[01/07/19, 16:54:25:377] info: Store: FOREGROUND_APP
+[01/07/19, 16:56:50:216] info: Store: SELECT_CHANNEL GF9LM571D
+[01/07/19, 16:58:18:226] info: Store: FOREGROUND_APP
+[01/07/19, 16:59:04:928] info: Store: FOREGROUND_APP
+[01/07/19, 17:02:50:180] info: Store: SET_SUSPEND_STATUS
+[01/07/19, 17:07:16:945] info: Store: SET_NETWORK_STATUS offline
+[01/07/19, 17:07:29:056] info: Store: SET_NETWORK_STATUS online
+[01/07/19, 17:19:12:101] info: Store: SET_NETWORK_STATUS offline
+[01/08/19, 07:54:42:414] info: Store: SET_SUSPEND_STATUS true
+[01/08/19, 07:54:44:113] info: Store: SET_SUSPEND_STATUS
+[01/08/19, 07:54:50:493] info: Store: SET_NETWORK_STATUS online
+[01/08/19, 08:00:13:960] info: Store: SET_SUSPEND_STATUS true
+[01/08/19, 08:00:33:097] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/08/19, 08:01:59:363] info: Store: SET_SUSPEND_STATUS
+[01/08/19, 08:17:23:949] info: Store: SET_SUSPEND_STATUS true
+[01/08/19, 08:18:01:413] info: Store: UPDATE_TEAM_LOCALE
+{
+  "locale": "en-US",
+  "teamId": "T44ULKQPL"
+}
+[01/08/19, 08:20:45:313] info: Store: FOREGROUND_APP
+[01/08/19, 08:20:45:859] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/08/19, 08:20:46:879] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/08/19, 08:21:00:904] info: Store: SELECT_CHANNEL C44SKMV4K
+[01/08/19, 08:24:37:564] info: Store: FOREGROUND_APP
+[01/08/19, 08:24:38:100] info: BrowserViewManager: Activating BrowserView
+{
+  "teamId": "T44ULKQPL"
+}
+[01/08/19, 08:24:39:107] info: Store: SAVE_WINDOW_SETTINGS
+{
+  "size": [
+    1024,
+    768
+  ],
+  "position": [
+    231,
+    41
+  ],
+  "isMaximized": false
+}
+[01/08/19, 08:24:47:758] info: Store: SELECT_CHANNEL C45K6M0J2
+[01/08/19, 08:24:53:727] info: Store: SELECT_CHANNEL C4800QW5S
+[01/08/19, 08:25:00:364] info: Store: SELECT_CHANNEL C44SKMV4K

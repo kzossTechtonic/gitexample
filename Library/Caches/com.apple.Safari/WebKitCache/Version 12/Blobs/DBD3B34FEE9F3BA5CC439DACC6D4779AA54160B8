@@ -1,0 +1,730 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+      
+      
+      Mastering CSS Layout with Flexbox
+      
+      
+    </title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-620270-3"></script>
+<script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'UA-620270-3');
+    </script>
+
+<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="//cloud.typography.com/6366632/722002/css/fonts.css" />
+
+<meta property="og:title" content="Mastering CSS Layout with Flexbox" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.sketchingwithcss.com/samplechapter/cheatsheet.html" />
+<meta property="og:image" content="http://sketchingwithcss.com/static/images/book.png" />
+<meta property="og:description" content="Have trouble remembering flexbox syntax? Use this cheat sheet by &lt;a href=&quot;https://twitter.com/sfioritto&quot;&gt;@sfioritto&lt;/a&gt;" />
+<link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
+<script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+<link rel="stylesheet" type="text/css" href="//cloud.typography.com/6366632/627246/css/fonts.css" />
+<link rel="stylesheet" href="/static/css/cheat.css" type="text/css" media="screen" />
+</head>
+<body>
+<h1>The <span class="ultimate">Ultimate</span> Flexbox Cheat Sheet</h1>
+<div class="content">
+<p class="video-cta"><i class="far fa-hand-point-right"></i> <a href="/flexbox">Watch a 3 minute video introduction with live demos you can view source on.</a></p>
+<h3>Table of Contents</h3>
+<ul class="toc">
+<li><a href="#create">Create a flex container</a></li>
+<li><a href="#row">Put flex items in a row</a></li>
+<li><a href="#column">Put flex items into a column</a></li>
+<li><a href="#top">Move flex items to the top</a></li>
+<li><a href="#left">Move flex items to the left</a></li>
+<li><a href="#right">Move flex items to the right</a></li>
+<li><a href="#center">Center everything</a></li>
+<li><a href="#grow">Grow a flex item X times as big as other flex items</a></li>
+<li><a href="#wraprow">Wrap flex items into multiple rows</a></li>
+<li><a href="#wrapcolumn">Wrap flex items into multiple columns</a></li>
+<li><a href="#nospace">Remove the space from wrapped rows or columns</a></li>
+<li><a href="#pin">Pin an element to one side of the flex container</a></li>
+<li><a href="#other">Other flexbox resources</a></li>
+</ul>
+<h3><a name="create">Create a flex container</a></h3>
+<p>
+The first step in any flexbox layout is to create a flex container. To do that, set the <span class="keyword">display</span> property to <span class="keyword">flex</span>. In Safari, you will still have to use the <span class="keyword">-webkit</span> prefix.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flexbox">Watch a 3 minute video introduction to flexbox with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-1">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-1">.flexcontainer {
+   display: flex;
+}</pre>
+<pre class="prettyprint lang-css hidden prefixes example-1">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+}
+    </pre></div>
+<h3><a name="row">Put flex items into a row</a></h3>
+<p>
+Flex items are the children of a flex container. They are positioned along a main axis and a cross axis. The main axis is horizontal by default, so the items flow into a row. You can flip the main axis by setting <span class="keyword">flex-direction</span> to <span class="keyword">column</span>, it's set to <span class="keyword">row</span> by default.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-2">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-2">/*On the flex container*/
+
+.flexcontainer {
+   display: flex;
+   flex-direction: row;
+}</pre>
+<pre class="prettyprint lang-css hidden prefixes example-2">/*On the flex container*/
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+}</pre></div>
+<div class="flexcontainer">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="column">Put flex items into a column</a></h3>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-3">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-3">.flexcontainer {
+   display: flex;
+   flex-direction: column;
+}</pre>
+<pre class="prettyprint lang-css hidden prefixes example-3">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+}</pre></div>
+<div class="flexcontainer column">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="top">Move flex items to the top</a></h3>
+<p>
+How you move flex items to the top depends on the orientation of the main axis. If it's vertical, you set <span class="keyword">justify-content</span>. If it's horizontal, you set <span class="keyword">align-items</span>.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-4">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-4">.flexcontainer {
+   flex-direction: column;
+   justify-content: flex-start;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-4">.flexcontainer {
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;
+}
+    </pre></div>
+<div class="flexcontainer column top">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-5">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-5">.flexcontainer {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+}</pre>
+<pre class="prettyprint lang-css prefixes hidden example-5">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: flex-start;
+   align-items: flex-start;
+}</pre></div>
+<div class="flexcontainer row top">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="left">Move flex items to the left</a></h3>
+<p>
+Moving items to the left or right also depends on the orientation of the main axis. If <span class="keyword">flex-direction</span> is set to <span class="keyword">row</span>, then you set <span class="keyword">justify-content</span>, otherwise if it's set to <span class="keyword">column</span> you set <span class="keyword">align-items</span>
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-6">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-6">.flexcontainer {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+}</pre>
+<pre class="prettyprint lang-css prefixes hidden example-6">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;
+}</pre></div>
+<div class="flexcontainer row left">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-7">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-7">.flexcontainer {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-7">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-align-items: flex-start;
+   align-items: flex-start;
+}
+      </pre></div>
+<div class="flexcontainer column left">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="right">Move flex items to the right</a></h3>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-8">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-8"> .flexcontainer {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+}</pre>
+<pre class="prettyprint lang-css prefixes hidden example-8"> .flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-justify-content: flex-end;
+   justify-content: flex-end;
+}</pre></div>
+<div class="flexcontainer row right">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+ </div>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-9">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-9">.flexcontainer {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+}</pre>
+<pre class="prettyprint lang-css prefixes hidden example-9">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-align-items: flex-end;
+   align-items: flex-end;
+}</pre></div>
+<div class="flexcontainer column right">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="center">Center everything</a></h3>
+<p>
+Vertical and horizontal centering within a flexcontainer is trivial. Just set <span class="keyword">justify-content</span> and/or <span class="keyword">align-items</span> to center. Again, it depends on the orientation of the main axis, so whether <span class="keyword">flex-direction</span> is set to <span class="keyword">row</span> or <span class="keyword">column</span>.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container">Watch a 3 minute video on flexbox containers with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-10">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-10">.flexcontainer {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-10">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+}
+      </pre></div>
+<div class="flexcontainer row center">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<div class="flexcontainer column center">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="grow">Grow a flex item X times as big as other flex items</a></h3>
+<p>
+You can define how an individual flex item grows and shrinks relative to other flex items in the container. To do this set the <span class="keyword">flex</span> property on each flex item you want to grow or shrink.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/grow-shrink">Watch a 3 minute video on how the flex items grow and shrink with interactive demos.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-11">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-11">.bigitem {
+   /* This will be twice as */
+   /* big as the small item. */
+   flex: 2 0 0;
+}
+.smallitem {
+   flex: 1 0 0;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-11">.bigitem {
+   -webkit-flex: 2 0 0;
+   flex: 2 0 0;
+}
+.smallitem {
+   -webkit-flex: 1 0 0;
+   flex: 1 0 0;
+}
+      </pre></div>
+<div class="flexcontainer growshrink">
+<div class="bigitem"></div>
+<div class="smallitem"></div>
+</div>
+<h3><a name="wraprow">Wrap flex items into multiple rows</a></h3>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container-2">Watch a 3 minute video on how flex-wrap property works with interactive demos.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-12">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-12">/* On the flex container */
+.flexcontainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   /* You can set flex-wrap and
+      flex-direction individually */
+   flex-direction: row;
+   flex-wrap: wrap;
+   /* Or do it all in one line
+     with flex flow */
+   flex-flow: row wrap;
+   /* tweak where items line
+      up on the row
+      valid values are: flex-start,
+      flex-end, space-between,
+      space-around, stretch */
+   align-content: flex-end;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-12">/* On the flex container */
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+}
+      </pre></div>
+<div class="flexcontainer wrap row">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="wrapcolumn">Wrap flex items into multiple columns</a></h3>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container-2">Watch a 3 minute video on how flex-wrap property works with interactive demos.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-13">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-13">.flexcontainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-flow: column wrap;
+   align-content: stretch;
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-13">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-flex-flow: column wrap;
+   flex-flow: column wrap;
+   -webkit-align-content: stretch;
+   align-content: stretch;
+}
+      </pre></div>
+<div class="flexcontainer wrap column">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="nospace">Remove the space from wrapped rows or columns</a></h3>
+<p>
+The <span class="keyword">align-content</span> property gives you options for distributing the space around wrapped rows or columns. The options are <span class="keyword">flex-start, flex-end, space-between, space-around</span> and <span class="keyword">stretch</span>. To simply remove the space around wrapped columns, set <span class="keyword">align-content</span> to <span class="keyword">center</span>.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flex-container-2">Watch a 3 minute video on properties like align-content with interactive demos.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-14">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css noprefixes active example-14">.flexcontainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-flow: column wrap;
+   align-content: center;
+
+}
+      </pre>
+<pre class="prettyprint lang-css prefixes hidden example-14">.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-flex-flow: column wrap;
+   flex-flow: column wrap;
+   -webkit-align-content: center;
+   align-content: center;
+
+}
+      </pre></div>
+<div class="flexcontainer wrap column nospace">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<h3><a name="pin">Pin an element to one side of the flex container</a></h3>
+<p>
+You can control the <span class="keyword">align-items</span> value for individual elements with <span class="keyword">align-self</span>. You can also use <span class="keyword">margins</span> to move individual elements up or down or left of right. e.g. on a column layout you can move an individual flex item all the way to the left of the container by setting <span class="keyword">margin-right: auto</span>.
+</p>
+<p class="video-cta"><i class="far fa-hand-point-right"></i><a href="/flexbox">Watch a 3 minute video introduction to flexbox with live demos you can view source on.</a></p>
+<div class="example-container"><div class="options">
+<a href="#" class="selected">No Prefixes</a>
+<a href="#">Prefixes</a>
+<button class="copy-button" data-clipboard-target=".active.example-15">
+<i class="far fa-copy" aria-hidden="true"></i>
+copy
+</button>
+</div>
+<pre class="prettyprint lang-css prefixes active example-15">/* On the flex item to pin */
+.left {
+   align-self: flex-start;
+}
+
+.right {
+   margin-left: auto;
+}
+      </pre>
+<pre class="prettyprint lang-css noprefixes hidden example-15">/* On the flex item to pin */
+.left {
+   align-self: flex-start;
+}
+
+.right {
+   margin-left: auto;
+}
+      </pre></div>
+<div class="flexcontainer pin column">
+<div></div>
+<div class="left"></div>
+<div class="right"></div>
+<div></div>
+</div>
+<h2><a name="other">Other flexbox resources</a></h2>
+<ul class="resources">
+<li><a href="/flexbox-tutorial">A free class on flexbox (based on this cheat sheet)</a></li>
+<li><a href="http://dev.w3.org/csswg/css-flexbox/">The latest spec</a></li>
+<li><a href="http://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks guide to flexbox</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Mozilla guide to flexbox</a></li>
+<li><a href="http://coding.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/">Smashing Magazine tutorial</a></li>
+</ul>
+<div id="sharing">
+<a href="https://twitter.com/sfioritto" class="twitter-follow-button" data-show-count="true">Follow @sfioritto</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+<div class="bottom-cta">
+<h2>Still copy/pasting flexbox code?</h2>
+<p>
+Take this free lesson on flexbox. You can't copy/paste your way through every problem.
+ </p>
+<form action="https://www.getdrip.com/forms/7729111/submissions" method="post" data-drip-embedded-form="7729111">
+<input type="email" id="drip-email" name="fields[email]" value="" placeholder="Email address" />
+<input class="submit-button" type="submit" name="submit" value="Stop Cheating" data-drip-attribute="sign-up-button" />
+</form>
+</div>
+</div>
+<div class="opt-in-modal hidden">
+<div class="opt-in-form">
+<a class="modal-close-button" href="#"><i class="fas fa-times"></i></a>
+<p class="message">(Copied to your clipboard)</p>
+<h2>Why are you still copy/pasting flexbox code?</h2>
+<p>
+Take this free lesson on flexbox. You can't copy/paste your way through every problem.
+</p>
+<form action="https://www.getdrip.com/forms/7729111/submissions" method="post" data-drip-embedded-form="7729111">
+<input type="email" id="drip-email" name="fields[email]" value="" placeholder="Email address" />
+<input class="submit-button" type="submit" name="submit" value="Stop Cheating" data-drip-attribute="sign-up-button" />
+</form>
+</div>
+</div>
+<div class="bottom-overlay hidden">
+<a class="modal-close-button" href="#"><i class="fas fa-times"></i></a>
+<p><i class="far fa-hand-point-right"></i><span class="first-sentence">Stop flailing with floats</span>. Learn flexbox with these interactive videos</p>
+<a class="start-watching" href="/flexbox">Watch Lesson #1</a>
+</div>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&skin=desert"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+<script>
+ (function(){
+
+   var clipboard = new Clipboard('.copy-button'),
+       overlay = document.querySelector('.bottom-overlay'),
+       modal = document.querySelector('.opt-in-modal'),
+       modalClose = document.querySelectorAll('.modal-close-button'),
+       localStorage = window.localStorage,
+       popup = function() {
+         if (localStorage['popup-has-loaded']) {
+           // do nothing
+         } else {
+           document.body.classList.add('no-scroll');
+           modal.classList.remove('hidden');
+           nrol.track('Loaded a Modal', {
+             'modal name' : 'Cheat Sheet CTA',
+             'url' : window.location.pathname
+           });
+           localStorage['popup-has-loaded'] = true;
+         }
+       },
+       bottomOverlay = function(){
+         overlay.classList.remove('hidden');
+         nrol.track('Loaded a Modal', {
+           'modal name' : 'Cheat Sheet Bottom CTA',
+           'url' : window.location.pathname
+         });
+       };
+
+
+   clipboard.on('success', function(e) {
+     e.trigger.innerHTML = '<i class="far fa-copy" aria-hidden="true"></i> copied';
+
+     nrol.track('Copied Code', {
+       'url' : window.location.pathname
+     });
+   });
+
+   setTimeout(function(){
+     popup();
+   }, 1000 * 90); // 90 seconds
+
+   setTimeout(function(){
+     bottomOverlay();
+   }, 1000 * 10); // 10 seconds
+
+
+   modalClose.forEach(function(closeButton) {
+     closeButton.addEventListener('click', function(event) {
+       if (closeButton.parentNode === overlay) {
+         overlay.classList.add('hidden');
+       } else {
+         document.body.classList.remove('no-scroll');
+         modal.classList.add('hidden');
+       }
+       event.preventDefault();
+     });
+   });
+
+   document.addEventListener('click', function(event) {
+     var target = event.target,
+         options = null,
+         container = null;
+
+     if (target
+         && target.parentNode
+         && target.parentNode.classList.contains('options')) {
+       options = target.parentNode;
+       container = options.parentNode;
+     }
+
+     if (options
+         && !target.classList.contains('copy-button')) {
+       event.preventDefault();
+
+       if (!target.classList.contains('selected')) {
+         options.querySelectorAll('a').forEach(function(option) {
+           option.classList.remove('selected');
+         });
+         target.classList.add('selected');
+         var active = container.querySelector('.active'),
+             hidden = container.querySelector('.hidden');
+         hidden.classList.remove('hidden');
+         hidden.classList.add('active');
+         active.classList.remove('active');
+         active.classList.add('hidden');
+       }
+     }
+   });
+ })();
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+
+<script src="/static/javascript/nrol-39.js" "></script>
+
+<script>
+
+     $(function() {
+       nrol.track('Loaded a Page', {
+         'page name' : document.title,
+         'url' : window.location.pathname
+       });
+
+     });
+    </script>
+</body>
+</html>

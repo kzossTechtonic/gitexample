@@ -1,0 +1,914 @@
+define([
+    'angular',
+    'jquery',
+    'lodash',
+    'paychex.core/Errors',
+    'paychex.core/Logger',
+    'paychex.core/Tracker',
+    'paychex.framework.angular.utils/module',
+    'paychex.app.landing.shared/login/module',
+    'paychex.app.common/data/userInfo/helper/UserInfoHelper',
+    'paychex.app.common/constants/ApplicationConstants',
+    'paychex.core/Promise',
+    'paychex.framework.angular.eventing/module',
+    'require',
+    'com/paychex/util/dto/LaunchType',
+    'paychex.app.common/services',
+    'paychex.app.common/DeviceProfile',
+    'paychex.app.common/constants',
+    'paychex.app.common/messages/PaychexMessage',
+    'paychex.core/InheritanceHelper',
+    'paychex.app.common/utils/StateHelper'
+], function (
+    angular,
+    $,
+    _,
+    Errors,
+    Logger,
+    Tracker,
+    pngUtilsModule,
+    loginModule,
+    UserInfoHelper,
+    ApplicationConstants,
+    Promise,
+    EventingModule,
+    require,
+    LaunchType,
+    pacServicesModule,
+    DeviceProfile,
+    pacConstants,
+    PaychexMessage,
+    PIH,
+    StateHelper
+) {
+
+    'use strict';
+
+    /* eslint-disable */ // these methods are all deprecated, anyway
+    /* eslint "no-restricted-syntax": 0 */
+    /* eslint-disable no-restricted-syntax */
+
+
+    var namePattern = '[^A-Za-z0-9\';\\- ]',
+        addressPattern = '[^A-Za-z0-9@#%\\-/ ]',
+        nonNumberPattern = '[^0-9]',
+        DEFAULT_VCARD = {
+            pngSsoCaid: '',
+            workerType: '',
+            companyName: '',
+            firstName: '',
+            middleInitial: '',
+            lastName: '',
+            suffix: '',
+            ssn: '',
+            birthDate: '',
+            gender: '',
+            ethnicity: '',
+            address1: '',
+            address2: '',
+            city: '',
+            state: '',
+            zip: '',
+            zipExtension: '',
+            canadianPostalCode: '',
+            foreignPostalCode: '',
+            country: '',
+            personalEmail: '',
+            homePhone: '',
+            hireDate: '',
+            employmentType: '',
+            jobCategory: '',
+            peoClassCode: '',
+            wcClassCode: '',
+            routingAndTransitNumber: '',
+            accountNum: '',
+            accountType: '',
+            calculationMethod: '',
+            directDepositAmount: '',
+            payType: '',
+            payType2: '',
+            payType3: '',
+            payRate: '',
+            payRate2: '',
+            payRate3: ''
+        },
+        SANITIZED_FIELDS = {
+            companyName: {length: 30},
+            firstName: {
+                length: 30,
+                pattern: namePattern
+            },
+            middleName: {
+                length: 1,
+                pattern: namePattern
+            },
+            lastName: {
+                length: 30,
+                pattern: namePattern
+            },
+            suffixName: {
+                length: null,
+                pattern: namePattern
+            },
+            address1: {
+                length: 64,
+                pattern: addressPattern
+            },
+            address2: {
+                length: 64,
+                pattern: addressPattern
+            },
+            city: {
+                length: 30,
+                pattern: '[^A-Za-z0-9"~`!@#$%^&*()_+\\-={}|[]:;\'<>?,./]'
+            },
+            zip: {
+                length: 11,
+                pattern: nonNumberPattern
+            },
+            zipExtension: {
+                length: 4,
+                pattern: nonNumberPattern
+            },
+            canadianPostalCode: {
+                length: 10,
+                pattern: '[^A-Za-z 0-9]'
+            },
+            homePhone: {
+                length: 12,
+                pattern: nonNumberPattern
+            },
+            fedAllowances: {
+                length: 2
+            }
+        };
+
+    /**
+     * Provides methods from legacy landing needed by Flex and Legacy apps.
+     * This class is loaded by the GlobalFrameController and adds functions into the $window object.
+     * @class paychex.app.landing.LegacyLandingService
+     * @deprecated This class is only used by legacy applications. DO NOT CALL ANY OF THESE METHODS IN NEW CODE!
+     */
+
+    return angular.module('paychex.app.landing.shared.legacyLanding.LegacyLanding', [
+        'ng',
+        pngUtilsModule.name,
+        EventingModule.name,
+        pacServicesModule.name,
+        pacConstants.name,
+        loginModule.name /* provides LogoutListenersService */
+    ]).service('LegacyLandingService', [
+        '$window',
+        '$q',
+        'GlobalStateService',
+        'UserInfoService',
+        '$document',
+        '$timeout',
+        'ProgressService',
+        'LogoutListenersService',
+        'CreateSessionPromises',
+        'INotificationService',
+        'FeatureSwitchService',
+        'LaunchMspAddWorkerDrawerService',
+        'RuntimeConfigService',
+        function LegacyLandingServiceFactory(
+            $window,
+            $q,
+            GlobalStateService,
+            UserInfoService,
+            $document,
+            $timeout,
+            ProgressService,
+            LogoutListenersService,
+            CreateSessionPromises,
+            INotificationService,
+            FeatureSwitchService,
+            LaunchMspAddWorkerDrawerService,
+            RuntimeConfigService
+        ) {
+
+            var log = Logger.get('paychex.app.landing.shared.legacyLanding.LegacyLanding', {
+                    level: 'INFO',
+                    appenders: ['BrowserConsoleAppender']
+                }),
+                helpFinderMarkup = '<iframe id="paychex-robohelp-link" style="border: 0; width: 0; height: 0"></iframe>',
+                helper,
+                flashMode = 'BLOCKED',  //Start with Blocked until we hear otherwise
+                LegacyLandingService = {
+                    landing: {
+                        legacy: {},
+                        reportWindows: {},
+                        isHTML5: true
+                    },
+                    analytics: {}
+                };
+
+            log.info('LegacyLandingService Loading: Start.');
+
+            UserInfoService.getUserInfo()
+                .then(function prepareHelper(userInfo) {
+                    helper = new UserInfoHelper(userInfo);
+                });
+
+            /**
+             * Provides the ability to truncate fields and strip out special characters.
+             * @param {String} value The value to be truncated and/or stripped.
+             * @param {Number} [maxLength] The max length when truncating.
+             * @param {String} regExp A regular expression containing characters that need stripped.
+             * @returns {String} The sanitized string.
+             */
+            function sanitize(/* String*/value, /* Integer*/maxLength, /* String*/regExp) {
+                var re = new RegExp(regExp, 'g'),
+                    result = value.replace(re, '');
+                return (maxLength) ? result.substring(0, maxLength) : result;
+            }
+
+            function makeTeardownUrl(appInfo){
+                var returnString = appInfo.tearDownUrl;
+                if ( appInfo.baseUrl ){
+                    returnString = appInfo.baseUrl + returnString;
+                }
+                return returnString;
+            }
+
+            function showWarningOKDialogMessage(text, title, messageStatus) {
+                var WanringMessage = function waitMessageFn() {
+                    WanringMessage.parent.constructor.apply(this, ['',
+                            text,
+                            messageStatus||PaychexMessage.MESSAGE_STATUSES.WARNING,
+                        [{actionId: WanringMessage.OK , actionName: 'png.core.label.ok', isDefault: true}],
+                        title
+                        ]);
+                };
+
+                WanringMessage.OK = 'Ok';
+                PIH.extend(WanringMessage, PaychexMessage);
+                INotificationService.displaySingleMessage( { message:new WanringMessage()} );
+            }
+
+            /**
+             * Invokes the teardown URL for the specified application.
+             * @param {String} appId The app to tear down.
+             * @returns {Promise|undefined} If waitForTeardown is true, returns a promise that will be resolved
+             *  with `true` when the call completes or rejected with the error reason. If waitForTeardown is
+             *  false or not provided, this method does not return anything.
+             */
+            function callTeardownUrl(appId) {
+                var appInfo = _.find(GlobalStateService.getAvailable('app'), {id: appId}),
+                    teardownUrl = null,
+                    teardownCall = null;
+                if (appInfo) {
+                    teardownUrl = makeTeardownUrl(appInfo);
+                    if (teardownUrl) {
+                        /* eslint "jquery/no-ajax": 0 */
+                        teardownCall = $.ajax(teardownUrl, {
+                            async: true,
+                            type: 'POST',
+                            xhrFields: {withCredentials: true}
+                        });
+                        return Promise.cast(teardownCall).then(_.constant(true));
+                    }
+                }
+                // We didn't find the appInfo or we could construct the teardown URL.
+                // Return a resolved promise if we are planning to wait for teardown complete.
+                return Promise.resolve(true);
+            }
+
+            LegacyLandingService.getHandleToSwfObject = function getHandleToSwfObject() {
+                var swf =  $('#swfContainer')[0];
+                if (!swf) {
+                    log.debug('SWF Object not found.');
+                }
+                return swf;
+            };
+
+            /**
+             * Makes JSON calls for Flex applications
+             * @function LegacyLandingService#landing#callJSON
+             * @param {String} token token
+             * @param {String} url url
+             * @param {Object} input input
+             * @param {Object} toEncode toEncode
+             * @param {String} encodeParameter encodeParameter
+             * @param {String} successCallbackFunctionName successCallbackFunctionName
+             * @param {String} failureCallbackFunctionName failureCallbackFunctionName
+             */
+            LegacyLandingService.landing.callJSON = function callJSON(
+                /* String*/ token,
+                /* String*/ url,
+                /* Object*/ input,
+                /* Object*/ toEncode,
+                /* String*/ encodeParameter,
+                /* String*/ successCallbackFunctionName,
+                /* String*/ failureCallbackFunctionName
+            ) {
+
+                log.debug('Calling Remote through JS.');
+
+                var startTime = new Date().getTime(),
+                    swf = LegacyLandingService.getHandleToSwfObject(),
+                    httpOptions = {
+                        url: url,
+                        type: 'POST',
+                        data: input,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        xhrFields: {withCredentials: true},
+                        crossDomain: true
+                    };
+
+                input[encodeParameter] = JSON.stringify(toEncode);
+
+                $.ajax(httpOptions)
+                    .done(function invokeSuccessCallback(data, textStatus, jqXHR) {
+
+                        var endTime = new Date().getTime(),
+                            responseHeaders = _.attempt(function tryGetResponseHeaders() {
+                                return jqXHR.getAllResponseHeaders();
+                            });
+
+                        if (_.isError(responseHeaders)) {
+                            responseHeaders = undefined;
+                        }
+
+                        if (!!swf && !!swf[successCallbackFunctionName]) {
+                            swf[successCallbackFunctionName](token, data, startTime, endTime, responseHeaders);
+                        }
+
+                        // Removed catch here since we don't transform response to JSON, we already receive it that way.
+                    })
+                    .fail(function invokeFailureCallback(jqXHR, textStatus, errorThrown) {
+                        var message = _.attempt(function getMessage() {
+                            return errorThrown.name + ' ' + errorThrown.message;
+                        });
+                        if (_.isError(message)) {
+                            message = 'Error calling ' + url;
+                        }
+                        if (!!swf && !!swf[failureCallbackFunctionName]) {
+                            swf[failureCallbackFunctionName](token, message);
+                        }
+                    });
+            };
+
+            LegacyLandingService.landing.shouldUseJavascriptJSON = _.constant(false);
+
+            /**
+             * Opens a new window for a POPUP type application
+             * @function LegacyLandingService#landing#showPopupApp
+             * @param {Object} appInfo The ApplicationInfo DTO to load.
+             */
+            LegacyLandingService.landing.showPopupApp = function showPopupApp(/* Object*/appInfo) {
+                // this used to be {app: appInfo.id} but I switched to the full ApplicationInfo DTO
+                // instance so that if anyone modified the setupData then global state service would
+                // honor it
+                GlobalStateService.setState({app: appInfo});
+            };
+
+            /**
+             * Used in the unload cycle of the Flex Landing (Landing Shim).
+             * @function LegacyLandingService#landing#unloadCheck
+             */
+            LegacyLandingService.landing.legacy.unloadCheck = function unloadCheck() {
+                log.info('LegacyLandingService: unloadCheck called. We will do nothing.');
+                /*
+                 I decided to overwrite the method from LandingApplicationAdapter in HTMLLandingApplicationAdapter
+                 so that the next step is taken directly. The method is fireUnloadEvent.
+                 Leaving the lines below for reference, since this is what the old Landing does. -Eduardo K.
+                 */
+                // var swf = LegacyLandingService.getHandleToSwfObject();
+                // swf.legacyUnloadStatus(true);
+            };
+
+            /**
+             * legacy call used by retirement services to launch UserAccount to update email address.
+             * @function LegacyLandingService#landinglaunchApplication
+             * @param {String} appId The id of the application to launch.
+             * @param {Boolean} isDialog Whether the application is launched as a dialog.
+             * @param {Object} appData The application data to pass.
+             * @param {Boolean} [whenProgressFree=false] Whether to wait for all other pending actions to complete before launching the app.
+             */
+            LegacyLandingService.landing.launchApplication = function launchApplication(/* String*/appId, /* boolean*/isDialog, /* Object*/appData, /* Boolean*/ whenProgressFree) {
+
+                log.info('LegacyLandingService: launchApplication called.');
+                log.debug('appId:', appId, 'isDialog:', isDialog, 'appData:', appData);
+
+                function launchApp() {
+                    // For the current use case of setting userAccnt from H&B and Ret Services, this will work.  once we switch
+                    // to a possible switch from admin mode to employee, this will need to be update (or GSS will need updating)
+                    GlobalStateService.setState({app: appId}, appData ? { appContext:appData } : undefined ).done(); // throw any uncaught errors
+                }
+                if (whenProgressFree) {
+                    ProgressService.whenFree()
+                        .then(launchApp)
+                        .catch() // launchApp throws, so we can swallow this
+                        .done();
+                } else {
+                    launchApp();
+                }
+
+            };
+
+            /**
+             * legacy call used by Party/PayrollApplicationAdapter to determine if createSession has been called.
+             * @function LegacyLandingService#landing#hasCreateSessionBeenCalled
+             * @param {String} type either 'payroll' or 'party'
+             * @returns {Boolean} Whether the session has been created already.
+             */
+            LegacyLandingService.landing.hasCreateSessionBeenCalled = function hasCreateSessionBeenCalled(/* String*/ type) {
+                log.info('LegacyLandingService: hadCreateSessionBeenCalled');
+                return (!!CreateSessionPromises[type] && CreateSessionPromises[type].isResolved());
+            };
+
+            /**
+             * @function refreshAndLaunchUserAccessApp
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @description
+             * legacy call used by HTMLLandingAdapter to services to refresh window and launch app.
+             * @param appId
+             * @param oldAppId
+             */
+            LegacyLandingService.landing.refreshAndLaunchApp = function refreshAndLaunchApp(/* String*/appId, /* String*/ oldAppId) {
+                log.debug('LegacyLandingService: refreshAndLaunchApp called.');
+                if (!angular.isDefined(appId) || !angular.isDefined(oldAppId)) {
+                    Errors.throw(Errors.Types.Invocation, 'LegacyLandingService:refreshAndLaunchApp has not been called  with correct arguments.');
+                }
+                log.debug('appId: ' + appId);
+                log.debug('oldAppId: ' + oldAppId);
+                // Try to end active (Advanced Security) Integrated Applications sessions to enable updated user data to be picked up.
+                Promise.settle([
+                    callTeardownUrl(ApplicationConstants.PNG_PAYROLL_APP_CODE),
+                    callTeardownUrl(ApplicationConstants.PARTY_APP_CODE),
+                    callTeardownUrl(ApplicationConstants.COMPANY_APP_CODE)
+                ])
+                    .tap(function refreshPage(){
+                        ProgressService.whenFree()
+                            .then(function thenRefresh(result) {
+                                // Muting the navigating away Browser-Prompt should arise
+                                LogoutListenersService.setNavigationPromptMuting(true);
+                                if (!$window.location.search) {
+                                    $window.location.replace($window.location.href.replace(oldAppId, appId).replace($window.location.pathname, $window.location.pathname + '?reload=' + (new Date()).getMilliseconds()));
+                                } else {
+                                    $window.location.replace($window.location.href.replace(oldAppId, appId).replace($window.location.search, $window.location.search + '&reload=' + (new Date()).getMilliseconds()));
+                                }
+                                return result;
+                            })
+                            .catch(function rethrow(err) {
+                                Errors.throw(err, 'In LegacyLandingService.refreshAndLaunchApp()');
+                            })
+                            .done();
+                    })
+                    .catch(/* settle never throws */)
+                    .done();
+            };
+
+            /**
+             * @function is64bitChrome
+             * @memberOf LegacyLandingService
+             * @description
+             * Determine if the browser is a 64 bit chrome. This function is used by flex app
+             */
+            LegacyLandingService.landing.is64bitChrome = function is64BitChrome(){
+                var userAgent = $window.navigator.userAgent,
+                    isChrome  = String(userAgent.split('Chrome/')[1]).replace(/^\s+/, '').replace(/\s+$/, ''); // jshint ignore:line
+                return isChrome && _.includes(userAgent, 'x64');
+            };
+
+            /**
+             * @function isMicrosoftEdge
+             * @memberOf LegacyLandingService
+             * @description
+             * Determine if the browser is a isMicrosoftEdge. This function is used by flex app
+             */
+            LegacyLandingService.landing.isMicrosoftEdge = function isMicrosoftEdge(){
+                return DeviceProfile.isEdge();
+            };
+
+            function getSanitizedValue(value, key) {
+                var meta = SANITIZED_FIELDS[key];
+                if (meta && value) {
+                    return sanitize(value, meta.length, meta.pattern);
+                }
+                return value || undefined; // replace with default value later
+            }
+            /**
+             * @function launchMSPAddNewPartyClassic - Opens the micropanel for MSP Add Worker
+             * @param {object} sanitizedObject - The sanitized object from MSP
+             */
+            function launchMSPAddNewPartyClassic(sanitizedObject) {
+                log.info('LegacyLandingService opening micropanel for MSP add worker.');
+                // Get the handle to the swf object
+                var swf = LegacyLandingService.getHandleToSwfObject();
+                try {
+                    // Launch the add new party vcard function with our sanitized object
+                    swf.launchAddNewPartyVCard(sanitizedObject);
+                }
+                catch (e) {
+                    //swf isn't available, either blocked or busy
+                    //display message
+                    if (flashMode === 'BLOCKED') {
+                        showWarningOKDialogMessage('png.landing.messages.flashBlocked.text',
+                            'png.landing.messages.flashBlocked.title');
+                    }
+                    else if (flashMode === 'LOADING') {
+                        showWarningOKDialogMessage('png.landing.messages.flashLoading.text',
+                            'png.landing.messages.flashLoading.title',
+                            PaychexMessage.MESSAGE_STATUSES.INFORMATION);
+                    }
+
+                    Tracker.marks.set('launchAddNewPartyMicroPanel swf not ready', {category: 'MSP Add Worker',
+                        tags: ['micro panel', 'load'], data: {flashMode: flashMode}});
+                    e.flashMode = flashMode;
+                    Errors.throw(e);
+                }
+            }
+
+            /**
+             * @function isHandB
+             * @description Checks whether or not the client is an H&B or PEO H&B client
+             * @returns {boolean} whether or not the client is an H&B client
+             */
+            function isHandB() {
+                return RuntimeConfigService.isExternalUser() ?
+                    helper.clientHasAnyProduct(StateHelper.getClientId(GlobalStateService.getState()),
+                        [ApplicationConstants.HEALTHANDBENEFITS_PRODUCT_CODE, ApplicationConstants.PEO_HEALTHANDBENEFITS_PRODUCT_CODE])
+                    : false;
+            }
+
+            /**
+             * @function isBenetrac
+             * @description Checks whether or not the client is a Benetrac client
+             * @memberOf LegacyLandingService
+             * @returns {boolean} whether or not the client is a Benetrac client
+             */
+            function isBenetrac() {
+                return RuntimeConfigService.isExternalUser() ?
+                    helper.clientHasProduct(StateHelper.getClientId(GlobalStateService.getState()), ApplicationConstants.BENETRAC_PRODUCT_CODE) : false;
+            }
+
+            /* eslint-disable */ // these methods are all deprecated, anyway
+            /**
+             * @function launchAddNewPartyVCard
+             * @memberOf LegacyLandingService
+             * @description
+             * Launches the MicroPanel in add-worker mode. Takes an object of data to
+             * pre-populate the screens.
+             * @param dataObject Object containing data to pre-populate the screens.
+             * @param callback Method to call after workerId generated.
+             */
+            LegacyLandingService.landing.launchAddNewPartyVCard = function launchAddNewPartyVCard(/* Object*/dataObject, /* Function*/callback) {
+                var mspMicroPanelAddWorkerActive = FeatureSwitchService.isActive('PEOPLE_MSP_MICRO_PANEL_ADD_WORKER_TOGGLE'),
+                    tags = mspMicroPanelAddWorkerActive ? ['overview drawer', 'html', 'load'] : ['micro panel', 'load'],
+                    appInfo = null,
+                    csData = null,
+                    sanitizedObject = null,
+                    isBeneTracToggle = FeatureSwitchService.isActive('PEOPLE_ADMIN_BENEFITS_TOGGLE'),
+                    isHnBToggle = FeatureSwitchService.isActive('HNB_REDIRECT_TO_CLASSIC_TOGGLE'),
+                    shouldRedirectToClassic = (isBenetrac() && !isBeneTracToggle) || (isHandB() && isHnBToggle),
+                    // for now, just send the first selected client. MSP throws an error if sent > 1 selected client
+                    selectedClients = GlobalStateService.getState().clients.slice(0, 1);
+
+                Tracker.marks.set('launchAddNewPartyMicroPanel clicked', {category: 'MSP Add Worker', tags: tags});
+
+                if (mspMicroPanelAddWorkerActive && !shouldRedirectToClassic){
+                    LaunchMspAddWorkerDrawerService.launchMspAddWorker(dataObject, callback, selectedClients);
+                } else {
+                    /**
+                     * Holds the callback function to be called after the launching of MicroPanel
+                     * @see launchAddNewPartyVCard()
+                     */
+                    LegacyLandingService.landing.addNewPartyVCardCallback = callback;
+
+                    appInfo = helper.getApplicationInfoForApplicationId(ApplicationConstants.PARTY_MICRO_ADD_APP_CODE);
+                    csData = helper.makeClientSelectedData(appInfo, selectedClients);
+                    sanitizedObject = _.defaults(_.mapValues(dataObject, getSanitizedValue), DEFAULT_VCARD, {csData: csData});
+
+                    if (_.isNil(csData)) {
+                        Errors.throw('LegacyLandingService: Client selected information is not available.');
+                    }
+                    // TODO: More sanitizing - should probably consolidate this all in one area.
+                    if (sanitizedObject.dob) {
+                        sanitizedObject.birthDate = sanitizedObject.dob;
+                        delete sanitizedObject.dob;
+                    }
+
+                    sanitizedObject.state = sanitizedObject.state.toUpperCase();
+                    sanitizedObject.country = sanitizedObject.country.toUpperCase();
+
+                    launchMSPAddNewPartyClassic(sanitizedObject);
+                }
+            };
+
+            /**
+             * @description
+             * Legacy call used by Reporting to download a report
+             * @function downloadReport
+             * @memberOf LegacyLandingService
+             * @param url
+             */
+            LegacyLandingService.landing.downloadReport = function landing$$downloadReport(/* String*/ url) {
+                var downloadFrame = angular.element('<iframe></iframe>');
+
+                downloadFrame.attr('src', url);
+                downloadFrame.attr('style', 'visibility:hidden');
+                $document.find('body').append(downloadFrame);
+
+                // clean up the downloadFrame after 5 mins
+                $timeout(function landing$$downloadReport$$cleanup() {
+                    downloadFrame.remove();
+                }, 300000);
+            };
+
+            /**
+             * @description
+             * Legacy call used by Reporting to view a report in a new window
+             * @function openReportWindow
+             * @memberOf LegacyLandingService
+             * @param token
+             */
+            LegacyLandingService.landing.openReportWindow = function landing$$openReportWindow(/* String*/ token) {
+                var winUrl = require.toUrl('landingContent/downloadPlaceholder.html'),
+                    reportWindow = $window.open(winUrl),
+                    flexApp;
+
+                if (reportWindow) {
+                    LegacyLandingService.landing.reportWindows[token] = reportWindow;
+                } else {
+                    flexApp = LegacyLandingService.getHandleToSwfObject();
+                    flexApp && _.isFunction(flexApp.popupBlocked) && flexApp.popupBlocked();
+                }
+            };
+
+            /**
+             * @description
+             * Legacy call used by Reporting to update a report window's URL once remote call completes to populate
+             * report URL.
+             * @function updateReportWindow
+             * @memberOf LegacyLandingService
+             * @param token
+             * @param url
+             */
+            LegacyLandingService.landing.updateReportWindow = function landing$$updateReportWindow(/* String*/ token, /* String*/ url) {
+                var reportWindow = LegacyLandingService.landing.reportWindows[token];
+                if (reportWindow) {
+                    reportWindow.location.href = url;
+                }
+            };
+
+            /**
+             * @description
+             * Legacy call used by Reporting to close a report window.
+             * @function cancelReportWindow
+             * @memberOf LegacyLandingService
+             * @param token
+             */
+            LegacyLandingService.landing.cancelReportWindow = function landing$$cancelReportWindow(/* String*/ token) {
+                var reportWindow = LegacyLandingService.landing.reportWindows[token];
+                if (reportWindow) {
+                    reportWindow.close();
+                }
+            };
+
+            /*
+             Defer object used to keep track of whether a micropanel is currently displaying in the flex landing.
+             */
+            var openMicroPanelDefer;
+
+            /**
+             * @function microPanelOpened
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @description
+             * Called from FLEX landing when a micropanel is opened. This will register a blocking progress activity
+             * with the ProgressService so that the user will not be able to change applications.
+             */
+            LegacyLandingService.landing.microPanelOpened = function landingMicroPanelOpened() {
+                openMicroPanelDefer = Promise.defer();
+                // get swf object to change css on launch
+                var swf = LegacyLandingService.getHandleToSwfObject();
+                var applicationInfo = GlobalStateService.getState().app;
+                $(swf).removeClass('preLoadedSwf');
+
+                // Do NOT add the vCardMicroPanel class when the current application is a Flex Type application. This means a Flex app launched the Micropanel.
+                if ((LaunchType.FLEX_MODULE !== applicationInfo.launchType) && (LaunchType.FLEX !== applicationInfo.launchType)) {
+                    $(swf).addClass('vCardMicroPanel');
+                }
+
+                ProgressService.processing.registerActivity('paychex.landing.micropanelActive', openMicroPanelDefer.promise, {blocking: true}).done();
+            };
+
+            /**
+             * @function microPanelClosed
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @description
+             * Called from FLEX landing when a micropanel is closed. This will resolve the blocking progress activity
+             * that was registered when the micropanel was opened.
+             */
+            LegacyLandingService.landing.microPanelClosed = function landingMicroPanelClosed() {
+                if (!!openMicroPanelDefer) {
+                    var swf = LegacyLandingService.getHandleToSwfObject(),
+                        applicationInfo = GlobalStateService.getState().app;
+                    swf.classList.remove('vCardMicroPanel');
+                    // Do NOT hide the SWF container when the current application is a Flex Type application. This means a Flex app launched the Micropanel.
+                    if ((LaunchType.FLEX_MODULE !== applicationInfo.launchType) && (LaunchType.FLEX !== applicationInfo.launchType)) {
+                        swf.classList.add('preLoadedSwf');
+                    }
+                    openMicroPanelDefer.resolve();
+                }
+            };
+
+            /**
+             * @function navigateToHelpForMappingId
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @description
+             * Opens RoboHelp for the desired mapping ID, with the given help path, if available. Created to Support help
+             * for Flex Apps. Port of method navigateToHelpForMappingId in landing.js.
+             */
+            LegacyLandingService.landing.navigateToHelpForMappingId = function navigateToHelpForMappingId(/* String*/mappingId, /* String*/ helpPath) {
+                if (!helpPath) {
+                    helpPath = '/pngHelp_static/png_tools/findHtml.html';
+                }
+
+                // remove old frame from previous use.
+                var frame = $('#paychex-robohelp-link');
+                if (frame.length !== 0) {
+                    frame.remove();
+                }
+
+                // Create a new frame that will pop the new help requested.
+                frame = $(helpFinderMarkup);
+                $('body').append(frame);
+
+                frame.prop('src', helpPath + '#' + mappingId);
+            };
+
+            // analytics -- this is a replacement stub for the analytics.js in legacy flex
+
+            LegacyLandingService.analytics.timing = function legacyAnalyticsTiming(timingCategory, timingVar, timingValue, timingLabel) {
+
+                log.info('LegacyLandingService: analytics timing called.');
+
+                // NOTE TO DEVELOPERS: looks like Flex now sends events by calling timing... not sure
+                // why that changed, but we have to match
+
+                var wasEpoch = false,
+                    timer = Tracker.timers.create(timingVar),
+                    now = Date.now ? Date.now() : new Date().getTime();
+
+                timingValue = Number(timingValue);
+
+                while (String(timingValue).length > String(now).length) {
+                    // they probably sent us epoch time instead of duration;
+                    // flash sometimes reports epoch time with more precision,
+                    // and sometimes with equal; we keep moving the decimal point
+                    // until we're using the same precision as JavaScript
+                    wasEpoch = true;
+                    timingValue /= 10;
+                }
+
+                // we need duration, not epoch time, so we'll subtract from "now"
+                if (wasEpoch) {
+                    timingValue = Math.abs(timingValue - now);
+                }
+
+                timer.start();
+                timer.stop({
+                    category: timingCategory,
+                    variable: timingLabel,
+                    stopTime: now + timingValue
+                });
+                // Note that for events, both label and value are optional parameters and the order is reversed from timings
+                Tracker.events.fire(timingVar /* action*/, {
+                    category: timingCategory,
+                    label: timingLabel,
+                    value: timingValue,
+                    dimension32: 'Classic',
+                    dimension81: 'Flash'
+                });
+            };
+
+            LegacyLandingService.analytics.page = function legacyAnalyticsPage(page, title) {
+                log.warn('LegacyLandingService: analytics page called.');
+                // sometimes the app calls up to set a page context while still loading, so
+                // the previous app context is still active. this can lead to GA 'page views'
+                // like "HTML5/Dashboard/Start Payroll" instead of "HTML5/Payroll/Start Payroll"...
+                // to fix this, we're going to stash the screen away until GlobalState has settled
+                var unsub = GlobalStateService.subscribe(function stateChangeHasSettled() {
+                    unsub();
+                    Tracker.static.setContext('screen', title.replace('uiCache/', ''), {
+                        page: page.replace('uiCache/', '')
+                    });
+                });
+            };
+
+            /**
+             * Calls to GA from flash ultimately end up here.
+             * @param category {string}
+             * @param action {string}
+             * @param label {string}
+             * @param value {number}
+             * @param [fields] {Object} _.assign onto gaObject call if passed. Warning will override
+             */
+            LegacyLandingService.analytics.event = function legacyAnalyticsEvent(category, action, label, value, fields) {
+
+                var gaObject = {
+                    category: category,
+                    label: label,
+                    value: value,
+                    dimension32: 'Classic',
+                    dimension81: 'Flash'
+                };
+
+                if (fields) {
+                    gaObject = _.assign(gaObject, fields);
+                }
+
+                log.info('LegacyLandingService: analytics event called.');
+                Tracker.events.fire(action, gaObject);
+            };
+
+            /**
+             * @function flashStatus
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @param {string} [status] optional, to set internal flashMode
+             * @returns {String} Current flashMode
+             * @description
+             * sets internal flashMode from swfloaderController to track status ('READY', 'LOADING', 'BLOCKED' etc) of the landing.swf
+             */
+            LegacyLandingService.landing.flashStatus = function legacyFlashStatus(status) {
+                flashMode = status !== undefined ? status : flashMode;
+                return flashMode;
+            };
+
+            /**
+             * @deprecated removed since this was setting strings via tracked object.
+             * @see event with fields {Object} param
+             * @param name {string}
+             * @param value {string}
+             */
+            LegacyLandingService.analytics.setMetric = function legacyAnalyticsMetric(name, value) {
+                // HMAP-2149: ignore custom dimensions and metrics from flash when set via TrackedMetric
+                log.debug('setMetric no longer adds custom dimensions. name|value:', name, value);
+            };
+
+            /**
+             * @function sendCodeCoverageToServer
+             * @memberOf LegacyLandingService
+             * @instance N/A
+             * @description
+             * Sends istanbul window.__coverage__ json to specified url
+             * Can be called with no/null parameters, as defaults are available for all of them
+             * based on istanbul and landing settings.  Defaults are:
+             * url - codeCoverage
+             * input - new object
+             * coverageObject - window.__coverage__
+             * objectParameter - COVERAGE
+             */
+            LegacyLandingService.landing.sendCodeCoverageToServer = function (
+                /* String*/ url,
+                /* Object*/ input,
+                /* Object*/ coverageObject,
+                /* String*/ objectParameter ){
+                url = url || 'codeCoverage';
+                input = input || {};
+                coverageObject = coverageObject || window.__coverage__;
+                objectParameter = objectParameter || 'COVERAGE';
+
+                if ( !coverageObject ){
+                    // make this a no op if we don't have code coverage
+                    return;
+                }
+
+                LegacyLandingService.landing.callJSON( 'NO_TOKEN_NEEDED',
+                    url,
+                    input,
+                    coverageObject,
+                    objectParameter );
+            };
+
+            // Set the window object with all the required method that Legacy & Flex apps will look for.
+            if (_.isNil($window.paychex)) {
+                $window.paychex = {landing: LegacyLandingService.landing};
+                $window.analytics = LegacyLandingService.analytics;
+            } else {   // window.paychex already exists, we need to be careful not to overwrite it.
+                if ( !$window.paychex.landing ){ // Ensure that window.paychex.landing exists
+                    $window.paychex.landing = {};
+                }
+                // Copy all the properties from the existing window.paychex.landing onto our LegacyLandingService.landing
+                _.extend(LegacyLandingService.landing, $window.paychex.landing);
+                // Replace window.paychex.landing with our LegacyLandingService.landing
+                $window.paychex.landing = LegacyLandingService.landing;
+                $window.analytics = LegacyLandingService.analytics;
+                $window.paychex.getHandleToSwfObject = LegacyLandingService.getHandleToSwfObject;
+            }
+
+            log.info('LegacyLandingService Loading: Complete.');
+            // Return service in case other modules need direct access to methods.
+
+            return LegacyLandingService;
+        }
+    ]);
+
+});

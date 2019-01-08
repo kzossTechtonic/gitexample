@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - CSS Grid Layout with @support flexbox fallback</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      @supports (display: grid) {
+
+  .grid {
+    display: grid;
+    grid-gap: 1.5vw;
+    min-height: 100vh;
+    padding: 1.5vw;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50vh 30vh repeat(7, minmax(20vh, 1fr));
+    grid-template-areas:
+      "hero   hero"
+      "big1   big1"
+      "med1   med1"
+      "med2   med2"
+      "small1 small2"
+      "small3 small4"
+      "small5 small6"
+      "small7 small8"
+      "small9 small10";
+  }
+
+  @media screen and (min-width: 750px) {
+    .grid {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 25vh);
+      grid-template-areas:
+        "hero   hero   hero   med1   med1"
+        "hero   hero   hero   med2   med2"
+        "big1   big1   big1   big1   big1"
+        "small1 small2 small3 small4 small5"
+        "small6 small7 small8 small9 small10";
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .grid {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+      "small1 hero   hero hero med1   med1"
+      "small2 hero   hero hero med2   med2"
+      "small3 small5 big1 big1 small7 small8"
+      "small4 small6 big1 big1 small9 small10";
+    }
+  }
+
+  .grid .item:nth-child(1)  { grid-area: hero; }
+  .grid .item:nth-child(2)  { grid-area: big1; }
+  .grid .item:nth-child(3)  { grid-area: med1; }
+  .grid .item:nth-child(4)  { grid-area: med2; }
+  .grid .item:nth-child(5)  { grid-area: small1; }
+  .grid .item:nth-child(6)  { grid-area: small2; }
+  .grid .item:nth-child(7)  { grid-area: small3; }
+  .grid .item:nth-child(8)  { grid-area: small4; }
+  .grid .item:nth-child(9)  { grid-area: small5; }
+  .grid .item:nth-child(10) { grid-area: small6; }
+  .grid .item:nth-child(11) { grid-area: small7; }
+  .grid .item:nth-child(12) { grid-area: small8; }
+  .grid .item:nth-child(13) { grid-area: small9; }
+  .grid .item:nth-child(14) { grid-area: small10; }
+
+}
+
+/* flexbox fallback is the browser does not support display:grid */
+@supports not (display: grid) {
+
+  .grid {
+    display: flex;
+    flex-flow: row wrap;
+    min-height: 100vh;
+    padding: 0.75vw;
+  }
+
+  .grid .item {
+    min-height: 20vh;
+    margin: 0.75vw;
+  }
+
+  .grid .item:nth-child(1)  { flex: 0 1 calc(100% - 1.5vw); height: 50vh; }
+  .grid .item:nth-child(2)  { flex: 0 1 calc(100% - 1.5vw); height: 30vh; }
+  .grid .item:nth-child(3)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(4)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(5)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(6)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(8)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(9)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(10) { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(11) { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(12) { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(13) { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(14) { flex: 0 1 calc(50% - 1.5vw); }
+
+  @media screen and (min-width: 750px) {
+    .grid .item:nth-child(1)  { flex: 0 1 calc(60% - 1.5vw); }
+    .grid .item:nth-child(2)  { flex: 0 1 calc(40% - 1.5vw); height: 50vh; }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .grid .item:nth-child(1)  { flex: 0 1 calc(60% - 1.5vw); }
+    .grid .item:nth-child(2)  { flex: 0 1 calc(40% - 1.5vw); }
+    .grid .item:nth-child(3)  { flex: 0 1 calc(50% - 1.5vw); }
+    .grid .item:nth-child(4)  { flex: 0 1 calc(50% - 1.5vw); }
+    .grid .item:nth-child(5)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(6)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(7)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(8)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(9)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(10) { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(11) { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(12) { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(13) { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(14) { flex: 0 1 calc(25% - 1.5vw); }
+  }
+
+}
+
+/* Styles, just for fun */
+
+*,*:before,*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #29343d;
+}
+
+@supports not (display: grid) {
+  body:before {
+    content: 'Sorry, seems like your browser doesn\'t support display: grid. Below is the flexbox fallback.';
+    display: block;
+    padding: 2rem 2rem 0;
+    color: #ffffff;
+    text-align: center;
+  }
+}
+
+.header {
+  margin: 10vh 1.5vw;
+  text-align: center;
+  color: #cedfe9;
+}
+
+.header h1,
+.header h2 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+.header h1 {
+  position: relative;
+  padding-bottom: 0.5em;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.header h2 {
+  font-weight: normal;
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 750px) {
+
+  .header h1 {
+    font-size: 3.75rem;
+  }
+
+  .header h2 {
+    font-weight: normal;
+    font-size: 1.125rem;
+    letter-spacing: 0.5em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+
+  .header h1 {
+    font-size: 6rem;
+  }
+
+  .header h2 {
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.diamond {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+  background-image: linear-gradient(to top left, #ddd 0%, #fff 100%);
+  text-align: center;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+  transition: box-shadow 250ms, -webkit-transform 250ms;
+  transition: box-shadow 250ms, transform 250ms;
+  transition: box-shadow 250ms, transform 250ms, -webkit-transform 250ms;
+}
+
+.diamond span {
+  font-weight: bold;
+  -webkit-transform: rotateZ(-45deg);
+          transform: rotateZ(-45deg)
+}
+
+.grid .item:hover .diamond,
+.grid .item:focus .diamond {
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  -webkit-transform:  rotateZ(45deg) scale(1.2);
+          transform:  rotateZ(45deg) scale(1.2);
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1;
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
+  background: #29343d;
+  opacity: 0;
+  color: #cedfe9;
+  font-size: 0.875rem;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, transform 500ms;
+  transition: opacity 500ms, transform 500ms, -webkit-transform 500ms;
+}
+
+.tooltip:before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #29343d;
+}
+
+.grid .item:hover .tooltip,
+.grid .item:focus .tooltip {
+  opacity: 1;
+  -webkit-transform: translateY(70px);
+          transform: translateY(70px);
+}
+
+.grid .item {
+  position: relative;
+  padding: 1vw;
+  background-position:  left bottom;
+  background-size: 150% 100%;
+  transition: background 500ms, outline 500ms;
+  background-position: top left;
+  outline: transparent;
+}
+
+.grid .item:hover,
+.grid .item:focus {
+  background-position: top right;
+}
+
+.grid .item:focus {
+  outline: 2px solid #3eabfa;
+}
+
+.grid .item:nth-child(1)  { background-image: linear-gradient(45deg, #cbabfb 0%, #fb7ef6 60%); }
+.grid .item:nth-child(2)  { background-image: linear-gradient(45deg, #fb7ef6 0%, #cbabfb 60%); }
+.grid .item:nth-child(3)  { background-image: linear-gradient(45deg, #70c1fb 0%, #79ebe0 60%); }
+.grid .item:nth-child(4)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); }
+.grid .item:nth-child(5),
+.grid .item:nth-child(6),
+.grid .item:nth-child(7),
+.grid .item:nth-child(8),
+.grid .item:nth-child(9),
+.grid .item:nth-child(10),
+.grid .item:nth-child(11),
+.grid .item:nth-child(12),
+.grid .item:nth-child(13),
+.grid .item:nth-child(14) { background-image: linear-gradient(45deg, #feeeab 0%, #fb7eb3 60%); }
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <header class="header">
+  <h1>CSS Grid Layout</h1>
+  <h2>With @support flexbox fallback.</h2>
+</header>
+
+<div class="grid ">
+  <div class="item" tabindex="1">
+    <div class="box">
+      <div class="diamond"><span>1</span></div>
+      <div class="tooltip">grid-area: hero</div>
+    </div>
+  </div>
+  <div class="item" tabindex="2">
+    <div class="box">
+      <div class="diamond"><span>2</span></div>
+      <div class="tooltip">grid-area: big</div>
+    </div>
+  </div>
+  <div class="item" tabindex="3">
+    <div class="box">
+      <div class="diamond"><span>3</span></div>
+      <div class="tooltip">grid-area: medium</div>
+    </div>
+  </div>
+  <div class="item" tabindex="4">
+    <div class="box">
+      <div class="diamond"><span>4</span></div>
+      <div class="tooltip">grid-area: medium</div>
+    </div>
+  </div>
+  <div class="item" tabindex="5">
+    <div class="box">
+      <div class="diamond"><span>5</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="6">
+    <div class="box">
+      <div class="diamond"><span>6</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="7">
+    <div class="box">
+      <div class="diamond"><span>7</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="8">
+    <div class="box">
+      <div class="diamond"><span>8</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="9">
+    <div class="box">
+      <div class="diamond"><span>9</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="10">
+    <div class="box">
+      <div class="diamond"><span>10</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="11">
+    <div class="box">
+      <div class="diamond"><span>11</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="12">
+    <div class="box">
+      <div class="diamond"><span>12</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="13">
+    <div class="box">
+      <div class="diamond"><span>13</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+  <div class="item" tabindex="14">
+    <div class="box">
+      <div class="diamond"><span>14</span></div>
+      <div class="tooltip">grid-area: small</div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

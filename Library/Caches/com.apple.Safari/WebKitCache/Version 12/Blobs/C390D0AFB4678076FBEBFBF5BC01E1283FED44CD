@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - CSS3 accordion slider with Transitions and Flexbox</title>
+  <link href="https://fonts.googleapis.com/css?family=Merienda:400,700|Poppins:400,600,700" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+      <style>
+      /*common styles !!!YOU DON'T NEED THEM */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #212121;
+  line-height: 1.4;
+}
+
+.container {
+  width: 1100px;
+  margin: 50px auto 0;
+}
+.container h1 {
+  font-size: 25px;
+  text-align: center;
+}
+.container h1 span {
+  position: relative;
+  font-family: 'Merienda', cursive;
+  color: #CA9CE1;
+}
+.container h1 span:after {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  content: "~";
+  width: 100%;
+  text-align: center;
+}
+.container .subheader {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  width: 800px;
+  margin: 30px auto 0;
+}
+.link a {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 40px;
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+.link a:hover {
+  color: #CA9CE1;
+}
+.link a:last-child {
+  margin-right: 0;
+}
+.link a i {
+  color: #CA9CE1;
+  margin-right: 9px;
+  font-size: 30px;
+}
+
+.slider-containers {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.slider-container {
+  margin-bottom: 60px;
+}
+.slider-container h2 {
+  text-align: center;
+}
+
+.flexbox-slider {
+  margin-top: 50px;
+}
+
+/*slide styles !!!YOU NEED THEM */
+.flexbox-slider {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  visibility: hidden;
+}
+.flexbox-slider .flexbox-slide {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  width: 20%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  visibility: visible;
+}
+.flexbox-slider .flexbox-slide:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 2;
+  opacity: 0;
+}
+.flexbox-slider .flexbox-slide img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  width: auto;
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.flexbox-slider .flexbox-slide .text-block {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  z-index: 4;
+  visibility: hidden;
+  opacity: 0;
+}
+.flexbox-slider .flexbox-slide .text-block h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.flexbox-slider:hover .flexbox-slide:hover {
+  flex-shrink: 0;
+  width: 80%;
+}
+
+/* effect 1 styles */
+.flexbox-slider.flexbox-slider-1 .flexbox-slide .text-block {
+  bottom: 60px;
+}
+.flexbox-slider.flexbox-slider-1:hover .flexbox-slide:hover .text-block {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+  bottom: 30px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* effect 2 styles */
+.flexbox-slider.flexbox-slider-2 .flexbox-slide .text-block {
+  left: -60px;
+}
+.flexbox-slider.flexbox-slider-2:hover .flexbox-slide:not(:hover):after {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  opacity: 1;
+}
+.flexbox-slider.flexbox-slider-2:hover .flexbox-slide:hover .text-block {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 0, 0, 1.82);
+  transition-delay: 0.5s;
+  left: 30px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* effect 3 styles */
+.flexbox-slider.flexbox-slider-3 .flexbox-slide:after {
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+.flexbox-slider.flexbox-slider-3 .flexbox-slide .text-block {
+  -webkit-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+}
+.flexbox-slider.flexbox-slider-3:hover .flexbox-slide:hover:after {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.4s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+.flexbox-slider.flexbox-slider-3:hover .flexbox-slide:hover .text-block {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.6s;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* effect 4 styles */
+.flexbox-slider.flexbox-slider-4 .flexbox-slide:after {
+  top: -100%;
+}
+.flexbox-slider.flexbox-slider-4 .flexbox-slide .text-block {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.flexbox-slider.flexbox-slider-4:hover .flexbox-slide:not(:hover):after {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  top: 0;
+  opacity: 1;
+  visibility: visible;
+}
+.flexbox-slider.flexbox-slider-4:hover .flexbox-slide:hover .text-block {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* effect 5 styles */
+.flexbox-slider.flexbox-slider-5 .flexbox-slide .text-block {
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
+}
+.flexbox-slider.flexbox-slider-5:hover .flexbox-slide:hover .text-block {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.7s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+.flexbox-slider.flexbox-slider-5:hover .flexbox-slide:hover:after {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.4s;
+  opacity: 1;
+  visibility: visible;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div class="container">
+  <h1>CSS3 accordion <span>slider</span> with Transitions and Flexbox</h1>
+  <div class="subheader">(5 different effects)</div>
+  <div class="link">
+    <a href="https://github.com/eisenfox/css-flex-slider" target="_blanc"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Check on Github</a>
+    <a href="http://100dayscode.co.uk/" title="Check Codepen Challenge" target="_blanc"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Check Codepen Challenge</a>
+  </div>
+  
+  <div class="slider-containers">
+    
+    <!--effect #1 -->
+    <div class="slider-container">
+      <h2>Effect #1</h2>
+      <div class="flexbox-slider flexbox-slider-1">
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-1.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #1 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-2.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #2 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-3.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #3 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-4.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #4 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-9.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #5 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--effect #2 -->
+    <div class="slider-container">
+      <h2>Effect #2</h2>
+      <div class="flexbox-slider flexbox-slider-2">
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-1.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #1 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-2.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #2 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-3.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #3 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-4.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #4 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-9.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #5 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--effect #3 -->
+    <div class="slider-container">
+      <h2>Effect #3</h2>
+      <div class="flexbox-slider flexbox-slider-3">
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-1.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #1 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-2.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #2 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-3.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #3 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-4.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #4 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-9.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #5 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--effect #4 -->
+    <div class="slider-container">
+      <h2>Effect #4</h2>
+      <div class="flexbox-slider flexbox-slider-4">
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-1.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #1 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-2.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #2 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-3.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #3 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-4.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #4 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-9.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #5 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--effect #5 -->
+    <div class="slider-container">
+      <h2>Effect #5</h2>
+      <div class="flexbox-slider flexbox-slider-5">
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-1.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #1 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-2.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #2 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-3.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #3 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-4.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #4 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+        <div class="flexbox-slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/694606/eff-9.jpg" alt="Slide Image">
+          <div class="text-block">
+            <h3>Slide #5 is here</h3>
+            <div class="text">
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+  
+  
+  
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

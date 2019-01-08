@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - CSS3 Flexbox</title>
+  
+  
+  
+  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.css'>
+
+      <style>
+      #item-container {
+	display: flex;
+
+	background-color: hsl(34, 88%, 90%);
+}
+.square {
+	background-color: hsl(50, 88%, 50%);
+}
+.circle {
+	border-radius: 50%;
+	background-color: hsl(22, 88%, 50%);
+}
+#item-container > div > div {
+	width: 150px;
+	height: 150px;
+}
+.main [class^="col-md"] {
+	outline: dotted 1px hsl(222, 88%, 5%);
+	background: hsla(0,0%,80%,.6);
+}
+
+.val {
+	margin-right: 15px;
+}
+.inline {
+	display: inline-block;
+}
+
+[contenteditable="true"] {
+	font-size: smaller;
+	overflow: hidden;
+	display: inline-block;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div class="container" ng-app="myApp" ng-controller="Example">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>CSS3 Flexbox</h2>
+            <p>Seeing is understanding - so click away to see the effect of various
+                <code>Flexbox</code>related settings. I found inspiration in this great post: <a href="http://demosthenes.info/blog/780/A-Designers-Guide-To-Flexbox">A Designer’s Guide To Flexbox</a>. You can also change the <code>order</code> of each flex item using the selectbox in them. <mark>2016-02-11</mark>: Updated with Lorem Ipsum paragraph which has <code>contenteditable</code> applied, so that you can try to alter the content.
+							NB: Pen is in garage
+            </p>
+            <div class="col-md-12 tags">
+                <strong>Tags:</strong>
+                <span ng-repeat="tag in tags">
+                    <a href="https://codepen.io/search?q={{tag}}&limit=all&depth=everything&show_forks=false">
+                        <code class="btn btn-primary btn-xs">{{tag}}</code>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-unstyled">
+                    <li ng-repeat="prop in props">
+                        <h4 class="inline">{{prop.name}}:</h4>
+                        <div class="btn-group" ng-repeat="val in prop.values" data-toggle="buttons">
+
+                            <label class="btn btn-xs" ng-class="{'btn-success':prop.value==val}">{{val}}
+                                <input type="radio" ng-model="prop.value" name="options" id="{{prop.name}}{{$index}}" ng-value="val" ng-change="setStyle()">
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container main">
+        <div class="row">
+            <div id="item-container" style="{{flexes}}">
+							
+                <div class="col-md-3" style="order: {{no1}};"> 
+									
+									<div>
+							<ul class="list-unstyled">
+                    <li ng-repeat="prop in itemProp">
+                        <h4 class="inline">{{prop.name}}:</h4>
+                        <div class="btn-group" ng-repeat="val in prop.values" data-toggle="buttons">
+
+                            <label class="btn btn-xs" ng-class="{'btn-success':prop.value==val}">{{val}}
+                                <input type="radio" ng-model="prop.value" name="options" id="{{prop.name}}{{$index}}" ng-value="val" ng-change="setStyle()">
+                            </label>
+                        </div>
+                    </li>
+                </ul> 
+							</div>
+									
+									<select ng-model="no1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>Each
+                    <code>DIV</code>is a standard
+                    <code>Bootstrap</code>column, with the width set using for instance
+                    <code>.col-md-2</code>to span 2 cols.
+                    <br />This div has a span of
+                    <strong>3</strong>columns. <div contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis ullam exercitationem consectetur neque dignissimos, beatae laudantium, assumenda omnis iusto harum sed soluta facere nostrum corporis odio illum at unde! Dignissimos.</div></div>
+                <div class="col-md-1" style="order: {{no2}};"> <select ng-model="no2">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                    <img src="http://dummyimage.com/45x140" alt="" />
+									 <div contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis doloremque temporibus minima eius, molestiae quam excepturi necessitatibus?</div>
+                </div>
+                <div class="col-md-2" style="order: {{no3}};"> <select ng-model="no3">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                    <div class="circle"></div> <div contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quis est eos aut consequuntur voluptatum illum nisi, numquam porro optio expedita fugit tempore sed recusandae, officiis molestias? Iste, sequi, amet?</div>
+                </div>
+                <div class="col-md-2" style="order: {{no4}};"> <select ng-model="no4">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                    <div class="square"></div> <div contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente amet quo modi nam iusto, blanditiis laudantium, delectus ab quidem ullam molestiae culpa non ipsam voluptatem excepturi autem. Delectus, dolorem vel!</div>
+                </div>
+                <div class="col-md-2" style="order: {{no5}};"> <select ng-model="no5">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                    <img src="http://dummyimage.com/100x40" alt="" /> <div contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem accusantium ipsa libero et dicta laboriosam voluptate, ipsum repellendus nobis inventore, rerum quis dolorem maxime repellat molestias error eaque, voluptatum velit.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js'></script>
+
+  
+
+    <script >
+      angular.module("myApp",[])
+.controller("Example", function($scope, $interval) {
+$scope.props = [
+{"name":"justify-content", "values":["flex-start","flex-end","center","space-between","space-around","space-evenly","inherit"], "value":"space-evenly"},
+{"name":"align-items", "values":["flex-start","flex-end","center","baseline","stretch","space-between","space-around","space-evenly","inherit"], "value":"center"},
+{"name":"flex-direction", "values":["row","row-reverse","column","column-reverse","inherit"], "value":"row"}
+];
+
+	$scope.itemProp = [
+		{"name":"flex-grow", "values":[0,1,2,3,4,5]}
+	];
+$scope.no1 = 1;
+  $scope.no2 = 3;
+  $scope.no3 = 2;
+  $scope.no4 = 4;
+  $scope.no5 = 5;
+  $scope.setStyle = function() {
+    $scope.flexes = "";
+    for(var p in $scope.props) {
+      if ($scope.props[p].value!=="") {
+        $scope.flexes+=$scope.props[p].name+":"+$scope.props[p].value+"; ";
+      }
+    }
+    $scope.$apply();
+  }
+  $scope.flexes = "";
+  $scope.tags = [
+    "Bootstrap","AngularJS","Flexbox"
+  ];
+  $scope.setStyle();
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

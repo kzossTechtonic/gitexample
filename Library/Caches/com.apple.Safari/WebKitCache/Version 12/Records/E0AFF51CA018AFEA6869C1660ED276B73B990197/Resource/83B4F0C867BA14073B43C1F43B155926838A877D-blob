@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Flexbox Overview</title>
+  
+  
+  
+  
+      <style>
+      body {
+  font-family: monospace;
+}
+
+.example {
+  padding-bottom: 50px;
+}
+
+h2 {
+  text-align: center;
+  background: skyblue;
+  color: white;
+  width: 710px;
+  margin: 0px auto;
+  padding-top: 5px;
+}
+
+.parent, .parent2, .parent3, .parent4, .parent5, .parent6, .parent7, .parent8, .parent9, .parent10, .parent11, .parent12, .parent13, .parent14, .parent15, .parent16, .parent17, .parent18, .parent19, .parent20, .parent21, .parent22, .parent23, .parent24, .parent25, .parent26, .parent27, .parent28, .parent29, .parent30, .parent31 {
+  border: 5px solid skyblue;
+  width: 700px;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.item, .item2, .item3, .item4, .item5, .item6, .item7, .item8, .item9, .item10, .item11, .item12, .item13, .item14, .item15, .item16, .item17, .item18, .item19, .item20, .item21, .item22, .item23, .item24, .item25, .item26, .item27, .item28, .item29, .item30, .item31 {
+  height: 50px;
+  margin: 5px;
+  background: salmon;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 600;
+  width: 50px;
+}
+
+.parent3 {
+  flex-direction: row-reverse;
+}
+
+.parent4 {
+  flex-direction: column;
+}
+
+.parent5 {
+  flex-direction: column-reverse;
+}
+
+.parent6 {
+  flex-wrap: wrap;
+}
+
+.item6 {
+  width: 30%;
+}
+
+.parent7 {
+  justify-content: flex-end;
+}
+
+.parent8 {
+  justify-content: center;
+}
+
+.parent9 {
+  justify-content: space-between;
+}
+
+.parent10 {
+  justify-content: space-around;
+}
+
+.parent11 {
+  align-items: flex-end;
+  height: 200px;
+}
+
+.parent12 {
+  align-items: center;
+  height: 200px;
+}
+
+.parent13 {
+  align-items: stretch;
+  height: 200px;
+}
+
+.item13 {
+  height: auto;
+}
+
+.parent14 {
+  align-items: baseline;
+  height: 200px;
+}
+
+.item14:nth-child(3) {
+  font-size: 80px;
+}
+
+.parent15 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.item15 {
+  width: 20%;
+}
+
+.parent16 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.item16 {
+  width: 20%;
+}
+
+.parent17 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+.item17 {
+  width: 20%;
+}
+
+.parent18 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.item18 {
+  width: 20%;
+}
+
+.parent19 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.item19 {
+  width: 20%;
+}
+
+.parent20 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+}
+
+.item20 {
+  width: 20%;
+}
+
+.parent21 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: column;
+}
+
+.item21 {
+  width: 20%;
+}
+
+.parent22 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  flex-direction: column;
+}
+
+.item22 {
+  width: 20%;
+}
+
+.parent23 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: space-around;
+  flex-direction: column;
+}
+
+.item23 {
+  width: 20%;
+}
+
+.parent24 {
+  height: 200px;
+  flex-wrap: wrap;
+  align-content: space-between;
+  flex-direction: column;
+}
+
+.item24 {
+  width: 20%;
+}
+
+.parent25 {
+  height: 200px;
+}
+
+.item25 {
+  width: 20%;
+}
+
+.item25:nth-child(2) {
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 2;
+  -webkit-order: 2;
+  order: 2;
+}
+
+.item25:nth-child(3) {
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 2;
+  -webkit-order: 2;
+  order: 2;
+}
+
+.parent26 {
+  height: 200px;
+}
+
+.item26:nth-child(2) {
+  flex-grow: 3;
+}
+
+.parent27 {
+  height: 200px;
+}
+
+.item27 {
+  width: 150px;
+}
+
+.item27:nth-child(2) {
+  flex-shrink: 20;
+}
+
+.parent28 {
+  height: 200px;
+}
+
+.item28 {
+  width: 150px;
+}
+
+.item28:nth-child(2) {
+  flex-basis: 15px;
+}
+
+.parent29 {
+  height: 200px;
+}
+
+.item29 {
+  width: 150px;
+}
+
+.item29:nth-child(2) {
+  align-self: center;
+}
+
+.parent30 {
+  height: 200px;
+}
+
+.item30 {
+  width: 150px;
+}
+
+.item30:nth-child(2) {
+  align-self: flex-end;
+}
+
+.parent31 {
+  height: 200px;
+}
+
+.item31 {
+  width: 150px;
+}
+
+.item31:nth-child(2) {
+  align-self: stretch;
+  height: auto;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <!DOCTYPE html>
+<html>
+  <title>Flexbox Overview</title>
+  <link href="css/style.css" rel="stylesheet">
+  <body>
+        <div class="example">
+          <h2>display: flex</h2>
+          <div class="example-content">
+            <div class="parent2">
+              <div class="item2">1</div>
+              <div class="item2">2</div>
+              <div class="item2">3</div>
+              <div class="item2">4</div>
+              <div class="item2">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-direction: row-reverse</h2>
+          <div class="example-content">
+            <div class="parent3">
+              <div class="item3">1</div>
+              <div class="item3">2</div>
+              <div class="item3">3</div>
+              <div class="item3">4</div>
+              <div class="item3">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent4">
+              <div class="item4">1</div>
+              <div class="item4">2</div>
+              <div class="item4">3</div>
+              <div class="item4">4</div>
+              <div class="item4">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-direction: column-reverse</h2>
+          <div class="example-content">
+            <div class="parent5">
+              <div class="item5">1</div>
+              <div class="item5">2</div>
+              <div class="item5">3</div>
+              <div class="item5">4</div>
+              <div class="item5">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-wrap: wrap</h2>
+          <div class="example-content">
+            <div class="parent6">
+              <div class="item6">1</div>
+              <div class="item6">2</div>
+              <div class="item6">3</div>
+              <div class="item6">4</div>
+              <div class="item6">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>justify-content: flex-end</h2>
+          <div class="example-content">
+            <div class="parent7">
+              <div class="item7">1</div>
+              <div class="item7">2</div>
+              <div class="item7">3</div>
+              <div class="item7">4</div>
+              <div class="item7">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>justify-content: center</h2>
+          <div class="example-content">
+            <div class="parent8">
+              <div class="item8">1</div>
+              <div class="item8">2</div>
+              <div class="item8">3</div>
+              <div class="item8">4</div>
+              <div class="item8">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>justify-content: space-between</h2>
+          <div class="example-content">
+            <div class="parent9">
+              <div class="item9">1</div>
+              <div class="item9">2</div>
+              <div class="item9">3</div>
+              <div class="item9">4</div>
+              <div class="item9">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>justify-content: space-around</h2>
+          <div class="example-content">
+            <div class="parent10">
+              <div class="item10">1</div>
+              <div class="item10">2</div>
+              <div class="item10">3</div>
+              <div class="item10">4</div>
+              <div class="item10">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-items: flex-end</h2>
+          <div class="example-content">
+            <div class="parent11">
+              <div class="item11">1</div>
+              <div class="item11">2</div>
+              <div class="item11">3</div>
+              <div class="item11">4</div>
+              <div class="item11">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-items: center</h2>
+          <div class="example-content">
+            <div class="parent12">
+              <div class="item12">1</div>
+              <div class="item12">2</div>
+              <div class="item12">3</div>
+              <div class="item12">4</div>
+              <div class="item12">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-items: stretch</h2>
+          <div class="example-content">
+            <div class="parent13">
+              <div class="item13">1</div>
+              <div class="item13">2</div>
+              <div class="item13">3</div>
+              <div class="item13">4</div>
+              <div class="item13">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-items: baseline</h2>
+          <div class="example-content">
+            <div class="parent14">
+              <div class="item14">1</div>
+              <div class="item14">2</div>
+              <div class="item14">3</div>
+              <div class="item14">4</div>
+              <div class="item14">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: center</h2>
+          <div class="example-content">
+            <div class="parent15">
+              <div class="item15">1</div>
+              <div class="item15">2</div>
+              <div class="item15">3</div>
+              <div class="item15">4</div>
+              <div class="item15">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: flex-start</h2>
+          <div class="example-content">
+            <div class="parent16">
+              <div class="item16">1</div>
+              <div class="item16">2</div>
+              <div class="item16">3</div>
+              <div class="item16">4</div>
+              <div class="item16">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: flex-end</h2>
+          <div class="example-content">
+            <div class="parent17">
+              <div class="item17">1</div>
+              <div class="item17">2</div>
+              <div class="item17">3</div>
+              <div class="item17">4</div>
+              <div class="item17">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: space-around</h2>
+          <div class="example-content">
+            <div class="parent18">
+              <div class="item18">1</div>
+              <div class="item18">2</div>
+              <div class="item18">3</div>
+              <div class="item18">4</div>
+              <div class="item18">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: space-between</h2>
+          <div class="example-content">
+            <div class="parent19">
+              <div class="item19">1</div>
+              <div class="item19">2</div>
+              <div class="item19">3</div>
+              <div class="item19">4</div>
+              <div class="item19">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: center and flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent20">
+              <div class="item20">1</div>
+              <div class="item20">2</div>
+              <div class="item20">3</div>
+              <div class="item20">4</div>
+              <div class="item20">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: flex-start and flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent21">
+              <div class="item21">1</div>
+              <div class="item21">2</div>
+              <div class="item21">3</div>
+              <div class="item21">4</div>
+              <div class="item21">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: flex-end and flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent22">
+              <div class="item22">1</div>
+              <div class="item22">2</div>
+              <div class="item22">3</div>
+              <div class="item22">4</div>
+              <div class="item22">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: space-around and flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent23">
+              <div class="item23">1</div>
+              <div class="item23">2</div>
+              <div class="item23">3</div>
+              <div class="item23">4</div>
+              <div class="item23">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-content: space-between and flex-direction: column</h2>
+          <div class="example-content">
+            <div class="parent24">
+              <div class="item24">1</div>
+              <div class="item24">2</div>
+              <div class="item24">3</div>
+              <div class="item24">4</div>
+              <div class="item24">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>order</h2>
+          <div class="example-content">
+            <div class="parent25">
+              <div class="item25">1</div>
+              <div class="item25">2</div>
+              <div class="item25">3</div>
+              <div class="item25">4</div>
+              <div class="item25">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-grow</h2>
+          <div class="example-content">
+            <div class="parent26">
+              <div class="item26">1</div>
+              <div class="item26">2</div>
+              <div class="item26">3</div>
+              <div class="item26">4</div>
+              <div class="item26">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-shrink</h2>
+          <div class="example-content">
+            <div class="parent27">
+              <div class="item27">1</div>
+              <div class="item27">2</div>
+              <div class="item27">3</div>
+              <div class="item27">4</div>
+              <div class="item27">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>flex-basis</h2>
+          <div class="example-content">
+            <div class="parent28">
+              <div class="item28">1</div>
+              <div class="item28">2</div>
+              <div class="item28">3</div>
+              <div class="item28">4</div>
+              <div class="item28">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-self: center</h2>
+          <div class="example-content">
+            <div class="parent29">
+              <div class="item29">1</div>
+              <div class="item29">2</div>
+              <div class="item29">3</div>
+              <div class="item29">4</div>
+              <div class="item29">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-self: flex-end</h2>
+          <div class="example-content">
+            <div class="parent30">
+              <div class="item30">1</div>
+              <div class="item30">2</div>
+              <div class="item30">3</div>
+              <div class="item30">4</div>
+              <div class="item30">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h2>align-self: stretch</h2>
+          <div class="example-content">
+            <div class="parent31">
+              <div class="item31">1</div>
+              <div class="item31">2</div>
+              <div class="item31">3</div>
+              <div class="item31">4</div>
+              <div class="item31">5</div>
+            </div>
+          </div>
+        </div>
+  </body>
+</html>
+  
+  
+  
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

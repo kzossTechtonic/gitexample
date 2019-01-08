@@ -1,0 +1,295 @@
+(function() {
+  window.CW = window.CW || {};
+
+  CW.NumericInputWidget = function(numFields) {
+
+    var BACKSPACE_KEY = 8,
+        LEFT_ARROW = 37,
+        RIGHT_ARROW = 39,
+        FORWARD_DELETE_KEY = 46,
+        RETURN_KEY = 13,
+        TAB_KEY = 9,
+        
+        
+        container = document.createElement('div'),
+        inputFields = container.childNodes,
+         //auto-updating
+        previousValue = null,
+        pasteData = false,
+        validationRegex = new RegExp('^\\d{' + numFields + '}$'),
+        ret = this,
+        
+        
+        _changeCallback, _submitCallback, currentFieldIndex;
+
+
+    container.classList.add('numeric-input');
+
+    // Generate a return object
+    ret.element = container;
+
+    ret.reset = function() {
+      ret.value = '';
+      if (ret.didChange) ret.didChange.call(ret);
+    };
+
+    ret.focus = function() {
+      ret.element.children[0].focus();
+    };
+
+    var keyIsModified = function(evt) {
+        return evt.shiftKey || evt.altKey || evt.ctrlKey;
+        };
+
+    var keyIsSpecial = function(evt) {
+        var specialKeys = {
+          9: true,
+          //TAB
+          13: true,
+          //ENTER
+          63234: true,
+          //LEFT
+          63235: true //RIGHT
+        };
+
+        return specialKeys[evt.keyCode];
+        };        
+        
+    var keyIsNumeric = function(evt) {
+        var keyCode = evt.which || evt.keyCode,
+            isModified = keyIsModified(evt),
+            isNumber = (keyCode >= 48 && keyCode <= 57);
+
+        return !isModified && isNumber;
+        };
+
+    var getValue = function() {
+        var value = "";
+        for (var idx = 0; idx < numFields; idx++) {
+          value += inputFields[idx].value || ' ';
+        }
+        return value;
+        };
+
+    var notifyIfChanged = function() {
+        // we need to delay 1ms to allow the DOM to flush value changes
+        setTimeout(function() {
+          var newValue = getValue();
+          if (previousValue !== newValue) {
+            ret.didChange.call(ret, newValue);
+            previousValue = newValue;
+          }
+          if (ret.autoSubmit && validationRegex.test(newValue)) {
+            ret.didSubmit.call(ret, newValue);
+          }
+        }, 1);
+        };
+
+    // All event handling is encapsulated in this method
+    var handleEvent = function(evt) {
+        // Variables needed for all events:
+        var keyCode = evt.which || evt.keyCode,
+            target = evt.target,
+            currentValue = target.value,
+            type = evt.type;
+
+
+        // Set the currentFieldIndex (the target's position in its parent)
+        for (var idx = 0; idx < numFields; idx++) {
+          if (inputFields[idx] === target) {
+            currentFieldIndex = idx;
+          }
+        }
+
+        var eventHandlers = {
+
+          // Used to handle special keypresses, such as left, right, backspace and delete
+          keydownHandler: function() {
+            target.select();
+            var next = target.nextElementSibling,
+                prev = target.previousElementSibling;
+
+            // If the user pressed the left or right arrows, move in that direction
+            if (keyCode === LEFT_ARROW && currentFieldIndex > 0) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              prev.focus();
+              prev.select();
+            } else if (keyCode === RIGHT_ARROW && currentFieldIndex < (numFields - 1)) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              next.focus();
+              next.select();
+            }
+
+            // If the user pressed backspace, and the field has a value,
+            // clear the value of the field. If the field has no value, then
+            // move backwards one field, and clear it out.
+            else if (keyCode === BACKSPACE_KEY && currentFieldIndex >= 0) {
+              if (!currentValue && currentFieldIndex > 0) {
+                prev.value = '';
+                prev.focus();
+                prev.select();
+              } else {
+                target.value = '';
+              }
+            }
+
+            // If the user pressed forward delete, and the field has a value,
+            // clear the value of the field. If the field has no value, then
+            // move forwards one field, and clear it out.
+            else if (keyCode === FORWARD_DELETE_KEY && currentFieldIndex < numFields) {
+              if (!currentValue && currentFieldIndex < (numFields - 1)) {
+                next.value = '';
+                next.focus();
+                next.select();
+              } else {
+                target.value = '';
+              }
+            }
+
+            // Notify if the value has changed:
+            notifyIfChanged();
+          },
+
+          // Used to sanitize input, only allowing numeric input
+          // Also advances to the next field on successful input
+          keypressHandler: function() {
+            // We're not in a field, so early return
+            if (currentFieldIndex < 0) {
+              return;
+            }
+
+            // If the user pressed a number key, then set the value of the field
+            if (keyIsNumeric(evt)) {
+              var newValue = String.fromCharCode(keyCode);
+              // there is a bug in webkit where the value "00" is reported as "0",
+              // so we need to make sure extra 0s are properly stripped from the field
+              if (target.value !== newValue || (target.value === "0" && newValue !== "0")) {
+                target.value = newValue;
+                evt.preventDefault();
+              }
+
+              // Move to the next empty field, if one exists:
+              var nextField = target.nextElementSibling,
+                  hasEmptyField = false;
+              while (currentFieldIndex < (numFields - 1)) {
+                if (nextField.value) {
+                  nextField = nextField.nextElementSibling;
+                } else {
+                  hasEmptyField = true;
+                  break;
+                }
+                currentFieldIndex++;
+              }
+              if (!hasEmptyField) {
+                nextField = target.nextElementSibling;
+              }
+              if (nextField) {
+                nextField.select();
+                nextField.focus();
+              }
+            } else if (evt.keyCode === RETURN_KEY) {
+              ret.didSubmit.call(ret);
+            } else if (!keyIsModified(evt) && !keyIsSpecial(evt)) {
+              target.value = null;
+            }
+          },
+
+          // Used if input arrives from non-keypress sources (usually copy/paste)
+          inputHandler: function() {
+            // Fill in all the fields with the pasted data (if there is any)
+            if (pasteData) {
+              for (var idx = 0; idx < numFields; idx++) {
+                inputFields[idx].value = pasteData[idx];
+              }
+              currentValue = target.value;
+              pasteData = false;
+            }
+
+            // Make sure the value of this field is the last digit pressed
+            if (!/^\d{1}$/.test(currentValue)) {
+              var number = parseInt(currentValue[0], 10);
+              target.value = isNaN(number) ? '' : number;
+            }
+
+            //trigger the notification
+            notifyIfChanged();
+          },
+
+          // Set the value if it comes from a paste event
+          pasteHandler: function() {
+            var clipboardText = evt.clipboardData.getData('Text');
+
+            // prevent non-numeric pastes
+            if (/^\d*$/.test(clipboardText)) {
+              pasteData = clipboardText;
+            } else {
+              evt.preventDefault();
+              evt.stopPropagation();
+            }
+          }
+
+        };
+
+        return eventHandlers[type + 'Handler']();
+        };
+
+    // Setup the fields
+    for (var idx = 0; idx < numFields; idx++) {
+      var field = document.createElement('input');
+      field.setAttribute('type', 'number');
+      field.setAttribute('pattern', "\\d*");
+      ['keydown', 'keypress', 'input', 'paste'].forEach(function(type) {
+        field['on' + type] = handleEvent;
+      });
+      container.appendChild(field);
+    }
+
+    // Value is a computed property
+    Object.defineProperty(ret, 'value', {
+      set: function(value) {
+        value = value ? value.toString() : '';
+        for (var idx = 0; idx < numFields; idx++) {
+          inputFields[idx].value = value[idx] || '';
+        }
+      },
+      get: getValue
+    });
+
+    // Allow for the setting of a didChange callback
+    Object.defineProperty(ret, 'didChange', {
+      set: function(value) {
+        if (typeof value === 'function') {
+          _changeCallback = value;
+        }
+      },
+      get: function() {
+        return _changeCallback;
+      }
+    });
+
+    // Allow for the setting of a didSubmit callback
+    Object.defineProperty(ret, 'didSubmit', {
+      set: function(value) {
+        if (typeof value === 'function') {
+          _submitCallback = function() {
+            document.activeElement.blur();
+            value.call(ret, ret.value);
+          };
+        }
+      },
+      get: function() {
+        return _submitCallback;
+      }
+    });
+
+    // initialize callbacks
+    var emptyFunc = function() {}; //no-op
+    ret.didSubmit = emptyFunc;
+    ret.didChange = emptyFunc;
+
+
+    return ret;
+  };
+})();

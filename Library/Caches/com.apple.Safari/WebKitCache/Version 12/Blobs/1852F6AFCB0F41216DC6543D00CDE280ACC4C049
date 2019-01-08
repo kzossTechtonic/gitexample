@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Angular + FlexBox</title>
+  <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      html, body {
+  height: 100%;
+}
+
+body {
+  background: #000A35;
+  color: #000A35;
+  height: 100%;
+  font-family: 'Audiowide', sans-serif;
+}
+body > div {
+  height: 100%;
+}
+
+.architecture {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  box-sizing: border-box;
+  margin: 5% 5rem;
+  border: 0.25rem solid rgba(255, 255, 255, 0.9);
+}
+.architecture .three {
+  flex: 10 0 8rem;
+}
+.architecture .two {
+  flex: 1 0 6rem;
+}
+.architecture .one {
+  flex: 1 0 4rem;
+}
+.architecture .title {
+  font-size: 2rem;
+}
+.architecture .row {
+  background: #54b6db;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+  align-content: space-between;
+  height: inherit;
+  display: flex;
+}
+.architecture .row .content {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  width: 100%;
+}
+.architecture .row .content .block {
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0.5;
+  margin: 0.25rem;
+  padding: 2%;
+  overflow: hidden;
+}
+.architecture .row .content .block.add {
+  font-size: 1.4rem;
+  font-style: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #0D7CC4;
+  color: white;
+}
+.architecture .row .content .block.add:hover {
+  color: white;
+  background: #000A35;
+}
+.architecture .row .content .multirows {
+  flex-wrap: wrap;
+}
+.architecture .row .content .multirows .block {
+  margin: 0.25rem;
+  padding: 1rem;
+  background: #000a35;
+  color: white;
+}
+.architecture .row .content .multirows .block.add {
+  background: #0D7CC4;
+}
+.architecture .row .content .multirows .row {
+  margin: 0;
+  flex: 1 0 5rem;
+}
+.architecture .row .block {
+  background: #000a35;
+  color: white;
+  padding: 1rem;
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  flex-grow: 1;
+  position: relative;
+}
+.architecture .row .block .content {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.architecture .row .block .rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.architecture .row .block .rows .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.architecture .row .overlay {
+  color: white;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+.architecture .row .overlay:hover {
+  opacity: 1;
+}
+.architecture .row .overlay.short {
+  position: absolute;
+  width: 100%;
+}
+.architecture .row .overlay .block {
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 124, 196, 0.9);
+  margin: 0;
+}
+.architecture .row.columns, .architecture .row .columns {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-around;
+}
+.architecture .row.columns > .block, .architecture .row .columns > .block {
+  width: 25%;
+}
+.architecture .row.columns > .block .rows, .architecture .row .columns > .block .rows {
+  padding: 0;
+}
+.architecture .row.columns > .block {
+  padding: 0;
+}
+.architecture .row.columns > .block .row {
+  flex: 1 0 5rem;
+  align-content: center;
+  display: flex;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div data-ng-app="App">
+  <div class="architecture" data-ng-controller="base">
+    <div class="row one">
+      <div class="content">
+        <div class="block title">
+          FlexBox + Angular
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="block">
+          More Information
+        </div>
+      </div>
+    </div>
+    <div class="row two">
+      <div class="content">
+        <div class="block">
+          Size two
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="block">
+          More Information..
+        </div>
+      </div>
+    </div>
+    <div class="row two">
+      <div class="content columns">
+        <div class="block" data-ng-click="remove($index, 'columns')" data-ng-repeat="cols in columns track by $index">
+          {{cols}}
+        </div>
+        <div class="block add" data-ng-click="add('columns')">
+          +
+        </div>
+      </div>
+    </div>
+    <div class="row one">
+      <div class="content">
+        <div class="block">
+          Size one
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="block">
+
+        </div>
+      </div>
+    </div>
+    <div class="row three columns">
+      <div class="block">
+        <div class="content rows">
+          <div class="row multirows">
+            <div class="block" data-ng-repeat="mini in minis track by $index" data-ng-click="remove($index, 'minis')">
+              {{mini}}
+            </div>
+            <div class="block add" data-ng-click="add('minis')">
+              +
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="content rows">
+          <div class="row">
+            <div class="block">
+              This is the first row
+            </div>
+          </div>
+          <div class="row">
+            <div class="block">
+              This is the second row
+            </div>
+          </div>
+        </div>
+        <div class="overlay short">
+          <div class="block">
+            More info over both rows
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="content">
+          <div class="block">
+            Bigger block in size three row.
+          </div>
+        </div>
+        <div class="overlay short">
+          <div class="block">
+            More info
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="content">
+          <div class="block">
+            Bigger block in size three row with more information on it here.
+          </div>
+        </div>
+        <div class="overlay short">
+          <div class="block">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row one">
+      <div class="content">
+        <div class="block">
+          Size one row
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="block">
+          More info
+        </div>
+      </div>
+    </div>
+    <div class="row" data-ng-repeat="row in rows track by $index" data-ng-class="row.size" data-ng-click="remove($index, 'rows')">
+      <div class="content">
+        <div class="block">
+          {{row.number}}
+        </div>
+      </div>
+    </div>
+    <div class="row two">
+      <div class="content columns">
+        <div class="block add" data-ng-click="add('rows','one')">
+          Add a size one row.
+        </div>
+        <div class="block add" data-ng-click="add('rows','two')">
+          Add a size two row.
+        </div>
+        <div class="block add" data-ng-click="add('rows','three')">
+          Add a size three row.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js'></script>
+
+  
+
+    <script >
+      var app = angular.module("App", []);
+
+app.controller("base", function($scope) {
+  
+  $scope.columns = [1,2,3,4];
+  $scope.rows = [];
+  $scope.minis = [1,2,3];
+  
+  $scope.add = function add(type, size){
+    if(!type) return;
+    var newValue;
+    if(size){
+      if($scope[type].length){
+        var lastIndex = $scope[type].length - 1;
+        var numb = $scope[type][lastIndex].number + 1;
+        newValue = {
+          number: numb,
+          size: size
+        }
+      }else{
+        newValue = {
+          number: 1,
+          size: size
+        }
+      }
+    } else{
+      if($scope[type].length){
+        var lastIndex = $scope[type].length - 1;
+        newValue = $scope[type][lastIndex] + 1;
+      } else {
+        newValue = 1;
+      }
+    }
+
+    $scope[type].push(newValue);
+  }
+  $scope.remove = function remove(index, type){
+    if(index == null || !type) return;
+    $scope[type].splice(index, 1);
+  }
+  
+  
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

@@ -1,0 +1,202 @@
+(function(){
+window.CW = window.CW || {};
+
+var BACKSPACE_KEY = 8,
+    RETURN_KEY = 13,
+    BACKSPACE_KEY_PRESSED = false,
+    lastChar;
+
+CW.RecoveryKeyWidget = function (prefix, placeholder) {
+  this.prefix = (prefix = prefix || '');
+  this.placeholder = (placeholder = placeholder || '');
+
+  var ret = this,
+
+      emptyFunc = function () {}, //no-op
+      changeCallback = emptyFunc,
+      submitCallback = emptyFunc,
+
+      container = this.element = document.createElement('div'),
+      input = this.inputElement = document.createElement('input'),
+      placeholderElement = document.createElement('div'),
+      prefixText = document.createElement('span'),
+      placeholderText = document.createElement('span'),
+      _prefixRegex;
+
+  // input
+  input.setAttribute('type', 'text');
+  input.setAttribute('autocomplete', 'off');
+  input.setAttribute('autocorrect', 'off');
+  input.setAttribute('spellcheck', 'false');
+  input.style.direction = "ltr";    // Doesn’t make sense in RTL
+
+  // placeholder
+  prefixText.classList.add('prefix-text');
+  prefixText.innerHTML = prefix;
+  placeholderText.classList.add('placeholder-text');
+  placeholderText.innerHTML = placeholder;
+  placeholderElement.classList.add('placeholder');
+  placeholderElement.appendChild(prefixText);
+  placeholderElement.appendChild(placeholderText);
+
+  // container
+  container.classList.add('recovery-key');
+  container.appendChild(placeholderElement);
+  container.appendChild(input);
+
+  ret.focus = function() {
+    $('input', this.element).focus();
+  };
+
+  var escapeRegex = function(str){
+        return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+      },
+
+      getPrefixRegex = function(){
+        if (_prefixRegex) { return _prefixRegex; }
+
+        var prefixRegexStr = '^';
+
+        for (var idx = 0, len = prefix.length; idx < len; idx++) {
+          prefixRegexStr += (escapeRegex(prefix[idx]) + '?');
+        }
+
+        _prefixRegex = new RegExp(prefixRegexStr);
+
+        console.log(prefixRegexStr);
+        return _prefixRegex;
+
+      };
+
+
+  var handleEvent = function (evt) {
+    var target = evt.target,
+        currentValue = target.value,
+        type = evt.type;
+
+    var eventHandlers = {
+
+      keydownHandler: function () {
+        // prevent backspacing beyond the beginning of the field
+        if (evt.keyCode === BACKSPACE_KEY && input.value === prefix) {
+          evt.preventDefault();
+          evt.stopPropagation();
+        }
+        else if (evt.keyCode === RETURN_KEY) {
+          ret.didSubmit.call(ret, currentValue);
+        }
+        else if (evt.keyCode === BACKSPACE_KEY) {
+          BACKSPACE_KEY_PRESSED = true;
+        }
+        else {
+          BACKSPACE_KEY_PRESSED = false;
+        }
+      },
+
+      focusHandler: function () {
+        setTimeout(function () {
+          window.scrollTo(0, 0); // nulify auto page scrolling on input focus
+        },0);
+        if (currentValue.length < prefix.length){
+          target.value = prefix;
+        }
+        // Put the cursor at the end
+        target.selectionStart = target.selectionEnd = target.value.length;
+      },
+
+      blurHandler: function () {
+        if (input.value === prefix) {
+          placeholderElement.style.display = 'block';
+        }
+      },
+
+      inputHandler: function () {
+        if (placeholderElement) placeholderElement.style.display = 'none';
+
+        var value = currentValue.toUpperCase(),
+            dashedValue = prefix,
+            prefixRegex = getPrefixRegex(),
+            numDashes = 0,
+            existingDashes = (value.match(/-/g)||[]).length;
+            
+        if(BACKSPACE_KEY_PRESSED && lastChar === '-' && value.length > prefix.length) {
+          value = value.substring(0, value.length - 1);
+        }
+
+        while(value.substr(0,prefix.length) === prefix){
+          value = value.replace(prefixRegex,'');
+        }
+        value = value.replace(/[^0-9A-Z]/g, '');
+
+        for (var idx = 0, len = placeholder.length; idx < len; idx++){
+          var newValue = value[idx-numDashes];
+
+          if (placeholder[idx] !== '-') {
+            if(!newValue){ break; }
+            dashedValue += newValue;
+          }
+          else if(!BACKSPACE_KEY_PRESSED || numDashes < existingDashes-1) {
+            numDashes++;
+            dashedValue += '-';
+          }
+        }
+
+        lastChar = dashedValue.substr(dashedValue.length - 1);
+        
+        target.value = dashedValue;
+        setTimeout(function () {
+          target.selectionStart = target.selectionEnd = dashedValue.length;
+        },0);
+
+        ret.didChange.call(ret, dashedValue);
+      }
+    };
+
+    return eventHandlers[type + 'Handler']();
+  };
+
+  // turn on event handlers
+  ['keydown', 'focus', 'blur', 'input'].forEach(function (type) {
+    input['on' + type] = handleEvent;
+  });
+
+  // Value is a computed property
+  Object.defineProperty(ret, 'value', {
+    set: function (value) {
+      value = value ? value.toString() : '';
+      input.value = prefix + value;
+      handleEvent.call(ret, { target: input, type: 'input' });
+    },
+    get: function () {
+      return input.value;
+    }
+  });
+
+  // Allow for the setting of a didChange callback
+  Object.defineProperty(ret, 'didChange', {
+    set: function (value) {
+      if (typeof value === 'function') {
+        changeCallback = value;
+      }
+    },
+    get: function () {
+      return changeCallback;
+    }
+  });
+
+  // Allow for the setting of a didSubmit callback
+  Object.defineProperty(ret, 'didSubmit', {
+    set: function (value) {
+      if (typeof value === 'function') {
+        submitCallback = value;
+      }
+    },
+    get: function () {
+      return submitCallback;
+    }
+  });
+
+  return ret;
+
+};
+})();

@@ -1,0 +1,143 @@
+(function(){var e={intlLocale:"en",date:{intlOptions:{}},time:{},currency:{},number:{}}
+e.date.postFormatting=function(e,t,n){var r=e.split(".")[0]
+return n=n.replace(/\s0/," "),"my"===r?n=n.replace(/,/g,""):"time"===r&&(n=n.split(" "),5!==n.length||/,$/.test(n[2])?3!==n.length||/,$/.test(n[0])||(n[0]=n[0]+","):n[2]=n[2]+",",n=n.join(" ")),n},e.date.narrowDayNames=["S","M","T","W","T","F","S"]
+var t=e.date.intlOptions
+t.time={year:"numeric",month:"long",day:"numeric",hour:"numeric",minute:"numeric"},t["time.long"]=t.time,t["time.medium"]=t.time,t["time.short"]={year:"2-digit",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric"},t.mdy={year:"numeric",month:"long",day:"numeric"},t["mdy.long"]=t.mdy,t["mdy.medium"]={year:"numeric",month:"short",day:"numeric"},t["mdy.short"]={year:"numeric",month:"numeric",day:"numeric"},t.my={year:"numeric",month:"long"},t["my.long"]=t.my,t["my.medium"]={year:"numeric",month:"short"},t["my.short"]=t["my.medium"],t.md={month:"long",day:"numeric"},t["md.long"]=t.md,t["md.medium"]={month:"short",day:"numeric"},t["md.short"]=t["md.medium"],t.m={month:"long"},t["m.long"]=t.m,t["m.medium"]={month:"short"},t["m.short"]={month:"numeric"},t.d={weekday:"long"},t["d.long"]=t.d,t["d.medium"]={weekday:"short"},t["d.short"]={day:"numeric"},t["d.narrow"]={weekday:"narrow"},t.y={year:"numeric"},t["y.long"]=t.y,t["y.medium"]=t.y,t["y.short"]={year:"2-digit"},e.currency.getCurrencyDisplay=function(e){return/^(DKK|NOK|SGD|ZAR|SEK|CHF)$/.test(e)?"code":"symbol"}
+e.currency.postFormatting=function(e,t,n){var r=/^(\(|-)?\$/,o={AUD:"A$",CAD:"CA$",HKD:"HK$",NZD:"NZ$"}
+return void 0!==o[e]?n=n.replace(r,o[e]):"INR"===e&&(n=n.replace(/Rs\./,"₹")),t<0&&n.indexOf(")")>=0&&(n="-"+n.replace(/[\(\)]/g,"")),n.replace(/\s/,"")},e.possessive={fallback:"’s",rules:{".*[Ss]$":"’",".*[A-RT-Z]$":"’S",".*[a-rt-z]$":"’s"}},t8.__addLocaleData("en_US",e)})(),function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("@linkedin/jsecure"),require("t8")):"function"==typeof define&&define.amd?define("xmessage",["exports","@linkedin/jsecure","t8"],t):t(e.xmessage={},e.jSecure,e.t8)}(this,function(e,t,n){"use strict"
+function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){throw new SyntaxError("XMessage parsing error: "+e+" at "+t.toString())}function a(e){for(var t=[],n=[],r=!1,a=[],i=new Ie(e),s=i.next,u=i.consume;s();)if(s()!==Le||i.isEscaped())if(i.isEscaped())a.push(s()),u()
+else{if(0===n.length&&s()===qe){if(u(),s()===qe){a.push(qe),u()
+continue}r=!r,a.length>0&&(t.push(a.join(ze)),a.length=0)}r?(s()&&a.push(s()),u()):s()!==$e||i.isEscaped()||0!==n.length?s()===Te?(0===n.length?a.length>0&&(t.push(a.join(ze)),a.length=0):a.push(s()),n.push(s()),u()):s()===$e?(n.pop(),0===n.length?a.length>0?(t.push({text:a.join(ze)}),a.length=0):o("Unexpected end of placeholder (found no content)",i):a.push(s()),u()):(s()&&a.push(s()),u()):o('Unexpected "}"',i)}else u()
+return 0!==n.length&&o('Unexpected end of placeholder (unmatched "{")',i),a.length>0&&(t.push(a.join(ze)),a.length=0),t}function i(e,t,n){var r=[],a=[]
+if(e()===Me)r.push(e()),t(),e()&&e()!==Ue&&e()!==De&&o('Could not parse index; expected ":" or end of identifier but found "'+e()+'"',n)
+else if(e()&&Ze.test(e()))for(;e()&&He.test(e());)r.push(e()),t()
+if(e()===De)for(t(),e()&&Ke.test(e())?(a.push(e()),t()):o('Expected letter (a-zA-Z) or number (0-9) but found "'+e()+'"',n);e()&&Ye.test(e());)a.push(e()),t()
+else 0===r.length&&e()&&o('Unexpected character; expected ":" but found "'+e()+'"',n)
+return e()!==Ue&&e()?o('Unexpected character; expected "," or end of identifier but found "'+e()+'"',n):(r=parseInt(r.join(ze),10),isNaN(r)&&(r=Ve),a=a.join(ze)),{number:r,keyword:a}}function s(e,t,n){var r=[]
+if(e())for(;e()&&We.test(e());)r.push(e()),t()
+else o('Unable to parse type. Expected letter (a-zA-Z) but found end of identifier after ","',n)
+return r.join(ze)}function u(e,t,n,r){for(var a=Je[r]||Be,i=[],s="",u=null,m=void 0;e();)a.test(e())&&(0===i.length?o('Error parsing style key/value. Found delimiter "'+e()+'" but expected key.',n):null===u&&(u=i.join(ze),i.length=0,s=e(),t())),i.push(e()),t()
+return""===s?(u=i.join(ze),i.length=0):(m=i.join(ze),i.length=0),{key:u,value:m,delimiter:s}}function m(e,t,n,r,a){var i=[],s={},m=[],c=[]
+for(a=a||0;e();)e()===Te?i.push(e()):e()===$e&&i.pop(),0===i.length&&e()===Re?(0===c.length&&o('Unexpected "'+Re+'" in style list.',n),m.push(c.join(ze)),c.length=0,t()):(c.push(e()),t())
+return c.length>0&&(m.push(c.join(ze)),c.length=0),m.map(function(e){var t=new Ie(e)
+return u(t.next,t.consume,t,r)}).forEach(function(e,t){e.order=t+a,s.hasOwnProperty(e.key)?o('Found duplicate style key "'+e.key+'". Styles must have unique names.',n):s[e.key]=e}),s}function c(e,t){for(var n=[],r=void 0,o={};e();)n.push(e()),t()
+return r=n.join(ze),o[r]={key:r,value:null,delimiter:null,order:0},o}function l(e,t,n,r){return Ge[r]?Ge[r](e,t,n,r):m(e,t,n,r,0)}function d(e,t,n){var r=""
+if("list"===n){for(var o=[];e()&&e()!==Ue;)o.push(e()),t()
+r=o.join(ze)}return r}function f(e,t,n){var r=null,a=null,u="",m={}
+return e()?(r=i(e,t,n),e()===Ue?(t(),a=s(e,t,n),e()===Ue&&(t(),u=d(e,t,a),e()===Ue&&t(),e()&&(m=l(e,t,n,a)))):a="simple"):o("Error parsing placeholder. Unexpected end of input.",n),e()&&o('Unexpected character "'+e()+'".',n),{index:r,type:a,subtype:u,parameters:m}}function p(e){var t=new Ie(e)
+return f(t.next,t.consume,t)}function h(e){return a(e).map(function(e){return"string"==typeof e?e:p(e.text)}).map(function(e){return"string"==typeof e?e:("object"==typeof e.parameters&&Object.keys(e.parameters).forEach(function(t){var n=e.parameters[t]
+n.value&&(n.value=h(n.value))}),e)})}function y(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _(e){return e instanceof tt?e.value:e}function g(e){return e instanceof tt?e:new tt(e)}function v(){return nt}function b(e){nt=function(t){if(t instanceof tt)return t
+var n=e(t)
+return new tt(n)}}function w(e){return t.htmlEncode(e)}function k(e){console.warn(e)}function x(e){for(var t=arguments.length,n=[],r=1;r<t;++r)n.push(arguments[r])
+return e.replace(/{(\d+)}/g,function(e,t){return void 0!==n[t]?n[t]:e})}function S(e,t){var n,r
+for(r=0,n=e.length;r<n;++r){var o=e[r]
+if(t.hasOwnProperty(o))return t[o]}return null}function E(e,t){var n
+if(e&&t)for(n in t)t.hasOwnProperty(n)&&!e.hasOwnProperty(n)&&(e[n]=t[n])
+return e}function P(e,t){var n=rt[e]
+return t&&n?n[t]:n}function j(e,t){var n=e.parameters[t]
+if(n)return n.value}function A(e,t){var n,r=e.parameters
+if(r)for(n in r)if(r.hasOwnProperty(n)&&r[n].order===t)return r[n]}function O(e,t,n,r){var o=j(e,t),a=v(),i=void 0
+if(""===o)return o
+if(o){i=g(o.map(function(e){if(e instanceof Object){var t=ot(e,n,r)
+return a(t)}return e}).reduce(function(e,t){return e+_(t)},""))}return i}function N(e,t){var n=null
+if(e&&e.index&&t){var r=e.index,o=r.number,a=r.keyword
+if("function"==typeof t)return t(o,a)
+n=t[o>-1?o:0],n=void 0!==n&&null!==n?"string"==typeof a&&""!==a?n[a]:n:void 0}return n}function F(e){var t=_(e)
+return lt.test(t)?w(t):t}function C(e,t,n){var r=v(),o=N(e,t),a=o&&"object"==typeof o,i=F(r(a?o[st]:o)),s=F(a?r(o[mt]):null),u=F(a?r(o[ct]):null),m=_(O(e,it,t,n)),c=F(O(e,ut,t,n)),l={}
+a?Object.keys(o).forEach(function(e){"href"!==e&&"title"!==e&&(l[F(r(e))]=F(r(o[e])))}):(u&&(l.class=u),s&&(l.id=s))
+var d="<a"
+return i&&(d+=' href="'+i+'"'),Object.keys(l).forEach(function(e){d+=" "+e+'="'+l[e]+'"'}),c&&(d+=' title="'+c+'"'),d+=">"+m+"</a>",g(d)}function I(e,t,n){var r=N(e,t),o=""
+if(!0===r||r===ft)o=O(e,ft,t,n)
+else{if(!1!==r&&r!==pt)throw new Error('Invalid argument for BooleanPlaceholder. Expected boolean or "true" or "false" but found "'+r+'"')
+o=O(e,pt,t,n)}return o}function T(e,t,r){var o,a,i,s,u,m,c=N(e,t),l="",d=e.parameters,f=gt
+s=[]
+for(m in d)d.hasOwnProperty(m)&&(u=d[m],s[u.order]=u)
+var p=typeof c
+"number"!==p||isNaN(c)?"string"===p?yt.test(c)?f=parseFloat(c):(k("Invalid value for 'choice' placeholder. \""+c+'" is not a number. Defaulting to 0.'),f=gt):"object"===p&&(f=Array.isArray(c)?c.length:Object.keys(c).length):f=c
+var h=void 0
+return o=s.map(function(e,t){var n={}
+if(_t.test(e.key))n.text=t.toString(),n.comparison="eq",n.category=e.key
+else{switch(n.text=t.toString(),e.delimiter){case"<":n.comparison="gt"
+break
+case"+":case"#":n.comparison="gte"
+break
+default:n.comparison="eq"}n.arg=parseFloat(e.key),h||(h=n)}return n}),vt||(vt=new n.Chooser),i=vt.format(f,o,r),void 0!==i?(a=s[parseInt(i,10)],l=O(e,a.key,t,r)):h&&(l=O(e,h.arg,t,r)),l}function $(e,t,n){var r,o=N(e,t),a=""
+return void 0!==o?(o=o.toString(),r=j(e,o),a=r?O(e,o,t,n):O(e,wt,t,n)):a=O(e,wt,t,n),a}function U(e,t){var n="",r=void 0
+if(void 0!==e){var o=P(t,"possessive")
+if(o){var a=void 0
+if(o.rules)for(r in o.rules)if(o.rules.hasOwnProperty(r)){var i=o.rules[r],s=new RegExp(r)
+s.test(e)&&(a=i)}void 0!==a?n=a:o.fallback&&(n=o.fallback)}}return n}function D(e,t,n){var r=N(e,t),o=""
+return void 0!==r&&(o=U(r,n)),o}function R(e,t){var n,r=N(e,t)
+return n=void 0===r?"{"+(-1!==e.index.number?e.index.number:"")+(""!==e.index.keyword?":"+e.index.keyword:"")+"}":r,v()(n)}function M(e,t){var n=t instanceof tt,r=n?_(t):t,o=r
+if(e){var a=e[Et],i=e[Pt]
+a&&(o=a.value+o),i&&(o+=i.value)}return o=n?g(o):o}function q(e,t,n){var r=xt(e,t,n)
+return void 0!==r&&e.parameters.possessive&&(r=U(r,n)),r=St(e.parameters,r)}function L(e,t,n){return x(e,z(parseInt((100*t).toFixed(1)),n))}function V(e){return E(E({},P(e,"number")),P("default","number"))}function z(e,t){return At||(At=new n.NumberFormatter),At.format(e,t)}function W(e,t){return At||(At=new n.NumberFormatter),At.format(Math.floor(e),t)}function Z(e,t,r){return Ot||(Ot=new n.CurrencyFormatter),Ot.format(e,t,r)}function H(e,t){return L(V(t).percent,e,t)}function K(e,t,n){var r,o=N(e,t),a=e.parameters
+return void 0!==o&&(r=a?a.integer?W(o,n):a.currency?Z(o,"",n):a.percent?H(o,n):z(o,n):z(o,n)),v()(r)}function Y(e,t,r,o){Ct[t]||(It[t]?(console.log('The date pattern "'+t+'" is deprecated, falling back to "'+It[t]+'".'),t=It[t]):(console.log('Unknown date pattern "'+t+'", falling back to "'+Tt+'". Note: custom date patterns are not supported.'),t=Tt))
+var a=Ct[t]
+return Ft||(Ft=new n.DateFormatter),Ft.format(e,r,a,o)}function B(e,t,n){var r=N(e,t),o=A(e,0),a=Tt
+return o&&(a=o.key),Ut===a&&(issueWarning('The pattern "'+a+'" is not to be used in XMessage strings. Falling back to "'+Tt+'".'),a=Tt),Y(r,a,n,!1)}function X(e,t,r,o){Rt[t]||(Mt[t]?(console.log('The time pattern "'+t+'" is deprecated, falling back to "'+Mt[t]+'".'),t=Mt[t]):(console.log('Unknown time pattern "'+t+'", falling back to "'+qt+'". Note: custom time patterns are not supported.'),t=qt))
+var a=Rt[t]
+return Dt||(Dt=new n.TimeFormatter),Dt.format(e,r,a,o)}function G(e,t,n){var r=N(e,t),o=A(e,0),a=qt
+return o&&(a=o.key),X(r,a,n,!1)}function J(e,t,n){var r,o,a,i,s,u,m,c,l,d,f=N(e,t),p="",h=!1,y=e.parameters
+if(void 0!==f&&(y&&(h=!!y[Zt]),r=P(n,"suffix")))switch(l=(r.hardVowels||"")+(r.softVowels||""),r.strategy){case Ht:if(f.length>0){for(c=f.length-1,m=c;m>=0&&u!==zt&&u!==Wt;m--)if(u=f.charAt(m),-1!==l.indexOf(u))return d=m===c,s=r.hardVowels&&r.hardVowels.indexOf(u)>-1?r.hardVowelSuffix:r.fallbackSuffix,p=""+(d?r.bufferChar:"")+s,h?r.separator+p:p
+for(o in r.nonVowelToSuffix)if(r.nonVowelToSuffix.hasOwnProperty(o)&&(a=r.nonVowelToSuffix[o],i=new RegExp(o),i.test(f.charAt(c)))){s=a
+break}s||(s=r.defaultBufferChar),p=h?r.separator+s:s
+break}}return p}function Q(e,t,r){var o=void 0
+if(void 0!==e){var a={firstName:e.givenName||e.firstName,lastName:e.familyName||e.lastName,maidenName:e.maidenName}
+switch(t||(t=Yt),-1===Bt.indexOf(t)&&(console.log('Unrecognized name format "'+t+'", falling back to "'+Yt+'".'),t=Yt),t){case"given":o=a.firstName||""
+break
+case"family":o=a.lastName||""
+break
+case"maiden":o=a.maidenName||""
+break
+default:var i="full"===t||"given"===t||"family"===t||"maiden"===t?"FULL_NAME":"familiar"===t?"FAMILIAR_NAME":"list"===t?"LIST_VIEW":Kt
+Xt||(Xt=new n.NameFormatter),o=Xt.format(a,i,r)}}return o}function ee(e,t,n){var r=N(e,t),o=void 0,a=void 0,i=S(Bt,e.parameters)
+return i=i&&i.key,o=Q(r,i,n),e.parameters.possessive&&(o+=U(o,n)),a=v()(o),o=St(e.parameters,a)}function te(e,t,n,r){if(Qt===e){var o=S(Bt,t)
+o=o&&o.key,n=Q(n,o,r)}return n=v()(n),n=St(t,n)}function ne(e,t,n){var r,o,a,i,s,u=N(e,t),m=e.subtype||en,c="",l=P(n,tn)||P("default",tn)
+if(u&&u instanceof Array&&(r=u.length,o=r-1,r>0))switch(r){case 1:c=te(m,e.parameters,u[0],n)
+break
+case 2:c=x(l[an],te(m,e.parameters,u[0],n),te(m,e.parameters,u[1],n))
+break
+default:i=0,s=1
+do{a=0===i?nn:s<o?rn:on,c=a===nn?x(l[a],te(m,e.parameters,u[i],n),te(m,e.parameters,u[s],n)):x(l[a],c,te(m,e.parameters,u[s],n)),i++,s++}while(a!==on)}return c}function re(e){return e?e.index?void 0:"Placeholder must have an index.":"Placeholder is invalid."}function oe(e,t){var n,r,o
+if(e.parameters){r=e.parameters
+for(o in r)if(r.hasOwnProperty(o)&&!t.test(o)){n='Invalid style "'+o+'"'
+break}}return n}function ae(e,t){var n,r,o,a,i
+if(e.parameters)for(r=e.parameters,a=0,i=t.length;a<i;++a)o=t[a],r.hasOwnProperty(o)||(n='Missing required style key "'+o+'"')
+else n="Placeholder must have styles"
+return n}function ie(e,t,n){var r,o,a="Placeholder must have exactly "+t+" style(s)",i="Placeholder must have at least "+t+" style(s)",s=0
+if(e.parameters){for(o in e.parameters)e.parameters.hasOwnProperty(o)&&s++
+"eq"===n&&s!==t?r=a:"gte"===n&&s<t&&(r=i)}else t>0&&(r="Placeholder must have styles")
+return r}function se(e,t){return ie(e,t,"gte")}function ue(e,t){return ie(e,t,"eq")}function me(e,t,n){var r,o,a,i
+if(e.parameters)for(o=0,a=t.length;o<a;++o)r=e.parameters[t[o]],"without"===n?r&&r.value&&(i='Invalid value for style "'+r.key+'"'):"with"===n&&r&&(r.value||(i='Style "'+r.key+'" must have a value'))
+return i}function ce(e,t){return me(e,t,"with")}function le(e,t){return me(e,t,"without")}function de(e){var t=ae(e,mn)
+return t||(t=oe(cn)),t}function fe(e){var t=se(e,1)
+return t||(t=oe(e,dn)),t}function pe(e){var t,n,r,o,a,i,s,u,m=e.parameters,c=!1
+i=[]
+for(u in m)m.hasOwnProperty(u)&&(s=m[u],i[s.order]=s,hn.test(u)&&(c=!0))
+for(s=void 0,o=0,a=i.length;o<a;++o)if(s=i[o],pn.test(s.key))if(r=parseInt(s.key,10),void 0===n)n=r
+else{if(!(n<r)){t="Invalid number order. Cannot list "+r+" after "+n+". Numbers must be ascending."
+break}n=r}else{if(!hn.test(s.key)){t='Invalid category key "'+s.key+'".'
+break}c=!0}return c&&(m.singular?m.plural||(t='Missing required category "plural"'):t='Missing required category "singular"'),t}function he(e){var t=void 0
+return e.parameters?0===Object.keys(e.parameters).length&&(t="MapPlaceholder must have at least one style argument."):t="MapPlaceholder must have parameters.",t}function ye(e){var t=oe(e,vn)
+return t||(t=ce(e,gn)),t}function _e(e){var t=!1
+return""!==e.subtype&&(kn.test(e.subtype)||(t='Invalid list subtype "'+e.subtype+'"')),t||(t=oe(e,xn)),t||(t=ce(e,wn)),t}function ge(e){return ue(e,0)}function ve(e){var t=ue(e,1)
+return t||(t=oe(e,jn)),t||(t=le(e,Pn)),t}function be(e){return oe(e,On)}function we(e){var t,n,r
+if("string"!=typeof e){if(r=sn(e),r||Fn.hasOwnProperty(e.type)&&(r=Fn[e.type](e)),r)throw new Error(r)
+if(e&&e.parameters instanceof Object)for(t in e.parameters)e.parameters.hasOwnProperty(t)&&(n=e.parameters[t],n.value&&n.value instanceof Array&&n.value.forEach(we))}}function ke(e){return t.sanitizeHTML(e)}function xe(e,t,n){var r=""
+if(e&&t&&n){var o=In[e.type]
+"function"==typeof o&&(r=o(e,t,n))}return r}function Se(e){if(-1===e.indexOf("{")&&-1===e.indexOf("'"))return[e]
+var t=Qe(e)
+return t.forEach(Nn),t}function Ee(e,t){return e&&1===e.length&&"string"==typeof e[0]?function(){return Tn(e[0])}:function(n){for(var r="",o=0;o<e.length;++o){var a=e[o]
+r+="string"==typeof a?a:xe(a,n,t)}return Tn(r)}}function Pe(e,t){return Ee(Se(e),t)}function je(){return v()}function Ae(e){b(e)}function Oe(){return Tn}function Ne(e){Tn=e}t="default"in t?t.default:t,n="default"in n?n.default:n
+var Fe=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n]
+r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),Ce=function(){function e(t){var n=this
+r(this,e)
+this._input=t,this._index=0,this._last=null,this.next=function(){return e.prototype.next.call(n)},this.consume=function(){return e.prototype.consume.call(n)}}return Fe(e,[{key:"next",value:function(){return this._index<this._input.length?this._input[this._index]:null}},{key:"consume",value:function(){this._last=this._input[this._index],this._index++}},{key:"isEscaped",value:function(){return"\\"===this._last}},{key:"toString",value:function(){return"index "+this._index+' in string "'+this._input+'"'}}]),e}(),Ie=Ce,Te="{",$e="}",Ue=",",De=":",Re="|",Me="0",qe="'",Le="\\",Ve=-1,ze="",We=/[a-zA-Z]/,Ze=/[1-9]/,He=/[0-9]/,Ke=/[a-zA-Z0-9]/,Ye=/[a-zA-Z0-9_\-~.|\[\]\/]/,Be=/[#]/,Xe=/[#+<]/,Ge={},Je={}
+Je.choice=Xe,Ge.choice=function(e,t,n,r){return m(e,t,n,r,0)},Ge.date=function(e,t,n,r){return c(e,t)},Ge.number=function(e,t,n,r){return c(e,t)}
+var Qe=h,et=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n]
+r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),tt=function(){function e(t){y(this,e),this.value=_(t)}return et(e,[{key:"toString",value:function(){switch(typeof this.value){case"object":case"function":break
+default:return String(this.value)}return""}}]),e}(),nt=void 0
+b(w)
+var rt={default:{},en_US:{list:{2:"{0} and {1}",start:"{0}, {1}",middle:"{0}, {1}",end:"{0}, and {1}"},number:{percent:"{0}%"},possessive:{fallback:"’s",rules:{".*[Ss]$":"’",".*[A-RT-Z]$":"’S",".*[a-rt-z]$":"’s"}}}},ot=function(){},at=C,it="text",st="href",ut="title",mt="id",ct="class",lt=/['"<>]/,dt=I,ft="true",pt="false",ht=T,yt=/-?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/,_t=/^(zero|singular|dual|few|many|plural|other)$/,gt=0,vt=void 0,bt=$,wt="DEFAULT_TEXT",kt=D,xt=R,St=M,Et="prefix",Pt="suffix",jt=q,At=void 0,Ot=void 0,Nt=K,Ft=void 0,Ct={fmt_d:"d",fmt_d_short:"d.short",fmt_d_narrow:"d.narrow",fmt_d_medium:"d.medium",fmt_d_long:"d.long",fmt_m:"m",fmt_m_short:"m.short",fmt_m_medium:"m.medium",fmt_m_long:"m.long",fmt_y:"y",fmt_y_short:"y.short",fmt_md_medium:"md.medium",fmt_md_long:"md.long",fmt_my_medium:"my.medium",fmt_my_long:"my.long",fmt_mdy_short:"mdy.short",fmt_mdy_medium:"mdy.medium",fmt_mdy_long:"mdy.long",fmt_mdy_hm_short:"time.short",fmt_mdy_hm_long:"time.long",fmt_mdy_iso:"iso",iso:"iso"},It={short:"fmt_mdy_short",medium:"fmt_mdy_medium",long:"fmt_mdy_long",full:"fmt_mdy_long"},Tt=(Object.keys(Ct),"fmt_mdy_medium"),$t=B,Ut="fmt_d_narrow",Dt=void 0,Rt={fmt_hm:"hm",fmt_hms:"hms"},Mt={short:"fmt_hm",medium:"fmt_hms",long:"fmt_hms",full:"fmt_hms"},qt=(Object.keys(Rt),"fmt_hms"),Lt=G,Vt=J,zt=" ",Wt="\t",Zt="sep",Ht="reverseSearchForVowel",Kt="FULL_NAME",Yt="familiar",Bt=["familiar","family","full","given","list","maiden"],Xt=void 0,Gt=ee,Jt=ne,Qt="name",en="text",tn="list",nn="start",rn="middle",on="end",an="2",sn=re,un=de,mn=["text"],cn=new RegExp("^("+["text","title"].join("|")+")$"),ln=fe,dn=new RegExp("^("+["true","false"].join("|")+")$"),fn=pe,pn=/-?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/,hn=/^(zero|singular|dual|few|many|plural|other)$/,yn=he,_n=ye,gn=["prefix","suffix"],vn=/^(familiar|family|full|given|list|maiden|micro|possessive|salutation|prefix|suffix)$/,bn=_e,wn=["prefix","suffix"],kn=/^(?:name|text)$/,xn=/^(?:familiar|family|full|given|list|maiden|micro|possessive|salutation|prefix|suffix)$/,Sn=ge,En=ve,Pn=["sep","nosep"],jn=new RegExp("^("+["sep","nosep"].join("|")+")$"),An=be,On=new RegExp(["possessive","suffix","prefix"].join("|")),Nn=we,Fn={anchor:un,boolean:ln,choice:fn,list:bn,map:yn,name:_n,possessive:Sn,suffix:En,text:An},Cn={formatDate:Y,formatName:Q,formatNumber:z,formatInteger:W,formatCurrency:Z,formatPercent:H,formatTime:X},In={anchor:at,boolean:dt,choice:ht,date:$t,list:Jt,map:bt,name:Gt,number:Nt,possessive:kt,simple:xt,suffix:Vt,text:jt,time:Lt},Tn=ke;(function(e){ot=e})(xe),e.toAst=Se,e.makeInterpolator=Ee,e.fromString=Pe,e.getUserDataFilter=je,e.setUserDataFilter=Ae,e.getOutputFilter=Oe,e.setOutputFilter=Ne,e.formatters=Cn}),define("@linkedin/ember-cli-pemberly-i18n/app-strings",["exports"],function(e){"use strict"
+e.default={"checkpoint-web":{en_US:{"checkpoint-web/templates/admin":{good_label:"GOOD"},"ember-checkpoint/templates/add-email":{heading_add_email:"Adding a second email adds security",body_add_email:"Adding a second email can help make sure you’re never locked out of your account."},"ember-checkpoint/templates/add-phone":{heading_add_phone:"Adding a phone number adds security",body_add_phone:"Adding a phone number can help make sure you’re never locked out of your account."},"ember-checkpoint/templates/china/mandatory-add-phone":{heading_add_phone:"Add a phone number",body_add_phone:"You must provide a mobile number as primary and confirm receipt of our text. Due to local law, we must confirm your identity before you use our Services."},"ember-checkpoint/templates/china/mandatory-verify-phone":{heading_verify_code:"Almost done - enter the code below",body_verify_code:"We’ve sent a code to the phone number you entered. Check the phone and enter the code below to verify the number."},"ember-checkpoint/templates/components/challenges/add-email":{placeholder_emailaddress:"Email address",password_prompt_heading:"Enter your password to complete this action",password_prompt_forgot_password:"Forgot password",btn_text_submit:"Submit",btn_text_skip:"Skip"},"ember-checkpoint/templates/components/challenges/add-phone":{placeholder_phonenumber:"Phone number",password_prompt_heading:"Enter your password to complete this action",password_prompt_forgot_password:"Forgot password",btn_text_submit:"Submit",btn_text_skip:"Skip",placeholder_countrycode:"Country code"},"ember-checkpoint/templates/components/challenges/bounced-email":{headline_bounced_email:"We are unable to reach you at: {:email}",sub_headline_bounced_email:"Never get locked out of your account by updating your email address.",placeholder_emailaddress:"Add a new email",password_prompt_heading:"Enter your password to complete this action",password_prompt_forgot_password:"Forgot password",btn_text_submit:"Submit",btn_text_skip:"Skip"},"ember-checkpoint/templates/components/challenges/china/mandatory-add-phone":{placeholder_phonenumber:"Phone number",placeholder_countrycode:"Country code",password_prompt_heading:"Enter your password to complete this action",password_prompt_forgot_password:"Forgot password",btn_text_submit:"Submit",password_input_placeholder:"Password",btn_text_submit_mobile:"Send code",btn_text_learn_more:"Learn more",error_message_wrong_password:"Hmm, that’s not the right password. Please try again or {:resetPasswordLink,anchor,text#reset your password}",learn_more_modal_heading:"Phone numbers",learn_more_modal_primary_btn_text:"Add a phone number",learn_more_modal_content_1:"In some countries, local laws require that we confirm your identity before letting you engage with our Services. You must provide a mobile number and confirm receipt of our text. This phone number will be associated with your account and is accessible from your settings. If you choose to change or delete your confirmed mobile number your ability to access our Services in certain countries (e.g. China) will be blocked until you once again confirm your identity.",learn_more_modal_content_2:"You may receive account alerts, messages from recruiters, connection requests and other engagement SMS. You can change preferences at anytime.",learn_more_modal_content_3:"If you want to change the bound phone number later, you can go to “Settings”-“Phone Numbers”-“Add Telephone Number”.",learn_more_modal_content_4:"If you want to close your account, you can bind your phone number first and then go to “Settings”-“Close Account­”.",learn_more_modal_content_5:"Thank you for your understanding and support. If you have any questions during the process of binding your account to your phone number, please contact our Customer Services 400-010-6277.","sub-headline1":"We’ll send a verification code to this number. you will need it for the next step.","sub-headline2":"Your phone number helps people who already have your number discover and connect with you.",btn_text_skip:"Skip",forget_password_mobile:"Forgot password?"},"ember-checkpoint/templates/components/challenges/china/mandatory-verify-pin":{placeholder_code:"Enter Code",heading_enter_code:"Almost done - enter the code below",label_instructions:"We’ve sent a code to the phone number you entered. Check the phone and enter the code below to verify the number.",resend_code:"Resend code",btn_text_verify:"Verify",btn_back:"Back"},"ember-checkpoint/templates/components/challenges/manage-account":{btn_text_done:"Done",email_heading:"Email",phone_heading:"Phone"},"ember-checkpoint/templates/components/challenges/verify-pin":{placeholder_code:"Enter Code",heading_enter_code:"Almost done - enter the code below",label_instructions:"We’ve sent a code to the phone number you entered. Check the phone and enter the code below to verify the number.",resend_code:"Resend code",btn_text_verify:"Verify",btn_text_skip:"Skip"},"ember-checkpoint/templates/components/log-in":{placeholder_username:"Email address or phone number",placeholder_password:"Password",btn_text_forgot_password:"Forgot password?",btn_text_sign_in:"Sign in",btn_text_join:"Join"},"ember-checkpoint/templates/components/shared/account-item":{label_primary:"(Primary)",password_prompt_heading:"Enter your password to complete this action",password_prompt_submit:"Submit",password_prompt_forgot_password:"Forgot password",resend_confirm:"Confirm",remove_btn_text:"Remove"},"ember-checkpoint/templates/components/shared/cp-strings":{error_generic_unexpected:"Something unexpected happened, please try again.",error_username:"Please enter a username.",error_password:"Please enter a password.",error_valid_email:"Please enter a valid email address.",error_valid_phone:"Please enter a valid phone number.",error_valid_code:"Please enter the code we sent to you.",btn_text_submit:"Submit",btn_text_cancel:"Cancel",btn_text_verify:"Verify",btn_text_skip:"Skip",btn_text_remove:"Remove",btn_text_resend_confirmation:"Resend Confirmation",status_confirmation_resent:"Confirmation email resent.",status_successfully_removed:"Successfully removed.",status_phone_removed:"Phone number successfully removed.",status_email_removed:"Email address successfully removed.",resend_pin_success:"The code has been resent",status_successfully_add_phone:"Number added"},"ember-checkpoint/templates/components/shared/password-modal":{error_message_wrong_password:"Hmm, that’s not the right password. Please try again or {:resetPasswordLink,anchor,text#reset your password}",password_label:"Password"},"ember-checkpoint/templates/login":{heading_welcome:"Welcome in"},"ember-checkpoint/templates/manage-account":{heading_manage_account:"Is this information correct?",body_manage_account:"We show this information associated with your account. Please delete any inactive information."},"ember-checkpoint/templates/verify-phone":{heading_verify_code:"Almost done - enter the code below",body_verify_code:"We’ve sent a code to the phone number you entered. Check the phone and enter the code below to verify the number."},"ember-cli-artdeco-modal/templates/components/artdeco-modal":{dismiss_button:"Dismiss"}}}}})

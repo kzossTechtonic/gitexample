@@ -1,0 +1,10 @@
+2019-01-07 15:33:43 +0000: Resetting migration readiness data
+2019-01-07 15:33:43 +0000: Updating eligibility with 0 cloud tab devices
+2019-01-07 15:33:43 +0000: Fetching device eligibility
+2019-01-07 15:33:43 +0000: Fetched device eligibility information: <WBSDeviceEligibilityInformation: 0x600000422400; dateOfLatestDAVAccessByIneligibleWindowsDevice=(null); numberOfDevices=1; hasWindowsDevices=0>
+2019-01-07 15:33:43 +0000: All devices appear to be migratable, but last update is old; Requesting cloud tab devices sync
+2019-01-07 15:33:43 +0000: Error syncing cloud tab devices for migration eligibility: Error Domain=com.apple.SafariShared.cloudTabStoreError Code=1 "(null)"
+2019-01-07 15:33:43 +0000: Not ready to migrate because cloud tab devices may be out of date
+2019-01-07 15:33:44 +0000: Updating eligibility with 0 cloud tab devices
+2019-01-07 15:33:44 +0000: Skipping device eligibility update since last update is recent
+2019-01-07 15:33:44 +0000: Not ready to migrate because cloud tab devices may be out of date

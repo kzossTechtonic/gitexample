@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Web App Layout</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css'>
+
+      <style>
+      html, body {
+  height: 100%;
+}
+
+a {
+  color: #119da4;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.placeholder,
+.placeholder-h > *,
+.placeholder-p > * {
+  font-family: monospace;
+  color: transparent;
+  background: #ccc;
+  border-radius: 1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+}
+
+.btn {
+  border: none;
+  color: #333745;
+  cursor: pointer;
+  background: #ddd;
+  border-radius: .1875rem;
+  padding: .5em .75em;
+  transition: background .3s;
+}
+.btn:hover {
+  background: #ccc;
+  transition: background .3s;
+}
+.btn.full-width {
+  width: 100%;
+}
+
+.alert {
+  border: 1px solid #aaa;
+  background: #eee;
+  border-radius: 6px;
+  padding: .5rem 1rem;
+}
+
+.btn-back,
+.btn-sidebar,
+.btn-close {
+  border: none;
+  color: #333745;
+  height: 100%;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  background: none;
+  padding: 0 .25rem;
+  opacity: .8;
+  color: #fff;
+}
+.btn-back:hover,
+.btn-sidebar:hover,
+.btn-close:hover {
+  opacity: 1;
+}
+
+.btn-close {
+  padding: 0;
+}
+
+.app-wrapper {
+  /* styling */
+  background: #fff;
+  color: #333;
+}
+@media (min-width: 480px) {
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1100;
+  /* styling */
+  background: #119da4;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  padding: 0 1rem;
+}
+.app-header .header-title {
+  font-size: 1.25rem;
+  padding: .75rem 0;
+}
+@media (min-width: 480px) {
+  .app-header .btn-back {
+    display: none;
+  }
+}
+
+.app-body {
+  overflow-x: hidden;
+  position: relative;
+}
+@media (min-width: 480px) {
+  .app-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+@media (min-width: 480px) {
+  .app-main {
+    /* fill space between header and footer */
+    flex: 1 0 auto;
+  }
+}
+
+.app-main-inner {
+  /* styling */
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.sidebar-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 1000;
+  /* styling */
+  background-color: #fff;
+  opacity: 0;
+  /* animation */
+  transition: opacity .1s;
+}
+@media (min-width: 480px) {
+  .sidebar-open .sidebar-overlay {
+    pointer-events: initial;
+    opacity: .5;
+    transition: opacity .2s;
+  }
+}
+
+.app-sidebar {
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  transform: translateX(100%);
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1000;
+  /* styling */
+  background: #fff;
+  /* animation */
+  transition: transform .125s ease-in;
+}
+.app-sidebar.immersive {
+  position: fixed;
+  z-index: 1200;
+}
+@media (min-width: 480px) {
+  .app-sidebar.immersive {
+    position: absolute;
+    z-index: 1000;
+  }
+}
+.sidebar-open .app-sidebar {
+  transform: translateX(0);
+  /* animation */
+  transition: transform .15s ease-out;
+}
+@media (min-width: 480px) {
+  .app-sidebar {
+    transform: translateX(400px);
+    max-width: 400px;
+  }
+  .sidebar-open .app-sidebar {
+    /* styling */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* styling */
+  background: #0d8389;
+  padding: .5rem 1rem;
+  color: #fff;
+}
+.sidebar-header .btn-close {
+  color: #fff;
+}
+
+.sidebar-body {
+  padding: .5rem 1rem;
+}
+
+.app-footer {
+  display: none;
+  /* styling */
+  background: #fff;
+  border-top: 1px solid #aaa;
+  padding: 1em;
+}
+
+.app-mobile-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1100;
+  /* styling */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  padding: 1em;
+}
+
+.mobile-footer-shim {
+  height: 55px;
+  width: 100%;
+  background: red;
+}
+
+.footer-menu {
+  display: flex;
+}
+
+.footer-menu__item {
+  flex: 1 0 auto;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .app-body {
+    height: auto;
+    flex: 1 0 auto;
+  }
+
+  .app-mobile-footer {
+    display: none;
+    position: static;
+  }
+
+  .mobile-footer-shim {
+    display: none;
+  }
+
+  .app-footer {
+    display: block;
+  }
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <div class="app-wrapper">
+	<header class="app-header">
+		<button class="btn-back"><i class="fa fa-angle-left"></i></button>
+		<div class="header-title">Header</div>
+		<button data-toggle="sidebar" class="btn-sidebar" title="Toggle sidebar"><i class="fa fa-exchange"></i></button>
+	</header>
+
+	<div class="app-body">
+		<main class="app-main">
+			<div class="app-main-inner">
+
+				<div class="alert">
+					<p>Click the <i class="fa fa-exchange"></i> to toggle the sidebar</p>
+					<label><input id="checkbox" type="checkbox"> Immersive mode (small screen only)</label>
+				</div>
+
+				<!-- Filler -->
+				<h1 class="placeholder-h" aria-hidden="true"><span>------ -----</span></h1>
+				<p class="placeholder-p" aria-hidden="true">
+					<span>--------- ------ ---- --- ---- ---- -- --- ------ --- ----- ------- ------ ------ ----- ------ ------ ------ -- --------- ------- ----- ----- -----</span>
+				</p>
+				<h2 class="placeholder-h" aria-hidden="true"><span>------ -----</span></h2>
+				<p class="placeholder-p" aria-hidden="true">
+					<span>--------- ------ ---- --- ---- ---- -- --- -- ----- ------ --- ----- ------- ------ ------ ----- ------ ------ ------ -- --------- ------- ----- ----- ----- ---- --- ---- -</span>
+				</p>
+				<span class="placeholder" aria-hidden="true">--------</span>
+				<span class="placeholder" aria-hidden="true">-----</span>
+
+			</div>
+		</main>
+
+		<div class="sidebar-overlay"></div>
+		<aside class="app-sidebar">
+			<header class="sidebar-header">
+				<h2 class="sidebar-header-text">Sidebar</h2>
+				<button data-close="sidebar" class="btn-close"><i class="fa fa-close"></i></button>
+			</header>
+			<div class="sidebar-body">
+				<!-- Filler -->
+				<p class="placeholder-p" aria-hidden="true">
+					<span>--------- ------ ---- --- ---- ---- -- --- ------ --- ----- ------- ------ ------ ----- ------ ------ ------ -- --------- ------- ----- ----- -----</span>
+				</p>
+				<p class="placeholder-p" aria-hidden="true">
+					<span>--------- ------ ---- --- ---- ---- -- --- -- ----- ------ --- ----- ------- ------ ------ ----- ------ ------ ------ -- --------- ------- ----- ----- ----- ---- --- ---- -</span>
+				</p>
+				<div class="placeholder">
+					<br/><br/><br/><br/><br/>
+				</div>
+				<p class="placeholder-p" aria-hidden="true">
+					<span>--------- ------ ---- --- ---- ---- -- --- ------ --- ----- ------- ------ ------ ----- ------ ------ ------ -- --------- ------- ----- ----- -----</span>
+				</p>
+			</div>
+		</aside>
+
+		<footer class="app-footer">
+			&copy; 2018 Foobar
+		</footer>
+	</div>
+
+	<div class="mobile-footer-shim"></div>
+	<footer class="app-mobile-footer">
+		<div class="footer-menu">
+			<div class="footer-menu__item"><i class="fa fa-home"></i></div>
+			<div class="footer-menu__item"><i class="fa fa-flag-o"></i></div>
+			<div class="footer-menu__item"><i class="fa fa-envelope"></i></div>
+			<div class="footer-menu__item"><i class="fa fa-bars"></i></div>
+		</div>
+	</footer>
+</div>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  
+
+    <script >
+      jQuery(function ($) {
+	// Open
+	$('[data-toggle="sidebar"]').on('click', function() {
+		$('.app-wrapper').toggleClass('sidebar-open');
+	});
+	
+	// Close
+	$('[data-close="sidebar"]').on('click', function() {
+		$('.app-wrapper').removeClass('sidebar-open');
+	});
+	
+	// Toggle immersive mode
+	$('#checkbox').change('click', function() {
+		$('.app-sidebar').toggleClass('immersive');
+	});
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

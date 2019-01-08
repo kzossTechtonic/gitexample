@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Navigation menus using CSS flexbox</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      @import url(https://fonts.googleapis.com/css?family=Montserrat);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eee;
+  color: #333;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5em;
+}
+
+header, section {
+  background-color: #fff;
+  margin: 0 auto 2rem;
+  padding: 1rem 2rem 2rem;
+  width: 80%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.2em;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: .5rem;
+}
+
+a {
+  color: #b13131;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+h2 + p {
+  color: #757575;
+  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+  margin-top: -.5rem;
+  text-transform: uppercase;
+}
+p code {
+  background-color: rgba(251, 175, 93, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 .25rem;
+  padding: 0 .25rem;
+}
+p.note {
+  background-color: #C4DF9B;
+  border-left: 0.5rem solid rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+}
+
+pre {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-left: 0.5rem solid rgba(0, 0, 0, 0.5);
+  color: #FBAF5C;
+  margin: 0;
+  padding: 1rem;
+}
+
+ul {
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+}
+
+li {
+  background-image: linear-gradient(to bottom, transparent 50%, #a2d39c 50%, #a2d39c 95%, #7cc576 95%);
+  background-size: 100% 200%;
+  background-position: top center;
+  color: #666;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  transition: all .25s ease-in-out;
+}
+li:hover {
+  background-position: bottom center;
+  color: rgba(0, 0, 0, 0.75);
+}
+li a {
+  color: #666;
+  display: block;
+  padding: 1rem 0;
+  transition: all .25s ease-in-out;
+}
+
+.css-toggle {
+  background-color: #ddd;
+  color: #333;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: all .25s ease-in-out;
+}
+.css-toggle:hover {
+  background-color: #FBAF5C;
+  color: #333;
+}
+
+#sc1 ul {
+  display: flex;
+  width: 100%;
+}
+#sc1 ul li {
+  flex: 1 1 100%;
+}
+
+#sc2 ul {
+  display: flex;
+  width: 100%;
+}
+#sc2 ul li {
+  flex: 1 1 auto;
+}
+
+#sc3 {
+  display: flex;
+  justify-content: center;
+}
+#sc3 ul {
+  display: flex;
+}
+#sc3 ul a {
+  padding: 1rem 2rem;
+}
+
+[id^='fun'] ul {
+  background-color: #eee;
+  border: 0;
+  display: flex;
+  padding: 0 2rem;
+  position: relative;
+  left: -2rem;
+  width: calc(100% + 4rem);
+}
+[id^='fun'] ul li {
+  background-image: linear-gradient(to bottom, transparent 50%, #448ccb 50%, #448ccb 95%, #0072bc 95%);
+  flex: 1 1 auto;
+}
+[id^='fun'] ul li a:hover {
+  color: #eee;
+}
+
+#fun1 ul li {
+  border-left: 2px solid #ddd;
+  transform: skew(-15deg);
+}
+#fun1 ul li:last-child {
+  border-right: 2px solid #ddd;
+}
+#fun1 ul li a {
+  transform: skew(15deg);
+}
+
+#fun2 li:hover {
+  transform: scale(1.2);
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <header>
+  <h1>Navigation menus using CSS flexbox</h1>
+  <p>The markup for all examples illustrated below are identical as follow:</p>
+  <pre><code>&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Work&quot;&gt;Work&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Resources&quot;&gt;Resources&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Meta&quot;&gt;Meta&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  <p>The CSS code provided in each of the demo below can be toggled. They are written in the flavour of <a href="http://sass-lang.com/">Sassy CSS</a>.</p>
+</header>
+<section>
+  <h2>Scenario 1</h2>
+  <p>Equal width elements</p>
+  <nav id="sc1">
+    <ul>
+      <li><a href="#" title="Home">Home</a></li>
+      <li><a href="#" title="Blog">Blog</a></li>
+      <li><a href="#" title="Work">Work</a></li>
+      <li><a href="#" title="Resources">Resources</a></li>
+      <li><a href="#" title="Meta">Meta</a></li>
+    </ul>
+  </nav>
+  <p>This is the equivalent of specifing each element to be an equal fraction of its parent's full width, i.e. each fraction is of identical size and the sum of their widths is equivalent to the parent's full width.</p>
+  <p>This effect is achieved with the help of <code>flex: 1 1 100%</code> on the flex items, which is a shorthand for:</p>
+  <pre><code>flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 100%;</code></pre>
+  <p>The property tells the browser to grow the items equally until they fill the full width of their flex parent, which is the <code>&lt;ul&gt;</code> element in this case. The <code>flex-basis</code> of 100% ensures that all items will be the same size and treated equally.</p>
+  <p class="note">Of course, this effect can be easily replicated with the good old CSS float and percentage width trick, but this will require knowing the number of children before hand, or else one will have to calculate the percentage width with JS instead.</p>
+  <a href="#" class="css-toggle">Show CSS</a>
+  <pre><code>nav {
+  & ul {
+    display: flex;
+    width: 100%;
+    & li {
+      flex: 1 1 100%;
+    }
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>Scenario 2</h2>
+  <p>Proportionate, content-based width</p>
+  <nav id="sc2">
+    <ul>
+      <li><a href="#" title="Home">Home</a></li>
+      <li><a href="#" title="Blog">Blog</a></li>
+      <li><a href="#" title="Work">Work</a></li>
+      <li><a href="#" title="Resources">Resources</a></li>
+      <li><a href="#" title="Meta">Meta</a></li>
+    </ul>
+  </nav>
+  <p>In other words, the width of each element will be proportionate to its relative width compared to the parent. This ensures a more balanced layout in the sense that wider menu items get more spacing</p>
+  <p>Here, we use the property <code>flex: 1 1 auto</code> on the children element. It is the shorthand of:</p>
+  <pre><code>flex-grow: 1;
+flex-shrink: 1;
+flex-basis: auto;</code></pre>
+  <p>Like the previous example, <code>flex-grow: 1</code> allows the children to grow when necessary, but on the condition that the width of each element is based on the size of its content. The latter is achieved with the help of <code>flex-basis: auto</code>.</p>
+  <a href="#" class="css-toggle">Show CSS</a>
+  <pre><code>nav {
+  & ul {
+    display: flex;
+    width: 100%;
+    & li {
+      flex-grow: 1;
+    }
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>Scenario 3</h2>
+  <p>Equally spaced elements + natural width + centered within parent</p>
+  <nav id="sc3">
+    <ul>
+      <li><a href="#" title="Home">Home</a></li>
+      <li><a href="#" title="Blog">Blog</a></li>
+      <li><a href="#" title="Work">Work</a></li>
+      <li><a href="#" title="Resources">Resources</a></li>
+      <li><a href="#" title="Meta">Meta</a></li>
+    </ul>
+  </nav>
+  <p>This is one of the more complicated examples that require a lot of CSS-hacking &mdash; without the flexbox specification, one has to set each item to an inline element and then justify them.</p>
+  <p>The trick here is to declare the wrapping container, <code>&lt;nav&gt;</code>, as well as the list itself, as flex displays &mdash; but we only apply the <code>justify-content: center;</code> property to the wrapping container.</p>
+  <a href="#" class="css-toggle">Show CSS</a>
+  <pre><code>nav {
+  display: flex;
+  justify-content: center;
+  & ul {
+    display: flex;
+    & a {
+      padding: 1rem 2rem;
+    }
+  }
+} </code></pre>
+</section>
+
+<section clsas="fancy">
+  <h2>Fancy example 1</h2>
+  <p>Mixing flexbox with CSS transforms</p>
+  <nav id="fun1">
+    <ul>
+      <li><a href="#" title="Home">Home</a></li>
+      <li><a href="#" title="Blog">Blog</a></li>
+      <li><a href="#" title="Work">Work</a></li>
+      <li><a href="#" title="Resources">Resources</a></li>
+      <li><a href="#" title="Meta">Meta</a></li>
+    </ul>
+  </nav>
+</section>
+
+<section clsas="fancy">
+  <h2>Fancy example 2</h2>
+  <p>Mixing flexbox with CSS transforms</p>
+  <nav id="fun2">
+    <ul>
+      <li><a href="#" title="Home">Home</a></li>
+      <li><a href="#" title="Blog">Blog</a></li>
+      <li><a href="#" title="Work">Work</a></li>
+      <li><a href="#" title="Resources">Resources</a></li>
+      <li><a href="#" title="Meta">Meta</a></li>
+    </ul>
+  </nav>
+</section>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script >
+      $(function(){
+  $('.css-toggle')
+  .next().hide()
+  .end().CodePen_removed_clickfunction(e){
+    e.preventDefault();
+    
+    if($(this).data('toggle') == 1) {
+      $(this).data('toggle', 0).html('Show CSS').next().slideUp();
+    } else if(!$(this).data('toggle') || $(this).data('toggle') == 0) {
+      $(this).data('toggle', 1).html('Hide CSS').next().slideDown();
+    }
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

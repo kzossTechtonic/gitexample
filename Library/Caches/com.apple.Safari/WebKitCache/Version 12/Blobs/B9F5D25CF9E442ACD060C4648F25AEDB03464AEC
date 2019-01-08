@@ -1,0 +1,1250 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Simple, flexible, and responsive flexbox-based modal</title>
+  
+  
+  
+  
+      <style>
+      html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  /* you need to set this to assign to the main element a min height of 100% */
+  height: 100%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+  margin: 0 auto;
+  background: #a9cd99;
+}
+
+.wrapper {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.wrapper .holdmystuff {
+  background: #ffffff;
+  max-width: 60%;
+  padding: 40px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 80px 0px rgba(30, 30, 30, 0.2);
+  -moz-box-shadow: 0px 0px 80px 0px rgba(30, 30, 30, 0.2);
+  box-shadow: 0px 0px 80px 0px rgba(30, 30, 30, 0.2);
+  font-size: .9em;
+}
+.wrapper .holdmystuff .holder_svg {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 25px;
+}
+.wrapper .holdmystuff .holder_svg svg {
+  max-width: 40%;
+}
+.wrapper .holdmystuff p {
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+.wrapper .holdmystuff ul {
+  padding: 0px;
+  margin: 0 auto;
+  list-style-type: none;
+}
+.wrapper .holdmystuff ul li {
+  display: inline-block;
+  margin: 0 auto;
+  background: #e9e9e9;
+  color: #303030;
+  padding: 10px;
+  text-decoration: none;
+  margin-bottom: 1px;
+}
+.wrapper .holdmystuff ul li a {
+  display: table-cell;
+}
+
+.slim_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2;
+  display: none;
+  font-size: 1em;
+  -webkit-transition: background 0.5s ease 0.06s;
+  -moz-transition: background 0.5s ease 0.06s;
+  -ms-transition: background 0.5s ease 0.06s;
+  -o-transition: background 0.5s ease 0.06s;
+  transition: background 0.5s ease 0.06s;
+}
+.slim_modal.none {
+  background: rgba(10, 10, 10, 0);
+}
+.slim_modal.red {
+  background: rgba(228, 30, 58, 0.8);
+}
+.slim_modal.tan {
+  background: rgba(202, 180, 75, 0.8);
+}
+.slim_modal.green {
+  background: rgba(111, 171, 85, 0.8);
+}
+.slim_modal .sm_content {
+  background: whitesmoke;
+  text-align: center;
+  max-width: 800px;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content {
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content {
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content {
+    padding: 15px;
+    width: 80%;
+    max-height: 90%;
+    height: auto;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content {
+    padding: 15px;
+    width: 80%;
+    max-height: 90%;
+    height: auto;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content {
+    padding: 15px;
+    width: 80%;
+    max-height: 90%;
+    height: auto;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+.slim_modal .sm_content .sm_content_inner_wrap {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 1px 0 rgba(30, 30, 30, 0.5);
+  -moz-box-shadow: 0px 0px 1px 0 rgba(30, 30, 30, 0.5);
+  box-shadow: 0px 0px 1px 0 rgba(30, 30, 30, 0.5);
+  z-index: 2;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content .sm_content_inner_wrap {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content .sm_content_inner_wrap {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content .sm_content_inner_wrap {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content .sm_content_inner_wrap {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content .sm_content_inner_wrap {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+.slim_modal .sm_content .sm_content_inner_wrap .sm_close_button {
+  padding: 10px;
+  width: auto;
+  display: block;
+  background: #efefef;
+}
+.slim_modal .sm_content .sm_content_inner_wrap .sm_area_top, .slim_modal .sm_content .sm_content_inner_wrap .sm_area_bottom, .slim_modal .sm_content .sm_content_inner_wrap .sm_area_all {
+  padding: 4em;
+}
+.slim_modal .sm_content .sm_content_inner_wrap .sm_area_top h3 span, .slim_modal .sm_content .sm_content_inner_wrap .sm_area_bottom h3 span, .slim_modal .sm_content .sm_content_inner_wrap .sm_area_all h3 span {
+  display: block;
+  font-size: .7em;
+}
+.slim_modal .sm_content .sm_content_inner_wrap .sm_area_top {
+  background: rgba(30, 30, 30, 0.02);
+}
+.slim_modal .sm_content .sm_content_inner_wrap .sm_area_bottom {
+  background: white;
+}
+.slim_modal .sm_content .sm_icon_menu {
+  opacity: 1;
+  box-sizing: border-box;
+  position: absolute;
+  top: 40px;
+  background: whitesmoke;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.slim_modal .sm_content .sm_icon_menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+}
+.slim_modal .sm_content .sm_icon_menu ul li {
+  font-size: 1.1em;
+  height: 3em;
+  line-height: 3em;
+  background: #e6e6e6;
+  padding: 0px 8px 0px 8px;
+  margin-bottom: 1px;
+  color: rgba(30, 30, 30, 0.4);
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.slim_modal .sm_content .sm_icon_menu ul li.sm_close {
+  background: #ffffff;
+}
+.slim_modal .sm_content .sm_icon_menu ul li:nth-child(2) {
+  margin-top: 10px;
+}
+.slim_modal .sm_content .sm_icon_menu ul li:hover {
+  background: #ffffff;
+  color: rgba(30, 30, 30, 0.7);
+}
+.slim_modal .sm_content .sm_icon_menu ul li::last-child {
+  border: none;
+}
+.slim_modal .sm_content .sm_icon_menu.is_right {
+  right: 0px;
+  border-radius: 0px 4px 4px 0px;
+  -webkit-border-radius: 0px 4px 4px 0px;
+  -moz-border-radius: 0px 4px 4px 0px;
+  -ms-border-radius: 0px 4px 4px 0px;
+  -o-border-radius: 0px 4px 4px 0px;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content .sm_icon_menu.is_right {
+    top: 70px;
+    right: 0px;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    padding: 1px;
+    border: none;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content .sm_icon_menu.is_right {
+    top: 70px;
+    right: 0px;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    padding: 1px;
+    border: none;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content .sm_icon_menu.is_right {
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    -webkit-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-left: none;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content .sm_icon_menu.is_right {
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    -webkit-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-left: none;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content .sm_icon_menu.is_right {
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    -webkit-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: 15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-left: none;
+  }
+}
+.slim_modal .sm_content .sm_icon_menu.is_left {
+  border-radius: 4px 0px 0px 4px;
+  -webkit-border-radius: 4px 0px 0px 4px;
+  -moz-border-radius: 4px 0px 0px 4px;
+  -ms-border-radius: 4px 0px 0px 4px;
+  -o-border-radius: 4px 0px 0px 4px;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content .sm_icon_menu.is_left {
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    padding: 1px;
+    border: none;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content .sm_icon_menu.is_left {
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0);
+    padding: 1px;
+    border: none;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content .sm_icon_menu.is_left {
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+    -webkit-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-right: none;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content .sm_icon_menu.is_left {
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+    -webkit-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-right: none;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content .sm_icon_menu.is_left {
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+    -webkit-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    box-shadow: -15px 0px 30px 0px rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-right: none;
+  }
+}
+.slim_modal .sm_content .sm_header {
+  box-sizing: border-box;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  color: rgba(30, 30, 30, 0.7);
+  text-transform: uppercase;
+  margin: 0 auto;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content .sm_header {
+    position: relative;
+    width: 100%;
+    background: #e6e6e6;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content .sm_header {
+    position: relative;
+    width: 100%;
+    background: #e6e6e6;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content .sm_header {
+    position: absolute;
+    width: 90%;
+    background: whitesmoke;
+    border-radius: 4px 4px 0px 0px;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    -moz-border-radius: 4px 4px 0px 0px;
+    -ms-border-radius: 4px 4px 0px 0px;
+    -o-border-radius: 4px 4px 0px 0px;
+    padding-top: 7.5px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content .sm_header {
+    position: absolute;
+    width: 90%;
+    background: whitesmoke;
+    border-radius: 4px 4px 0px 0px;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    -moz-border-radius: 4px 4px 0px 0px;
+    -ms-border-radius: 4px 4px 0px 0px;
+    -o-border-radius: 4px 4px 0px 0px;
+    padding-top: 7.5px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content .sm_header {
+    position: absolute;
+    width: 90%;
+    background: whitesmoke;
+    border-radius: 4px 4px 0px 0px;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    -moz-border-radius: 4px 4px 0px 0px;
+    -ms-border-radius: 4px 4px 0px 0px;
+    -o-border-radius: 4px 4px 0px 0px;
+    padding-top: 7.5px;
+    text-align: center;
+  }
+}
+.slim_modal .sm_content.pushup {
+  -moz-transform: scale(0.98) translateY(20px);
+  -o-transform: scale(0.98) translateY(20px);
+  -ms-transform: scale(0.98) translateY(20px);
+  -webkit-transform: scale(0.98) translateY(20px);
+  transform: scale(0.98) translateY(20px);
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  opacity: 0;
+}
+.slim_modal .sm_content.pushup.show {
+  -webkit-box-shadow: 0px 20px 80px 0px rgba(30, 30, 30, 0.4);
+  -moz-box-shadow: 0px 20px 80px 0px rgba(30, 30, 30, 0.4);
+  box-shadow: 0px 20px 80px 0px rgba(30, 30, 30, 0.4);
+  opacity: 1;
+}
+.slim_modal .sm_content.pushdown {
+  -moz-transform: scale(0.98) translateY(-20px);
+  -o-transform: scale(0.98) translateY(-20px);
+  -ms-transform: scale(0.98) translateY(-20px);
+  -webkit-transform: scale(0.98) translateY(-20px);
+  transform: scale(0.98) translateY(-20px);
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  -moz-box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  box-shadow: 0px 0px 0px 0px rgba(30, 30, 30, 0.4);
+  opacity: 0;
+}
+.slim_modal .sm_content.pushdown.show {
+  -webkit-box-shadow: 0px -20px 80px 0px rgba(30, 30, 30, 0.4);
+  -moz-box-shadow: 0px -20px 80px 0px rgba(30, 30, 30, 0.4);
+  box-shadow: 0px -20px 80px 0px rgba(30, 30, 30, 0.4);
+  opacity: 1;
+}
+.slim_modal .sm_content.show {
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.slim_modal .sm_content.show .sm_icon_menu {
+  -webkit-transition: all 0.5s ease 0.06s;
+  -moz-transition: all 0.5s ease 0.06s;
+  -ms-transition: all 0.5s ease 0.06s;
+  -o-transition: all 0.5s ease 0.06s;
+  transition: all 0.5s ease 0.06s;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_right {
+    top: 70px;
+    right: 0px;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_right {
+    top: 70px;
+    right: 0px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_right {
+    top: 15px;
+    right: -25px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_right {
+    top: 15px;
+    right: -25px;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_right {
+    top: 15px;
+    right: -25px;
+  }
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_left {
+    top: 70px;
+    left: 0px;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_left {
+    top: 70px;
+    left: 0px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_left {
+    top: 15px;
+    left: -25px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_left {
+    top: 15px;
+    left: -25px;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content.show .sm_icon_menu.is_left {
+    top: 15px;
+    left: -25px;
+  }
+}
+.slim_modal .sm_content.show .sm_header {
+  -webkit-transition: top 0.5s ease 0.1s;
+  -moz-transition: top 0.5s ease 0.1s;
+  -ms-transition: top 0.5s ease 0.1s;
+  -o-transition: top 0.5s ease 0.1s;
+  transition: top 0.5s ease 0.1s;
+  opacity: 1;
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content.show .sm_header {
+    top: 0px;
+    z-index: 9;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content.show .sm_header {
+    top: 0px;
+    z-index: 9;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content.show .sm_header {
+    top: -40px;
+    z-index: 1;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content.show .sm_header {
+    top: -40px;
+    z-index: 1;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content.show .sm_header {
+    top: -40px;
+    z-index: 1;
+  }
+}
+.slim_modal .sm_content.show .sm_header.detached {
+  -webkit-transition: opacity 0.5s ease 0.1s;
+  -moz-transition: opacity 0.5s ease 0.1s;
+  -ms-transition: opacity 0.5s ease 0.1s;
+  -o-transition: opacity 0.5s ease 0.1s;
+  transition: opacity 0.5s ease 0.1s;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+}
+@media only screen and (min-width: 320px) {
+  .slim_modal .sm_content.show .sm_header.detached {
+    top: 0px;
+    z-index: 9;
+  }
+}
+@media only screen and (min-width: 414px) {
+  .slim_modal .sm_content.show .sm_header.detached {
+    top: 0px;
+    z-index: 9;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .slim_modal .sm_content.show .sm_header.detached {
+    top: -60px;
+    padding-top: 0;
+    z-index: 1;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .slim_modal .sm_content.show .sm_header.detached {
+    top: -60px;
+    padding-top: 0;
+    z-index: 1;
+  }
+}
+@media only screen and (min-width: 1401px) {
+  .slim_modal .sm_content.show .sm_header.detached {
+    top: -60px;
+    padding-top: 0;
+    z-index: 1;
+  }
+}
+
+.sm_content.red {
+  background: #EF798A;
+}
+.sm_content.red .sm_header {
+  background: #EF798A;
+  color: #ffffff;
+}
+.sm_content.tan {
+  background: #E1D59A;
+}
+.sm_content.tan .sm_header {
+  background: #E1D59A;
+  color: #ffffff;
+}
+.sm_content.green {
+  background: #a9cd99;
+}
+.sm_content.green .sm_header {
+  background: #a9cd99;
+  color: #ffffff;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A Simple, Flexible, Responsive, Flexbox-Based Modal</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/V3.css"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="holdmystuff">
+      <div class="holder_svg">
+        <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In  -->
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 325 233" enable-background="new 0 0 325 233" xml:space="preserve">
+<defs>
+</defs>
+<polygon fill="#FFFFFF" stroke="#B3B3B3" stroke-width="2" stroke-miterlimit="10" points="295,32 31.4,32 1,32 1,90 1,110 1,150 
+	1,170 1,232 31.4,232 295,232 301,232 301,170 301,150 301,110 301,90 301,32 "/>
+<rect x="11" y="42" fill="#ADADAD" width="123" height="68"/>
+<rect x="11" y="196" fill="#999999" width="280" height="26"/>
+<rect x="141" y="42" fill="#999999" width="149" height="23"/>
+<rect x="141" y="73" fill="#C2C2C2" width="149" height="37"/>
+<rect x="11" y="153" fill="#D6D6D6" width="280" height="35"/>
+<rect x="11" y="130" fill="#EBEBEB" width="280" height="5"/>
+<rect x="311" y="42" fill="#999999" width="14" height="23"/>
+<rect x="311" y="74" fill="#999999" width="14" height="23"/>
+<rect x="311" y="106" fill="#999999" width="14" height="23"/>
+<rect x="48" fill="#999999" width="212" height="22"/>
+<path fill="#D1D1D1" d="M72,61.5c22.8,0,44.1,6.7,62,18.1V42H11v37C28.7,67.9,49.6,61.5,72,61.5z"/>
+<path fill="#C2C2C2" d="M151,209.5c-53,0-101.7-1.6-140-4.3V222h280v-16.8C252.7,207.9,204,209.5,151,209.5z"/>
+</svg>
+
+      </div>
+      <h2>A Simple, Flexible, Responsive, Flexbox-Based Modal</h2>
+<p>Passing data-attributes and havin' fun!
+      
+      <ul>
+        <li><a class="sm_open" data-modal="examplePlain" data-effect="pushdown">Modal (Plain 'Ol Vanilla')</a></li>
+        <li><a class="sm_open" data-modal="exampleAdvanced" data-effect="pushup" data-icons="is_right" data-header-type="detached">Modal (w/Detached Header and Right Icon Menu)</a></li>
+        <li><a class="sm_open" data-modal="exampleAdvanced" data-effect="pushup" data-icons="is_right">Modal (w/Header and Right Icon Menu)</a></li>
+        <li><a class="sm_open" data-modal="exampleAdvanced" data-effect="pushup" data-icons="is_left">Modal (w/Header and Left Icon Menu)</a></li>
+        <li>
+          <a class="sm_open" data-modal="exampleData" data-effect="pushdown" data-header="#1 This header is from the link" data-overlay="none" data-content="This is a sample HTML string being passed with a data-attribute... <p><h3>Super easy to change, simply by tweaking the button launching the modal.</h3></p>"
+            data-wrapper-color="green">Modal (Passing Data-Attributes w/Transparent Overlay)
+				</a>
+        </li>
+        <li>
+          <a class="sm_open" data-modal="exampleData" data-effect="pushdown" data-header="#1 This header is from the link" data-overlay="red" data-content="This is a sample HTML string being passed with a data-attribute... <p><h3>Super easy to change, simply by tweaking the button launching the modal.</h3></p>"
+            data-wrapper-color="red">Modal (Passing Data-Attributes w/Eye-Searing Red Overlay Color)
+				</a>
+        </li>
+        <li>
+          <a class="sm_open" data-modal="exampleData" data-effect="pushup" data-header="#1 This header is from the link" data-content="This is a sample HTML string being passed with a data-attribute... <p><h3>Super easy to change, simply by tweaking the button launching the modal.</h3></p>"
+            data-wrapper-color="tan">Modal (Passing Data-Attributes w/HTML)
+				</a>
+        </li>
+        <li>
+          <a class="sm_open" data-modal="exampleData" data-effect="pushdown" data-header="#2 This header is from the link" data-content="....and this is a second sample string being passed with a data-attribute attached to the button." data-wrapper-color="red">Modal (Passing Data-Attributes #1)
+				</a>
+        </li>
+        <li>
+          <a class="sm_open" data-modal="exampleData" data-effect="pushdown" data-header="#3 This header is from the link" data-content="...and this is yet another sample string being passed with a data-attribute attached to the button. I'm just typing this sentence to give a little more bulk to the modal...not filling it with important info, but making it stand out from the other examples a bit more."
+            data-wrapper-color="green">Modal (Passing Data-Attributes #2)
+				</a>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <div class="slim_modal" id="examplePlain">
+      <div class="sm_content">
+        <div class="sm_content_inner_wrap">
+          <div class="sm_area_top">
+            <h3>Example Modal Content
+								<span>...for this CSS Demo</span>
+							</h3>
+          </div>
+          <div class="sm_area_bottom">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nihil asperiores recusandae odio distinctio earum voluptatibus, quisquam repellendus voluptas quaerat quis est totam, optio quia, molestias voluptatum error libero pariatur!</p>
+          </div>
+          <a class="sm_close sm_close_button">CLOSE</a>
+        </div>
+      </div>
+    </div>
+    <div class="slim_modal" id="exampleAdvanced">
+      <div class="sm_content">
+        <div class="sm_header">Hi. I'm a Header.</div>
+        <div class="sm_icon_menu">
+          <ul>
+            <li class="sm_close"><i class="fa fa-times fa-fw "></i></li>
+            <li><i class="fa fa-gear fa-fw"></i></li>
+            <li><i class="fa fa-plus fa-fw"></i></li>
+            <li><i class="fa fa-sitemap fa-fw"></i></li>
+            <li><i class="fa fa-user fa-fw"></i></li>
+          </ul>
+        </div>
+        <div class="sm_content_inner_wrap">
+          <div class="sm_area_top">
+            <h3>Example Modal Content
+							<span>...for this CSS Demo</span>
+						</h3>
+          </div>
+          <div class="sm_area_bottom">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nihil asperiores recusandae odio distinctio earum voluptatibus, quisquam repellendus voluptas quaerat quis est totam, optio quia, molestias voluptatum error libero pariatur!</p>
+          </div>
+          <div class="sm_close sm_close_button">CLOSE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slim_modal" id="exampleData">
+      <div class="sm_content">
+        <div class="sm_header"></div>
+        <div class="sm_icon_menu is_right">
+          <ul>
+            <li class="sm_close"><i class="fa fa-times fa-fw "></i></li>
+          </ul>
+        </div>
+        <div class="sm_content_inner_wrap">
+          <div class="sm_area_all"></div>
+          <a class="sm_close sm_close_button">CLOSE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  
+  
+
+    <script >
+      	$(document).ready(function() {
+
+    $('.sm_open').on('click', function(){
+        var modal = $(this).attr('data-modal');
+        var modaloverlaycolor = $(this).attr('data-overlay');
+        var modaleffect = $(this).attr('data-effect');
+        var modalheader = $(this).attr('data-header');
+        var modalheadertype = $(this).attr('data-header-type');
+        var modalcontent = $(this).attr('data-content');
+        var modaliconside = $(this).attr('data-icons');
+        var modalwrappercolor = $(this).attr('data-wrapper-color');
+
+        $('#' + modal).addClass(modaloverlaycolor);
+        $('#' + modal + ' .sm_content').addClass(modaleffect);
+        $('#' + modal + ' .sm_content .sm_header').html(modalheader);
+        $('#' + modal + ' .sm_content .sm_header').addClass(modalheadertype);
+        $('#' + modal + ' .sm_content .sm_area_all').html(modalcontent);
+        $('#' + modal + ' .sm_icon_menu').addClass(modaliconside);
+        $('#' + modal + ' .sm_content').addClass(modalwrappercolor);
+        $('#' + modal).fadeIn().css("display", "flex");
+        setTimeout(function(){
+            $('#'+modal + ' .sm_content').addClass('show');
+        }, 400);        
+    });
+
+    $('.sm_close').on('click', function(){
+        var $modal = $(this).parents('.slim_modal');
+        closeModal($modal);  
+    });
+
+    $('.slim_modal').on('click', function(e) {
+	  if (e.target !== this)
+	    return;
+		var $modal = $(this);
+    	closeModal($modal);
+	});
+    
+    function closeModal($modal) {
+    	$modal.find('.sm_content').removeClass('show');
+        setTimeout(function(){
+        	$modal.removeClass('red green tan none');
+        	$modal.find('.sm_content').removeClass('red green tan');
+        	$modal.find('.sm_icon_menu').removeClass('is_right is_left');
+        	$modal.find('.sm_header').removeClass('detached');
+            $modal.fadeOut();
+        }, 400);
+    }
+  });
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

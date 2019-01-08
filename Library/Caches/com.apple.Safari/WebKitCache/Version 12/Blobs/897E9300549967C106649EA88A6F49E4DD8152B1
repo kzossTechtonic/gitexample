@@ -1,0 +1,181 @@
+define(['lib.lodash'], function(_){
+	'use strict';
+
+    Object.merge = Object.merge || function () {
+
+        function _merge(target, source, overwrite) {
+            for (var key in source) {
+                if (source.hasOwnProperty(key)) {
+                    switch (Object.prototype.toString.call(source[key])) {
+                        case '[object Array]' :
+                            if (!target[key]) {
+                                target[key] = [];
+                            }
+                            // if target[key] isn't an array, convert it to an array
+                            else if (Object.prototype.toString.call(target[key]) !== '[object Array]') {
+                                target[key] = [target[key]];
+                            }
+                            if (!!overwrite) {
+                                target[key] = [];
+                            }
+                            Array.prototype.push.apply(target[key], source[key]);
+                            break;
+                        case '[object Object]' :
+                            if (!target[key]) {
+                                target[key] = {};
+                            }
+                            _merge(target[key], source[key], overwrite);
+                            break;
+                        default:
+                            // overwrite
+                            target[key] = source[key];
+                    }
+                }
+            }
+        }
+
+        var result = {},
+            overwriteArrays = false,
+            args = Array.prototype.slice.call(arguments, 0);
+
+        if (args.length > 0 && typeof args[args.length - 1] === 'boolean') {
+            overwriteArrays = args.pop();
+        }
+
+        for (var i = 0; i < args.length; i++) {
+            var arg = args[i];
+            if (Object.prototype.toString.call(arg) !== '[object Object]') {
+                throw new TypeError('All arguments to Object.merge must be objects.');
+            }
+            _merge(result, arg, overwriteArrays);
+        }
+
+        return result;
+
+    };
+
+	var tstamp = window.tstamp;
+
+	if(!tstamp){
+		tstamp = "";
+	}
+	else{
+		tstamp = "/" + tstamp;
+	}
+
+	var registry = {"urlPrefix":{"nonCdn":{"myapps.static.url":"https://myapps.paychex.com","myapps.static.url.no.override":"https://myapps.paychex.com","myapps.benefits.static.url":"https://benefits.myapps.paychex.com","myapps.benefits.static.url.no.override":"https://benefits.myapps.paychex.com","myapps.benefits.summary.static.url":"https://benefits.myapps.paychex.com","myapps.benefits.summary.static.url.no.override":"https://benefits.myapps.paychex.com","myapps.benefits.remote.url":"https://benefits.myapps.paychex.com","myapps.retirement.static.url":"https://benefits.myapps.paychex.com","myapps.retirement.remote.url":"https://benefits.myapps.paychex.com","myapps.apps.static.url":"https://apps.myapps.paychex.com","myapps.apps.reporting.static.url":"https://apps.myapps.paychex.com","myapps.apps.static.url.no.override":"https://apps.myapps.paychex.com","myapps.apps.remote.url":"https://apps.myapps.paychex.com","myapps.people.url":"https://people.myapps.paychex.com","myapps.people.remote.url":"https://people.myapps.paychex.com","myapps.cltmaintenance.url":"https://people.myapps.paychex.com","myapps.cltmaintenance.remote.url":"https://people.myapps.paychex.com","myapps.marketing.tile.url":"https://www.paychex.com","myapps.marketing.tile.url.no.override":"https://www.paychex.com","myapps.useraccess.url":"https://apps.myapps.paychex.com","myapps.useraccess.remote.url":"https://apps.myapps.paychex.com","myapps.payroll.url":"https://payroll.myapps.paychex.com","myapps.payroll.remote.url":"https://payroll.myapps.paychex.com","myapps.payroll.rest.url":"http://flex-payroll-rest-remote-dev-clt-act.wdc.sandbox.paas.paychex.com","myapps.benefits.advisor.static.url":"https://benefits.myapps.paychex.com/advisor_static","myapps.pto.static.url":"https://benefits.myapps.paychex.com","myapps.pto.remote.url":"https://benefits.myapps.paychex.com","myapps.tlo.static.url":"https://benefits.myapps.paychex.com","myapps.tlo.remote.url":"https://benefits.myapps.paychex.com","myapps.checkStubs.remote.url":"https://benefits.myapps.paychex.com","myapps.checkStubsV2.remote.url":"https://reporting.myapps.paychex.com","myapps.taxDocs.remote.url":"https://benefits.myapps.paychex.com","myapps.hnb.static.url":"https://benefits.myapps.paychex.com","myapps.hnb.remote.url":"https://benefits.myapps.paychex.com","myapps.fsa.static.url":"https://benefits.myapps.paychex.com","myapps.fsa.remote.url":"https://benefits.myapps.paychex.com","myapps.reporting.static.url":"https://reporting.myapps.paychex.com","myapps.reporting.remote.url":"https://reporting.myapps.paychex.com","myapps.time.static.url":"https://time.myapps.paychex.com","myapps.mobile.landing.remote.url":"https://benefits.myapps.paychex.com","myapps.cpa.dashboard.static.url":"https://benefits.myapps.paychex.com","myapps.company.static.url":"https://company.myapps.paychex.com","myapps.company.remote.url":"https://company.myapps.paychex.com","myapps.time.remote.url":"https://time-aze-flextime-rem-prod.cloud.paychex.com","myapps.humanresources.static.url":"https://hr.myapps.paychex.com","myapps.humanresources.remote.url":"https://hr.myapps.paychex.com","myapps.tasks.static.url":"https://people.myapps.paychex.com","myapps.tasks.remote.url":"https://people.myapps.paychex.com","myapps.approvals.static.url":"https://people.myapps.paychex.com","myapps.approvals.remote.url":"https://people.myapps.paychex.com","myapps.retirement.ira.url":"https://ws.paychex.com/svcs/security/idp/IRAv2.5","myapps.docmanagement.static.url":"https://docs.myapps.paychex.com","myapps.docmanagement.remote.url":"https://docs.myapps.paychex.com","myapps.gl.static.url":"https://gl.myapps.paychex.com","myapps.gl.remote.url":"https://gl.myapps.paychex.com"},"cdn":{"myapps.static.url":"https://cdn.paychexinc.com/ent/png","myapps.apps.reporting.static.url":"https://cdn.paychexinc.com/reporting/flex","myapps.reporting.static.url":"https://cdn.paychexinc.com/reporting/flex","myapps.payroll.url":"https://cdn.paychexinc.com/payroll/png","myapps.people.url":"https://cdn.paychexinc.com/payroll/png","myapps.company.static.url":"https://cdn.paychexinc.com/payroll/png","myapps.cltmaintenance.url":"https://cdn.paychexinc.com/payroll/png","myapps.benefits.advisor.static.url":"https://cdn.paychexinc.com/benefits/png/advisor_static","myapps.benefits.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.pto.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.retirement.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.tlo.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.hnb.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.fsa.static.url":"https://cdn.paychexinc.com/benefits/png","myapps.cpa.dashboard.static.url":"https://cdn.paychexinc.com/benefits/png"},"internal":{"myapps.static.url":"https://onlsupt.paychex.com","myapps.approvals.static.url":"https://onlsupt.paychex.com","myapps.approvals.remote.url":"https://onlsupt.paychex.com","myapps.apps.static.url":"https://onlsupt.paychex.com","myapps.apps.reporting.static.url":"https://onlsupt.paychex.com","myapps.apps.remote.url":"https://onlsupt.paychex.com","myapps.company.static.url":"https://onlsupt.paychex.com","myapps.company.remote.url":"https://onlsupt.paychex.com","myapps.people.url":"https://onlsupt.paychex.com","myapps.people.remote.url":"https://onlsupt.paychex.com","myapps.cltmaintenance.url":"https://onlsupt.paychex.com","myapps.cltmaintenance.remote.url":"https://onlsupt.paychex.com","myapps.useraccess.url":"https://onlsupt.paychex.com","myapps.useraccess.remote.url":"https://onlsupt.paychex.com","myapps.payroll.url":"https://onlsupt.paychex.com","myapps.payroll.remote.url":"https://onlsupt.paychex.com","myapps.checkStubs.remote.url":"https://onlsupt.paychex.com","myapps.humanresources.static.url":"https://onlsupt.paychex.com","myapps.humanresources.remote.url":"https://onlsupt.paychex.com","myapps.tasks.static.url":"https://onlsupt.paychex.com","myapps.tasks.remote.url":"https://onlsupt.paychex.com","myapps.taxDocs.remote.url":"https://onlsupt.paychex.com","myapps.reporting.static.url":"https://onlsupt.paychex.com","myapps.reporting.remote.url":"https://onlsupt.paychex.com","myapps.checkStubsV2.remote.url":"https://onlsupt.paychex.com","myapps.hnb.remote.url":"https://onlsupt.paychex.com","myapps.hnb.static.url":"https://onlsupt.paychex.com","myapps.retirement.remote.url":"https://onlsupt.paychex.com","myapps.gl.static.url":"https://onlsupt.paychex.com","myapps.gl.remote.url":"https://onlsupt.paychex.com"},"phoneGap":{"myapps.static.url":"https://myapps.paychex.com"}},"appIconMap":{"ABOUT":"about","BEN_DSBD_EMP":"benefits-dashboard","BEN_DSBD_ADM":"benefits-dashboard","BEN_SUM_ADM":"benefits-summary","BEN_SUM_EMP":"benefits-summary","BENGRP_ADM":"benefits","BENTRC_ADM":"benetrac","BENTRC_EMP":"benetrac","CLTPRDMIG":"client-product-migration-tool","COBRA_ADM":"cobra","COMPANY_ADM":"company","COMPANY_DOCS":"documents","COMPANY_HTML":"company","COMPANY_INT":"company","COMPANY_HTML_INT":"company","CLTMAINT":"client-maintenance","DASHBOARD_ADM":"dashboard","DASHBOARD_ADMINT":"dashboard","DASHBOARD_ADV":"dashboard","DASHBOARD_EMP":"dashboard","DASHBOARD_INT":"dashboard","DOCS_EMP":"documents","EAM_ADM":"employee-access","EMP_ACCESS":"employee-access","EMP_ACCESS_HTML":"my-profile","EMP_ACCESS_ADV":"my-profile","FSA_EMP":"flexible-spending-account","GL_ADM":"general-ledger","GL_HTML":"general-ledger","GL_ADM_INT":"general-ledger","HB_ADM":"health-and-benefits","HB_EMP":"health-and-benefits","HLP_CTR_ADM":"help","HLP_CTR_EMP":"help","HLP_CTR_ADM_INT":"help","HLP_CTR_EMP_INT":"help","HNB_EMP_INT":"health-and-benefits","HNB_ADM_INT":"health-and-benefits","HELP":"help","HNB_ADM":"health-and-benefits","HNB_EMP":"health-and-benefits","HRO_ADM":"human-resources","HRO_EMP":"human-resources","HR_CTR_HTML":"human-resources","HR_CTR_HTML_EMP":"performance","HR_CTR_INT":"human-resources","HR_CTR_EMP_INT":"performance","LEARN_MORE":"learn-more","LINK_OHRL":"online-hr-library","LIVE_REPORTS_ADM":"unknown","LMS_ADM":"library","LMS_EMP":"library","MIGTOOL":"unknown","MSGBRDED":"message-board-editor","MSP_ADM":"hiring","MSP_EMP":"hiring","MSPOBESS":"hiring","MY_PAY":"my-pay","MY_PAY_CLASSIC":"employee-access","PARTY":"people","PARTY_INT":"people","PARTY_MICROPANEL":"people","PARTY_NO_OP":"people","PAYROLL":"payroll","PAYROLL_HTML":"payroll","PAYROLL_INT":"payroll","PAYROLL_HTML_INT":"payroll","PBA_ADM":"paychex-benefit-account-pba","PBA_EMP":"paychex-benefit-account-pba","PBS":"unknown","PEOPLE_ADM":"people","PLANS_INVST":"plans-and-investments","PLANS_INVST_INT":"plans-and-investments","ADVWEB_PLANS":"plans","ADVWEB_INVEST":"investments","PRDSUBEXT":"product-subscription-extension","PREMIER":"payroll","PROFILE_EMP":"unknown","PYR_ADM":"payroll","PRW_EMP":"retirement-services","PRW_EMP_INT":"retirement-services","RETSRV_ADM":"retirement-services","RETSRV_EMP":"retirement-services","RPT_ADM":"unknown","RPTBUILD":"reporting","RPTBUILD_INT":"report-builder","RPTCTR_ADM":"report-center","RPTCTR_INT":"report-center","RPTCTR_HTML":"report-center","RPTCTR_HTML_INT":"report-center","SECADMIN":"security-administrator","STM_ADM":"stratustime","STM_EMP":"stratustime","STM_MOB_ADM":"stratustime","STM_MOB_EMP":"stratustime","SAMPLE_APP":"unknown","SETTINGS_EMP":"globalSettings","SETTINGS_ADM":"globalSettings","SETTINGS_INT":"globalSettings","TA_ADM":"time-and-attendance","TA_EMP":"time-and-attendance","TAHTML_EMP":"time-and-attendance","TAXDOCS":"tax-documents-tile-icon","TLO_MP_ADM":"time-and-attendance","TLO_MP_EMP":"time-and-attendance","USRACCS_ADM":"user-access","USRACCS_INT":"user-access","USRACCT_EMP":"user-account","USRACCT_EMP_ADV":"user-account","USRMAINT":"client-user-maintenance"},"GAMappings":{"BEN_DSBD_ADM":"Benefits Dashboard","BEN_DSBD_EMP":"Benefits Dashboard","BEN_SUM_ADM":"Benefits Summary","BEN_SUM_EMP":"Benefits Summary","DashboardINT":"Dashboard_INT","LIVE_REPORTS_ADM":"Live Reports","ADVWEB_PLANS":"Plans","ADVWEB_INVEST":"Investments","PRW_EMP":"My Retirement","PAY_CTR_HTML":"Payroll Center","BENGRP_ADM":"Benefits","BENTRC_ADM":"Benefits Administration (ADM)","BENTRC_EMP":"Benefits Administration (EMP)","CLTMAINT":"Client Maintenance (INT)","CLTPRDMIG":"Client Product Migration Tool (INT)","COBRA_ADM":"COBRA (ADM)","COMPANY_ADM":"Company (ADM)","COMPANY_HTML":"Company (ADM)","COMPANY_INT":"Company (INT)","COMPANY_HTML_INT":"Company (INT)","DASHBOARD_ADM":"Dashboard (ADM)","DASHBOARD_ADMINT":"Dashboard (INT-ADM)","DASHBOARD_ADV":"Advisor Console (ADV)","DASHBOARD_CPA":"AccountantHQ (CPA)","DASHBOARD_EMP":"Dashboard (EMP)","DASHBOARD_INT":"Dashboard (INT)","DOCS_EMP":"Documents (EMP)","EAM_ADM":"Employee Access Management (ADM)","EMP_ACCESS":"My Profile (EMP)","EMP_ACCESS_ADV":"My Profile (ADV)","EMP_ACCESS_HTML":"My Profile (EMP)","FBW_ADM":"Financial Books and Witholdings-Admin","FBW_EMP":"Financial Books and Witholdings-Employee","FSA_ADM":"FSA (Mobile Only)","FSA_EMP":"FSA (EMP)","GL_ADM":"General Ledger (ADM)","GL_HTML":"General Ledger (ADM)","GL_ADM_INT":"General Ledger (INT)","HB_ADM":"Health & Benefits (ADM)","HB_ADM_INT":"Health & Benefits (INT-ADM)","HB_EMP":"Health & Benefits (EMP)","HLP_CTR_ADM":"Help Center (ADM)","HLP_CTR_EMP":"Help Center (EMP)","HLP_CTR_ADM_INT":"Help Center (INT-ADM)","HLP_CTR_EMP_INT":"Help Center (INT-EMP)","HNB_ADM":"Health & Benefits (ADM)","HNB_ADM_INT":"Health & Benefits (INT-ADM)","HNB_EMP":"Health & Benefits","HNB_EMP_INT":"Health & Benefits (INT-EMP)","HR_LIB":"HR Library (ADM)","HRO_ADM":"Human Resources (ADM)","HRO_EMP":"Human Resources (EMP)","HR_CTR_HTML":"Human Resources","HR_CTR_HTML_EMP":"Performance","HR_CTR_INT":"HR Center (INT-ADM)","HR_CTR_EMP_INT":"HR Center (INT-EMP)","IRA_ADM":"IRA (ADM)","IRA_EMP":"IRA (EMP)","MIGTOOL":"Migration Tool (INT)","MSGBRDED":"Message Board Editor (INT)","MSP_ADM":"Hiring (ADM)","MSP_EMP":"Hiring (EMP)","MSPOBESS":"Hiring","MY_PAY":"My Pay (EMP)","MY_PAY_CLASSIC":"My Pay - Classic","PARTY":"People (ADM)","PARTY_INT":"People (INT)","PARTY_MICROPANEL":"People","PARTY_NO_OP":"People (ADM)","PAYROLL":"Payroll (ADM)","PAYROLL_HTML":"Payroll (ADM)","PAYROLL_HTML_INT":"Payroll (INT)","PAYROLL_INT":"Payroll (INT)","PBA_ADM":"Paychex Benefit Account (ADM)","PBA_EMP":"Paychex Benefit Account (EMP)","PBS":"PBS Payroll","PEOPLE_ADM":"People (ADM)","PLANS_INVST":"Plans & Investments (ADV)","PLANS_INVST_INT":"Plans & Investments (INT-ADV)","PPLCTR_ADM":"People Center (ADM)","PRDSUBEXT":"Product Subscription Extension (INT)","PREMIER":"Payroll (ADM)","PYR_ADM":"Payroll (ADM)","RETSRV_ADM":"Retirement Services (ADM)","RETSRV_EMP":"Retirement Services (EMP)","RPT_ADM":"Reporting (ADM)","RPTBUILD":"Report Builder (ADM)","RPTBUILD_INT":"Report Builder (INT)","RPTCTR_ADM":"Analytics & Reports (ADM)","RPTCTR_HTML":"Analytics & Reports (ADM)","RPTCTR_HTML_INT":"Analytics & Reports (INT)","RPTCTR_INT":"Analytics & Reports (INT)","SAMPLE_APP":"Sample App (INT)","SECADMIN":"Security Administrator (INT)","SETTINGS_ADM":"Settings (ADM)","SETTINGS_EMP":"Settings (EMP)","SETTINGS_INT":"Settings (INT)","STM_ADM":"Stratustime (ADM)","STM_EMP":"Stratustime (EMP)","STM_MOB_ADM":"Stratustime (ADM)","STM_MOB_EMP":"Stratustime (EMP)","TA_ADM":"Time & Labor Online (ADM)","TA_EMP":"Time & Labor Online (EMP)","TAHTML_ADM":"Flex Time (ADM)","TAHTML_EMP":"Flex Time (EMP)","TASKS_ADM":"Tasks (ADM)","TAXDOCS":"Tax Documents (ADM)","TLO_MP_ADM":"Time & Labor Online (ADM)","TLO_MP_EMP":"Time & Labor Online (EMP)","USRACCS_ADM":"User Access (ADM)","USRACCS_INT":"User Access (INT)","USRACCT_EMP":"User Account (EMP)","USRACCT_EMP_ADV":"User Account (ADV)","USRMAINT":"Client / User Maintenance (INT)","CLIENT VIEWS":"Client Views","SUPPORT":"Support","COMPANY":"Company","MY ACCOUNT":"My Account","v0":"Classic","v1":"Advanced","userInfoIcon":"User Info Dropdown","helpIcon":"Help Dropdown","PeopleListAddPeople":"Add People Dropdown","PeopleListViewOptions":"People List Options","Time Off.drawer":"Time Off","Retirement.drawer.main":"Retirement","paychex.app.drawer.internalClientSearchDrawer":"Internal Client Search","paychex.app.drawer.CompanyLinkRequest":"Company Link Request","paychex.app.panel.messageList":"Message List","paychex.app.drawer.messageDrawer":"Message Drawer","paychex.app.drawer.globalSettingsDrawer":"User Preferences","paychex.app.drawer.linksOfInterestDrawer":"Links of Interest","paychex.app.People.PeopleList.panel":"People List","paychex.app.People.individualSummary":"Individual Summary","paychex.app.party.partyList.viewOptions":"View Options","paychex.app.party.adminPartyDrawer.earningsAndDeductionsDetailViewDrawer":"Earnings and Deductions Detail","paychex.app.party.adminPartyDrawer.timeOffDetailViewDrawer":"Time Off Detail","paychex.app.party.taxes.taxesDetailViewDrawer":"Taxes Detail","paychex.app.payroll.drawer.checkDetail":"Check Details","paychex.app.payroll.drawer.bulkBeginPayrolls":"Bulk Begin Payroll","paychex.app.payroll.drawer.wireThreshold":"Wire Threshold","paychex.app.reporting.drawer.reportCenter":"Report Center","paychex.app.reporting.drawer.deepLink":"Deep Link","paychex.app.drawer.userAccess.userAccessRolesDrawer.tabs":"User Access Roles","paychex.app.drawer.userAccess.userAccessRolesDrawer.assignUserDetail":"Assign User Details","paychex.app.drawer.userAccess.usersDrawer.tabs":"Users","paychex.app.drawer.userAccess.usersDrawer.assignRoleDetail":"Assign Role","paychex.app.drawer.userAccess.selectRoleDrawer":"Select Role","paychex.app.drawer.userAccess.permissionInfoDrawer":"Permissions Info","paychex.app.drawer.userAccess.newRoleDrawer":"New Role","paychex.app.drawer.userAccess.groupDrawer":"Group","paychex.app.drawer.userAccess.manageGroupsDrawer":"Manage Groups","paychex.app.drawer.userAccess.selectGroupDrawer":"Select Group","paychex.app.drawer.userAccess.assignServicesDrawer":"Assign Services","paychex.app.drawer.ClientAccountDrawer":"Client Account","paychex.app.payroll.tile.currentPayroll":"Current Payroll","paychex.app.payroll.tile.lastPayroll":"Last Payroll","paychex.app.reporting.tile.quickReports":"Quick Reports","paychex.app.tile.checkStubs":"Check Stubs","paychex.app.tile.feedback":"Feedback","paychex.app.tile.marketing":"Marketing","paychex.app.tile.taxDocuments":"Tax Documents","paychex.app.tile.walkThrough":"Flex Tour","paychex.app.tlo.tile.punchTile":"Time","paychex.app.tlo.tile.linksOfInterest":"Links Of Interest","paychex.app.tile.linksOfInterest":"Tools & Resources","paychex.app.tile.people":"People","paychex.app.tile.healthAndBenefits":"Health & Benefits","paychex.app.payroll.tile.PayrollCenter":"Payroll Center","paychex.app.hnb.admin.tile.retirement":"Retirement","paychex.app.hnb.admin.tile.benefits":"Benefits","paychex.app.tile.referClient":"Refer a Client","paychex.app.tile.requestAccess":"Request Access","paychex.app.tile.paidTimeOff":"Time Off","paychex.app.tile.knowledgeCenter":"Knowledge Center","paychex.app.tile.salesRepContactInfo":"Sales Representative","paychex.app.cpa.dashboard.tile.quickReports":"Quick Reports","paychex.app.tile.payrollSpecialist":"Payroll Specialist","paychex.app.example.simple.tile.sampleTile":"Sample Tile","paychex.app.cpa.dashboard.tile.PayrollCenterTile":"Payroll Center","paychex.app.benefits.retirement.advisor.activelyDeferringRateComingSoonTile":"Coming Soon: Actively Deferring Rate","paychex.app.benefits.retirement.advisor.activelyDeferringRateTile":"Actively Deferring Rate","paychex.app.benefits.retirement.advisor.aumTile":"AUM","paychex.app.benefits.retirement.advisor.kindexTile":"(k)Index","paychex.app.benefits.retirement.advisor.overviewTile":"Overview","paychex.app.benefits.retirement.advisor.participantCountTile":"Participation Count","paychex.app.benefits.retirement.advisor.participationRateTile":"Participation Rate","paychex.app.benefits.retirement.advisor.plansTile":"Plans","paychex.app.benefits.retirement.advisor.reportsTile":"Advisor Reports","paychex.advanced-security.v0":"Classic","paychex.advanced-security.v1":"Advanced"},"versions":{"phonegap.supported":"0.0.1,6.0.0,6.1.0","phonegap.warning":"0.0.0","phonegap.current":"6.1.0"},"excludes":{"people.exclude.clients.eeprofile":"16031733,11056984,20007699"}};
+
+	//merge registries from deployed apps
+	if (!window.jspVars.deployedRegistries){
+		window.jspVars.deployedRegistries = {};
+	}
+	if (!window.jspVars.deployedPhonegapRegistries){
+        window.jspVars.deployedPhonegapRegistries = {};
+    }
+
+    if(!window.jspVars.isPhoneGap){
+        registry = Object.merge(registry, window.jspVars.deployedRegistries);
+    }
+    if (window.jspVars.isPhoneGap) {
+        registry = Object.merge(registry, window.jspVars.deployedPhonegapRegistries);
+        for (var key in registry.urlPrefix.nonCdn) {
+            if (registry.urlPrefix.nonCdn.hasOwnProperty(key) && key.indexOf('remote') === -1) {
+                registry.urlPrefix.nonCdn[key] = window.jspVars.phoneGapRoot;
+            } else if (registry.urlPrefix.nonCdn.hasOwnProperty(key) && key.indexOf('remote') >= 0 && window.jspVars.remoteDomain === '') {
+                registry.urlPrefix.nonCdn[key] = '';
+            }
+        }
+    }
+    else if ((window.cdnEnabled === "true" || window.cdnBenefitsEnabled === "true") && window.jspVars.isExternalUser) {
+        for (var key in registry.urlPrefix.nonCdn) {
+
+            if (key.indexOf('benefits') > -1) {
+                if (!window.cdnBenefitsEnabled || window.cdnBenefitsEnabled === 'false') {
+                    continue;
+                }
+            }
+            else if (!window.cdnEnabled || window.cdnEnabled === "false") {
+                continue;
+            }
+
+            if (registry.urlPrefix.nonCdn.hasOwnProperty(key)) {
+                if (registry.urlPrefix.cdn[key]) {
+                    registry.urlPrefix.nonCdn[key] = registry.urlPrefix.cdn[key];
+                }
+            }
+        }
+    }
+    else if (!window.jspVars.isExternalUser) {
+        for (var key in registry.urlPrefix.nonCdn) {
+            if (registry.urlPrefix.nonCdn.hasOwnProperty(key)) {
+                if (registry.urlPrefix.internal[key]) {
+                    registry.urlPrefix.nonCdn[key] = registry.urlPrefix.internal[key];
+                }
+            }
+        }
+    }
+
+    var registryReplace = JSON.stringify(registry);
+    //to support standalone registry
+    registryReplace = registryReplace.replace(/%tstamp%/g, tstamp);
+    registryReplace = registryReplace.replace(/@release.tstamp@/g, tstamp);
+
+    //replacing in registry the tokens with the actual values of the urls. Keep it here or in service
+    //replace path keys
+    for (var key in registry.urlPrefix.nonCdn) {
+        if (registry.urlPrefix.nonCdn.hasOwnProperty(key)) {
+            var regEx = new RegExp('%' + key + '%', "g");
+            registryReplace = registryReplace.replace(regEx, registry.urlPrefix.nonCdn[key]);
+        }
+    }
+
+    registry = JSON.parse(registryReplace);
+
+    if (!registry.paths) {
+        registry.paths = {};
+    }
+    if (!registry.packages) {
+        registry.packages = {};
+    }
+    requirejs.config({
+        paths: registry.paths,
+        packages: registry.packages,
+        map: registry.map
+    });
+
+    window.componentsStaticUrl = {
+        "baseLandingStaticCdn": registry.appPackage['paychex.app.landing'].baseUrl,
+        "baseCommonStaticCdn": registry.commonHtml.common,
+        "baseComponentsStaticCdn": registry.components.libs,
+        "baseDashboardStaticCdn": registry.appPackage['paychex.app.dashboard'].baseUrl,
+        "basePartyStaticCdn": "/",
+        "baseBenefitsDashboardStaticCdn": "/"
+    };
+
+    registry.getStaticPath = function getStaticPath(id) {
+        return this.paths[ id ];
+    };
+
+    registry.generateStaticPath = function generateStaticPath( id, url ) {
+        return this.getStaticPath(id) + url;
+    };
+
+    registry.getHtmlFromCache = function getHtmlFromCache( id, url, templateCache ) {
+        return templateCache.get( this.generateStaticPath( id, url) );
+    };
+
+    registry.getTemplate = function getTemplate( id, url, templateCache ) {
+        var htmlFromCache = this.getHtmlFromCache(id, url, templateCache );
+        if( !htmlFromCache ) {
+            throw( 'Could not find cache for ' + url );
+        }
+        return _.template( htmlFromCache );
+    };
+
+	registry.items = {
+		env : window.environmentRun
+	};
+
+	return registry;
+
+});

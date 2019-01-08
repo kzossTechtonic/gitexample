@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>hostname</key>
+	<string>Techtonics-MacBook-Pro-8.local</string>
+	<key>hostuuid</key>
+	<string>87FC8DBF-1672-503D-B881-BA8C2006260F</string>
+	<key>pid</key>
+	<integer>550</integer>
+	<key>processname</key>
+	<string>photolibraryd</string>
+	<key>uid</key>
+	<integer>502</integer>
+</dict>
+</plist>

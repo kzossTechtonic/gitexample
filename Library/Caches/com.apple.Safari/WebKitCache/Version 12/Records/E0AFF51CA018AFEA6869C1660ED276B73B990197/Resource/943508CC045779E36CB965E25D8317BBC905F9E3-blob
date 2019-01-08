@@ -1,0 +1,1410 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - School Project -- Flexbox vs Grid Demo</title>
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      @import url("https://fonts.googleapis.com/css?family=Abel|Fjalla+One|Josefin+Sans");
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f1f1f1;
+  color: #272727;
+  font-family: "Abel", Arial, Helvetica, sans-serif;
+}
+
+header {
+  background: #2369a5;
+  padding-top: 1.5rem;
+  width: 100%;
+  position: relative;
+  z-index: 9999999;
+}
+
+nav {
+  position: relative;
+  text-align: center;
+  background: #2369a5;
+  width: 100%;
+  box-shadow: 0 3px 2px #1a4e7b;
+}
+
+nav > label {
+  display: block;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #f1f1f1;
+  margin: 0 0 0 1rem;
+  width: 1rem;
+  position: relative;
+  top: -3rem;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Fjalla One", Arial, Helvetica, sans-serif;
+  color: #f1f1f1;
+  text-shadow: 0 1px 1px #4d4d4d;
+}
+
+#toggle {
+  display: none;
+}
+
+#toggle:checked + .menu {
+  display: block;
+}
+
+.menu {
+  width: 100%;
+  text-align: left;
+  display: none;
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #f1f1f1;
+}
+.menu a {
+  display: inline-block;
+  text-decoration: none;
+  color: #d8d8d8;
+  width: 50%;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}
+.menu a:hover {
+  color: #f1f1f1;
+  font-size: 1.4rem;
+}
+.menu a:focus {
+  display: block;
+  background: #e4e4e4;
+  color: #2369a5;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+main ul {
+  list-style: none;
+}
+
+input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+.labels {
+  display: block;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+  line-height: 40px;
+  background: #53606e;
+  transition: background 300ms ease;
+}
+
+li:nth-child(even) > input + label {
+  background: #768698;
+}
+
+.labels:hover,
+li:nth-child(even) > input + label:hover {
+  background: #2369a5;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked ~ .labels {
+  background: #fb1b7d;
+  color: #414141;
+  cursor: default !important;
+}
+
+.accordionSlide {
+  display: block;
+  height: 0;
+  width: 100%;
+  overflow-y: scroll;
+  font-size: 12px;
+  line-height: 1.1;
+  transition: all 500ms ease;
+}
+
+input[type="radio"]:not(:checked) ~ label > * {
+  position: relative;
+  font-size: 1.2em;
+  white-space: nowrap;
+}
+
+input[type="radio"]:checked ~ label > * {
+  display: none;
+}
+
+li:nth-child(1):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 80px);
+}
+
+li:nth-child(2):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 80px);
+}
+
+li:nth-child(1):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 120px);
+}
+
+li:nth-child(2):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 120px);
+}
+
+li:nth-child(3):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 120px);
+}
+
+li:nth-child(1):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 160px);
+}
+
+li:nth-child(2):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 160px);
+}
+
+li:nth-child(3):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 160px);
+}
+
+li:nth-child(4):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 160px);
+}
+
+li:nth-child(1):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 200px);
+}
+
+li:nth-child(2):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 200px);
+}
+
+li:nth-child(3):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 200px);
+}
+
+li:nth-child(4):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 200px);
+}
+
+li:nth-child(5):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 200px);
+}
+
+li:nth-child(1):nth-last-child(6)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(2):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(3):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(4):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(5):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(6):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 240px);
+}
+
+li:nth-child(1):nth-last-child(7)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(2):nth-last-child(6)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(3):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(4):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(5):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(6):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(7):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 280px);
+}
+
+li:nth-child(1):nth-last-child(8)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(2):nth-last-child(7)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(3):nth-last-child(6)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(4):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(5):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(6):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(7):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(8):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 320px);
+}
+
+li:nth-child(1):nth-last-child(9)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(2):nth-last-child(8)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(3):nth-last-child(7)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(4):nth-last-child(6)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(5):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(6):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(7):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(8):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(9):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 360px);
+}
+
+li:nth-child(1):nth-last-child(10)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(2):nth-last-child(9)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(3):nth-last-child(8)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(4):nth-last-child(7)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(5):nth-last-child(6)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(6):nth-last-child(5)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(7):nth-last-child(4)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(8):nth-last-child(3)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(9):nth-last-child(2)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+li:nth-child(10):nth-last-child(1)
+input[type="radio"]:checked
+~ .accordionSlide {
+  height: calc(100% - 400px);
+}
+
+.demo {
+  margin: 1rem auto;
+  max-width: 100vw;
+  height: auto;
+}
+.demo h2 {
+  text-align: center;
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.demo p {
+  text-align: justify;
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+.demo p a {
+  text-decoration: none;
+  color: #2369a5;
+}
+
+.pen {
+  max-width: 85%;
+  height: auto;
+  margin: 10px auto;
+}
+
+.pen-items {
+  max-width: 90%;
+}
+
+footer {
+  background: #131313;
+  padding: 1rem;
+  text-align: center;
+  font-size: 14px;
+  color: #e4e4e4;
+  position: relative;
+  display: block;
+}
+footer p {
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 680px) {
+  nav > label {
+    font-size: 1.5rem;
+    margin: 0 0 0 2rem;
+  }
+
+  .menu a {
+    padding: 0.5rem 2rem;
+  }
+
+  main {
+    height: 100vh;
+  }
+
+  .labels {
+    float: left;
+    height: 100vh;
+    width: 40px;
+    font-size: 16px;
+  }
+
+  .accordionSlide {
+    height: 100%;
+    width: 0;
+    padding: 10px 0;
+    float: left;
+    overflow: hidden;
+    font-size: 15px;
+  }
+  .accordionSlide * {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  input[type="radio"]:not(:checked) ~ label > * {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  li:nth-child(1):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 80px);
+  }
+
+  li:nth-child(2):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 80px);
+  }
+
+  li:nth-child(1):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 120px);
+  }
+
+  li:nth-child(2):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 120px);
+  }
+
+  li:nth-child(3):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 120px);
+  }
+
+  li:nth-child(1):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 160px);
+  }
+
+  li:nth-child(2):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 160px);
+  }
+
+  li:nth-child(3):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 160px);
+  }
+
+  li:nth-child(4):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 160px);
+  }
+
+  li:nth-child(1):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 200px);
+  }
+
+  li:nth-child(2):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 200px);
+  }
+
+  li:nth-child(3):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 200px);
+  }
+
+  li:nth-child(4):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 200px);
+  }
+
+  li:nth-child(5):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 200px);
+  }
+
+  li:nth-child(1):nth-last-child(6)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(2):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(3):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(4):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(5):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(6):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 240px);
+  }
+
+  li:nth-child(1):nth-last-child(7)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(2):nth-last-child(6)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(3):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(4):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(5):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(6):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(7):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 280px);
+  }
+
+  li:nth-child(1):nth-last-child(8)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(2):nth-last-child(7)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(3):nth-last-child(6)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(4):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(5):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(6):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(7):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(8):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 320px);
+  }
+
+  li:nth-child(1):nth-last-child(9)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(2):nth-last-child(8)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(3):nth-last-child(7)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(4):nth-last-child(6)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(5):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(6):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(7):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(8):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(9):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 360px);
+  }
+
+  li:nth-child(1):nth-last-child(10)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(2):nth-last-child(9)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(3):nth-last-child(8)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(4):nth-last-child(7)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(5):nth-last-child(6)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(6):nth-last-child(5)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(7):nth-last-child(4)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(8):nth-last-child(3)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(9):nth-last-child(2)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  li:nth-child(10):nth-last-child(1)
+  input[type="radio"]:checked
+  ~ .accordionSlide {
+    width: calc(100% - 400px);
+  }
+
+  .demo {
+    max-height: 100vh;
+  }
+  .demo h2 {
+    font-size: 2rem;
+  }
+  .demo p {
+    text-align: justify;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+  }
+
+  .pen {
+    max-width: 80%;
+    margin-top: 4em;
+  }
+
+  footer {
+    padding-top: 2.5rem;
+    top: -52px;
+  }
+  footer div {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+
+  @supports (display: grid) {
+    .pen-items {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+    }
+  }
+}
+@supports (display: grid) {
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+
+  main {
+    height: 100%;
+  }
+
+  footer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+}
+@supports (display: flex) {
+  header {
+    box-shadow: 0 3px 2px #1a4e7b;
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: none;
+  }
+  nav label {
+    display: flex;
+    align-self: flex-start;
+  }
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <header>
+    <h1>Flexbox | Grid</h1>
+    <nav>
+      <label for="toggle">&#9776;</label>
+      <input type="checkbox" id='toggle'>
+      <ul class="menu">
+        <li><a href='#'>hem</a></li>
+        <li><a href='#'>demo</a></li>
+        <li><a href='#'>sammanfattning</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <ul>
+      <li>
+        <input type="radio" id='rad1' name='rad' checked='checked'>
+        <label for="rad1" class='labels'>
+          <div>Demo 1</div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Perfectly Centered</h2>
+            <p>Flexbox och CSS Grid är båda bra på lägga innehållet i mitten. Se på <a href="https://codepen.io/blenderWang/pen/xQMPBb">Codepen</a> all kod i detalj och gör änderingar som man vill!</p>
+            <div class="pen">
+              <p data-height="495" data-height="800" data-theme-id="dark" data-slug-hash="xQMPBb" data-default-tab="result" data-user="blenderWang"
+                data-pen-title="Flexbox vs Grid #Perfectly Centered" class="codepen"></p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <input type="radio" id='rad2' name='rad'>
+        <label for="rad2" class='labels'>
+          <div>Demo 2</div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Buttons Yay!</h2>
+            <p>En annan demonstration för att ytterligare betonar att både Flexbox och Grid kan utforma element på liknande sätt. I den här demo är de tre knapparna till höger utformade med flexbox och rutnät. Se på <a href="https://codepen.io/blenderWang/pen/gQZNpw">Codepen</a> all kod i detalj och gör änderingar som man vill!</p>
+            <div class="pen">
+              <p data-height="545" data-theme-id="dark" data-slug-hash="gQZNpw" data-default-tab="result" data-user="blenderWang"
+                data-pen-title="Flexbox vs Grid #Buttons on the right" class="codepen"></p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <input type="radio" id='rad3' name='rad'>
+        <label for="rad3" class='labels'>
+          <div>Demo 3</div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Flip & Reverse</h2>
+            <p>Man kan see i den demo hur enkelt det är for att vända om en rad till en kolumn med båda Flexbox och Grid. Den enda skillnad är att med Flexbox egenskap row-reverse/column-reverse blir det ännu enklare att ändra ordningen. Se på <a href="https://codepen.io/blenderWang/pen/gQZwRQ">Codepen</a> all kod i detalj och gör änderingar som man vill!</p>
+            <div class="pen">
+              <p data-height="545" data-theme-id="dark" data-slug-hash="gQZwRQ" data-default-tab="result" data-user="blenderWang"
+                data-pen-title="Flexbox vs Grid #Flip & Reverse" class="codepen"></p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <input type="radio" id='rad4' name='rad'>
+        <label for="rad4" class='labels'>
+          <div>Demo 4 </div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Does Size Matter?</h2>
+            <p>Den här demo bäst demonsrerar skillnaden mellan Grid och Flexbox. Grid är baserad på layout dvs "layout in" medan Flexbox är baserad på innehållet dvs "content out". Läs artikel på <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS Tricks</a> om Grid. Se på <a href="https://codepen.io/blenderWang/pen/JexqXM">Codepen</a> all kod i detalj och gör änderingar som man vill!</p>
+            <div class="pen">
+              <p data-height="595" data-theme-id="dark" data-slug-hash="JexqXM" data-default-tab="result" data-user="blenderWang"
+                data-pen-title="Flexbox vs Grid #content size" class="codepen"></p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <input type="radio" id='rad5' name='rad'>
+        <label for="rad5" class='labels'>
+          <div>Demo 5 </div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Why Not One More</h2>
+            <p>En annan demo som illustrerar hur lätt det är att formatera alla objekt samtidigt. Det visar också att Flexbox är baserad på sin "innehåll" medan Grid bygger på "layout". Se på <a href="https://codepen.io/blenderWang/pen/KrJLeN?editors=1100">Codepen</a> all kod i detalj och gör änderingar som man vill!</p>
+            <div class="pen">
+              <p data-height="455" data-theme-id="dark" data-slug-hash="KrJLeN" data-default-tab="result" data-user="blenderWang"
+                data-pen-title="Flexbox vs Grid #add one more" class="codepen"></p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <input type="radio" id='rad6' name='rad'>
+        <label for="rad6" class='labels'>
+          <div>Demo 6 </div>
+        </label>
+        <div class="accordionSlide">
+          <div class="demo">
+            <h2>Image Gallery: Flexbox vs Grid</h2>
+            <p>Den sista demo visar två "Image Gallery" skapas av <a href="https://codepen.io/blenderWang/pen/WKXpeP">Flexbox</a> och <a href="https://codepen.io/blenderWang/pen/MzxWeV">CSS Grid</a>. Flexbox här bättre stöd för animeringar som visas i demo. Med Grid kan man bara animera på grid-gap och grid-template-rows/columns nu. Båda Flexbox och Grid har förenklat hur man skapar en fin bildgalleri och gör det möljligt mycket snabbare.</p>
+            <div class="pen pen-items">
+                <p data-height="600" data-theme-id="dark" data-slug-hash="WKXpeP" data-default-tab="result, css"
+                  data-user="blenderWang" data-pen-title="JavaScript30 Flex Image Gallery" class="codepen"></p>
+                <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+                <p data-height="600" data-theme-id="dark" data-slug-hash="MzxWeV" data-default-tab="result, css"
+                  data-user="blenderWang" data-pen-title="CSS Grid Image Gallery" class="codepen"></p>
+                <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+              </div>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </main>
+
+  <div class="clear"></div>
+
+  <footer>
+    <div>
+      &copy; 2018 No rights reserved | Xiaorui Wang
+    </div>
+  </footer>
+  
+  
+  
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 

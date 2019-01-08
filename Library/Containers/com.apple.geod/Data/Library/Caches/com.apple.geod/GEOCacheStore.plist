@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ExperimentBucketGUID</key>
+	<string>FDCB3DB2-5157-48C5-86B6-20B76B87F1FA</string>
+	<key>ExperimentBucketGUIDTimestamp</key>
+	<real>568567820.74960196</real>
+	<key>GEOCohortSessionID</key>
+	<data>
+	CN7l14GYvI2idhC7066ZgL7E9KcB
+	</data>
+	<key>GEOCohortSessionStartTime</key>
+	<real>568567823.57931697</real>
+	<key>GEOUsageSessionID</key>
+	<data>
+	CKnH7NbzgKii3AEQkoPOlpjcj7P0AQ==
+	</data>
+	<key>GEOUsageSessionIDGenerationTime</key>
+	<real>568567823.32864904</real>
+</dict>
+</plist>

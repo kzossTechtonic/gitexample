@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Flexbox grid layout w/ Mobile Menu</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700|Righteous' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+  
+  <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+  window.alert   = function(){ console.log("window.alert is disabled."); };
+  window.confirm = function(){ console.log("window.confirm is disabled."); };
+  window.prompt  = function(){ console.log("window.prompt is disabled."); };
+  window.Notification = function() { console.log("HTML5 notifications are disabled."); };
+</script>
+
+  
+    <script>
+    (function() {
+      /*
+      * Capture all errors for this pen
+      **/
+      window.onerror = function(/* message, file, line */) {
+        return true;
+      };
+
+      /*
+      * Capture and kill Web Audio and Speech
+      */
+      if (typeof (AudioContext) != "undefined" || typeof (webkitAudioContext) != "undefined") {
+        AudioContext = function() {
+          return false;
+        };
+
+        webkitAudioContext = function() {
+          return false;
+        };
+      }
+
+      if (typeof (mozAudioContext) != "undefined") {
+        mozAudioContext = function() {
+          return false;
+        };
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis = {};
+      }
+      if ("speak" in speechSynthesis) {
+        speechSynthesis.speak = function() {
+          return false;
+        };
+      }
+
+      // Kill the browser asking for access to the video cam or audio
+      navigator.getUserMedia = function() {
+      };
+      navigator.mozGetUserMedia = function() {
+      };
+      navigator.webkitGetUserMedia = function() {
+      };
+      navigator.mediaDevices.getUserMedia = function() {
+      };
+
+      
+      /**
+      * Capture and kill animations after X number of seconds
+      **/
+      var __animationDuration = 4000;
+      var __animationsTimedOut = false;
+      var __animationRequests = [];
+      var __requestAnimationFrame = false;
+      var __cancelAnimationFrame = false;
+      var x, i;
+
+      var vendorsReqestAnimationFrame = [
+        "requestAnimationFrame",
+        "mozRequestAnimationFrame",
+        "webkitRequestAnimationFrame"
+      ];
+
+      // find the browsers requestAnimationFrame and cancelAnimationFrame
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        if (!__requestAnimationFrame) {
+          __requestAnimationFrame = window[vendorsReqestAnimationFrame[x]
+          ];
+        }
+      }
+
+      __cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+      // Wrap the requestAnimationFrame so we can stop it in the future
+      function __reqFrame(callback, element) {
+        // after the timeout we no longer take requests
+        var timerID;
+        if (__animationsTimedOut) {
+          return 0;
+        } else {
+          timerID = __requestAnimationFrame(callback, element);
+          __animationRequests.push(timerID);
+
+          return timerID;
+        }
+      }
+
+      for (x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+        window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+      }
+
+      // Cancel the animations after expiration
+      setTimeout(function() {
+        for (i = 0; i < __animationRequests.length; i++) {
+          __cancelAnimationFrame(__animationRequests[i]);
+        }
+
+        var ss = window.document.createElement("style");
+        ss.textContent = "*, *::before, *::after { animation-play-state: paused !important; }";
+        var ref = window.document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(ss, ref);
+
+        __animationsTimedOut = true;
+      }, __animationDuration, "push");
+
+      /**
+      * Capture setInterval and setTimeout to kill after X number of seconds
+      **/
+      window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        function f(a,b) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore setIntervals
+          if (this.timedOut) {
+            return 0;
+          } else {
+            return registered[ registered.length ] = oldSetInterval(a,b);
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearInterval( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setInterval));
+
+      window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        // because some of our timeouts may time out afterwards
+        // we want to make sure they know the secret sauce to still use
+        // setTimeout after the time has expired, thats why we have a
+        // third param
+        function f(a, b, push) {
+          // check if the time has expired,
+          // after __animationDuration expires don't take anymore requests
+          if (this.timedOut && typeof(push) == "undefined") {
+            return 0;
+          } else {
+            // If push is there, never clear that interval
+            // so never add it to the registry
+            if (push) {
+              return oldSetTimeout(a,b);
+            } else {
+              return registered[ registered.length ] = oldSetTimeout(a,b);
+            }
+          }
+        }
+
+        f.clearAll = function() {
+          var r;
+
+          while (r = registered.pop()) {
+            clearTimeout( r );
+          }
+
+          this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+      }(window.setTimeout));
+
+      setTimeout(function() {
+
+        setTimeout.clearAll();
+        setInterval.clearAll();
+
+        // Stop Web Animations API
+        // Idea from Gregor: https://github.com/CodePen/CodePen-Bug-Reporting-Only/issues/173#issuecomment-203443301
+        // Status as of August 2016:
+        //  Chrome = stops animations
+        //  Safari = doesn't support anyway
+        //  Firefox = doesn't stop them, but probably will someday? Doesn't error
+        if (document.timeline && typeof document.timeline.getAnimations === "function") {
+          document.timeline.getAnimations().map(function(animation) {
+            animation.pause();
+          });
+        }
+    
+      }, __animationDuration, "push");
+
+    }());
+  </script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no"  onload="_l='t';">
+
+  <header class="header">
+    <div class="container">
+      <h1 class="site-title">Super Cool Website!</h1>
+    <span class="site-tagline">Because flexbox is super cool!</span>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="container">
+    <ul>
+      <li class="mobile-button"><a href="#">Menu</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Work</a></li>
+    <li><a href="#">Methods</a></li>
+    <li><a href="#">Results</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  </div>
+</nav>
+
+<section class="content">
+  <div class="full-bleed cool-photo"></div>
+
+  <article class="post">
+    <div class="container">
+        <h2>This is the super cool section title</h2>
+      <div class="columns">
+        <div class="item">
+          <h4 class="item-title">This is the post title</h4>
+          <img src="http://lorempixel.com/600/150/nature" alt="Sample Image" class="item-image" />
+          <p>Frankly, it's ludicrous to have these interlocking bodies and not...interlock. My Uncle Rory was the stodgiest taxidermist you've ever met by day. But I haven't spent any money! I was all... dead and frugal. The only way some people can find a purpose in life is by becoming obsessed with demons. Should I start this program over? It's a real burn, being right so often. Can't call to mom, can't say a word. Nobody could do that much decoupage without calling on the powers of darkness. I'll never leave. Not even if you kill me. If I could make you purtier, I would.</p> </div>
+
+        <div class="item">
+          <h4 class="item-title">This is the post title</h4>
+          <p>Everybody started singing and dancing. I've got four brothers, none of them Democrats. They need to take seven and they might take yours. Any self-respecting demon should be living in a pit of filth or a nice crypt. Who's calling me? Everybody I know lives here. Can't even shout, can't even cry. And I'm a huge fan of the way you lose control and turn into an enormous green rage monster. I wanna hurt you, but I can't resist the sinister attraction of your cold and muscular body! In their resting state, our actives are as innocent and vulnerable as children.</p>
+         <img src="http://lorempixel.com/600/200/cats" alt="Sample Image" class="item-image" /></div>
+      </div>
+    </div>   
+  </article>  
+
+  <div class="full-bleed cool-photo2"></div>
+  
+  <article class="post"> 
+    <div class="container">
+    
+    <h3>This is another section sub-title</h3>
+    
+    <div class="columns thirds">
+      <div class="item"> <h4 class="item-title">This is the post title</h4>
+          <img src="http://lorempixel.com/400/100/nature" alt="Sample Image" class="item-image" />
+        <p>From beneath you, it devours. Y'all see the man hanging out of the spaceship with the really big gun? No, Angel, it's not you. If I was blind, I would see you. Yes, I'd forgotten you're moonlighting as a criminal mastermind now.</p>  
+      <p>The human body can be drained of blood in 8.6 seconds given adequate vacuuming systems. Actually, I was fired from a fry-cook opportunity. I'm a comfortador also. Oh my god, I find lentils completely incomprehensible. The human mind is like Van Halen; if you just pull out one piece and keep replacing it, it just degenerates.</p>
+        <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div>
+        
+     </div>
+      
+      <div class="item">
+          <h4 class="item-title">This is the post title</h4>
+        <p>I saw their production of 'Giselle' in 1890. I wept like a baby, and I was evil! And zombies don't eat brains anyway, unless instructed to by their zombie master. It's about power and it's about women and you just hate those two words in the same sentence, don't you? She is the slayer. I recognize the council has made a decision, but given that it's a stupid-ass decision, I've elected to ignore it.</p>
+         <p><img src="http://lorempixel.com/400/100/cats" alt="Sample Image" class="item-image" />
+        </p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div></div>
+
+      <div class="item">
+        
+          <h4 class="item-title">This is the post title</h4>
+         <img src="http://lorempixel.com/400/100/fashion" alt="Sample Image" class="item-image" />
+        <p>Everybody started singing and dancing. I saw their production of 'Giselle' in 1890. I wept like a baby, and I was evil! So, are we gonna sing army songs or something? I am obsolete. This must be what old people feel like, and Blockbuster. In their resting state, our actives are as innocent and vulnerable as children. I'm a rogue demon hunter now. Hey I could whip up a love slave any day I wanted. Oh my god, I find lentils completely incomprehensible. Well we could grind our enemies into talcum powder with a sledgehammer but, gosh, we did that last night.</p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div></div>
+
+      <div class="item">
+        
+          <h4 class="item-title">This is the post title</h4>
+        <p>It's funny how the Earth never opens up and swallows you when you want it to. Why can't you just masturbate like the rest of us? It's a real burn, being right so often. They need to take seven and they might take yours. We're old friends from Navy. Friends from Old Navy. I worked retail, he'd come in, buy slacks My entire existence was constructed by a sociopath in a sweater vest; what do you suggest I do?</p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="item">
+        
+          <h4 class="item-title">This is the post title</h4>
+         <img src="http://lorempixel.com/400/100/nightlife" alt="Sample Image" class="item-image" />
+        <p>Stay away from hyena people, or any loser athletes, or if you see anyone who's invisible. From beneath you, it devours. Somebody put her tiny little thinking cap on! We'll have to call it early quantum state phenomenon.</p> 
+      <p>Only way to fit 5000 species of mammal on the same boat. I've seen the best and the worst of you. The only thing Willow was ever good for, the only thing I ever had going for me were those moments, just moments, where Tara would look at me and I was wonderful. We've got a bunch of fighters with nothing to hit, a wicca who won't-a, and the brains of our operation wears oven mitts. They rampaged through half the known world until Angel got his soul.</p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div></div>
+
+      <div class="item">
+        
+          <h4 class="item-title">This is the post title</h4>
+        <p>Oh my god you will never believe what happened at school today. We're old friends from Navy. Friends from Old Navy. I worked retail, he'd come in, buy slacks I'm not planning on presiding over the end of Western Civilization. She is the slayer. Everyone's a hero in their own way, in their own not that heroic way. Stay away from hyena people, or any loser athletes, or if you see anyone who's invisible. These endless days are finally ending in a blaze. What, you think this isn't real just because of all the vampires, and demons, and ex-vengeance demons, and the sister that used to be a big ball of universe-destroying energy? They need to take seven and they might take yours. I swallowed a bug.</p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="item">
+          <h4 class="item-title">This is the post title</h4>
+        <p>Love keeps her in the air when she ought to fall down. Bunnies aren't just cute like everybody supposes. And I understand with perfect clarity exactly what you are. Occasionally, I'm callous and strange. You can't spend the rest of your life waiting for Xander to wake up and smell the hottie.</p>
+      <div class="social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </article>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>Footer Text, Yo. Made with love by <a href="http://cssgirl.com">Lindsey Di Napoli</a></p>
+  </div>
+</footer>
+    <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script >
+      /* Applying the "open" class when you click the Menu button, which triggers the mobile menu to open/close; Toggle Menu/Close menu text. */
+$(document).ready(function() {
+  $('.mobile-button a').CodePen_removed_clickfunction(e) {
+	$(this).parent().parent().toggleClass('open');
+  $(this).html($(this).html() == 'Close Menu' ? 'Menu' : 'Close Menu');
+    e.preventDefault();
+  });
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+    <script style="display: none !important;">
+  (function() {
+    var __animationDuration = 4000;
+
+    setTimeout(function() {
+      // If onload hasn't been called, stop all requests after 2 seconds
+      if (typeof(_l) == "undefined") {
+        if (window.stop !== undefined) window.stop();
+        else if (document.execCommand !== undefined) document.execCommand("Stop", false);
+      }
+    }, 2000, "push");
+
+    /*
+    * Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName("body")[0];
+
+      if (body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+
+      var targetEl;
+
+      if (e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = "paused";
+        }, __animationDuration, "push");
+
+      } else if (e.type == "animationstart" || e.type == "animationiteration") {
+
+        targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.MozAnimationPlayState = "paused";
+        }, __animationDuration, 'push');
+
+      }
+    }
+
+    pauseAnimations();
+
+    // Pause all audio elements, allow the audio/video
+    // elements to render before stopping them
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    // Wait until the elements have been created to pause them
+    setTimeout(function() {
+      pauseElementTypes("audio");
+      pauseElementTypes("video");
+    }, 100);
+
+  }());
+  </script>
+
+  
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+
+</html>
+ 
